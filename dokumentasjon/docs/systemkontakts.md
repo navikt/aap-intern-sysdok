@@ -8,5 +8,7 @@ C -->|Hente søknad| B
 C -->|Hent personinformasjon| D(Informasjonstjenester)
 C -->|Hva vi gjør| E[Kafka]
 C -->|Arkiver| F[Arkiv]
+C -->|Last opp ettersendelse| G[Mine aap]
+C -->|Oppdater brukernotifikasjon| H[Brukernotifikasjoner]
 ```
 
