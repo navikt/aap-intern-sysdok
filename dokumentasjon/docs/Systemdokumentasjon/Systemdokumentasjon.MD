@@ -24,7 +24,7 @@ Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google 
 | Infrastruktur  | Postgress database for forretningslogikk og GC Buckets for mellomlagring |
 
 ### Tegning av teknisk landskap
-<img src="./bilder/SystemLandskap.png">
+<img src="docs/bilder/SystemLandskap.png">
 
 #### Tekniske tjenester
 Tjenester som konsumeres
