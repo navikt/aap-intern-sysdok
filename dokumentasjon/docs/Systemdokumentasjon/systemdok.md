@@ -20,6 +20,7 @@ Her trenger vi mer..
 * En bruker får en oppgave på dittnav når den velger å ettersende påkrevd dokumentasjon.
 
 ## informasjonsmodell
+<img src="../bilder/SystemLandskap.png" />
 
 ## Tekniskbeskrivelse
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
@@ -31,7 +32,25 @@ Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google 
 | Infrastruktur  | Postgress database for forretningslogikk og GC Buckets for mellomlagring |
 
 ### Tegning av teknisk landskap
-<img src="docs/bilder/SystemLandskap.png">
+``` mermaid
+sequenceDiagram
+    Soknad->>Soknad: Start soknad
+    Soknad->>+Api: Hent fra baktjenester
+    Api->>+Registertjenester: Henter data fra baktjenester
+    Registertjenester->>-Api: Lever person og saksinformasjon
+    Api->>-Soknad: Lever person og saksinformasjon
+    Soknad->>+Mellomlagring: Mellomlagre soknad
+    Soknad->>+Mellomlagring: Gjennoppta soknad
+    Mellomlagring->>-Soknad: Lever mellomlagret
+    Api->>+Midlertidig_dokumentlager: Last opp vedlegg
+    Soknad->>+Api: Send inn soknad
+    Api->>+Midlertidig_dokumentlager: ?? soknad
+    Api->>+Pdfgen: Generer PDF
+    Pdfgen->>-Api: Lever PDF
+    Api->>+Arkiv: Arkiver journalpost
+    Api->>+Minesider: Lag oppgave eller beskjed i mine sider
+    Minesider->>brukernotifikasjon: Send ut ekstern notifikasjon
+```
 
 #### Tekniske tjenester
 Tjenester som konsumeres
