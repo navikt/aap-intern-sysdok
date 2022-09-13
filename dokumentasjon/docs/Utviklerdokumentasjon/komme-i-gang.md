@@ -2,9 +2,22 @@
 
 Dette er en liten oversikt over hva som skal til for å komme i gang som ny utvikler i Team Innbygger.
 
+
 ## Tilganger
 
 For å få tilgang til Team Innbygger sine GitHub repoer må du være lagt til i `navikt` organisasjonen på GitHub, og være lagt inn i gruppen `aap` i Azure AD.
+
+### Våre repoer på github
+
+| Repoer                                                              | Teknologi                    | Beskrivelse                                                                                                                                            | 
+|---------------------------------------------------------------------|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| [AAP Kalkulator](https://github.com/navikt/aap-kalkulator-frontend) | NEXT.JS                      | AAP-Kalkulatoren er et hjelpemiddel som kan bli brukt for å få et estimat om hva du kan få i AAP støtte.                                               |
+| [ AAP søknader](https://github.com/navikt/aap-soknad)               | NEXT.JS                      | Felles frontend for søknad for AAP og Søknad AAP utland                                                                                                |
+| [Mine AAP](https://github.com/navikt/aap-innsyn)                    | NEXT.JS                      | Sentral side for innbygger og saksinformasjon<br/> - Ettersendelse av dokumentasjon<br/> - Utlisting av dokumenter tilknyttet saken<br/> - Informasjon |
+| [AAP søknad API](https://github.com/navikt/aap-soknad-api)          | JAVA 17<br/>Kotlin<br/>maven | Sentral Backend for Innbygger<br/> - integrasjoner mot forretningstjenester<br/> - Kafka for brukernotifikasjoner<br/>                                 |
+| [PDF generator](https://github.com/navikt/aap-pdfgen)               | Shell                        |                                                                                                                                                        |
+| [AAP-Domain](https://github.com/navikt/aap-domain)                  | JAVA 17<br/>Kotlin<br/>maven | Felles domenemodell                                                                                                                                    |
+| [AAP-FSS-Proxy](https://github.com/navikt/aap-fss-proxy)            | JAVA 17<br/>Kotlin<br/>maven | Proxy for baktjenester                                                                                                                                 |
 
 ## Frontend
 
