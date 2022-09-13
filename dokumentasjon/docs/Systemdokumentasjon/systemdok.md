@@ -3,15 +3,21 @@
 Hensikt med denne tjenesten er å tilby innsending av søknad og vise status på denne for innbygger.
 Her trenger vi mer..
 
-## Prosesser og funskjoner 
+## Prosesser og funksjoner 
 - Søknader for AAP og AAP utland
 - Vise innsendt dokumentasjon.
 - Kvitteringsside som bekrefter hva som har blitt sendt inn.
 - Mulighet for å gjennopta en påbegynt, men ikke innsendt søknad.
 - Ettersende dokumentasjon som er påkrevd basert på svar gitt i søknaden.
 - Ettersende generell dokumentasjon tilknyttet sak.
-- Brukernotifikasjoner som varsler bruker om påbegynt søknad og manglende dokumentasjon.
+- [Brukernotifikasjoner](https://navikt.github.io/dittnav-brukernotifikasjoner-intro/) som varsler bruker om påbegynt søknad og manglende dokumentasjon.
 
+### Eksempler
+* En bruker kan velge å fortsette senere under utfylling av selve søknaden eller under oppsummeringen.
+* En bruker kan velge å etterende påkrevd dokumentasjon under oppsummeringen.
+* En bruker kan velge å avbryte søknad når som helst.
+* En bruker får en beskjed på dittnav når den velger å fortsette senere.
+* En bruker får en oppgave på dittnav når den velger å ettersende påkrevd dokumentasjon.
 
 ## informasjonsmodell
 
