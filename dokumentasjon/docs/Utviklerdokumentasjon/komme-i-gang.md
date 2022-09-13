@@ -27,7 +27,7 @@ Frontend-appene i Team Innbygger er bygget på NextJS. Vi bruker `yarn` som bygg
 
 Flere av avhengighetene vi bruker blir kun publisert på GitHub sitt Package Registry. For å kunne installere disse lokalt må du derfor sette opp yarn til å bruke `https://npm.pkg.github.com` i stedet for `https://npmjs.com`.
 
-- Lag/forny access token med repo og read:packages rettigheter i github ( under developer settings). husk enable sso
+- Lag/forny access token med repo og read:packages [rettigheter i github]( https://github.com/settings/tokens). husk enable sso
 - Login på npm med `npm login --scope=@navikt --registry=https://npm.pkg.github.com` og benytt github brukernavn, epost og tokenet du nettopp genererte
 
 ### Node versjon
@@ -88,3 +88,7 @@ Applikasjonslogger på serversiden plukkes opp automatisk av NAIS og tilgjengeli
 Vi bruker `pino` for logging på serversiden, og disse loggene formateres med `@elastic/ecs-pino-format` for at de skal parses riktig.
 
 ## Backend
+- Applikasjonene bygger på Maven Java 17. Kotlin brukes som språk.
+- InteliJ benyttes som IDE i NAV, men kan bruke det en foretrekker.
+
+### Oppsett for lokal utvikling
