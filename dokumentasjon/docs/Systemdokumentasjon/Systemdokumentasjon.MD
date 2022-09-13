@@ -1,6 +1,7 @@
 # Systemdokumentasjon av Arbeidsavklaringspenger for innbygger
 
 Hensikt med denne tjenesten er å tilby innsending av søknad og vise status på denne for innbygger.
+Her trenger vi mer..
 
 ## Prosesser og funskjoner 
 - Søknader for AAP og AAP utland
