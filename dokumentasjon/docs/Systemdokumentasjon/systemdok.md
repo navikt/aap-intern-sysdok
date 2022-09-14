@@ -20,7 +20,7 @@ Her trenger vi mer..
 * En bruker får en oppgave på dittnav når den velger å ettersende påkrevd dokumentasjon.
 
 ## informasjonsmodell
-<img src="../bilder/SystemLandskap.png" />
+![Informasjonsmodell](../bilder/SystemLandskap.png)
 
 ## Tekniskbeskrivelse
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
