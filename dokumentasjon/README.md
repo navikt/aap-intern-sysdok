@@ -1,7 +1,8 @@
 # Dokumentasjon for AAP Innbygger
+Dette er intern dokumentasjon for Team Innbygger i PO for Arbeidsavklaringspenger
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
-
+## Komme i gang
+Bygger på [Docusaurus 2](https://docusaurus.io/).
 ### Installation
 
 ```
@@ -13,9 +14,7 @@ $ yarn
 ```
 $ yarn start
 ```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
+Åpnes her [http://localhost:3000/](http://localhost:3000/)
 ### Build
 
 ```
@@ -23,3 +22,8 @@ $ yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## Henvendelser
+Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub
+
+## For NAV-ansatte
+Interne henvendelser kan sendes via Slack i kanalen #po-aap-innbygger
