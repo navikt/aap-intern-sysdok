@@ -20,7 +20,11 @@ Her trenger vi mer..
 * En bruker får en oppgave på dittnav når den velger å ettersende påkrevd dokumentasjon.
 
 ## informasjonsmodell
-![Informasjonsmodell](../bilder/SystemLandskap.png)
+![Informasjonsmodell](../bilder/Informasjonsmodell.png)
+<!--- 
+Tegningen er hentet herfra
+https://app.mural.co/invitation/mural/navdesign3580/1663231311908?sender=sturlehelland7470&key=9cf412d2-8755-499a-8a37-e32922515281 
+--->
 
 ## Tekniskbeskrivelse
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
