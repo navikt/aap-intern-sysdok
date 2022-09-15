@@ -67,4 +67,5 @@ Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre
 Som figuren viser er modellen delt i 2:
 - Håndtering av søknadslogikk og påkrevcde vedlegg som er sendt inn eller mangler.
 - Håndtering av brukernotifikasjoner tilknyttet søknader.
-<img src="../bilder/eksternebeskjednotifikasjoner.png" />
+
+![databasemodell](../bilder/eksternebeskjednotifikasjoner.png)
