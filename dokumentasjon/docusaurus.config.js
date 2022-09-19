@@ -74,8 +74,8 @@ async function createConfig() {
               title: "Docs",
               items: [
                 {
-                  label: "Tutorial",
-                  to: "/docs/intro",
+                  label: "Hvordan vi jobber",
+                  to: "/docs/hvordan_vi_jobber",
                 },
               ],
             },
