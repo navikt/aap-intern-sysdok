@@ -1,9 +1,14 @@
+---
+sidebar_position: 1
+---
+
 # Systemdokumentasjon av Arbeidsavklaringspenger for innbygger
 
 Hensikt med denne tjenesten er å tilby innsending av søknad og vise status på denne for innbygger.
 Her trenger vi mer..
 
-## Prosesser og funksjoner 
+## Prosesser og funksjoner
+
 - Søknader for AAP og AAP utland
 - Vise innsendt dokumentasjon.
 - Kvitteringsside som bekrefter hva som har blitt sendt inn.
@@ -13,30 +18,35 @@ Her trenger vi mer..
 - [Brukernotifikasjoner](https://navikt.github.io/dittnav-brukernotifikasjoner-intro/) som varsler bruker om påbegynt søknad og manglende dokumentasjon.
 
 ### Eksempler
-* En bruker kan velge å fortsette senere under utfylling av selve søknaden eller under oppsummeringen.
-* En bruker kan velge å etterende påkrevd dokumentasjon under oppsummeringen.
-* En bruker kan velge å avbryte søknad når som helst.
-* En bruker får en beskjed på dittnav når den velger å fortsette senere.
-* En bruker får en oppgave på dittnav når den velger å ettersende påkrevd dokumentasjon.
+
+- En bruker kan velge å fortsette senere under utfylling av selve søknaden eller under oppsummeringen.
+- En bruker kan velge å etterende påkrevd dokumentasjon under oppsummeringen.
+- En bruker kan velge å avbryte søknad når som helst.
+- En bruker får en beskjed på dittnav når den velger å fortsette senere.
+- En bruker får en oppgave på dittnav når den velger å ettersende påkrevd dokumentasjon.
 
 ## informasjonsmodell
+
 ![Informasjonsmodell](../bilder/Informasjonsmodell.png)
-<!--- 
+
+<!---
 Tegningen er hentet herfra
-https://app.mural.co/invitation/mural/navdesign3580/1663231311908?sender=sturlehelland7470&key=9cf412d2-8755-499a-8a37-e32922515281 
+https://app.mural.co/invitation/mural/navdesign3580/1663231311908?sender=sturlehelland7470&key=9cf412d2-8755-499a-8a37-e32922515281
 --->
 
 ## Tekniskbeskrivelse
+
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
 
 | Del av løsning | Teknologi                                                                |
-|----------------|--------------------------------------------------------------------------|
+| -------------- | ------------------------------------------------------------------------ |
 | Klient         | NEXT.js                                                                  |
 | Baksystem      | Java med Spring boot , kotlin                                            |
 | Infrastruktur  | Postgress database for forretningslogikk og GC Buckets for mellomlagring |
 
 ### Tegning av teknisk landskap
-``` mermaid
+
+```mermaid
 sequenceDiagram
     Soknad->>Soknad: Start soknad
     Soknad->>+Api: Hent fra baktjenester
@@ -57,6 +67,7 @@ sequenceDiagram
 ```
 
 #### Tekniske tjenester
+
 Tjenester som konsumeres
 
 - Innlogging via [Id-porten](https://eid.difi.no/en/id-porten)
@@ -68,7 +79,9 @@ Tjenester som konsumeres
 Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre
 
 #### Databasemodell
+
 Som figuren viser er modellen delt i 2:
+
 - Håndtering av søknadslogikk og påkrevcde vedlegg som er sendt inn eller mangler.
 - Håndtering av brukernotifikasjoner tilknyttet søknader.
 

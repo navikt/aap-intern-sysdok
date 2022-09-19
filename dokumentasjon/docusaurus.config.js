@@ -14,7 +14,7 @@ async function createConfig() {
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
-    favicon: "img/favicon.ico",
+    favicon: "img/nav_logo.png",
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
@@ -48,20 +48,20 @@ async function createConfig() {
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
         navbar: {
-          title: "My Site",
+          title: "Team Innbygger",
           logo: {
-            alt: "My Site Logo",
-            src: "img/logo.svg",
+            alt: "AAP Logo",
+            src: "img/aap_logo.png",
           },
           items: [
             {
               type: "doc",
-              docId: "intro",
+              docId: "hvordan_vi_jobber",
               position: "left",
-              label: "Intro",
+              label: "Dokumentasjon",
             },
             {
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/navikt/utvikler_aap_innbygger",
               label: "GitHub",
               position: "right",
             },
@@ -80,19 +80,15 @@ async function createConfig() {
               ],
             },
             {
-              title: "Community",
+              title: "Sosialt",
               items: [
                 {
-                  label: "Stack Overflow",
-                  href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                  label: "#po-aap-innbygger (Slack)",
+                  href: "https://nav-it.slack.com/archives/C031DUS37DK",
                 },
                 {
-                  label: "Discord",
-                  href: "https://discordapp.com/invite/docusaurus",
-                },
-                {
-                  label: "Twitter",
-                  href: "https://twitter.com/docusaurus",
+                  label: "#po_aap_intern_innbygger (Slack)",
+                  href: "https://nav-it.slack.com/archives/C032Z3UU4TU",
                 },
               ],
             },
@@ -106,7 +102,6 @@ async function createConfig() {
               ],
             },
           ],
-          copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
         },
         prism: {
           theme: lightCodeTheme,

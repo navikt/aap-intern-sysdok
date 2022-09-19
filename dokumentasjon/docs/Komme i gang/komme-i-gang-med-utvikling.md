@@ -1,19 +1,29 @@
-# Komme i gang som utvikler
+---
+sidebar_position: 2
+---
+
+# Komme i gang med utvikling
 
 Dette er en liten oversikt over hva som skal til for å komme i gang som ny utvikler i Team Innbygger.
-
 
 ## Tilganger
 
 For å få tilgang til Team Innbygger sine GitHub repoer må du være lagt til i `navikt` organisasjonen på GitHub, og være lagt inn i gruppen `aap` i Azure AD.
 
+### Tilgang til GitHub Package Registry
+
+Flere av avhengighetene vi bruker blir kun publisert på GitHub sitt Package Registry. For å kunne installere disse lokalt må du derfor sette opp yarn til å bruke `https://npm.pkg.github.com` i stedet for `https://npmjs.com`.
+
+- Lag/forny access token med repo og read:packages [rettigheter i github](https://github.com/settings/tokens). husk enable sso
+- Login på npm med `npm login --scope=@navikt --registry=https://npm.pkg.github.com` og benytt github brukernavn, epost og tokenet du nettopp genererte
+
 ### Våre repoer på github
 
-| Repoer                                                              | Teknologi                    | Beskrivelse                                                                                                                                            | 
-|---------------------------------------------------------------------|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------| 
-| [AAP Kalkulator](https://github.com/navikt/aap-kalkulator-frontend) | NEXT.JS                      | AAP-Kalkulatoren er et hjelpemiddel som kan bli brukt for å få et estimat om hva du kan få i AAP støtte.                                               |
-| [ AAP søknader](https://github.com/navikt/aap-soknad)               | NEXT.JS                      | Felles frontend for søknad for AAP og Søknad AAP utland                                                                                                |
-| [Mine AAP](https://github.com/navikt/aap-innsyn)                    | NEXT.JS                      | Sentral side for innbygger og saksinformasjon<br/> - Ettersendelse av dokumentasjon<br/> - Utlisting av dokumenter tilknyttet saken<br/> - Informasjon |
+| Repoer                                                              | Teknologi                    | Beskrivelse                                                                                                                                            |
+| ------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [AAP Kalkulator](https://github.com/navikt/aap-kalkulator-frontend) | NEXT.JS, Typescript          | AAP-Kalkulatoren er et hjelpemiddel som kan bli brukt for å få et estimat om hva du kan få i AAP støtte.                                               |
+| [ AAP søknader](https://github.com/navikt/aap-soknad)               | NEXT.JS, Typescript          | Felles frontend for søknad for AAP og Søknad AAP utland                                                                                                |
+| [Mine AAP](https://github.com/navikt/aap-innsyn)                    | NEXT.JS, Typescript          | Sentral side for innbygger og saksinformasjon<br/> - Ettersendelse av dokumentasjon<br/> - Utlisting av dokumenter tilknyttet saken<br/> - Informasjon |
 | [AAP søknad API](https://github.com/navikt/aap-soknad-api)          | JAVA 17<br/>Kotlin<br/>maven | Sentral Backend for Innbygger<br/> - integrasjoner mot forretningstjenester<br/> - Kafka for brukernotifikasjoner<br/>                                 |
 | [PDF generator](https://github.com/navikt/aap-pdfgen)               | Shell                        |                                                                                                                                                        |
 | [AAP-Domain](https://github.com/navikt/aap-domain)                  | JAVA 17<br/>Kotlin<br/>maven | Felles domenemodell                                                                                                                                    |
@@ -23,12 +33,7 @@ For å få tilgang til Team Innbygger sine GitHub repoer må du være lagt til i
 
 Frontend-appene i Team Innbygger er bygget på NextJS. Vi bruker `yarn` som byggeverktøy, og deploy skjer til Nais via GitHub Actions.
 
-### Tilgang til GitHub Package Registry
-
-Flere av avhengighetene vi bruker blir kun publisert på GitHub sitt Package Registry. For å kunne installere disse lokalt må du derfor sette opp yarn til å bruke `https://npm.pkg.github.com` i stedet for `https://npmjs.com`.
-
-- Lag/forny access token med repo og read:packages [rettigheter i github]( https://github.com/settings/tokens). husk enable sso
-- Login på npm med `npm login --scope=@navikt --registry=https://npm.pkg.github.com` og benytt github brukernavn, epost og tokenet du nettopp genererte
+[Se også mer generelt om hvordan vi driver med frontendutvikling i teamet](generelt-om-utvikling)
 
 ### Node versjon
 
@@ -63,54 +68,39 @@ Som standard vil alle ENV-variabler i NextJS kun være tilgjengelig på serversi
 
 Ved utvikling lokalt kan det være nyttig å mocke responser fra backend. Dette gjøres ved å sette `NEXT_PUBLIC_ENVIRONMENT="localhost"` i `.env.local`.
 
-### Måling og logging av feil
-
-Vi bruker Amplitude for å gjøre målinger i frontendappene, og Sentry for å måle performance og logge feil.
-
-#### Amplitude
-
-For å få tilgang til Amplitude må du legge til Amplitude på https://myapps.microsoft.com. Etter at du har gitt deg selv tilgang her må en annen utvikler i teamet legget deg til i riktig Space i Amplitude.
-
-Amplitude brukes for å logge ulike `eventer` eller ting som brukere gjør i appene våre. Dette kan for eksempel være `startet søknad`, `åpnet ekspanderbart panel` eller `trykket på lenke`. Se [Analytic Taxonomy](https://github.com/navikt/analytics-taxonomy) for en oversikt over hvilke eventer vi kan logge.
-
-Logging av eventer til Amplitude går via en proxy i NAV som fjerner personidentifiserende informasjon som IP-adresse. Det er allikevel viktig at vi ikke legger ved informasjon i et event som kan brukes til å reidentifisere en person. Indirekte personopplysninger som alder, bosted og kjønn kan også brukes til å reidentifisere en person.
-
-#### Sentry
-
-For å få tilgang til Sentry må du legge til Sentry på https://myapps.microsoft.com. Etter at du har gitt deg selv tilgang her må en annen utvikler i teamet legget deg til i riktig prosjekt i Sentry.
-
-Vi bruker Sentry til å måle performance i frontendappene våre. Dette inkluderer tid brukt på sidelasting og hvor stor andel av brukere som opplever feil. Vi bruker også Sentry til automatisk rapportering av feil som oppstår i brukers nettleser.
-
-#### Applikasjonslogger
-
-Applikasjonslogger på serversiden plukkes opp automatisk av NAIS og tilgjengeliggjøres på https://logs.adeo.no.
-
-Vi bruker `pino` for logging på serversiden, og disse loggene formateres med `@elastic/ecs-pino-format` for at de skal parses riktig.
-
 ## Backend
+
 - Applikasjonene bygger på Maven Java 17. Kotlin brukes som språk.
 - InteliJ benyttes som IDE i NAV, men kan bruke det en foretrekker.
 
 ### Oppsett for lokal utvikling
-Forutsetter at du har satt opp: 
+
+Forutsetter at du har satt opp:
+
 - [naicedevice](https://doc.nais.io/device/)<br/>
 - Installert maven og java. eks:
-````shell
+
+```shell
 $ brew install maven
 $ brew install java
-````
+```
+
 Anbefalt å bruke [Homebrew](https://brew.sh/) for lokalt oppsett, alt fra nais-teamet installeres via brew
+
 - sett opp [nais cli](https://doc.nais.io/cli/install/)
 - Oppsett for tilgang til dev db for aap_soknad_api<br/>
-[nais dokumentasjon](https://doc.nais.io/persistence/postgres/#personal-database-access) for personlig tilgang til database<br/>
-[posgress i google cloud](https://cloud.google.com/sql/docs/postgres/sql-proxy)<br/>
-Nyttige aliaser å sette opp i din `.env`
+  [nais dokumentasjon](https://doc.nais.io/persistence/postgres/#personal-database-access) for personlig tilgang til database<br/>
+  [posgress i google cloud](https://cloud.google.com/sql/docs/postgres/sql-proxy)<br/>
+  Nyttige aliaser å sette opp i din `.env`
+
 ```sh
 alias dbacess='gcloud projects add-iam-policy-binding aap-dev-e48b --member=user:fornavn.etternavn@nav.no --role=coludsql.admin --condition=“expression=request.time < timestamp(’\’‘2022-09-20T01:38:40Z’\‘’),title=temp_access”'
 alias proxy='~/cloud_sql_proxy -instances=aap-dev-e48b:europe-north1:aap-soknad-api-dev=tcp:5432'
 ```
+
 - Oppsett for å kunne bruke [Dokuments sine Avro-skjemaene i din applikasjon](https://github.com/navikt/teamdokumenthandtering-avro-schemas#oppsett-for-%C3%A5-kunne-bruke-avro-skjemaene-i-din-applikasjon)
 - Da bør du være klar til å kjøre
-````shell
+
+```shell
 mvn clean install
-````
+```
