@@ -99,6 +99,7 @@ alias proxy='~/cloud_sql_proxy -instances=aap-dev-e48b:europe-north1:aap-soknad-
 ```
 
 - Oppsett for å kunne bruke [Dokuments sine Avro-skjemaene i din applikasjon](https://github.com/navikt/teamdokumenthandtering-avro-schemas#oppsett-for-%C3%A5-kunne-bruke-avro-skjemaene-i-din-applikasjon)
+- For å kjøre lokalt må du lage en kopi av `//.github/.m2/settings.xml` og lagre den i `~/.m2/settings.xml` (id´er i fila kan endres).
 - Da bør du være klar til å kjøre
 
 ```shell
