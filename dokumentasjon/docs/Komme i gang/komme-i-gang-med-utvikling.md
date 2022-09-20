@@ -69,31 +69,33 @@ Som standard vil alle ENV-variabler i NextJS kun være tilgjengelig på serversi
 Ved utvikling lokalt kan det være nyttig å mocke responser fra backend. Dette gjøres ved å sette `NEXT_PUBLIC_ENVIRONMENT="localhost"` i `.env.local`.
 
 ## Backend
+
 ### Forutsetter at du har satt opp:
+
 Anbefalt å bruke [Homebrew](https://brew.sh/) for lokalt oppsett, alt fra nais-teamet installeres via `brew`
+
 - [naicedevice](https://doc.nais.io/device/)<br/>
 - Installert maven og java. eks:
 
 - sett opp [nais cli](https://doc.nais.io/cli/install/)
 
-
-
-
 ### Oppsett for lokal utvikling
+
 - Applikasjonene bygger på Maven Java 17. Kotlin brukes som språk.
 - InteliJ benyttes som IDE i NAV, men kan bruke det en foretrekker.
 - Sett opp for DB i google cloud. [Se dokumentasjon](https://cloud.google.com/sql/docs/postgres/sql-proxy)
 <details>
   <summary> smarte aliaser for kobling mot DB i GCP</summary>
+</details>
 
 Nyttige aliaser å sette opp i din `.env`
+
 ```sh
 alias dbacess='gcloud projects add-iam-policy-binding aap-dev-e48b --member=user:fornavn.etternavn@nav.no --role=coludsql.admin --condition=“expression=request.time < timestamp(’\’‘2022-09-20T01:38:40Z’\‘’),title=temp_access”'
 alias proxy='~/cloud_sql_proxy -instances=aap-dev-e48b:europe-north1:aap-soknad-api-dev=tcp:5432'
 ```
-</details>
 
-- Konfigurerer ``settings.xml` [se dokumentasjon](../Utviklerdokumentasjon/settings-xml.md) 
+- Konfigurerer ``settings.xml` [se dokumentasjon](../Utviklerdokumentasjon/settings-xml.md)
 - Da bør du være klar til å kjøre
 
 ```shell
