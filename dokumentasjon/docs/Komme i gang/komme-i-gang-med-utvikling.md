@@ -69,37 +69,31 @@ Som standard vil alle ENV-variabler i NextJS kun være tilgjengelig på serversi
 Ved utvikling lokalt kan det være nyttig å mocke responser fra backend. Dette gjøres ved å sette `NEXT_PUBLIC_ENVIRONMENT="localhost"` i `.env.local`.
 
 ## Backend
-
-- Applikasjonene bygger på Maven Java 17. Kotlin brukes som språk.
-- InteliJ benyttes som IDE i NAV, men kan bruke det en foretrekker.
-
-### Oppsett for lokal utvikling
-
-Forutsetter at du har satt opp:
-
+### Forutsetter at du har satt opp:
+Anbefalt å bruke [Homebrew](https://brew.sh/) for lokalt oppsett, alt fra nais-teamet installeres via `brew`
 - [naicedevice](https://doc.nais.io/device/)<br/>
 - Installert maven og java. eks:
 
-```shell
-$ brew install maven
-$ brew install java
-```
-
-Anbefalt å bruke [Homebrew](https://brew.sh/) for lokalt oppsett, alt fra nais-teamet installeres via brew
-
 - sett opp [nais cli](https://doc.nais.io/cli/install/)
-- Oppsett for tilgang til dev db for aap_soknad_api<br/>
-  [nais dokumentasjon](https://doc.nais.io/persistence/postgres/#personal-database-access) for personlig tilgang til database<br/>
-  [posgress i google cloud](https://cloud.google.com/sql/docs/postgres/sql-proxy)<br/>
-  Nyttige aliaser å sette opp i din `.env`
 
+
+
+
+### Oppsett for lokal utvikling
+- Applikasjonene bygger på Maven Java 17. Kotlin brukes som språk.
+- InteliJ benyttes som IDE i NAV, men kan bruke det en foretrekker.
+- Sett opp for DB i google cloud. [Se dokumentasjon](https://cloud.google.com/sql/docs/postgres/sql-proxy)
+<details>
+  <summary> smarte aliaser for kobling mot DB i GCP</summary>
+
+Nyttige aliaser å sette opp i din `.env`
 ```sh
 alias dbacess='gcloud projects add-iam-policy-binding aap-dev-e48b --member=user:fornavn.etternavn@nav.no --role=coludsql.admin --condition=“expression=request.time < timestamp(’\’‘2022-09-20T01:38:40Z’\‘’),title=temp_access”'
 alias proxy='~/cloud_sql_proxy -instances=aap-dev-e48b:europe-north1:aap-soknad-api-dev=tcp:5432'
 ```
+</details>
 
-- Oppsett for å kunne bruke [Dokuments sine Avro-skjemaene i din applikasjon](https://github.com/navikt/teamdokumenthandtering-avro-schemas#oppsett-for-%C3%A5-kunne-bruke-avro-skjemaene-i-din-applikasjon)
-- For å kjøre lokalt må du lage en kopi av `//.github/.m2/settings.xml` og lagre den i `~/.m2/settings.xml` (id´er i fila kan endres).
+- Konfigurerer ``settings.xml` [se dokumentasjon](../Utviklerdokumentasjon/settings-xml.md) 
 - Da bør du være klar til å kjøre
 
 ```shell

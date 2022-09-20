@@ -2,10 +2,10 @@
 
 For å kunne bygge maven packages på NAVikt sitt packagerepo på github trenger du følgende konfigurasjon:
 
-- I .m2 mappen din på din brukers rotmappe, legg inn følgende `<reposetories>`
 - Vær sikker på at [din personlige githubtoken](https://github.com/settings/tokens) er `sso enabled` og `read:packages=true`.
   Dette trenger du for å kunne bruke [Dokuments sine Avro-skjemaene i din applikasjon](https://github.com/navikt/teamdokumenthandtering-avro-schemas#oppsett-for-%C3%A5-kunne-bruke-avro-skjemaene-i-din-applikasjon), samt [felles biblioteket AAP-domain](https://github.com/navikt/aap-domain)
-
+- I source file (eksempelvis  `.zshrc` dersom du bruker Iterm2 med zsh på mac)
+- I .m2 mappen din på din brukers rotmappe, legg inn følgende `<reposetories>`
 <details>
   <summary> Se ~/.m2/settings.xml</summary>
 
