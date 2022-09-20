@@ -1,4 +1,7 @@
-#### Systemkontekst
+# Ettersendelse og Mine AAP
+
+Peke tilbake på overordnet oversikt
+
 ```mermaid
     graph TD
     A[Soknad] -->|Lagre soknad| B(Bucket)
@@ -11,4 +14,3 @@ C -->|Arkiver| F[Arkiv]
 C -->|Last opp ettersendelse| G[Mine aap]
 C -->|Oppdater brukernotifikasjon| H[Brukernotifikasjoner]
 ```
-

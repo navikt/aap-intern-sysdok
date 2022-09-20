@@ -1,6 +1,6 @@
-# Fra søknad til arkiv
+# Flyt fra søknad til arkiv, Mine AAP og brukernotifikasjoner
 
-``` mermaid
+```mermaid
 sequenceDiagram
     Soknad->>Soknad: Start soknad
     Soknad->>+Api: Hent fra baktjenester
