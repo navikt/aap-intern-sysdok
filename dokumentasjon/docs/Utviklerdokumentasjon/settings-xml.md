@@ -1,4 +1,5 @@
 # Settings.xml for backend
+
 For å kunne bygge maven packages på NAVikt sitt packagerepo på github trenger du følgende konfigurasjon:
 
 - I .m2 mappen din på din brukers rotmappe, legg inn følgende `<reposetories>`
