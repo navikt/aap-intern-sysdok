@@ -21,6 +21,8 @@ Formålet er under integrasjonstesten å teste funksjonaliteten med sammensatte 
 
 Litt om hvordan vi tester
 
-## Testmiljø
+## Brukertesting
+
+Litt om hvordan vi brukertester (lenker til detaljer)
 
 ## Testdata
