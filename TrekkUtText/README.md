@@ -4,12 +4,14 @@
 
 ### Forutsetning:
 
-- Intaller python
+- Installer python
 
 ### JSON til tekst
-    ```bash python3 JSONToText <FraFil> <TilFil>```
+    
+    bash python3 JSONToText <FraFil> <TilFil>
 ### Tekst til JSON
-    ```bash python3 TextToJSON <JsonStrukturFil> <TextFil> <TilFil>```
+    
+    bash python3 TextToJSON <JsonStrukturFil> <TextFil> <TilFil>
 
 # Henvendelser
 
