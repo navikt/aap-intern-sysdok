@@ -4,7 +4,7 @@
 ### JSON til tekst
     ```bash python3 JSONToText <FraFil> <TilFil>```
 ### Tekst til JSON
-    ```bash python3 TextToJSON <FraFil> <TilFil>```
+    ```bash python3 TextToJSON <JsonStrukturFil> <TextFil> <TilFil>```
 
 ## todo:
 - [x] trekk ut text fra en JSON-fil til en txt-fil
