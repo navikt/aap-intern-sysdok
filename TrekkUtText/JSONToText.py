@@ -7,13 +7,13 @@ import os
 result = []
 
 def getData():
-    with open(sys.argv[2], 'r') as f:
+    with open(sys.argv[1], 'r') as f:
         result = json.load(f)
         return result
 
 
 def writeToFile(data):
-    with open(sys.argv[3], 'w') as f:
+    with open(sys.argv[2], 'w') as f:
         for x in data:
             f.write(x)
             f.write('\n')
