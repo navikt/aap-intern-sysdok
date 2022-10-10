@@ -4,7 +4,7 @@ import sys
 
 def getText():
     texts = []
-    with open(sys.argv[3], 'r') as f:
+    with open(sys.argv[2], 'r') as f:
         for x in f.readlines():
             texts.append(x.strip())
     return texts
@@ -24,7 +24,7 @@ def nyChangeData(data,list,currentIndex):
         if type(y) == type({}):
             nyChangeData(y, list, currentIndex)
         else:
-            y = list[currentIndex]
+            data[x] = list[currentIndex]
             currentIndex += 1
 
 
@@ -35,7 +35,7 @@ def TextToJson():
     print(list)
     k=type(data)
     nyChangeData(data, list, currentIndex)
-    json.dump(data, open(sys.argv[4], 'w'), indent=2, ensure_ascii=False)
+    json.dump(data, open(sys.argv[3], 'w'), indent=2, ensure_ascii=False)
 
 if __name__ == '__main__':
     TextToJson()
