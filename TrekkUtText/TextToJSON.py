@@ -32,7 +32,6 @@ def TextToJson():
     currentIndex = 0
     data = getData()
     list=getText()
-    print(list)
     k=type(data)
     nyChangeData(data, list, currentIndex)
     json.dump(data, open(sys.argv[3], 'w'), indent=2, ensure_ascii=False)
