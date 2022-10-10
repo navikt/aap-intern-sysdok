@@ -1,12 +1,14 @@
 # Trekk ut text fra en JSON-fil
 
 ## Kom i gang:
-    
-    ```bash python3 <FraFil> <TilFil>```
+### JSON til tekst
+    ```bash python3 JSONToText <FraFil> <TilFil>```
+### Tekst til JSON
+    ```bash python3 TextToJSON <FraFil> <TilFil>```
 
 ## todo:
 - [x] trekk ut text fra en JSON-fil til en txt-fil
-- [ ] sett inn text fra en txt-fil til en JSON-fil med samme struktur som den som ble lest ut
+- [x] sett inn text fra en txt-fil til en JSON-fil med samme struktur som den som ble lest ut
 ---
 # Henvendelser
 
