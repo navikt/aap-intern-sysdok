@@ -22,17 +22,17 @@ def changeData(data,list,currentIndex):
 def nyChangeData(data,list,currentIndex):
     for x, y in data.items():
         if type(y) == type({}):
-            nyChangeData(y, list, currentIndex)
+            currentIndex = nyChangeData(y, list, currentIndex)
         else:
             data[x] = list[currentIndex]
             currentIndex += 1
+    return currentIndex
 
 
 def TextToJson():
     currentIndex = 0
     data = getData()
     list=getText()
-    k=type(data)
     nyChangeData(data, list, currentIndex)
     json.dump(data, open(sys.argv[3], 'w'), indent=2, ensure_ascii=False)
 
