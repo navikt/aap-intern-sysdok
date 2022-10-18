@@ -10,11 +10,15 @@
 - [ ] Verifisere at bruker får logget på.
 - [ ] Verifiser at en uinnlogget bruker ikke kommer inn på siden.
 
-## Spesifikk testing av Søknaden
+## Testing av Søknaden
 
 - [ ] Verifisere at informasjon om barn vises i søknaden (fødselsdato + Navn)
 - [ ] Test av innlegging av lege
 - [ ] Verifisere at informasjon om lege blir automatisk hentet inn.
+
+### Test av søknadsfunskjonalitet i mine aap
+- [ ] Test opplasting av vedlegg
+- [ ] Test Ettersending av påkrevd vedlegg (brukernotifikasjoner på nav.no).
 
 ### Navigering mellom sider
 
@@ -25,10 +29,15 @@
 - [ ] Verifiser mellomlagring av en påbegynt søknad ved å starte søknad, la den ligge en time for så å logge påigjen.
 - [ ] Logg inn på min side , gå tilbake til påbegytn søknad ved å trykke på beskjed.
 
-## Spesifikk testing av Mine arbeidsavklaringspenger
+## Testing av Mine arbeidsavklaringspenger
+- [ ] Sjekk alle tekster
+- [ ] Sjekk alle lenker
+
+### Spesifikk testing av Dokumentovesikt
+- [ ] Se at innsendte dokumenter vises i dokumentoversikten.
 
 
-## Spesifikk testing av ettersending
+### Spesifikk testing av ettersending
 - [ ] Ettersending av et påkrevd vedlegg til søknad.
 - [ ] Ettersending av annet vedlegg.
 
