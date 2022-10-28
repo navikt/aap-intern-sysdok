@@ -27,3 +27,19 @@ select * from joark.t_journalpost jp where jp.k_fagomrade='AAP' AND jp.opprettet
 ```
 select * from joark.t_journalpost jp where jp.k_fagomrade='AAP' AND jp.opprettet_kilde_navn='soknad-api'
 ```
+3. Dersom du skal sjekke et dokument eller flere
+```
+select * from joark.t_dokument_info di where di.opprettet_av='aap:soknad-api';
+```
+4. Dersom du skal sjekke dokumenter tilknyttet en journalpost
+```
+select * from joark.t_dokument_info di where di.opprettet_av='aap:soknad-api' AND di.orig_journalpost_id='LIM INN JOURNALPOSTID HER';
+```
+
+
+
+## Datamodell i joark og relevante tabeller
+
+Datamodellen til joark [finner du her](https://confluence.adeo.no/display/BOA/Fagarkiv+-+Informasjonsmodell).
+
+Selve journalposten er i tabellen som heter T_JOURNALPOST og dokumentene ligger i T_DOKUMENT_INFO
