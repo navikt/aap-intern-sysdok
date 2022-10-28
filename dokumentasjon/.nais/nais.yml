@@ -9,6 +9,7 @@ spec:
   port: 8080
   ingresses:
     - https://aap-team-innbygger.intern.nav.no
+    - https://aap-team-innbygger.ekstern.dev.nav.no
   image: {{ image }}
   replicas:
     min: 1
