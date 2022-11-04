@@ -13,10 +13,18 @@ Morgenvakten kan etter egne mål involvere andre utviklere/fagpersoner for å f�
   * [Mine AAP](https://grafana.nais.io/d/eruJ1y7Vk/aap-mineaap)
   * [Søknad](https://grafana.nais.io/d/ZF-AUGVVk/aap-soknad)
 
-- [ ] Sjekk av amplitude? [PO AAP - Team Innbygger](https://analytics.eu.amplitude.com/nav/space/e-6ciag7t/all)
+- Sjekk av amplitude? [PO AAP - Team Innbygger](https://analytics.eu.amplitude.com/nav/space/e-6ciag7t/all)
 - [ ] Sjekk av andre ting?
 - [ ] Sjekk status på ting i prod
 - [ ] Følge med på Snyk / Dependabot / Oppgradere avhengigheter
+
+### GCP Lenker som kan sjekkes
+* [GCP  DB Dachboard](https://console.cloud.google.com/home/dashboard?project=aap-prod-9adc)
+* [Prod databasen](https://console.cloud.google.com/sql/instances/aap-soknad-api-prod/overview?project=aap-prod-9adc)
+* [GCP Buckets](https://console.cloud.google.com/storage/browser?referrer=search&project=aap-prod-9adc&prefix=)
+* [GCP Bucket Monitorering](https://console.cloud.google.com/storage/monitoring?project=aap-prod-9adc)
+
+Dette sjekkes dersom vi har problemer i prod med søknader. Merk her er det skarpe data, en skal ikke titte på dette uten at det er behov.
 
 ## Hvem, hvor, når?
 
