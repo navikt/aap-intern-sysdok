@@ -30,13 +30,6 @@ Dette sjekkes dersom vi har problemer i prod med søknader. Merk her er det skar
 
 Vi kjører rullerende "vakt" på ukesbasis. Vaktukene går alfabetisk. Er du opptatt hele eller deler av din uke, er det bare å bytte med noen andre. Gi en kort oppsummering (1-2 setninger) i Slack om hvordan uken har gått.
 
-* Halvor Grizzly (Uke 45)
-* Jan Olav (Uke 46)
-* Niro (Uke 47)
-* Sturle (Uke 48)
-* Tor (Uke 49)
-* Vetle (Uke 50)
-* Øydis (Uke 51)
 
 | Uke  |  Halvor Grizzly  | Jan Olav | Niro | Sturle  | Tor | Vetle | Øydis |
 |---|---|---|---|---|---| ---|---|
