@@ -15,7 +15,7 @@ For å få tilgang til Team Innbygger sine GitHub repoer må du være lagt til i
 Flere av avhengighetene vi bruker blir kun publisert på GitHub sitt Package Registry. For å kunne installere disse lokalt må du derfor sette opp yarn til å bruke `https://npm.pkg.github.com` i stedet for `https://npmjs.com`.
 
 - Lag/forny access token med repo og read:packages [rettigheter i github](https://github.com/settings/tokens). husk `enable sso`og `read:packages=true`
-- Login på npm med `npm login --scope=@navikt --registry=https://npm.pkg.github.com` og benytt github brukernavn, epost og tokenet du nettopp genererte
+- Login på npm med `npm login --scope=@navikt --registry=https://npm.pkg.github.com` og benytt github brukernavn, epost og tokenet du nettopp genererte som passord når du logger inn.
 
 ### Våre repoer på github
 
@@ -66,7 +66,7 @@ Som standard vil alle ENV-variabler i NextJS kun være tilgjengelig på serversi
 
 #### Mocking av backend
 
-Ved utvikling lokalt kan det være nyttig å mocke responser fra backend. Dette gjøres ved å sette `NEXT_PUBLIC_ENVIRONMENT="localhost"` i `.env.local`.
+Ved utvikling lokalt kan det være nyttig å mocke responser fra backend. Dette gjøres ved å sette `NEXT_PUBLIC_ENVIRONMENT="localhost"` eller `RUNTIME_ENVIRONMENT="localhost"`(aap-soknad) i `.env.local`.
 
 ## Backend
 
