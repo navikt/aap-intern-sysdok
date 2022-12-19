@@ -33,13 +33,6 @@ Vi kjører rullerende "vakt" på ukesbasis. Vaktukene går alfabetisk. Er du opp
 
 | Uke  |  Halvor Grizzly  | Jan Olav | Niro | Sturle  | Tor | Vetle | Øydis |
 |---|---|---|---|---|---| ---|---|
-| 45 | * |   |   |   |   |    |   |
-| 46 |   | * |   |   |   |    |   |
-| 47 |   |   | * |   |   |    |   |
-| 48 |   |   |   | * |   |    |   |
-| 49 |   |   |   |   | * |    |   |
-| 50 |   |   |   |   |   | *  |   |
-| 51 |   |   |   |   |   |    | * |
 | 1  | * |   |   |   |   |    |   |
 | 2  |   | * |   |   |   |    |   |
 | 3  |   |   | * |   |   |    |   |
@@ -50,3 +43,10 @@ Vi kjører rullerende "vakt" på ukesbasis. Vaktukene går alfabetisk. Er du opp
 | 8  | * |   |   |   |   |    |   |
 | 9  |   | * |   |   |   |    |   |
 | 10 |   |   | * |   |   |    |   |
+| 11 |   |   |   | * |   |    |   |
+| 12 |   |   |   |   | * |    |   |
+| 13 |   |   |   |   |   | *  |   |
+| 14 |   |   |   |   |   |    | * |
+| 15 | * |   |   |   |   |    |   |
+| 16 |   | * |   |   |   |    |   |
+| 17 |   |   | * |   |   |    |   |
