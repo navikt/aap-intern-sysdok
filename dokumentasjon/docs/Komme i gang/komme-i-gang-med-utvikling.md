@@ -66,7 +66,12 @@ Som standard vil alle ENV-variabler i NextJS kun være tilgjengelig på serversi
 
 #### Mocking av backend
 
-Ved utvikling lokalt kan det være nyttig å mocke responser fra backend. Dette gjøres ved å sette `NEXT_PUBLIC_ENVIRONMENT="localhost"` eller `RUNTIME_ENVIRONMENT="localhost"`(aap-soknad) i `.env.local`.
+Ved utvikling lokalt kan det være nyttig å mocke responser fra backend. Dette gjøres ved å sette følgende miljøvariabler i `.env.local`.
+
+Application | Miljøvariabler
+--- | ---
+aap-innsyn | `NEXT_PUBLIC_ENVIRONMENT="localhost"` 
+aap-soknad | `RUNTIME_ENVIRONMENT="localhost"`
 
 ## Backend
 
