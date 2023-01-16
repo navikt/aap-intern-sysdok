@@ -26,4 +26,4 @@ This command generates static content into the `build` directory and can be serv
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub
 
 ## For NAV-ansatte
-Interne henvendelser kan sendes via Slack i kanalen #po-aap-innbygger.
+Interne henvendelser kan sendes via Slack i kanalen #po-aap-værsågod.
