@@ -31,26 +31,26 @@ Dette sjekkes dersom vi har problemer i prod med søknader. Merk her er det skar
 Vi kjører rullerende "vakt" på ukesbasis. Vaktukene går alfabetisk. Er du opptatt hele eller deler av din uke, er det bare å bytte med noen andre. Gi en kort oppsummering (1-2 setninger) i Slack om hvordan uken har gått.
 
 
-| Uke | Halvor Grizzly | Jan Olav | Niro | Sturle | Tor | Vetle |
-|---|---|---|---|---|---|---|
-| 3  |   |   |   | * |   |   |
-| 4  |   |   |   |   | * |   |
-| 5  |   |   |   |   |   | * |
-| 6  | * |   |   |   |   |   |
-| 7  |   | * |   |   |   |   |
-| 8  |   |   | * |   |   |   |
-| 9  |   |   |   | * |   |   |
-| 10 |   |   |   |   |   | * |
-| 11 | * |   |   |   |   |   |
-| 12 |   | * |   |   |   |   |
-| 13 |   |   | * |   |   |   |
-| 14 |   |   |   | * |   |   |
-| 15 |   |   |   |   |   | * |
-| 16 | * |   |   |   |   |   |
-| 17 |   | * |   |   |   |   |
-| 18 |   |   | * |   |   |   |
-| 19 |   |   |   | * |   |   |
-| 20 |   |   |   |   |   | * |
-| 21 | * |   |   |   |   |   |
-| 22 |   | * |   |   |   |   |
-| 23 |   |   | * |   |   |   |
+| Uke | Halvor Grizzly | Jan Olav | Sturle | Tor | Vetle |
+|---|---|---|---|---|---|
+| 3  |   |   | * |   |   |
+| 4  |   |   |   | * |   |
+| 5  |   |   |   |   | * |
+| 6  | * |   |   |   |   |
+| 7  |   | * |   |   |   |
+| 8  |   |   | * |   |   |
+| 9  |   |   |   |   | * |
+| 10 | * |   |   |   |   |
+| 11 |   | * |   |   |   |
+| 12 |   |   | * |   |   |
+| 13 |   |   |   |   | * |
+| 14 | * |   |   |   |   |
+| 15 |   | * |   |   |   |
+| 16 |   |   | * |   |   |
+| 17 |   |   |   |   | * |
+| 18 | * |   |   |   |   |
+| 19 |   | * |   |   |   |
+| 20 |   |   | * |   |   |
+| 21 |   |   |   |   | * |
+| 22 | * |   |   |   |   |
+| 23 |   | * |   |   |   |
