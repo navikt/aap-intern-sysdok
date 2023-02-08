@@ -1,5 +1,5 @@
-# Dokumentasjon for AAP Innbygger
-Dette er intern dokumentasjon for Team Innbygger i PO for Arbeidsavklaringspenger
+# Dokumentasjon for AAP Søknad og meldeplikt
+Dette er intern dokumentasjon for Team søknad og meldeplikt i PO for Arbeidsavklaringspenger
 
 ## Komme i gang
 Bygger på [Docusaurus 2](https://docusaurus.io/).
@@ -26,4 +26,4 @@ This command generates static content into the `build` directory and can be serv
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub
 
 ## For NAV-ansatte
-Interne henvendelser kan sendes via Slack i kanalen #po-aap-innbygger
+Interne henvendelser kan sendes via Slack i kanalen #po-aap-værsågod

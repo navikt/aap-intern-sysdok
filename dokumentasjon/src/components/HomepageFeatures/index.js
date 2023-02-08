@@ -10,7 +10,7 @@ const FeatureList = [
     description: (
       <>
         Dette er alt du trenger for å komme i gang som utvikler / designer i
-        Team Innbygger.
+        Team Søknad og meldekort.
       </>
     ),
   },
@@ -20,7 +20,7 @@ const FeatureList = [
     url: "/docs/Systemdokumentasjon/systemdok",
     description: (
       <>
-        Her finner du systemdokumentasjon for tjenestene Team Innbygger
+        Her finner du systemdokumentasjon for tjenestene Team Søknad og Meldeplikt
         forvalter.
       </>
     ),

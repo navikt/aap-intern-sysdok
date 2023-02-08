@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # Komme i gang med utvikling
 
-Dette er en liten oversikt over hva som skal til for å komme i gang som ny utvikler i Team Innbygger.
+Dette er en liten oversikt over hva som skal til for å komme i gang som ny utvikler i Team søknad og meldeplikt.
 
 ## Tilganger
 
-For å få tilgang til Team Innbygger sine GitHub repoer må du være lagt til i `navikt` organisasjonen på GitHub, og være lagt inn i gruppen `aap` i Azure AD.
+For å få tilgang til Team søknad og meldeplikt sine GitHub repoer må du være lagt til i `navikt` organisasjonen på GitHub, og være lagt inn i gruppen `aap` i Azure AD.
 
 ### Tilgang til GitHub Package Registry
 
@@ -31,7 +31,7 @@ Flere av avhengighetene vi bruker blir kun publisert på GitHub sitt Package Reg
 
 ## Frontend
 
-Frontend-appene i Team Innbygger er bygget på NextJS. Vi bruker `yarn` som byggeverktøy, og deploy skjer til Nais via GitHub Actions.
+Frontend-appene i Team søknad og meldeplikt er bygget på NextJS. Vi bruker `yarn` som byggeverktøy, og deploy skjer til Nais via GitHub Actions.
 
 [Se også mer generelt om hvordan vi driver med frontendutvikling i teamet](generelt-om-utvikling)
 

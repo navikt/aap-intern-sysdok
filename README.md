@@ -1,5 +1,5 @@
-# Dokumentasjon for AAP Innbygger
-Dette er intern dokumentasjon for Team Innbygger i PO for Arbeidsavklaringspenger
+# Dokumentasjon for AAP søknad og meldeplikt
+Dette er intern dokumentasjon for Team søknad og meldekort i PO for Arbeidsavklaringspenger
 
 ## Komme i gang
 Bygger på [Docusaurus 2](https://docusaurus.io/).

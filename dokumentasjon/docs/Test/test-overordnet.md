@@ -41,7 +41,7 @@ Dersom søker har barn i disse kategoriene, håndteres det i henhold til skjermi
 
 ### Brukertesting
 
-Team Innbygger tester med ekte brukere under utvikling av nye innbyggerflater, og benytter løpende brukerundersøkelser på eksisterende flater. Vi bruker Test-min-løsning i tillegg til ordinær brukertesting. Vi har som mål å alltid brukerteste før release av større endringer.
+Team søknad og meldeplikt tester med ekte brukere under utvikling av nye innbyggerflater, og benytter løpende brukerundersøkelser på eksisterende flater. Vi bruker Test-min-løsning i tillegg til ordinær brukertesting. Vi har som mål å alltid brukerteste før release av større endringer.
 
 I tillegg bruker vi brukerundersøkelser for personbrukere via Hotjar, Task Analytics og Amplitude, som målepunkter for brukerverdi og brukeropplevelse.
 Når det gjelder interne brukere (våre kolleger i NAV), har vi brukerpaneler fast annenhver uke med NAV-kontor og NAY. 

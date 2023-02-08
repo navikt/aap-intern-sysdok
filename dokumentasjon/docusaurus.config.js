@@ -8,7 +8,7 @@ async function createConfig() {
   const mdxMermaid = await import("mdx-mermaid");
 
   return {
-    title: "AAP Team Innbygger dokumentasjon",
+    title: "AAP Team søknad og meldeplikt dokumentasjon",
     tagline: "",
     url: "https://aap-team-innbygger.intern.nav.no",
     baseUrl: "/",
@@ -48,7 +48,7 @@ async function createConfig() {
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
         navbar: {
-          title: "Team Innbygger",
+          title: "Team Søknad og Meldeplikt",
           logo: {
             alt: "AAP Logo",
             src: "img/aap_logo.png",
@@ -83,11 +83,11 @@ async function createConfig() {
               title: "Sosialt",
               items: [
                 {
-                  label: "#po-aap-innbygger (Slack)",
+                  label: "#po-aap-versågod (Slack)",
                   href: "https://nav-it.slack.com/archives/C031DUS37DK",
                 },
                 {
-                  label: "#po_aap_intern_innbygger (Slack)",
+                  label: "#po_aap_intern_søknad-og-meldeplikt (Slack)",
                   href: "https://nav-it.slack.com/archives/C032Z3UU4TU",
                 },
               ],

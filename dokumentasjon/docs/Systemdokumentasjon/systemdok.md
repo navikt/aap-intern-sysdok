@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Overordnet oversikt
 
-Hensikten med de ulike løsningene Team Innbygger leverer, er å sikre kritisk funksjonalitet i dialog mellom NAV og innbyggere på ytelsen Arbeidsavklaringspenger (AAP).
+Hensikten med de ulike løsningene Team søknad og meldeplikt leverer, er å sikre kritisk funksjonalitet i dialog mellom NAV og innbyggere på ytelsen Arbeidsavklaringspenger (AAP).
 
 Vårt fokus er å skape brukergevinster, og å gjøre brukerreisen helhetlig god.
 
