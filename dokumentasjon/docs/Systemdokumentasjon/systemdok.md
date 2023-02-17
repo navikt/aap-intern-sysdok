@@ -20,6 +20,8 @@ Noen kontaktpunkter er til for å muliggjøre saksbehandling, andre er til for �
 - Kvitteringsside som bekrefter hva som har blitt sendt inn
 - [Brukernotifikasjoner](https://navikt.github.io/dittnav-brukernotifikasjoner-intro/) som varsler bruker om påbegynt søknad og manglende dokumentasjon
 
+Søknaden arkiveres pt både som pdf og JSON i JOARK.
+
 ### Kontaktpunkt Mine AAP
 
 - Vise innsendte søknader og manglende vedlegg
@@ -70,7 +72,7 @@ Tjenester som konsumeres
 - Arkivtjeneste for oppslag i NAVS dokumentarkiv
 - Brukernotifikasjoner for [pålogget bruker på nav.no](https://nav.no)
 
-Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre
+Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre.
 
 ### Databasemodell
 
