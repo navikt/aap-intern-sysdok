@@ -56,25 +56,37 @@ https://app.mural.co/invitation/mural/navdesign3580/1663231311908?sender=sturleh
 
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
 
-| Del av løsning | Teknologi                                                                |
+| Del av løsning | Teknologi beskrivelse                                                               |
 | -------------- | ------------------------------------------------------------------------ |
 | Klient         | NEXT.js, Typescript                                                      |
 | Baksystem      | Java med Spring boot , kotlin                                            |
 | Infrastruktur  | Postgress database for forretningslogikk og GC Buckets for mellomlagring |
+| KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering    |
+| BUCKETS        | Del av tjenestene i GCP, benyttes for mellomlagring ved innsending       |
 
 ### Tekniske tjenester
+Tekniske tjenester er integrasjoner mellom systemer/tjenester. Denne oversikten er over 
 
-Tjenester som konsumeres
+#### Tjenester som konsumeres av (soknad-api)[]
 
-- Innlogging via [Id-porten](https://eid.difi.no/en/id-porten)
-- PDL - Persondatatjeneste for NAV og Skatt
-- KRR - Kontakt og reservasjonsregisteret
-- Arkivtjeneste for oppslag i NAVS dokumentarkiv
-- Brukernotifikasjoner for [pålogget bruker på nav.no](https://nav.no)
+- **Innlogging** via [Id-porten](https://eid.difi.no/en/id-porten)
+- **PDL** - Persondatatjeneste for NAV og Skatt
+- **KRR** - Kontakt og reservasjonsregisteret
+- **Arkivtjeneste** for oppslag i NAVS dokumentarkiv
+- **Brukernotifikasjoner** for [pålogget bruker på nav.no](https://nav.no)
 
 Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre.
 
-### Databasemodell
+#### Tjenestster som konsumeres av (aap-fordeler)[https://github.com/navikt/aap-routing]
+
+- **PDL** - Persondatatjeneste for NAV og Skatt: brukes for fordeling til riktig behandlende enhet.
+- **NORG** - NAV Organsiasjonsmaster: brukes for å fordele oppgaven til riktig enhet. Diskresjonskoder fortrolig og strengt fortrolig blir for eksempel behandlet av egen enhet.
+- **SAK** - Generell sakssystem fra Arkiv: brukes for å knytte journalpost og oppgave til en journalpost.
+- **Arkivtjeneste** - For oppslag i NAVS dokumentarkiv: brukes for å oppdattere informasjon tilknyttet saksbehandling og fordeling.
+- **Egenansatt** - Tjeneste som avklarer om innsender er ansatt i NAV og skal behandles av egen ansatt.
+- **Arena** - Tjeneste for å opprette AAP-sak og oppgave for behandling av søknad.
+
+### Databasemodell i søknad-api
 
 Som figuren viser er modellen delt i 3:
 
