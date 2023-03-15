@@ -51,7 +51,7 @@ Applikasjonen tar seg av å hente data fra baksystemer som leverer data som tren
 - Lagre og hente dokumenter som skal til arkivet eller hentes ut for mine arbeidsavklaringspenger.
 
 #### AAP-fordeler
-Applikasjonen tar seg av opprettelse av oppgaver i fagsystemene for nye dokumenter som sendes inn for en bruker. Den håndterer både dokumenter via post og digitale innsendinger.
+Applikasjonen tar seg av opprettelse av oppgaver i fagsystemene for nye dokumenter som sendes inn for en bruker. Den håndterer både dokumenter via post og digitale innsendinger. Den er hendelsebasert og følger med på endringer i arkivet.
 Det er i basis 3 forskjellige operasjoner
 - Opprette sak i Arena for saksbehandling av nye søknader.
 - Opprette manuell journalførings- eller fordelings-oppgave i Gosys på riktig saksbehandlende enhet. En fordelingsoppgave opprettes kun dersom en ikke klarer å avklare hvilken enhet som skal behandle innsendingen.
