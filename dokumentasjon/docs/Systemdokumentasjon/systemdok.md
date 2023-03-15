@@ -37,6 +37,8 @@ Søknaden arkiveres pt både som pdf og JSON i JOARK.
 - Inngang til Ettersendelse fra både Mine AAP og Søknadsveiviseren
 - [Brukernotifikasjoner](https://navikt.github.io/dittnav-brukernotifikasjoner-intro/) som varsler bruker om manglende dokumentasjon
 
+## Baksystemer
+
 ## Informasjonsmodell
 
 Denne tegningen viser en oversikt over hvilke informasjonstyper vi har i datamodellen. Den viser hvilken informasjon som samles inn og tas vare på og til hvilke formål.
@@ -67,7 +69,7 @@ Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google 
 ### Tekniske tjenester
 Tekniske tjenester er integrasjoner mellom systemer/tjenester. Denne oversikten er over 
 
-#### Tjenester som konsumeres av (soknad-api)[]
+#### Tjenester som konsumeres av (soknad-api)[https://github.com/navikt/aap-soknad-api]
 
 - **Innlogging** via [Id-porten](https://eid.difi.no/en/id-porten)
 - **PDL** - Persondatatjeneste for NAV og Skatt
