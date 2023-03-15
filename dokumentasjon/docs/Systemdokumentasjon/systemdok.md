@@ -12,6 +12,9 @@ Noen kontaktpunkter er til for å muliggjøre saksbehandling, andre er til for �
 
 ## Prosesser og funksjoner
 
+### Kontaktpunkt Kalkulator
+Kalkulatoren er en nettside som hjelper potensielle søkere med å avklare hvor mye de vil få utbetalt i stønad dersom de sender inn en søknad og om de er kvalifisert for å søke.
+
 ### Kontaktpunkt Søknad
 
 - Innsending av hovedsøknad for AAP
@@ -37,7 +40,22 @@ Søknaden arkiveres pt både som pdf og JSON i JOARK.
 - Inngang til Ettersendelse fra både Mine AAP og Søknadsveiviseren
 - [Brukernotifikasjoner](https://navikt.github.io/dittnav-brukernotifikasjoner-intro/) som varsler bruker om manglende dokumentasjon
 
-## Baksystemer
+### Baksystemer for innbyggerflaten
+Som støtte for brukerflatene /kontaktpunktene, så benyttes baksystemer for å hente inn data og sende data videre. Løsningen består av  to baksystemer.
+![systemkontekst](../bilder/systemkontekst.png)
+
+#### Søknad-Api
+Applikasjonen tar seg av å hente data fra baksystemer som leverer data som trengs for behandling av søknader og innsending av søknader og ettersendelser. Den håndterer:
+- Varseler og oppgaver på nav.no tilknyttet en søknad.
+- Hente data fra baktjenester tilknyttet en søknad: personinformasjon, barn mm.
+- Lagre og hente dokumenter som skal til arkivet eller hentes ut for mine arbeidsavklaringspenger.
+
+#### AAP-fordeler
+Applikasjonen tar seg av opprettelse av oppgaver i fagsystemene for nye dokumenter som sendes inn for en bruker. Den håndterer både dokumenter via post og digitale innsendinger.
+Det er i basis 3 forskjellige operasjoner
+- Opprette sak i Arena for saksbehandling av nye søknader.
+- Opprette manuell journalførings- eller fordelings-oppgave i Gosys på riktig saksbehandlende enhet. En fordelingsoppgave opprettes kun dersom en ikke klarer å avklare hvilken enhet som skal behandle innsendingen.
+- Oppdattere arkivet med riktig sakstilknytning og behandlende enhet.
 
 ## Informasjonsmodell
 
