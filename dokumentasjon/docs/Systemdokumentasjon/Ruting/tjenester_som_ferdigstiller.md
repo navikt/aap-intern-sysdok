@@ -10,7 +10,7 @@
 | srvskanmotreferanse | ? | SKAN_IM | x |   |   | 
 | meldekort-api  | Meldekort  | NAV_NO | x | x  |   |
 | srveux-app | [ESSSI](https://teamkatalog.nav.no/team/950f0e82-59cb-4dc9-9522-df693b8c76f0) | EESSI | x | x | Må avklare nærmere  | 
-| srvfamilie-ks-opps | Familie? |  NAV_NO |   |   |   | 
+| srvfamilie-ks-opps | Familie? |  NAV_NO |  x |   |   | 
 | soknadsarkiverer | Fyllut-sendinn  | NAV_NO  | x |   |   | 
 | Salesforce | teamcrm |  NAV_NO NAV_NO_CHAT | x  |  x | Samtaler på Nav.no | 
 | soknad-api  | PO AAP  | NAV_NO  | x | - | Vår egen søknad og mineAAP | 
