@@ -1,17 +1,17 @@
-# Systemer som ferdigstiller journalpostene selv på tema AAP
+# Systemer som oppretter eller ferdigstiller journalpostene selv på tema AAP
 
-|  Applikasjon| Team | Kanal | Oppretter | Ferdigstill  | Kommentar  |
+|  Applikasjon| Team | Kanaler | Oppretter | Ferdigstill  | Kommentar  |
 |---|---|---|---|---|---|
-| Gosys  | ISA  | ?| x | x  | ? |
-| jf-fe  | ISA  | ? | ? | x | ? | 
-| jfr-arena  | ISA  | alle |   - | x  | KRUT- Automatisk journalføring i Arena  |
-| Klage | ? |  ? |   |   |
-| Scanning | ?  | skanmotovrig  | x |   |   | 
-|  srvskanmotreferanse | ? | ? | x |   |   | 
-| Meldekort  | Meldekort  | NAV_NO | x | x  |   |
-| srveux-app |  ESSSI? |  | x | x | Må avklare nærmere  | 
-| srvfamilie-ks-opps | Familie |  srvfamilie-ks-opps |   |   |   | 
-| soknadsarkiverer | Fyllut-sendinn  | srvsoknadsarkiverer  | x |   |   | 
-| Salesforce | ? |  NAV_NO + ? | x  |  x | Samtaler på Nav.no | 
-|   |   |   |   |   |   | 
+| Gosys  | ISA  | EKST_OPPS| x | x  | ? |
+| journalforing-frontend | ISA  | SKAN_IM | ? | x | ? | 
+| jfr-arena  | ISA  | SKAN_IM  NAV_NO |   - | x  | KRUT- Automatisk journalføring i Arena  |
+| klage-arkiver-journalpost | Klage |  NAV_NO |   |   |
+| skanmotovrig | ?  | SKAN_IM  | x |   |   | 
+| srvskanmotreferanse | ? | SKAN_IM | x |   |   | 
+| meldekort-api  | Meldekort  | NAV_NO | x | x  |   |
+| srveux-app |  ESSSI? | EESSI | x | x | Må avklare nærmere  | 
+| srvfamilie-ks-opps | Familie |  NAV_NO |   |   |   | 
+| soknadsarkiverer | Fyllut-sendinn  | NAV_NO  | x |   |   | 
+| Salesforce | teamcrm |  NAV_NO NAV_NO_CHAT | x  |  x | Samtaler på Nav.no | 
+| soknad-api  | PO AAP  | NAV_NO  | x | - | Vår egen søknad og mineAAP | 
 
