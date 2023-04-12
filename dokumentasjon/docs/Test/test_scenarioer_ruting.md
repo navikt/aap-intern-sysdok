@@ -52,3 +52,7 @@ samme som  bruker A
 #### Bruker D - Fortrolig / strengt fortrolig - Har alt søkt om AAP
 Brukeren kan bo hvor som helst i Norge, men siden den har hemmelig adresse, er det NAV Vikafossen som skal behandle oppgavene uansett
 samme som bruker B
+
+#### Bruker E - Skjerming
+Dersom bruker er ansatt i NAV eller nært familiemedlem er ansatt, skal det behandles basert på egne regler.
+
