@@ -54,5 +54,11 @@ Brukeren kan bo hvor som helst i Norge, men siden den har hemmelig adresse, er d
 samme som bruker B
 
 #### Bruker E - Skjerming
-Dersom bruker er ansatt i NAV eller nært familiemedlem er ansatt, skal det behandles basert på egne regler.
+Dersom bruker er ansatt i NAV eller nært familiemedlem er ansatt, skal det behandles basert på egne regler
 
+#### Bruker F – Skjerming av fosterbarn
+* Dersom en bruker sender inn digital søknad, legger inn fosterbarn som har fortrolig adresse skal søknaden til NAV Vikafossen 2103
+* Dersom en bruker sender inn en ettersending på tidligere innsendt digital søknad med fosterbarn som har fortrolig adresse, skal denne 
+innsendingen rutes til NAV Vikafossen 2103
+* Dersom en bruker som har fosterbarn med fortrolig adresse, sender inn dokument som ikke er knyttet til innsendt søknad via Fyllut-sendinn eller scanning
+, skal denne rutes til NAV Vikafossen 2103
