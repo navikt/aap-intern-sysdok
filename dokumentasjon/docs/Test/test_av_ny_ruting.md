@@ -16,6 +16,9 @@ Det ble begrenset til dette, fordi jfr-arena ikke kjørte i q1 miljøet.
 Opprett Arena sak og oppgave i Arena eller manuell journalføringsoppgave i GoSys hvis bruker allerede har sak i Arena.
 - Dersom det opprettes oppgave i arena, skal det også opprettes en automatisk journalførings-oppgave i gosys på enhet 9999. Dette for sporbarhet.
 
+### Verifikasjon av søknadsdato
+* Når bruker har sendt inn en søknad/dokument, må vi sjekke at innsendingsdato samsvarer med dato for mottatt dokument i Gosys.
+
 ### Verifikasjon av kanaler
 En kan enten sende digitalt eller pr post, dette kalles for kanaler.
 * Begge typer kan genereres via [dolly](https://dolly.ekstern.dev.nav.no/gruppe).
