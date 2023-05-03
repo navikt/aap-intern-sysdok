@@ -7,7 +7,7 @@ Sjekker errors dersom de forekommer, og melder fra i internkanal at morgenrutine
 Morgenvakten kan etter egne mål involvere andre utviklere/fagpersoner for å få løst evt. problemer.
 
 ## Sjekkliste for morgenrutine
-* Sjekk [logs.adeo.no](https://logs.adeo.no/app/dashboards#/view/930f35c0-55e6-11ed-8607-d590fd125f80) for errors.
+* Sjekk [logs.adeo.no](https://logs.adeo.no/app/r/s/4Dbdk) for errors.
 * Sjekk Grafana boards:
   * [Overordnet](https://grafana.nais.io/d/iCjPTsnVk/aap-innbygger)
   * [Mine AAP](https://grafana.nais.io/d/eruJ1y7Vk/aap-mineaap)
