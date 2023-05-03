@@ -62,3 +62,7 @@ Dersom bruker er ansatt i NAV eller nært familiemedlem er ansatt, skal det beha
 innsendingen rutes til NAV Vikafossen 2103
 * Dersom en bruker som har fosterbarn med fortrolig adresse, sender inn dokument som ikke er knyttet til innsendt søknad via Fyllut-sendinn eller scanning
 , skal denne rutes til NAV Vikafossen 2103
+
+##### Verifisering av Bruker F
+* Søknaden skal da havne hos Vikafossen (2103)
+* Når en åpner papirkopien av søknaden, skal en bare kunne se fødselsdato i utskriften og ikke fødselsnummer.
