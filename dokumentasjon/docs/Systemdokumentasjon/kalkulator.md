@@ -40,6 +40,8 @@ flowchart LR
     D <--> E[Barn]
     E --> F[Resultat]
     F --> B
+    F --> G[Søknad om AAP]
+    F --> H[Mine AAP]
 ```
 
 [Start](https://github.com/navikt/aap-kalkulator-frontend/blob/main/pages/index.tsx)
