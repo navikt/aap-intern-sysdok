@@ -17,11 +17,15 @@ Bruker starter på en startside hvor de blir informert om informasjonene nevt i 
 
 Hvordan bygge, teste og kjøre koden viss aktuelt.
 
+Install:
 ```bash
-npm run dev
-# or
+yarn
+```
+Run:
+```bash
 yarn dev
 ```
+
 Åpne [http://localhost:3000](http://localhost:3000) i nettleser for å gå gjennom kalkulatoren
 
 ---
@@ -32,9 +36,10 @@ Kalkulatoren er strukturert rundt 5 sider.
 flowchart LR
     A[Start] <--> B[Helse]
     B <--> C[Inntekt]
-    C <--> D[Barn]
-    D --> E[Resultat]
-    E --> B
+    C <--> D[Arbeid]
+    D <--> E[Barn]
+    E --> F[Resultat]
+    F --> B
 ```
 
 [Start](https://github.com/navikt/aap-kalkulator-frontend/blob/main/pages/index.tsx)
