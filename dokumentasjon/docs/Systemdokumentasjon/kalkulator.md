@@ -9,7 +9,7 @@ Bruker starter på en startside hvor de blir informert om informasjonene nevt i 
 | **2018** | 300 000 |
 | **2019** | 500 000 |
 
-![kalkulator](../bilder/kalkulator.png)
+<img width="444" alt="Screenshot 2023-05-31 at 09 04 12" src="https://github.com/navikt/utvikler_aap_innbygger/assets/4377955/51f41515-5b17-44ab-90be-96706371fb43">
 
 ---
 
