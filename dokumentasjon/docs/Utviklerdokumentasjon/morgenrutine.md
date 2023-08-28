@@ -32,8 +32,6 @@ Vi kjører rullerende "vakt" på ukesbasis. Vaktukene går alfabetisk. Er du opp
 
 | Uke | Anders | Halvor Grizzly | Marius | Robin | Richard | Sturle| Thomas | Tor | Vetle | Øyvind |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 33 |   |   |   | * |   |   |   |   |   |   |
-| 34 |   |   |   |   |   | * |   |   |   |   |
 | 35 |   |   |   |   |   |   | * |   |   |   |
 | 36 |   |   |   |   |   |   |   | * |   |   |
 | 37 |   |   |   |   |   |   |   |   | * |   |
