@@ -34,7 +34,7 @@ async function createConfig() {
             // Please change this to your repo.
             // Remove this to remove the "edit this page" links.
             editUrl:
-              "https://github.com/navikt/utvikler_aap_innbygger/edit/main/dokumentasjon",
+              "https://github.com/navikt/aap-intern-sysdok/edit/main/dokumentasjon",
           },
 
           theme: {
@@ -55,13 +55,7 @@ async function createConfig() {
           },
           items: [
             {
-              type: "doc",
-              docId: "hvordan_vi_jobber",
-              position: "left",
-              label: "Dokumentasjon",
-            },
-            {
-              href: "https://github.com/navikt/utvikler_aap_innbygger",
+              href: "https://github.com/navikt/aap-intern-sysdok",
               label: "GitHub",
               position: "right",
             },
@@ -70,15 +64,6 @@ async function createConfig() {
         footer: {
           style: "dark",
           links: [
-            {
-              title: "Docs",
-              items: [
-                {
-                  label: "Hvordan vi jobber",
-                  to: "/docs/hvordan_vi_jobber",
-                },
-              ],
-            },
             {
               title: "Sosialt",
               items: [

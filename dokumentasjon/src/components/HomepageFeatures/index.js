@@ -15,9 +15,9 @@ const FeatureList = [
     ),
   },
   {
-    title: "Systemdokumentasjon",
+    title: "Funksjonalitet",
     Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
-    url: "/docs/Systemdokumentasjon/systemdok",
+    url: "/docs/funksjonalitet/systemdok",
     description: (
       <>
         Her finner du systemdokumentasjon for tjenestene Team Søknad og Meldeplikt
