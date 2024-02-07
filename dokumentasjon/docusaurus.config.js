@@ -8,7 +8,7 @@ async function createConfig() {
   const mdxMermaid = await import("mdx-mermaid");
 
   return {
-    title: "AAP Team søknad og meldeplikt dokumentasjon",
+    title: "Litt om AAP",
     tagline: "",
     url: "https://aap-team-innbygger.intern.nav.no",
     baseUrl: "/",
@@ -48,7 +48,7 @@ async function createConfig() {
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
         navbar: {
-          title: "Team Søknad og Meldeplikt",
+          title: "Dokumentasjon",
           logo: {
             alt: "AAP Logo",
             src: "img/aap_logo.png",
@@ -65,24 +65,15 @@ async function createConfig() {
           style: "dark",
           links: [
             {
-              title: "Sosialt",
+              title: "Vi pleier å være her",
               items: [
                 {
-                  label: "#po-aap-versågod (Slack)",
+                  label: "Slack",
                   href: "https://nav-it.slack.com/archives/C031DUS37DK",
                 },
                 {
-                  label: "#po_aap_intern_søknad-og-meldeplikt (Slack)",
-                  href: "https://nav-it.slack.com/archives/C032Z3UU4TU",
-                },
-              ],
-            },
-            {
-              title: "More",
-              items: [
-                {
-                  label: "GitHub",
-                  href: "https://github.com/facebook/docusaurus",
+                  label: "Zoom",
+                  href: "https://nav-it.zoom.us/j/92869347604?pwd=NjZCNXpQblB4b2pkNUtoRVArSTZCUT09",
                 },
               ],
             },
@@ -91,6 +82,9 @@ async function createConfig() {
         prism: {
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
+        },
+        mermaid: {
+            theme: { light: "dark", dark: "dark" }
         },
       }),
   };

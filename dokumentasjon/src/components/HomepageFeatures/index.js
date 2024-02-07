@@ -4,31 +4,32 @@ import styles from "./styles.module.css";
 
 const FeatureList = [
   {
-    title: "Komme i gang",
-    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
-    url: "/docs/Utviklerdokumentasjon/komme-i-gang",
-    description: (
-      <>
-        Dette er alt du trenger for å komme i gang som utvikler / designer i
-        Team Søknad og meldekort.
-      </>
-    ),
-  },
-  {
-    title: "Funksjonalitet",
+    title: "Funksjonelt",
     Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
-    url: "/docs/funksjonalitet/systemdok",
+    url: "/docs/funksjonalitet",
     description: (
       <>
-        Her finner du systemdokumentasjon for tjenestene Team Søknad og Meldeplikt
-        forvalter.
+                Bokser og piler med folkelig språk
       </>
     ),
   },
   {
-    title: "Noe annet",
+    title: "Teknisk",
     Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
-    description: <>Her legger vi inn noe annet når vi har tid.</>,
+    description: (
+      <>
+                Tall, bokstaver og rare tegn
+      </>
+    ),
+  },
+  {
+    title: "Juridisk",
+    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
+    description: (
+      <>
+                For oss som ikke skjønner paragrafer
+      </>
+    ),
   },
 ];
 
