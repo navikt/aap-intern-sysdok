@@ -10,7 +10,7 @@ async function createConfig() {
   return {
     title: "Litt om AAP",
     tagline: "",
-    url: "https://aap-team-innbygger.intern.nav.no",
+    url: "https://aap-sysdoc.intern.nav.no",
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
