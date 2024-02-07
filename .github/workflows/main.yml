@@ -10,14 +10,14 @@ on:
 jobs:
   build:
     permissions:
+      contents: read        # checkout code
       id-token: write       # nais/docker-build-push
-      actions: read         # checkout code
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: "16.x"
 
