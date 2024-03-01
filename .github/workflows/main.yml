@@ -36,7 +36,7 @@ jobs:
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           image_suffix: ${{ inputs.cluster }}
           tag: ${{ github.sha }}
-          docker_context: dokumentasjon
+          docker_context: ./dokumentasjon
   prod:
     permissions:
       contents: read      
