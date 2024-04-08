@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: read        # checkout code
       id-token: write       # nais/docker-build-push
+      packages: write       # nais/docker-build-push
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
