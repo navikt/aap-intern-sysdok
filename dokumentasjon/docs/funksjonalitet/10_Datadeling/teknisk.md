@@ -1,42 +1,62 @@
 # Teknisk besrkivelse
 
-## Deploy snapshot av søknad til labs
-Deploy et snapshot av søknaden til labs for å enkelt vise nøyaktig hvordan søknaden så ut på et gitt tidspunkt. Finn commiten du vil deploye til labs(antageligvis siste commit før datoen du vil ha snapshot fra). Kopier SHA fra aktuell commit(commit-sha).
+## Repositories
 
-Lag en ny branch og sjekk ut til riktig commit. Det er viktig at branchen starter med "labs-historisk-" for at riktig github aktion skal trigges. Branchnavnet blir også en del av urlen, så ingen / i branchnavnet.
+- [Ekstern deling av data](https://github.com/navikt/aap-api)
+- [Intern deling av data](https://github.com/navikt/aap-api-intern)
 
-Lag branch og sjekk ut til riktig commit:
-```
-$ git checkout -b "labs-historisk-1-oktober-22" <commit-sha>
-```
-Hvis snapshotet er fra før byggefilene ble laget må disse hentes til din nye branch. Kopier sha fra nyeste commit i repoet(nyeste-sha) og kjør
-```
-$ git checkout <nyeste-sha> -- .github/workflows/ .nais/historisk-labs.yaml DockerfileLabs 
-```
-Push branch
-```
-$ git push
-```
-Snapshotet bygges nå og deployes til labs. Url vil bli
+## Autentisering
 
-https://aap-soknad-labs-historisk-1-oktober-22.labs.nais.io/aap/soknad
+### Maskinporten
 
-### Opprydning
-Slett branchen i github, workflowen labs-delete-historisk vil så skalere podene til 0.
+I nais-yaml-fila så definerer man Maskinporten-scopes og knytter disse til konsumentens org.nummer. Dvs at alle nye konsumenter må oppgi orgnr.
 
-Appene vil ikke slettes så følgende burde gjøres regelmessig:
+```yaml
+spec:
+  maskinporten:
+    enabled: true
+    scopes:
+      exposes:
+        - name: "scope1"
+          enabled: true
+          product: "aap"
+          consumers:
+            - name: "konsument1"
+              orgno: "11111111"
+            - name: "konsument2"
+              orgno: "22222222"
+        - name: "scope2"
+          enabled: true
+          product: "aap"
+          consumers:
+            - name: "konsument3"
+              orgno: "33333333"
+            - name: "konsument4"
+              orgno: "44444444"
+```
 
-Pass på at du er i labs-gcp
-```
-kubectl config use-context labs-gcp
+Konsumenten må også legges til i [Consumers-fila](https://github.com/navikt/aap-api/blob/main/app/main/api/util/Consumers.kt)
+
+Scope må legges til i [Config-fila](https://github.com/navikt/aap-api/blob/main/app/main/api/util/Config.kt)
+
+```kotlin
+    data class ScopeConfig(
+        val scope1: String= "nav:aap:scope1",
+        val scope2: String = "nav:aap:scope2"
+    )
 ```
 
-Kjør dry run og se hvilke apper som vil bli slettet:
-```
-kubectl delete app --dry-run=client -n aap --selector branchState=deleted
+Ktor-auth må legges til i [App.kt](https://github.com/navikt/aap-api/blob/main/app/main/api/App.kt)
+
+```kotlin
+    install(Authentication) {
+        maskinporten(MASKINPORTEN_SCOPE1, config.oauth.maskinporten.scope.scope1, config)
+        maskinporten(MASKINPORTEN_SCOPE2, config.oauth.maskinporten.scope.scope2, config)
+    }
 ```
 
-Hvis alt ser riktig ut, kjør kommando uten dry-run:
-```
-kubectl delete app -n aap --selector branchState=deleted
+Hver nye route som skal tilhøre en konsument må da autentiseres med rett auth.
+
+```kotlin
+authenticate(MASKINPORTEN_SCOPE1)
 ```
