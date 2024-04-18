@@ -37,18 +37,46 @@ Flere søknader på tema AAP vil bli lagt til etterhvert.
 
 ### Mottak
 
+UNDER ARBEID
+
 - Plukker opp alle journalføringshendelser på tema AAP
 - Oppretter oppgaver i Gosys for manuell journalføring
 - Oppretter oppgaver i Arena for saksbehandling
+- Opprette manuell journalførings- eller fordelings-oppgave i Gosys på riktig saksbehandlende enhet. En fordelingsoppgave opprettes kun dersom en ikke klarer å avklare hvilken enhet som skal behandle innsendingen.
+- Oppdattere arkivet med riktig sakstilknytning og behandlende enhet.
 
-#### Fremtidig mottak
-
-- Opprette alle førsteganssøknader i Kelvin / behandlingsflyt
-- 
 
 ### Behandlingsflyt
 
+UNDER ARBEID
+
+
+
 ### Oppgavestyring
+
+UNDER ARBEID
+
+### Brev
+
+### Statistikk
+
+### Datadeling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Baksystemer for innbyggerflaten
@@ -61,12 +89,7 @@ Applikasjonen tar seg av å hente data fra baksystemer som leverer data som tren
 - Hente data fra baktjenester tilknyttet en søknad: personinformasjon, barn mm.
 - Lagre og hente dokumenter som skal til arkivet eller hentes ut for mine arbeidsavklaringspenger.
 
-#### AAP-Mottak
-Applikasjonen tar seg av opprettelse av oppgaver i fagsystemene for nye dokumenter som sendes inn for en bruker. Den håndterer både dokumenter via post og digitale innsendinger. Den er hendelsebasert og følger med på endringer i arkivet.
-Det er i basis 3 forskjellige operasjoner
-- Opprette sak i Arena for saksbehandling av nye søknader.
-- Opprette manuell journalførings- eller fordelings-oppgave i Gosys på riktig saksbehandlende enhet. En fordelingsoppgave opprettes kun dersom en ikke klarer å avklare hvilken enhet som skal behandle innsendingen.
-- Oppdattere arkivet med riktig sakstilknytning og behandlende enhet.
+
 
 ## Informasjonsmodell
 
