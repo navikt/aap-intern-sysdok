@@ -76,10 +76,10 @@ https://app.mural.co/invitation/mural/navdesign3580/1663231311908?sender=sturleh
 
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
 
-| Del av løsning | Teknologi beskrivelse                                                               |
-| -------------- | ------------------------------------------------------------------------ |
+| Del av løsning | Teknologi beskrivelse                                                    |
+| -------------- |--------------------------------------------------------------------------|
 | Klient         | NEXT.js, Typescript                                                      |
-| Baksystem      | Java med Spring boot , kotlin                                            |
+| Baksystem      | Kator og kotlin                                                          |
 | Infrastruktur  | Postgress database for forretningslogikk og GC Buckets for mellomlagring |
 | KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering    |
 | BUCKETS        | Del av tjenestene i GCP, benyttes for mellomlagring ved innsending       |

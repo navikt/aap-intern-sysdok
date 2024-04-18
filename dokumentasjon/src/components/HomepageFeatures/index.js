@@ -23,11 +23,12 @@ const FeatureList = [
     ),
   },
   {
-    title: "Juridisk",
+    title: "Litt om oss",
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
+      url: "/docs/team",
     description: (
       <>
-                For oss som ikke skjønner paragrafer
+                Presentasjon av team AAP
       </>
     ),
   },
