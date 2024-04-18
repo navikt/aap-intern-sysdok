@@ -2,6 +2,6 @@
 sidebar_position: 1
 ---
 
-# Brev
+# Funksjonell beskrivelse
 - Generer brev
 - Send brev

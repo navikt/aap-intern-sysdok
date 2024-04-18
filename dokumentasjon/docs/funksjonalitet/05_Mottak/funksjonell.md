@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Postmottak
+# Funksjonell beskrivelse
 - Ruting
 - Strukturert informasjon
 - Ustrukturert informasjon

@@ -1,0 +1,84 @@
+# Teknisk besrkivelse
+
+Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
+
+| Del av løsning | Teknologi beskrivelse                                                    |
+| -------------- |--------------------------------------------------------------------------|
+| Klient         | NEXT.js, Typescript                                                      |
+| Baksystem      | Kator og kotlin                                                          |
+| Infrastruktur  | Postgress database for forretningslogikk og GC Buckets for mellomlagring |
+| KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering    |
+| BUCKETS        | Del av tjenestene i GCP, benyttes for mellomlagring ved innsending       |
+
+### Tekniske tjenester
+Tekniske tjenester er integrasjoner mellom systemer/tjenester. Denne oversikten er over
+
+#### Tjenester som konsumeres av (soknad-api)[https://github.com/navikt/aap-soknad-api]
+
+- **Innlogging** via [Id-porten](https://eid.difi.no/en/id-porten)
+- **PDL** - Persondatatjeneste for NAV og Skatt
+- **KRR** - Kontakt og reservasjonsregisteret
+- **Arkivtjeneste** for oppslag i NAVS dokumentarkiv
+- **Brukernotifikasjoner** for [pålogget bruker på nav.no](https://nav.no)
+
+Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre.
+
+#### Tjenestster som konsumeres av (aap-fordeler)[https://github.com/navikt/aap-routing]
+
+- **PDL** - Persondatatjeneste for NAV og Skatt: brukes for fordeling til riktig behandlende enhet.
+- **NORG** - NAV Organsiasjonsmaster: brukes for å fordele oppgaven til riktig enhet. Diskresjonskoder fortrolig og strengt fortrolig blir for eksempel behandlet av egen enhet.
+- **SAK** - Generell sakssystem fra Arkiv: brukes for å knytte journalpost og oppgave til en journalpost.
+- **Arkivtjeneste** - For oppslag i NAVS dokumentarkiv: brukes for å oppdattere informasjon tilknyttet saksbehandling og fordeling.
+- **Egenansatt** - Tjeneste som avklarer om innsender er ansatt i NAV og skal behandles av egen ansatt.
+- **Arena** - Tjeneste for å opprette AAP-sak og oppgave for behandling av søknad.
+
+### Databasemodell i søknad-api
+
+Som figuren viser er modellen delt i 3:
+
+- Håndtering av søknadslogikk og påkrevde vedlegg som er sendt inn eller mangler
+- Håndtering av brukernotifikasjoner tilknyttet søknader, både oppgaver og beskjeder
+
+![databasemodell](../../bilder/eksternebeskjednotifikasjoner.png)
+
+
+## Deploy snapshot av søknad til labs
+Deploy et snapshot av søknaden til labs for å enkelt vise nøyaktig hvordan søknaden så ut på et gitt tidspunkt. Finn commiten du vil deploye til labs(antageligvis siste commit før datoen du vil ha snapshot fra). Kopier SHA fra aktuell commit(commit-sha).
+
+Lag en ny branch og sjekk ut til riktig commit. Det er viktig at branchen starter med "labs-historisk-" for at riktig github aktion skal trigges. Branchnavnet blir også en del av urlen, så ingen / i branchnavnet.
+
+Lag branch og sjekk ut til riktig commit:
+```
+$ git checkout -b "labs-historisk-1-oktober-22" <commit-sha>
+```
+Hvis snapshotet er fra før byggefilene ble laget må disse hentes til din nye branch. Kopier sha fra nyeste commit i repoet(nyeste-sha) og kjør
+```
+$ git checkout <nyeste-sha> -- .github/workflows/ .nais/historisk-labs.yaml DockerfileLabs 
+```
+Push branch
+```
+$ git push
+```
+Snapshotet bygges nå og deployes til labs. Url vil bli
+
+https://aap-soknad-labs-historisk-1-oktober-22.labs.nais.io/aap/soknad
+
+### Opprydning
+Slett branchen i github, workflowen labs-delete-historisk vil så skalere podene til 0.
+
+Appene vil ikke slettes så følgende burde gjøres regelmessig:
+
+Pass på at du er i labs-gcp
+```
+kubectl config use-context labs-gcp
+```
+
+Kjør dry run og se hvilke apper som vil bli slettet:
+```
+kubectl delete app --dry-run=client -n aap --selector branchState=deleted
+```
+
+Hvis alt ser riktig ut, kjør kommando uten dry-run:
+```
+kubectl delete app -n aap --selector branchState=deleted
+```

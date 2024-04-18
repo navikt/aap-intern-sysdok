@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Statistikk
+# Funksjonell beskrivelse
 - Produksjonsstyring
 - Stønadsstatistikk
 - Saksstatistikk

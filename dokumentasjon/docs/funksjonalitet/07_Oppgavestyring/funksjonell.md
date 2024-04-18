@@ -2,5 +2,5 @@
 sidebar_position: 1
 ---
 
-# Oppgavestyring
+# Funksjonell beskrivelse
 - 
