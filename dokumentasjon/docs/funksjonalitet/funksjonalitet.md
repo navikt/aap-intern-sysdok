@@ -4,28 +4,30 @@ sidebar_position: 1
 
 # Funksjonell beskrivelse
 
-Hensikten med de ulike løsningene Team søknad og meldeplikt leverer, er å sikre kritisk funksjonalitet i dialog mellom NAV og innbyggere på ytelsen Arbeidsavklaringspenger (AAP).
+Hensikten med de ulike løsningene Team AAP leverer, er å sikre kritisk funksjonalitet i dialog mellom NAV og innbyggere på ytelsen Arbeidsavklaringspenger (AAP), samt effektiv og lik behandling.
 
 Vårt fokus er å skape brukergevinster, og å gjøre brukerreisen helhetlig god.
 
 Noen kontaktpunkter er til for å muliggjøre saksbehandling, andre er til for å gi god veiledning og informasjon til innbyggere.
 
 ## Prosesser og funksjoner
+Under følger en beskrivelse av de ulike komponentene som tilsammen blir AAP-systemet.
 
-### Kontaktpunkt Kalkulator
+### Kalkulator
 Kalkulatoren er en nettside som hjelper potensielle søkere med å avklare hvor mye de vil få utbetalt i stønad dersom de sender inn en søknad og om de er kvalifisert for å søke.
 
-### Kontaktpunkt Søknad
+### Søknad
 
 - Innsending av hovedsøknad for AAP
 - Mulighet for å gjennopta en påbegynt, men ikke innsendt søknad
 - Legge ved dokumentasjon til søknad
 - Kvitteringsside som bekrefter hva som har blitt sendt inn
-- [Brukernotifikasjoner](https://navikt.github.io/dittnav-brukernotifikasjoner-intro/) som varsler bruker om påbegynt søknad og manglende dokumentasjon
 
 Søknaden arkiveres pt både som pdf og JSON i JOARK.
 
-### Kontaktpunkt Mine AAP
+Flere søknader på tema AAP vil bli lagt til etterhvert.
+
+### Mine AAP
 
 - Vise innsendte søknader og manglende vedlegg
 - Vise innsendt dokumentasjon
@@ -33,12 +35,21 @@ Søknaden arkiveres pt både som pdf og JSON i JOARK.
 - Informasjon om veien videre etter innsendt søknad
 - Inngang til "Skriv til Oss"
 
-### Kontaktpunkt Ettersendelse
+### Mottak
 
-- Ettersende dokumentasjon som er påkrevd basert på svar gitt i søknaden
-- Ettersende generell dokumentasjon tilknyttet sak
-- Inngang til Ettersendelse fra både Mine AAP og Søknadsveiviseren
-- [Brukernotifikasjoner](https://navikt.github.io/dittnav-brukernotifikasjoner-intro/) som varsler bruker om manglende dokumentasjon
+- Plukker opp alle journalføringshendelser på tema AAP
+- Oppretter oppgaver i Gosys for manuell journalføring
+- Oppretter oppgaver i Arena for saksbehandling
+
+#### Fremtidig mottak
+
+- Opprette alle førsteganssøknader i Kelvin / behandlingsflyt
+- 
+
+### Behandlingsflyt
+
+### Oppgavestyring
+
 
 ### Baksystemer for innbyggerflaten
 Som støtte for brukerflatene /kontaktpunktene, så benyttes baksystemer for å hente inn data og sende data videre. Løsningen består av  to baksystemer.
