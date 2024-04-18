@@ -9,16 +9,17 @@ const FeatureList = [
     url: "/docs/funksjonalitet",
     description: (
       <>
-                Bokser og piler med folkelig språk
+                Beskrivelse av funksjoner og komponenter i sammenheng
       </>
     ),
   },
   {
     title: "Teknisk",
     Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+      url: "/docs/teknisk",
     description: (
       <>
-                Tall, bokstaver og rare tegn
+                Generell teknisk beskrivelse
       </>
     ),
   },
