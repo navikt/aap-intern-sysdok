@@ -2,28 +2,31 @@
 
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
 
-| Del av løsning | Teknologi beskrivelse                                                    |
-| -------------- |--------------------------------------------------------------------------|
-| Klient         | NEXT.js, Typescript                                                      |
-| Baksystem      | Kator og kotlin                                                          |
-| Infrastruktur  | Postgress database for forretningslogikk og GC Buckets for mellomlagring |
-| KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering    |
-| BUCKETS        | Del av tjenestene i GCP, benyttes for mellomlagring ved innsending       |
+| Del av løsning | Teknologi beskrivelse                                                 |
+| -------------- |-----------------------------------------------------------------------|
+| Klient         | NEXT.js, Typescript                                                   |
+| Baksystem      | Kator og kotlin                                                       |
+| Infrastruktur  | Postgress database for forretningslogikk og Redis for mellomlagring   |
+| KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering |
+
 
 ### Tekniske tjenester
-Tekniske tjenester er integrasjoner mellom systemer/tjenester. Denne oversikten er over
+Tekniske tjenester er integrasjoner mellom systemer/tjenester.
 
-#### Tjenester som konsumeres av (soknad-api)[https://github.com/navikt/aap-soknad-api]
+#### Tjenester som konsumeres av (aap-oppslag)[https://github.com/navikt/aap-oppslag]
 
 - **Innlogging** via [Id-porten](https://eid.difi.no/en/id-porten)
 - **PDL** - Persondatatjeneste for NAV og Skatt
 - **KRR** - Kontakt og reservasjonsregisteret
-- **Arkivtjeneste** for oppslag i NAVS dokumentarkiv
-- **Brukernotifikasjoner** for [pålogget bruker på nav.no](https://nav.no)
+
+#### Tjenester som konsumeres av (aap-innsending)[https://github.com/navikt/aap-innsending
+- **Arkivtjeneste** for opprettelse av ingående dokumenter i NAVS dokumentarkiv.
+- **Microfrontend for min side** for [pålogget bruker på nav.no](https://nav.no)
 
 Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre.
 
-#### Tjenestster som konsumeres av (aap-fordeler)[https://github.com/navikt/aap-routing]
+#### Tjenestster som konsumeres av (aap-mottak)[https://github.com/navikt/aap-mottak]
+** !! Tjenesten er under utvikling !!**
 
 - **PDL** - Persondatatjeneste for NAV og Skatt: brukes for fordeling til riktig behandlende enhet.
 - **NORG** - NAV Organsiasjonsmaster: brukes for å fordele oppgaven til riktig enhet. Diskresjonskoder fortrolig og strengt fortrolig blir for eksempel behandlet av egen enhet.
@@ -32,14 +35,15 @@ Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre.
 - **Egenansatt** - Tjeneste som avklarer om innsender er ansatt i NAV og skal behandles av egen ansatt.
 - **Arena** - Tjeneste for å opprette AAP-sak og oppgave for behandling av søknad.
 
-### Databasemodell i søknad-api
+### Databasemodell i aap-innsending
 
 Som figuren viser er modellen delt i 3:
 
 - Håndtering av søknadslogikk og påkrevde vedlegg som er sendt inn eller mangler
-- Håndtering av brukernotifikasjoner tilknyttet søknader, både oppgaver og beskjeder
+- Håndtering av mellomlagring av søknad.
+- håndterer beskjeder som skal sendes til bruker på min side.
 
-![databasemodell](../../bilder/eksternebeskjednotifikasjoner.png)
+
 
 
 ## Deploy snapshot av søknad til labs
