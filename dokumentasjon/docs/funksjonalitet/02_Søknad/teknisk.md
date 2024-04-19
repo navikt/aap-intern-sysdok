@@ -1,4 +1,4 @@
-# Teknisk besrkivelse
+# Teknisk beskrivelse
 
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
 
