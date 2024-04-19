@@ -19,6 +19,6 @@
 | -------------- |----------------------------------------------------------------------|
 | Klient         | NEXT.js, Typescript                                                  |
 | Baksystem      | Ktor og kotlin                                                       |
-| Infrastruktur  | Postgress database for forretningslogikk og Redis for mellomlagring  |
+| Infrastruktur  | Postgress database for forretningslogikk   |
 | KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering |
 | Redis          | Mellomlagring av søknad og vedlegg                                    | 
