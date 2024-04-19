@@ -61,7 +61,7 @@ F((Redis)) -- feilet --> D((API res))
 ```
 
 
-### Arkivere innsending
+###y Arkivere innsending
 - mottatte innsendinger arkiveres i Joark
 - ved arkivering slettes dataene fra postgres og redis
 - ved arkivering lagres metadata om hva som ble arkivert i joark
