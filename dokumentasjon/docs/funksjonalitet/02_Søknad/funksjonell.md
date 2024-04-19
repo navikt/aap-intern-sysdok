@@ -8,7 +8,7 @@ TODO: Oppdatere informasjonsmodell i mural, legge til tegnforklaring / farger, l
 
 Eksempel: Informasjon om innsendte vedlegg i søknaden tas vare på slik at vi vet hvilke vedlegg som mangler, og kan vise dette i Mine AAP.
 
-![Informasjonsmodell](../../bilder/Informasjonsmodell-11-22.png)
+![Informasjonsmodell](../../bilder/Informasjonsmodell-04-24.png)
 
 <!---
 Tegningen er hentet herfra
