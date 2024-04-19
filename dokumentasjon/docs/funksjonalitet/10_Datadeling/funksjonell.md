@@ -6,6 +6,10 @@ sidebar_position: 1
 
 Datadeling inneholder to moduler for deling av data: Ekstern og Intern
 
+## Komponent diagram
+![Komponent diagram](../../bilder/datadeling.png) 
+<!--- Komponentdiagram er hentet fra:https://app.mural.co/t/navdesign3580/m/navdesign3580/1686128879741/be8d640e3e037731badc3a78c09db5c1c14a8e7f?wid=0-1698213047002 -->
+
 ## Ekstern deling av data
 
 AAP-data tilbys gjennom REST-grensesnitt til ulike konsumenter (den som henter data). Hver konsument har sitt eget dedikerte grensesnitt med autentisering og data.
