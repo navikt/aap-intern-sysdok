@@ -9,7 +9,7 @@ sidebar_position: 1
 - Saksoversikt
 
 ## Komponent diagram
-![Komponent diagram](../../bilder/komponentdiagram-MineAAP.png)
+![Komponent diagram](../../bilder/komponentdiagram-mineaap.png)
 
 ![Informasjonsmodell](../../bilder/mineaap.png)
 
