@@ -14,7 +14,7 @@ Den viser:
 
 Eksempel: Informasjon om innsendte vedlegg i søknaden tas vare på slik at vi vet hvilke vedlegg som mangler, og kan vise dette i Mine AAP.
 
-![Informasjonsmodell](../../bilder/Informasjonsmodell-04-24.png)
+![Informasjonsmodell](../../bilder/informasjonsmodell-04-24.png)
 
 <!---
 Tegningen er hentet herfra
