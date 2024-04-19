@@ -2,13 +2,13 @@
 
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
 
-| Del av løsning | Teknologi beskrivelse                                                 |
-| -------------- |-----------------------------------------------------------------------|
-| Klient         | NEXT.js, Typescript                                                   |
-| Baksystem      | Kator og kotlin                                                       |
-| Infrastruktur  | Postgress database for forretningslogikk og Redis for mellomlagring   |
+| Del av løsning | Teknologi beskrivelse                                                |
+| -------------- |----------------------------------------------------------------------|
+| Klient         | NEXT.js, Typescript                                                  |
+| Baksystem      | Ktor og kotlin                                                       |
+| Infrastruktur  | Postgress database for forretningslogikk og Redis for mellomlagring  |
 | KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering |
-
+ | Redis          | Mellomlagring av søknad og vedlegg                                    | 
 
 ### Tekniske tjenester
 Tekniske tjenester er integrasjoner mellom systemer/tjenester.
