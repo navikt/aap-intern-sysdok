@@ -1,42 +1,60 @@
 # Teknisk besrkivelse
+# Komme i gang
 
-## Deploy snapshot av søknad til labs
-Deploy et snapshot av søknaden til labs for å enkelt vise nøyaktig hvordan søknaden så ut på et gitt tidspunkt. Finn commiten du vil deploye til labs(antageligvis siste commit før datoen du vil ha snapshot fra). Kopier SHA fra aktuell commit(commit-sha).
+Hvordan bygge, teste og kjøre koden viss aktuelt.
 
-Lag en ny branch og sjekk ut til riktig commit. Det er viktig at branchen starter med "labs-historisk-" for at riktig github aktion skal trigges. Branchnavnet blir også en del av urlen, så ingen / i branchnavnet.
-
-Lag branch og sjekk ut til riktig commit:
+Install:
+```bash
+yarn
 ```
-$ git checkout -b "labs-historisk-1-oktober-22" <commit-sha>
-```
-Hvis snapshotet er fra før byggefilene ble laget må disse hentes til din nye branch. Kopier sha fra nyeste commit i repoet(nyeste-sha) og kjør
-```
-$ git checkout <nyeste-sha> -- .github/workflows/ .nais/historisk-labs.yaml DockerfileLabs 
-```
-Push branch
-```
-$ git push
-```
-Snapshotet bygges nå og deployes til labs. Url vil bli
-
-https://aap-soknad-labs-historisk-1-oktober-22.labs.nais.io/aap/soknad
-
-### Opprydning
-Slett branchen i github, workflowen labs-delete-historisk vil så skalere podene til 0.
-
-Appene vil ikke slettes så følgende burde gjøres regelmessig:
-
-Pass på at du er i labs-gcp
-```
-kubectl config use-context labs-gcp
+Run:
+```bash
+yarn dev
 ```
 
-Kjør dry run og se hvilke apper som vil bli slettet:
-```
-kubectl delete app --dry-run=client -n aap --selector branchState=deleted
+Åpne [http://localhost:3000](http://localhost:3000) i nettleser for å gå gjennom kalkulatoren
+
+---
+
+
+
+Kalkulatoren er strukturert rundt 5 sider.
+```mermaid
+flowchart LR
+    A[Start] <--> B[Helse]
+    B <--> C[Inntekt]
+    C <--> D[Arbeid]
+    D <--> E[Barn]
+    E --> F[Resultat]
+    F --> B
+    F --> G[Søknad om AAP]
+    F --> H[Mine AAP]
 ```
 
-Hvis alt ser riktig ut, kjør kommando uten dry-run:
+[Start](https://github.com/navikt/aap-kalkulator-frontend/blob/main/pages/index.tsx)
+--> [Spørsmål](https://github.com/navikt/aap-kalkulator-frontend/tree/main/components/questions)
+--> [Resultat](https://github.com/navikt/aap-kalkulator-frontend/blob/main/pages/resultat.tsx)
+
+## Logikk
+```mermaid
+flowchart TD
+    s[Innput data] <--> A
+    A[Kalkuler] -->|1| B[Beregnings Grunnlag]
+    A -->|2| C[Barnetilegg]
+    A -->|3| D[Arbeid]
 ```
-kubectl delete app -n aap --selector branchState=deleted
-```
+Kalkuler wrapper state (brukers input) i en type, som inneholder tekst log og resultat per år i kroner.
+wrappet state blir da sendt inn i 3 funksjoner som regner Beregningsgrunnlag, evt. Baretilegg og Reduksjon pga. arbeid
+
+## Universell utforming
+
+Kalkulatoren er tested for WCAG 2.0 A og AA. Dette ble testet med en rekke verktøy, blant annet [W3C Validator](https://validator.w3.org/) og [Lighthouse](https://developers.google.com/web/tools/lighthouse).
+
+---
+# Henvendelser
+
+Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub
+
+## For NAV-ansatte
+
+Interne henvendelser kan sendes via Slack i kanalen #po-aap-innbygger.
