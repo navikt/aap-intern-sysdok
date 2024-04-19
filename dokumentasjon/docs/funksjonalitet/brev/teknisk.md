@@ -1,1 +1,0 @@
-# Teknisk besrkivelse
