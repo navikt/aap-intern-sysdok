@@ -84,7 +84,7 @@ export default {
         darkTheme: prismThemes.dracula,
       },
       mermaid: {
-        theme: { light: "dark", dark: "dark" },
+        theme: { light: "light", dark: "dark" },
       },
     }),
 };
