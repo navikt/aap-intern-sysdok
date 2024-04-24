@@ -58,5 +58,12 @@ Ktor-auth må legges til i [App.kt](https://github.com/navikt/aap-api/blob/main/
 Hver nye route som skal tilhøre en konsument må da autentiseres med rett auth.
 
 ```kotlin
-authenticate(MASKINPORTEN_SCOPE1)
+    authenticate(MASKINPORTEN_SCOPE1)
 ```
+
+## Eksterne avhengigheter
+
+API'ene henter i dag data fra Arena. Arena er ikke uten videre
+tilgjengelig i GCP, så vi har satt opp en [proxy](https://github.com/navikt/aap-arenaoppslag) 
+som har ansvar for å gjøre oppslag i Arena. Denne appen kjører i
+FSS og har en kobling til dedikerte views i Arena-databasen.

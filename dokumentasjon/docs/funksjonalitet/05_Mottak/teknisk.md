@@ -1,42 +1,67 @@
-# Teknisk besrkivelse
+# Teknisk beskrivelse
 
-## Deploy snapshot av søknad til labs
-Deploy et snapshot av søknaden til labs for å enkelt vise nøyaktig hvordan søknaden så ut på et gitt tidspunkt. Finn commiten du vil deploye til labs(antageligvis siste commit før datoen du vil ha snapshot fra). Kopier SHA fra aktuell commit(commit-sha).
+## Repo
 
-Lag en ny branch og sjekk ut til riktig commit. Det er viktig at branchen starter med "labs-historisk-" for at riktig github aktion skal trigges. Branchnavnet blir også en del av urlen, så ingen / i branchnavnet.
+Repo kan finnes [her](https://github.com/navikt/aap-mottak).
 
-Lag branch og sjekk ut til riktig commit:
-```
-$ git checkout -b "labs-historisk-1-oktober-22" <commit-sha>
-```
-Hvis snapshotet er fra før byggefilene ble laget må disse hentes til din nye branch. Kopier sha fra nyeste commit i repoet(nyeste-sha) og kjør
-```
-$ git checkout <nyeste-sha> -- .github/workflows/ .nais/historisk-labs.yaml DockerfileLabs 
-```
-Push branch
-```
-$ git push
-```
-Snapshotet bygges nå og deployes til labs. Url vil bli
+## Oppsett av Kafka
 
-https://aap-soknad-labs-historisk-1-oktober-22.labs.nais.io/aap/soknad
+Kafka-konfigen og klasser for å sette opp Kafka kan finnes i 
+[aap-libs](https://github.com/navikt/aap-libs). Denne kan hentes
+inn som avhengigheter.
 
-### Opprydning
-Slett branchen i github, workflowen labs-delete-historisk vil så skalere podene til 0.
+Kafka startes da fra [App](https://github.com/navikt/aap-mottak/blob/main/app/main/mottak/App.kt) 
+når appen starter:
+```kotlin
+fun Application.server(
+    config: Config = Config(),
+    kafka: Streams = KafkaStreams(),
+) {
+    val prometheus = PrometheusMeterRegistry(PrometheusConfig.DEFAULT)
 
-Appene vil ikke slettes så følgende burde gjøres regelmessig:
+    install(MicrometerMetrics) {
+        registry = prometheus
+        meterBinders += LogbackMetrics()
+    }
 
-Pass på at du er i labs-gcp
-```
-kubectl config use-context labs-gcp
+    environment.monitor.subscribe(ApplicationStopping) {
+        kafka.close()
+    }
+
+    val topology = MottakTopology(config, prometheus)
+
+    kafka.connect(
+        topology = topology(),
+        config = config.kafka,
+        registry = prometheus,
+    )
+}
 ```
 
-Kjør dry run og se hvilke apper som vil bli slettet:
-```
-kubectl delete app --dry-run=client -n aap --selector branchState=deleted
+### Topologien
+
+Topologien er ganske enkel:
+```kotlin
+    consume(topics.journalfoering) // Konsumer meldinger på topic
+        .filter { record -> record.temaNytt == "AAP" } // Filtrer bort alt som ikke er AAP
+        .filter { record -> record.journalpostStatus == "MOTTATT" } // Alle journalføringshendelser legges på topic, men vi er bare interessert i nye
+        .filter { record -> record.mottaksKanal !in listOf("EESSI") } // Filtrer bort visse kommunikasjonskanaler
+        .processor(MeterConsumed(registry)) // Metrikker
+        .map { record -> saf.hentJournalpost(record.journalpostId) } // Gjør om hendelse til en representasjon av journalposten
+        .filter { jp -> jp.harFortsattTilstandMottatt() } // Ekstra sikring for å fjerne ting som kan ha endret status i mellomtiden
+        .map { jp -> enhetService.enrichWithNavEnhet(jp) } // Legg på behandlende enhet på journalpost for videre ruting
+        .forEach(::håndterJournalpost) // Send journalpost til rett sted
 ```
 
-Hvis alt ser riktig ut, kjør kommando uten dry-run:
-```
-kubectl delete app -n aap --selector branchState=deleted
-```
+## Eksterne avhengigheter
+
+- JOARK-topic: Alle hendelser i JOARK (arkivering, journalføring, endring, kassering...) legges på et topic som vi konsumerer.
+- SAF: GraphQL-oppslag som vi bruker for å gjøre om hendelsen på JOARK-topicet til en faktisk journalpost med innhold (hendelsen inneholder for eksempel ikke personident).
+- Enhetsoppslag består av 3 avhengigheter
+  - PDL: For å hente geografisk tilhørighet (gt) og adressebeskyttelse
+  - Skjerming: For å finne ut om personen er ansatt i NAV og skal skjermes
+  - NORG: Kombinerer gt, skjerming og adressebeskyttelse for å finne riktig NAV-enhet
+- Behandlingsflyt: Brukes for å finne eller opprette sak knyttet til søknad, samt sende over søknadsdata
+- JOARK-rest: Brukes for å oppdatere metadata på journalpost, samt endelig journalføre
+- FSS-proxy: Brukes for å kontakte Arena sine SOAP-endepunkt ifm sjekk av sak
+- Oppgave-API: Brukes for å opprette oppgaver som kommer i GOSYS, dersom det trengs
