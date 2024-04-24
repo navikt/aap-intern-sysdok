@@ -1,4 +1,4 @@
-# Teknisk besrkivelse
+# Teknisk beskrivelse
 
 ## Deploy snapshot av søknad til labs
 Deploy et snapshot av søknaden til labs for å enkelt vise nøyaktig hvordan søknaden så ut på et gitt tidspunkt. Finn commiten du vil deploye til labs(antageligvis siste commit før datoen du vil ha snapshot fra). Kopier SHA fra aktuell commit(commit-sha).

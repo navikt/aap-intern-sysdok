@@ -1,4 +1,4 @@
-# Teknisk besrkivelse
+# Teknisk beskrivelse
 # Komme i gang
 
 Hvordan bygge, teste og kjøre koden viss aktuelt.

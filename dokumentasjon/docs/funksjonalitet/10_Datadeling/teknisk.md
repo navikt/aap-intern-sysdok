@@ -1,4 +1,4 @@
-# Teknisk besrkivelse
+# Teknisk beskrivelse
 
 ## Repositories
 
