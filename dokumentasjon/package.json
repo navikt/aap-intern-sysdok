@@ -16,10 +16,9 @@
   "dependencies": {
     "@docusaurus/core": "^3.2.1",
     "@docusaurus/preset-classic": "^3.2.1",
+    "@docusaurus/theme-mermaid": "^3.2.1",
     "@mdx-js/react": "^3.0.1",
     "clsx": "^2.1.0",
-    "mdx-mermaid": "^2.0.0",
-    "mermaid": "^10.9.0",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -28,11 +27,7 @@
     "@docusaurus/module-type-aliases": "^3.2.1"
   },
   "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.5%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -40,6 +35,6 @@
     ]
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18.0"
   }
 }
