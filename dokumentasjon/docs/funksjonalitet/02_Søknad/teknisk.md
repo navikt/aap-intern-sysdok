@@ -1,35 +1,38 @@
 # Teknisk beskrivelse
 
-Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google cloud.
+Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google Cloud.
 
-| Del av løsning | Teknologi beskrivelse                                                |
-| -------------- |----------------------------------------------------------------------|
-| Klient         | NEXT.js, Typescript                                                  |
-| Baksystem      | Ktor og kotlin                                                       |
-| Infrastruktur  | Postgress database for forretningslogikk og Redis for mellomlagring  |
-| KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering |
- | Redis          | Mellomlagring av søknad og vedlegg                                    | 
+| Del av løsning | Teknologi beskrivelse                                                 |
+|----------------|-----------------------------------------------------------------------|
+| Klient         | NEXT.js, Typescript                                                   |
+| Baksystem      | Ktor og Kotlin                                                        |
+| Infrastruktur  | Postgres-database for forretningslogikk og Redis for mellomlagring    |
+| Kafka          | Hendelsesbasert kommunikasjon mellom systemer i NAV og feilhåndtering |
+| Redis          | Mellomlagring av søknad og vedlegg                                    |
 
 ### Tekniske tjenester
+
 Tekniske tjenester er integrasjoner mellom systemer/tjenester.
 
-#### Tjenester som konsumeres av (aap-oppslag)[https://github.com/navikt/aap-oppslag]
+#### Tjenester som konsumeres av [aap-oppslag](https://github.com/navikt/aap-oppslag)
 
 - **Innlogging** via [Id-porten](https://eid.difi.no/en/id-porten)
 - **PDL** - Persondatatjeneste for NAV og Skatt
 - **KRR** - Kontakt og reservasjonsregisteret
 
-#### Tjenester som konsumeres av (aap-innsending)[https://github.com/navikt/aap-innsending
+#### Tjenester som konsumeres av [aap-innsending](https://github.com/navikt/aap-innsending)
+
 - **Arkivtjeneste** for opprettelse av ingående dokumenter i NAVS dokumentarkiv.
 - **Microfrontend for min side** for [pålogget bruker på nav.no](https://nav.no)
 
-Systemene tilbyr ingen eksterne tjenster, kun interne i dialog med hverandre.
+Systemene tilbyr ingen eksterne tjenester, kun interne i dialog med hverandre.
 
-#### Tjenestster som konsumeres av (aap-mottak)[https://github.com/navikt/aap-mottak]
-** !! Tjenesten er under utvikling !!**
+#### Tjenester som konsumeres av [aap-mottak](https://github.com/navikt/aap-mottak)
+
+**!! Tjenesten er under utvikling !!**
 
 - **PDL** - Persondatatjeneste for NAV og Skatt: brukes for fordeling til riktig behandlende enhet.
-- **NORG** - NAV Organsiasjonsmaster: brukes for å fordele oppgaven til riktig enhet. Diskresjonskoder fortrolig og strengt fortrolig blir for eksempel behandlet av egen enhet.
+- **NORG** - NAV Organisasjonsmaster: brukes for å fordele oppgaven til riktig enhet. Diskresjonskoder _fortrolig_ og _strengt fortrolig_ blir for eksempel behandlet av egen enhet.
 - **SAK** - Generell sakssystem fra Arkiv: brukes for å knytte journalpost og oppgave til en journalpost.
 - **Arkivtjeneste** - For oppslag i NAVS dokumentarkiv: brukes for å oppdattere informasjon tilknyttet saksbehandling og fordeling.
 - **Egenansatt** - Tjeneste som avklarer om innsender er ansatt i NAV og skal behandles av egen ansatt.
@@ -53,17 +56,17 @@ Lag en ny branch og sjekk ut til riktig commit. Det er viktig at branchen starte
 
 Lag branch og sjekk ut til riktig commit:
 ```
-$ git checkout -b "labs-historisk-1-oktober-22" <commit-sha>
+git checkout -b "labs-historisk-1-oktober-22" <commit-sha>
 ```
 Hvis snapshotet er fra før byggefilene ble laget må disse hentes til din nye branch. Kopier sha fra nyeste commit i repoet(nyeste-sha) og kjør
 ```
-$ git checkout <nyeste-sha> -- .github/workflows/ .nais/historisk-labs.yaml DockerfileLabs 
+git checkout <nyeste-sha> -- .github/workflows/ .nais/historisk-labs.yaml DockerfileLabs 
 ```
 Push branch
 ```
-$ git push
+git push
 ```
-Snapshotet bygges nå og deployes til labs. Url vil bli
+Snapshotet bygges nå og deployes til labs. URL vil bli
 
 https://aap-soknad-labs-historisk-1-oktober-22.labs.nais.io/aap/soknad
 

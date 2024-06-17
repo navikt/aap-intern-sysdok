@@ -23,7 +23,7 @@ Kalkulatoren er en nettside som hjelper potensielle søkere med å avklare hvor 
 - Legge ved dokumentasjon til søknad
 - Kvitteringsside som bekrefter hva som har blitt sendt inn
 
-Søknaden arkiveres pt både som pdf og JSON i JOARK.
+Søknaden arkiveres per nå både som PDF og JSON i JOARK.
 
 Flere søknader på tema AAP vil bli lagt til etterhvert.
 
@@ -38,7 +38,7 @@ Flere søknader på tema AAP vil bli lagt til etterhvert.
 ### Innsending
 
 - Felleskomponent for Søknad og Mine AAP
-- Håndterer mellomlagding, pdf-generering, virussjekk og arkivering
+- Håndterer mellomlagring, pdf-generering, virussjekk og arkivering
 
 ### Mottak (Under arbeid)
 

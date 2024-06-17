@@ -1,22 +1,22 @@
 # Teknisk beskrivelse
 # Komme i gang
 
-Hvordan bygge, teste og kjøre koden viss aktuelt.
+Hvordan bygge, teste og kjøre koden hvis aktuelt.
 
-Install:
+Installer:
+
 ```bash
 yarn
 ```
-Run:
+
+Kjør:
 ```bash
 yarn dev
 ```
 
-Åpne [http://localhost:3000](http://localhost:3000) i nettleser for å gå gjennom kalkulatoren
+Åpne [http://localhost:3000](http://localhost:3000) i nettleser for å gå gjennom kalkulatoren.
 
 ---
-
-
 
 Kalkulatoren er strukturert rundt 5 sider.
 ```mermaid
@@ -32,8 +32,8 @@ flowchart LR
 ```
 
 [Start](https://github.com/navikt/aap-kalkulator-frontend/blob/main/pages/index.tsx)
---> [Spørsmål](https://github.com/navikt/aap-kalkulator-frontend/tree/main/components/questions)
---> [Resultat](https://github.com/navikt/aap-kalkulator-frontend/blob/main/pages/resultat.tsx)
+-> [Spørsmål](https://github.com/navikt/aap-kalkulator-frontend/tree/main/components/questions)
+-> [Resultat](https://github.com/navikt/aap-kalkulator-frontend/blob/main/pages/resultat.tsx)
 
 ## Logikk
 ```mermaid
@@ -43,8 +43,9 @@ flowchart TD
     A -->|2| C[Barnetilegg]
     A -->|3| D[Arbeid]
 ```
-Kalkuler wrapper state (brukers input) i en type, som inneholder tekst log og resultat per år i kroner.
-wrappet state blir da sendt inn i 3 funksjoner som regner Beregningsgrunnlag, evt. Baretilegg og Reduksjon pga. arbeid
+
+Kalkuler wrapper tilstand (brukers input) i en type, som inneholder tekst, log og resultat per år i kroner.
+Wrappet tilstand blir da sendt inn i 3 funksjoner som regner Beregningsgrunnlag, evt. Baretilegg og Reduksjon pga. arbeid
 
 ## Universell utforming
 
@@ -53,7 +54,7 @@ Kalkulatoren er tested for WCAG 2.0 A og AA. Dette ble testet med en rekke verkt
 ---
 # Henvendelser
 
-Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub
+Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub.n
 
 ## For NAV-ansatte
 

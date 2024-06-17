@@ -25,11 +25,11 @@ graph TD
 ```
 Punkt `2` og `3` vil være en erstatning av dagens ruting av søknader
 (KRUT). Det er viktig at vi tar over KRUT før vi begynner å rute 
-data til Kelvin for å sørge for at vi kan ha en gradvis overgang
+data til Kelvin for å sørge for at vi kan ha en gradvis overgang.
 
 ## Foreløpig løsning: Happy path
 
-Per nå er det kun `Happy path` som er implementert, det vil si 
+Per nå er det kun `Happy path` som er implementert, det vil si
 at nye søknader som arkiveres vil plukkes opp av mottak og det
 blir opprettet nye saker i Behandlingsflyt. KRUT kjører i dag
 som normalt.

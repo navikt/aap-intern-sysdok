@@ -1,4 +1,4 @@
-# Trekk ut teskter fra JSON og bygg opp JSON fra tekst
+# Trekk ut tekster fra JSON og bygg opp JSON fra tekst
 
 ## Kom i gang:
 

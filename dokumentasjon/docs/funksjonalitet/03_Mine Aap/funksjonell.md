@@ -8,7 +8,7 @@ sidebar_position: 1
 - Ettersending
 - Saksoversikt
 
-## Komponent diagram
+## Komponentdiagram
 ![Komponent diagram](../../bilder/komponentdiagram-mineaap.png)
 
 ![Informasjonsmodell](../../bilder/mineaap.png)

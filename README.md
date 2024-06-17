@@ -2,28 +2,37 @@
 Dette er intern dokumentasjon for Team søknad og meldekort i PO for Arbeidsavklaringspenger
 
 ## Komme i gang
+
 Bygger på [Docusaurus 2](https://docusaurus.io/).
-### Installation
+
+### Installering
+
+Alt skjer i mappen `dokumentasjon`.
 
 ```
-$ yarn
+yarn
 ```
 
-### Local Development
+### Lokal utvikling
 
 ```
-$ yarn start
+yarn start
 ```
+
 Åpnes her [http://localhost:3000/](http://localhost:3000/)
+
 ### Build
 
 ```
-$ yarn build
+yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
 ## Henvendelser
+
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub
 
 ## For NAV-ansatte
+
 Interne henvendelser kan sendes via Slack i kanalen #po-aap-værsågod.

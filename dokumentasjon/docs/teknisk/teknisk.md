@@ -16,11 +16,12 @@
 | Postmottak       | [AAP-mottak](https://github.com/navikt/aap-mottak)         | AAP-mottak skal erstatte jfr-manuell og jfr-arena for alle inngående dokumenter (journalposter) på tema AAP og håndtere oppgave opprettelse på riktig NAV-enhet koblet til riktig mottaker system. (gosys, arena eller Kelvin) |
 
 # Teknologier
+
 | Del av løsning | Teknologi beskrivelse                                                 |
-| -------------- |-----------------------------------------------------------------------|
+|----------------|-----------------------------------------------------------------------|
 | Klient         | NEXT.js, React, Typescript                                            |
-| Baksystem      | Ktor og kotlin                                                        |
-| Infrastruktur  | Postgress database for forretningslogikk                              |
-| KAFKA          | Hendelsebasert kommuninkasjon mellom systemer i NAV og feilhåndtering |
-| Redis          | Mellomlagring av søknad og vedlegg                                    | 
+| Baksystem      | Ktor og Kotlin                                                        |
+| Infrastruktur  | Postgres-database for forretningslogikk                               |
+| KAFKA          | Hendelsesbasert kommunikasjon mellom systemer i NAV og feilhåndtering |
+| Redis          | Mellomlagring av søknad og vedlegg                                    |
 
