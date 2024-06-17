@@ -3,7 +3,7 @@ Dette er intern dokumentasjon for Team søknad og meldekort i PO for Arbeidsavkl
 
 ## Komme i gang
 
-Bygger på [Docusaurus 2](https://docusaurus.io/).
+Bygger på [Docusaurus 3](https://docusaurus.io/).
 
 ### Installering
 

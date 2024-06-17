@@ -25,6 +25,8 @@ export default {
     locales: ["nb"],
   },
 
+  plugins: [[require.resolve("@cmfcmf/docusaurus-search-local"), {language: "no"}]],
+
   presets: [
     [
       "classic",
