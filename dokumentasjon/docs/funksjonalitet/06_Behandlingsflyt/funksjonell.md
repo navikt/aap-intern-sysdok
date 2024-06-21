@@ -1,9 +1,6 @@
 # Funksjonell beskrivelse
 
 
-
-
-
 ## Behandlingsflyt
 
 ## Saksbehandling

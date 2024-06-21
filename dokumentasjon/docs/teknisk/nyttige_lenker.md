@@ -27,3 +27,13 @@ Noe dokumentasjon lever best på Confluence.
 ## Jira
 
 [Team AAP - Jira](https://jira.adeo.no/secure/RapidBoard.jspa?rapidView=26436&projectKey=AAP&selectedIssue=AAP-48)
+
+## SAF
+
+SAF (sak- og arkiv-fasade) tilbyr søk mot fagarkivet (Joark/dokarkiv) og sørger for korrekt tilgangsstyring av arkivdataene.
+
+Dokumentasjon [på Jira](https://confluence.adeo.no/display/BOA/saf).
+
+## AAP - offisiell NAV.no-side for innbyggere
+
+https://www.nav.no/aap
