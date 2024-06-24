@@ -8,6 +8,10 @@
 [Saksbehandling](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app/saksbehandling)
 [Mottak](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app/mottak)
 
+## Fraværsoversikt
+
+[Fraværsoversikt i Sharepoint](https://navno.sharepoint.com/:x:/r/sites/POAAP/Shared%20Documents/General/06%20-%20Roller%20og%20bemanning/Meld%20frav%C3%A6ret%20ditt%20her%20du.xlsx?d=wc2497ad516594cc9bb545f5b18c98750&csf=1&web=1&e=JbUzhh).
+
 ## Logger
 
 Logger finnes i Elastic.
