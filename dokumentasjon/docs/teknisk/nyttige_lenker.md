@@ -32,6 +32,8 @@ Noe dokumentasjon lever best på Confluence.
 
 [Team AAP - Jira](https://jira.adeo.no/secure/RapidBoard.jspa?rapidView=26436&projectKey=AAP&selectedIssue=AAP-48)
 
+[Hvordan teste en behandling i Kelvin](https://confluence.adeo.no/display/PAAP/Hvordan+teste+en+behandling+i+Kelvin)
+
 ## SAF
 
 SAF (sak- og arkiv-fasade) tilbyr søk mot fagarkivet (Joark/dokarkiv) og sørger for korrekt tilgangsstyring av arkivdataene.
