@@ -28,6 +28,12 @@ Noe dokumentasjon lever best på Confluence.
 
 [Produktområde AAP](https://confluence.adeo.no/pages/viewpage.action?pageId=514473022).
 
+## Ida
+
+For å lage saksbehandler-identer.
+
+https://ida.intern.nav.no/
+
 ## Jira
 
 [Team AAP - Jira](https://jira.adeo.no/secure/RapidBoard.jspa?rapidView=26436&projectKey=AAP&selectedIssue=AAP-48)
