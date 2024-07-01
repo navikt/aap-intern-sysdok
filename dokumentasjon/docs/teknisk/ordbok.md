@@ -17,3 +17,7 @@ Grunnbeløpet er et tall som blir brukt til å beregne mange av NAVs utbetalinge
 [Arbeidsavklaringspenger til studenter §11-14](https://lovdata.no/lov/1997-02-28-19/§11-14)
 
 [Meldeplikt §11-10](https://lovdata.no/lov/1997-02-28-19/§11-10)
+
+## Styringsinformasjon
+
+Data, analyser og vurderinger som benyttes som grunnlag for styring og strategiske beslutninger på alle nivåer i organisasjonen. ([Begrepskatalogen](https://jira.adeo.no/browse/BEGREP-2281?src=confmacro)x)
