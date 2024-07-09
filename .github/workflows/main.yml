@@ -49,6 +49,7 @@ jobs:
         if: (github.event.action == 'closed' && github.event.pull_request.merged == true) || (github.ref_name == 'main')
         with:
           push: true
+          context: .
           tags: ${{ steps.dockertag.outputs.docker_img }}
 
   deploy-prod:
