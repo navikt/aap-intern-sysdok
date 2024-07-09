@@ -34,7 +34,7 @@ jobs:
         run: yarn build
 
       - name: Login to GitHub Docker Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -45,7 +45,7 @@ jobs:
         run: echo "::set-output name=docker_img::ghcr.io/${{ github.repository }}:$(git rev-parse --short HEAD)"
 
       - name: Build and push the Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         if: (github.event.action == 'closed' && github.event.pull_request.merged == true) || (github.ref_name == 'main')
         with:
           push: true
@@ -57,7 +57,7 @@ jobs:
     needs: build
     if: (github.event.action == 'closed' && github.event.pull_request.merged == true) || (github.ref_name == 'main')
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Generate Docker image tag with short sha
         id: dockertag
