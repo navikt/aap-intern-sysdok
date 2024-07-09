@@ -28,11 +28,9 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        working-directory: ./dokumentasjon
         run: yarn
 
       - name: Build
-        working-directory: ./dokumentasjon
         run: yarn build
 
       - name: Login to GitHub Docker Registry
@@ -50,7 +48,6 @@ jobs:
         uses: docker/build-push-action@v2
         if: (github.event.action == 'closed' && github.event.pull_request.merged == true) || (github.ref_name == 'main')
         with:
-          context: ./dokumentasjon
           push: true
           tags: ${{ steps.dockertag.outputs.docker_img }}
 
@@ -70,5 +67,5 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
-          RESOURCE: ./dokumentasjon/.nais/nais.yml
+          RESOURCE: .nais/nais.yml
           IMAGE: ${{ steps.dockertag.outputs.docker_img }}

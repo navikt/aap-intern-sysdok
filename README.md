@@ -7,8 +7,6 @@ Bygger på [Docusaurus 3](https://docusaurus.io/).
 
 ### Installering
 
-Alt skjer i mappen `dokumentasjon`.
-
 ```
 yarn
 ```

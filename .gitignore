@@ -2,7 +2,7 @@
 node_modules
 
 # Production
-dokumentasjon/build/
+build/
 
 # Generated files
 .docusaurus
