@@ -42,7 +42,7 @@ jobs:
 
       - name: Generate Docker image tag with short sha
         id: dockertag
-        run: echo "::set-output name=docker_img::ghcr.io/${{ github.repository }}:$(git rev-parse --short HEAD)"
+        run: echo "docker_img=ghcr.io/${{ github.repository }}:$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build and push the Docker image
         uses: docker/build-push-action@v6
@@ -61,7 +61,7 @@ jobs:
 
       - name: Generate Docker image tag with short sha
         id: dockertag
-        run: echo "::set-output name=docker_img::ghcr.io/${{ github.repository }}:$(git rev-parse --short HEAD)"
+        run: echo "docker_img=ghcr.io/${{ github.repository }}:$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - uses: nais/deploy/actions/deploy@v1
         if: github.ref == 'refs/heads/main'
