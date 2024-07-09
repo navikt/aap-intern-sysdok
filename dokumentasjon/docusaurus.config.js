@@ -26,7 +26,10 @@ export default {
   },
 
   plugins: [
-    [require.resolve("@cmfcmf/docusaurus-search-local"), { language: "no" }],
+    [
+      require.resolve("@cmfcmf/docusaurus-search-local"),
+      { language: "no", indexBlog: false },
+    ],
   ],
 
   presets: [
