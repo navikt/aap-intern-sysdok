@@ -49,3 +49,11 @@ Dokumentasjon [på Jira](https://confluence.adeo.no/display/BOA/saf).
 ## AAP - offisiell NAV.no-side for innbyggere
 
 https://www.nav.no/aap
+
+## Dolly
+
+https://dolly.ekstern.dev.nav.no/gruppe/7567
+
+For opprettelse av testpersoner.
+
+Se [Confluence](https://confluence.adeo.no/display/PAAP/Hvordan+teste+en+behandling+i+Kelvin) for instruksjoner.
