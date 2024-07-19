@@ -15,6 +15,7 @@
 | Deling av data   | [AAP-arenaoppslag](https://github.com/navikt/aap-arenaoppslag)  | AAP-arenaoppslag tilbyr historiske data fra Arena til AAP-API.                                                                                                                                                                 |
 | Postmottak       | [AAP-mottak](https://github.com/navikt/aap-mottak)              | AAP-mottak skal erstatte jfr-manuell og jfr-arena for alle inngående dokumenter (journalposter) på tema AAP og håndtere oppgave opprettelse på riktig NAV-enhet koblet til riktig mottaker system. (gosys, arena eller Kelvin) |
 | Statistikk       | [AAP Statistik](https://github.com/navikt/aap-statistikk)       | Statistikk for etterlevelseskrav.                                                                                                                                                                                              |
+| Tilgangsstyring  | [AAP Tilgangsstyring](https://github.com/navikt/aap-tilgang)    | Tilgangsstyring                                                                                                                                                                                                                |
 
 
 | Del av løsning | Teknologi beskrivelse                                                 |

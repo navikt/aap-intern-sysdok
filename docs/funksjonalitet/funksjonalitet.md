@@ -89,10 +89,11 @@ MA[Mine AAP] --> IS
 IS --> PM[Mottak]
 PM --> VT[Behandlingsflyt]
 VT --> OP[Oppgavestyring]
+VT --> TS[Tilgangsstyring]
 PM --> OP
 VT --> BR[Brev]
 VT --> ST[Statistikk]
-OP --> ST
+OP -. (ikke påbegynt) .-> ST
 DA[Datadeling] --> VT
 ```
 

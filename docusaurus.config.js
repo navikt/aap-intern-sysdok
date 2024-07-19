@@ -11,7 +11,7 @@ export default {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/nav_logo.png",
+  favicon: "img/aap_logo.png",
   markdown: {
     mermaid: true,
   },
@@ -39,6 +39,7 @@ export default {
         docs: {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
+          sidebarCollapsed: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
