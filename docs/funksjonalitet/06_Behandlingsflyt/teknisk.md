@@ -27,6 +27,7 @@ SAF (sak- og arkiv-fasade) tilbyr søk mot fagarkivet (Joark/dokarkiv) og sørge
 ### Yrkesskade-saker
 
 App-repo: https://github.com/navikt/yrkesskade/tree/main/apps/saker
+
 Swagger-doc: https://yrkesskade-saker.intern.dev.nav.no/swagger-ui/index.html
 
 ### Institusjonsoppholdsregisteret
@@ -38,6 +39,7 @@ Noens eksempel kall- og respons [på Confluence](https://confluence.adeo.no/x/yY
 ### Pensjon Popp: Inntekt
 
 Github: https://github.com/navikt/popp/tree/main?tab=readme-ov-file
+
 Swagger: https://pensjon-popp-q2.dev.intern.nav.no/popp/swagger-ui/index.html
 
 
@@ -50,6 +52,7 @@ Jeg har ikke klart å finne noe Swagger-dok.
 ### MEDL
 
 Github: https://github.com/navikt/medlemskap-medl
+
 Swagger-dok: https://medlemskap-medl-api.dev.intern.nav.no/swagger-ui/index.html#/
 
 ## Motor (TODO)
