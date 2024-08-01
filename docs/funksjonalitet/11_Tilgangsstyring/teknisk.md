@@ -1,10 +1,10 @@
 # Teknisk beskrivelse
 
-Github: https://github.com/navikt/aap-tilgang
+[Github](https://github.com/navikt/aap-tilgang)
+[Swagger](https://aap-tilgang.intern.dev.nav.no/swagger-ui/index.html)
+[Grafana](https://grafana.nav.cloud.nais.io/d/ddtbde3obr5kwe/tilgang?orgId=1)
 
-Swagger: https://aap-tilgang.intern.dev.nav.no/swagger-ui/index.html
-
-`Tilgang` er en tjeneste for tilgangsstyring i AAP. Den fungerer som et policy decision point (PDP) som evaluerer tilgangsforespørsler fra andre tjenester (PEP) mot et sett med regler. Tjenesten henter nødvendig informasjon fra andre tjenester.
+Tilgang er en tjeneste for tilgangsstyring i AAP. Den fungerer som et policy decision point (PDP) som evaluerer tilgangsforespørsler fra andre tjenester (PEP) mot et sett med regler. Tjenesten henter nødvendig informasjon fra andre tjenester.
 
 ```mermaid
 sequenceDiagram
