@@ -13,9 +13,13 @@ For å be om identer for en gitt sak.
 ## Eksterne integrasjoner
 
 ### PDL
-
-PDL-dokumentasjon: https://pdl-docs.ansatt.nav.no/ekstern/index.html
+For å hente adressebeskyttelse og geografisk tilknytning.
+Dokumentasjon: https://pdl-docs.ansatt.nav.no/ekstern/index.html
 
 ### MS Graph DB
 
 For å be om info om AD-grupper og tilganger.
+
+### Skjermingsløsningen
+For å sjekke skjermede personer (egen ansatt).
+Dokumentasjon: https://navikt.github.io/skjerming/index-intern.html
