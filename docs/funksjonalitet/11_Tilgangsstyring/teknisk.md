@@ -4,7 +4,7 @@
 [Swagger](https://aap-tilgang.intern.dev.nav.no/swagger-ui/index.html)
 [Grafana](https://grafana.nav.cloud.nais.io/d/ddtbde3obr5kwe/tilgang?orgId=1)
 
-Tilgang er en tjeneste for tilgangsstyring i AAP. Den fungerer som et policy decision point (PDP) som evaluerer tilgangsforespørsler fra andre tjenester (PEP) mot et sett med regler. Tjenesten henter nødvendig informasjon fra andre tjenester.
+Tilgang er en tjeneste for tilgangsstyring i AAP. Den fungerer som et policy decision point (PDP) som evaluerer tilgangsforespørsler fra andre tjenester (PEP) mot et sett med regler/policies. Tjenesten henter informasjon, som brukes som underlagsdata i regelevalueringen, fra PIP-tjenester.
 
 ```mermaid
 sequenceDiagram
@@ -12,45 +12,42 @@ sequenceDiagram
     PEP->>PDP: tilgang?
         box rgba(0, 0, 255, .05) Tilgang 
         participant PDP
-        participant PIP
         participant Redis
     end
-    PDP->>PIP: spør etter underlagsdata
-    PIP->>Redis: Sjekk cache
-    Redis-->>PIP: underlagsdata?
+    PDP->>Redis: sjekk cache for underlagsdata
+    Redis-->>PDP: underlagsdata?
 
     alt Cache hit
-        PIP-->>PDP: underlagsdata
     else Cache miss
-
-        PIP->>Andre tjenester: hent data
-        Andre tjenester-->>PIP: underlagsdata
-        PIP-->>PDP: underlagsdata
+        PDP->>PIP-tjenester: hent underlagsdata
+        PIP-tjenester-->>PDP: underlagsdata
     end
 
-    PDP->>PDP: Evaluer forespørsel med underlagsdata mot regler
+    PDP->>PDP: evaluer forespørsel med underlagsdata mot regler
     PDP-->>PEP: ja/nei
 
 ```
 
-## Interne integrasjoner
+## PIP-tjenester
+### Interne integrasjoner
+#### Behandlingsflyt
 
-### Behandlingsflyt
+For å hente identer for en gitt sak.
 
-For å be om identer for en gitt sak.
+Dokumentasjon: https://aap-sysdoc.ansatt.nav.no/funksjonalitet/Behandlingsflyt/teknisk
 
-## Eksterne integrasjoner
+### Eksterne integrasjoner
 
-### PDL
+#### PDL
 For å hente adressebeskyttelse og geografisk tilknytning.
 
 Dokumentasjon: https://pdl-docs.ansatt.nav.no/ekstern/index.html
 
-### MS Graph DB
+#### MS Graph DB
 
-For å be om info om AD-grupper og tilganger.
+For å hente AD-grupper som ikke er inkludert i token, deriblant ENHET- og GEO-roller.
 
-### Skjermingsløsningen
+#### Skjermingsløsningen
 For å sjekke skjermede personer (egen ansatt).
 
 Dokumentasjon: https://navikt.github.io/skjerming/index-intern.html
