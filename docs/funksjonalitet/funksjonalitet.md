@@ -43,10 +43,10 @@ Flere søknader på tema AAP vil bli lagt til etterhvert.
 ### Mottak (Under arbeid)
 
 - Plukker opp alle journalføringshendelser på tema AAP
-- Oppretter oppgaver i Gosys for manuell journalføring
-- Oppretter oppgaver i Arena for saksbehandling
+- Opprette oppgaver i Gosys for manuell journalføring
+- Opprette oppgaver i Arena for saksbehandling
 - Opprette manuell journalførings- eller fordelings-oppgave i Gosys på riktig saksbehandlende enhet. En fordelingsoppgave opprettes kun dersom en ikke klarer å avklare hvilken enhet som skal behandle innsendingen.
-- Oppdattere arkivet med riktig sakstilknytning og behandlende enhet.
+- Oppdatere arkivet med riktig sakstilknytning og behandlende enhet.
 
 
 ### Behandlingsflyt (Under arbeid)
@@ -79,6 +79,9 @@ Flere søknader på tema AAP vil bli lagt til etterhvert.
   - Foreldrepenger
   - Uføre
 
+### Tilgangsstyring (Under arbeid)
+- Tilgangsstyring for tjenestene til Team AAP
+
 ## Komponent-diagram
 
 ```mermaid
@@ -95,5 +98,6 @@ VT --> BR[Brev]
 VT --> ST[Statistikk]
 OP -. (ikke påbegynt) .-> ST
 DA[Datadeling] --> VT
+OP --> TS
 ```
 
