@@ -2,6 +2,55 @@
 
 Swagger-dokumentasjon: https://aap-oppgavestyring.intern.dev.nav.no/swagger-ui/index.html
 
+## Informasjonsflyt
+
+```mermaid
+---
+title: Plukk oppgave
+---
+sequenceDiagram
+  actor s as Saksbehandler
+  participant o as Oppgavestyring
+  participant t as Tilgangsstyring
+  activate s
+  activate o
+  s->>o: hendtOppgaver(filter)
+  o->>o: finnOppgaverForFilter
+  activate t
+  o->>t: filtrerOppgaver(Saksbehandler, oppgaveMetadata)
+  t-->>o: svar(oppgaverSaksbehandlerKanBehandle)
+  deactivate t
+  o-->>s: svar(oppgaver)
+  s->>o: velgOppgave
+  o-->>s: redirectTilSaksbehandling
+  deactivate o
+  deactivate s
+
+```
+
+## Logisk datamodell
+
+```mermaid
+classDiagram
+  Oppgave o-- Utfører
+  Oppgave o-- Tildelt
+  class Oppgave {
+    +String behandlingsreferanse
+    +String saksnummer
+    +Avklaringsbehovstatus status
+    +Behandlingstype behandlingstype
+    +Avklaringsbehovtype avklaringsbehovtype
+    +String gjelderverdi
+    +LocalDateTime avklaringsbehovOpprettetTidspunkt
+    +LocalDateTime behandlingOpprettetTidspunkt
+    +String personnummer
+    +String personNavn
+    +LocalDateTime tidsstempel
+    +Utfører utfører
+    +Tildelt tildelt
+    +lukkOppgave() 
+  }
+```
 
 ## Fysisk datamodell
 
@@ -16,7 +65,7 @@ erDiagram
     varchar(50) behandlingsreferanse
     varchar(50) status
     varchar(50) avklaringsbehovtype
-    varchar(50) gjelderverdi
+    varchar(50) gjelderverdi "ikke i bruk enda"
     varchar(50) personnummer
     varchar(255) personnavn
     timestamp(3) avklaringsbehov_opprettet_tidspunkt
@@ -46,7 +95,7 @@ erDiagram
     varchar(255) beskrivelse
     text filter_json
     timestamp(3) opprettet_tid
-    varchar(7) opprettet_av "Nav ident"  
+    varchar(7) opprettet_av "Navident"  
   }
   FILTER_TILDELT {
     bigserial id PK
