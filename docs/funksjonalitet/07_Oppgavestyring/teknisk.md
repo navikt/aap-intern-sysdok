@@ -25,7 +25,26 @@ sequenceDiagram
   o-->>s: redirectTilSaksbehandling
   deactivate o
   deactivate s
+```
 
+```mermaid
+---
+title: Opprett oppgave
+---
+sequenceDiagram
+  participant b as Behandlingsflyt
+  participant o as Oppgavestyring
+  participant p as PDL
+  activate b
+  activate o
+  b->>o: hendelse
+  alt nytt avklaringsbehov
+  o->>o: opprettOppgave
+  o->>p: hentNavnForPersonNummer
+  else ingen endring
+  else avklaringsbehov lukket
+  o->>o: lukkAvklaringsbehov
+  end
 ```
 
 ## Logisk datamodell
