@@ -28,6 +28,10 @@ Noe dokumentasjon lever best på Confluence.
 
 [Produktområde AAP](https://confluence.adeo.no/pages/viewpage.action?pageId=514473022).
 
+## Fraværsoversikt
+
+[Fravær - Sharepoint](https://navno.sharepoint.com/:x:/r/sites/POAAP/Shared%20Documents/General/06%20-%20Roller%20og%20bemanning/Meld%20frav%C3%A6ret%20ditt%20her%20du.xlsx?d=wc2497ad516594cc9bb545f5b18c98750&csf=1&web=1&e=wjTGmu)
+
 ## Ida
 
 For å lage saksbehandler-identer.
