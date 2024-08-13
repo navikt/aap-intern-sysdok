@@ -4,6 +4,14 @@
 
 Info fra [nav.no](https://www.nav.no/arbeidsevne) og [Lovdata](https://lovdata.no/nav/nav-loven/kap3/%C2%A714a).
 
+## Behandling
+
+En behandling er én prosessering av en søknad. En behandling er knyttet til en [sak](#sak). Se [begrepskatalogen](https://jira.adeo.no/browse/BEGREP-183).
+
+## Beregningsgrunnlag
+
+Hvilken informasjon som er brukt i beregningen av ytelsen (her AAP). Dette inkluderer (f.eks) inntekt, uføregrad, tidspunkter.
+
 ## G (grunnbeløpet)
 
 Grunnbeløpet er et tall som blir brukt til å beregne mange av NAVs utbetalinger. Beløpet blir oppdatert 1. mai hvert år og blir bestemt av Stortinget etter trygdeoppgjøret (fra [nav.no](https://www.nav.no/grunnbelopet)). Finnes også [et API](https://g.nav.no/).
@@ -17,6 +25,10 @@ Grunnbeløpet er et tall som blir brukt til å beregne mange av NAVs utbetalinge
 [Arbeidsavklaringspenger til studenter §11-14](https://lovdata.no/lov/1997-02-28-19/§11-14)
 
 [Meldeplikt §11-10](https://lovdata.no/lov/1997-02-28-19/§11-10)
+
+## Sak
+
+Også kalt "fagsak". En sak kan ha flere [behandlinger](#behandling).
 
 ## Styringsinformasjon
 

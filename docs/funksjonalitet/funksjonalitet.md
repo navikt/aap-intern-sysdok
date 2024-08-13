@@ -40,7 +40,7 @@ Flere søknader på tema AAP vil bli lagt til etterhvert.
 - Felleskomponent for Søknad og Mine AAP
 - Håndterer mellomlagring, pdf-generering, virussjekk og arkivering
 
-### Mottak (Under arbeid)
+### Mottak
 
 - Plukker opp alle journalføringshendelser på tema AAP
 - Opprette oppgaver i Gosys for manuell journalføring
@@ -49,19 +49,19 @@ Flere søknader på tema AAP vil bli lagt til etterhvert.
 - Oppdatere arkivet med riktig sakstilknytning og behandlende enhet.
 
 
-### Behandlingsflyt (Under arbeid)
+### Behandlingsflyt
 
 - Vedtaksløsning
 
-### Oppgavestyring (Under arbeid)
+### Oppgavestyring
 
 - Oppgaver for saksbehandler
 
-### Brev (Under arbeid)
+### Brev
 
 - Skrive brev
 
-### Statistikk (Under arbeid)
+### Statistikk
 
 - Ulike dataprodukter
 
@@ -79,7 +79,8 @@ Flere søknader på tema AAP vil bli lagt til etterhvert.
   - Foreldrepenger
   - Uføre
 
-### Tilgangsstyring (Under arbeid)
+### Tilgangsstyring
+
 - Tilgangsstyring for tjenestene til Team AAP
 
 ## Komponent-diagram

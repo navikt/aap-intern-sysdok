@@ -20,7 +20,7 @@ Logger finnes i Elastic.
 
 Filtrer på `application` og `namespace` som i bildet:
 
-![Bilde fra Elastic.](../bilder/logs.png)
+![Bilde fra Elastic.](./bilder/logs.png)
 
 ## Confluence
 
