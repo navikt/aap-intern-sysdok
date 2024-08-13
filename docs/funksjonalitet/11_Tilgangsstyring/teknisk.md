@@ -52,4 +52,7 @@ For å hente AD-grupper som ikke er inkludert i token, deriblant ENHET- og GEO-r
 #### Skjermingsløsningen
 For å sjekke skjermede personer (egen ansatt).
 
+#### NOM
+For å slå opp personnummer mot navident, brukes til å sjekke om sag er egen sak.
+
 Dokumentasjon: https://navikt.github.io/skjerming/index-intern.html
