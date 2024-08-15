@@ -1,5 +1,7 @@
 # Teknisk beskrivelse
 
+Grafana-dashboard: https://grafana.nav.cloud.nais.io/d/bcb27950-0648-4940-9cfb-3137d9b0405c/aap-api?orgId=1
+
 ## Repositories
 
 - [Ekstern deling av data](https://github.com/navikt/aap-api)
