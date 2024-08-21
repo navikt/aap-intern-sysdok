@@ -4,7 +4,7 @@
 [Swagger](https://aap-tilgang.intern.dev.nav.no/swagger-ui/index.html)
 [Grafana](https://grafana.nav.cloud.nais.io/d/ddtbde3obr5kwe/tilgang?orgId=1)
 
-Tilgang er en tjeneste for tilgangsstyring i AAP. Den fungerer som et policy decision point (PDP) som evaluerer tilgangsforespørsler fra andre tjenester (PEP) mot et sett med regler/policies. Tjenesten henter informasjon, som brukes som underlagsdata i regelevalueringen, fra PIP-tjenester. Per nå utføres regelevaluering med relevante PIP-kall sekvensielt.
+Tilgang er en tjeneste for tilgangsstyring i AAP. Den fungerer som et policy decision point (PDP) som evaluerer tilgangsforespørsler fra andre tjenester (PEP) mot et sett med regler/policies. Tjenesten henter informasjon, som brukes som underlagsdata i regelevalueringen, fra PIP-tjenester (policy information point). Per nå utføres regelevaluering med relevante PIP-kall sekvensielt.
 
 ```mermaid
 sequenceDiagram
