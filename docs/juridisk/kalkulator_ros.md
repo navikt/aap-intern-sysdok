@@ -10,3 +10,5 @@ Noen unntak er blitt gjort for å gjøre kalkulatoren lettere å bruke, som f.ek
 
 
 ## PVK
+
+

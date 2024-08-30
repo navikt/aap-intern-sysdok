@@ -42,8 +42,9 @@ export default {
           sidebarCollapsed: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/navikt/aap-intern-sysdok/edit/main/",
+          editUrl: "https://github.com/navikt/aap-intern-sysdok/edit/main/",
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
         },
 
         blog: false,

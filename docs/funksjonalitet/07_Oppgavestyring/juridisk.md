@@ -1,7 +1,0 @@
-# Juridisk
-
-## Ros
-
-## Regelverk
-
-## PVK
