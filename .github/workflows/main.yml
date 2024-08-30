@@ -35,25 +35,6 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Login to GitHub Docker Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate Docker image tag with short sha
-        id: dockertag
-        run: echo "docker_img=ghcr.io/${{ github.repository }}:$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
-      - name: Build and push the Docker image
-        uses: docker/build-push-action@v6
-        if: (github.event.action == 'closed' && github.event.pull_request.merged == true) || (github.ref_name == 'main')
-        with:
-          push: true
-          context: .
-          tags: ${{ steps.dockertag.outputs.docker_img }}
-
       - name: Push Docker image to GAR and sign image
         uses: nais/docker-build-push@v0
         id: docker-build-push
@@ -65,18 +46,14 @@ jobs:
   deploy-prod:
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      contents: read
+      id-token: write
     if: (github.event.action == 'closed' && github.event.pull_request.merged == true) || (github.ref_name == 'main')
     steps:
       - uses: actions/checkout@v4
-
-      - name: Generate Docker image tag with short sha
-        id: dockertag
-        run: echo "docker_img=ghcr.io/${{ github.repository }}:$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
-      - uses: nais/deploy/actions/deploy@v1
-        if: github.ref == 'refs/heads/main'
+      - uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
-          RESOURCE: .nais/nais.yml
-          IMAGE: ${{ steps.dockertag.outputs.docker_img }}
+          RESOURCE: ./nais/nais.yml
+          VAR: image=${{ needs.build.outputs.image }}
