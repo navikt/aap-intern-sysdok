@@ -58,6 +58,12 @@ Ideen med å ha både en Postgres-database og et BigQuery-datasett, er at vi "ei
 Per nå har man prøvd å være streng med "lag-grenser". Dette innebærer å skille på DTO-er fra forskjellige kilder, og i noen tilfeller vil det føles som mye konvertering mellom objekter.
 
 
+### Databaseskjema
+
+Per (2/9-2024):
+
+![Databaseskjema, eksportert fra IntelliJ.](./database.png)
+
 ## Tester
 
 Testdekningen er (per nå) høy, og det er brukt en blanding av mocking og TestContainers for å teste.
