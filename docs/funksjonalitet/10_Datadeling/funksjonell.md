@@ -40,7 +40,7 @@ flowchart TB
     outside --> aap-api
     interne --> aap-intern-api
     
-    maskinporten <-- autentisering --> aap-intern-api
+    maskinporten <-- autentisering --> aap-api
     
     aap-api --> aap-arena-oppslag
     aap-intern-api --> aap-arena-oppslag
