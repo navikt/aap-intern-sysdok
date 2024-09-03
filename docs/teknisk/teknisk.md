@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Generell teknisk beskrivelse
+# Teknisk beskrivelse
 
 ## Repoer
 

@@ -75,6 +75,4 @@ Github: https://github.com/navikt/medlemskap-medl
 
 Swagger-dok: https://medlemskap-medl-api.dev.intern.nav.no/swagger-ui/index.html#/
 
-## Motor (TODO)
-
 ## Tidslinjer/segmenter (TODO)
