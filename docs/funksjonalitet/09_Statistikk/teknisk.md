@@ -60,9 +60,160 @@ Per nå har man prøvd å være streng med "lag-grenser". Dette innebærer å sk
 
 ### Databaseskjema
 
-Per (2/9-2024):
+Per (13/9-2024):
 
-![Databaseskjema, eksportert fra IntelliJ.](./database.png)
+```mermaid
+classDiagram
+direction BT
+class avsluttet_behandling {
+   text payload
+   bigint id
+}
+class behandling {
+   bigint sak_id
+   uuid referanse
+   varchar(100) type
+   timestamp(3) opprettet_tid
+   bigint id
+}
+class flyway_schema_history {
+   varchar(50) version
+   varchar(200) description
+   varchar(20) type
+   varchar(1000) script
+   integer checksum
+   varchar(100) installed_by
+   timestamp installed_on
+   integer execution_time
+   boolean success
+   integer installed_rank
+}
+class grunnlag {
+   varchar(10) type
+   bigint behandling_id
+   bigint id
+}
+class grunnlag_11_19 {
+   bigint grunnlag_id
+   numeric(21,5) grunnlag
+   boolean er6g_begrenset
+   boolean er_gjennomsnitt
+   jsonb inntekter
+   bigint id
+}
+class grunnlag_ufore {
+   bigint grunnlag_id
+   numeric(21,5) grunnlag
+   boolean er6g_begrenset
+   varchar(20) type
+   bigint grunnlag_11_19_id
+   integer uforegrad
+   jsonb ufore_inntekter_fra_foregaende_ar
+   numeric ufore_inntekt_i_kroner
+   integer ufore_ytterligere_nedsatt_arbeidsevne_ar
+   bigint id
+}
+class grunnlag_yrkesskade {
+   numeric(21,5) grunnlag
+   boolean er6g_begrenset
+   bigint beregningsgrunnlag_id
+   varchar(10) beregningsgrunnlag_type
+   integer terskelverdi_for_yrkesskade
+   numeric andel_som_skyldes_yrkesskade
+   integer andel_yrkesskade
+   integer benyttet_andel_for_yrkesskade
+   numeric andel_som_ikke_skyldes_yrkesskade
+   numeric antatt_arlig_inntekt_yrkesskade_tidspunktet
+   integer yrkesskade_tidspunkt
+   numeric grunnlag_for_beregning_av_yrkesskadeandel
+   numeric yrkesskadeinntekt_ig
+   numeric grunnlag_etter_yrkesskade_fordel
+   bigint id
+}
+class jobb {
+   varchar(50) status
+   varchar(50) type
+   bigint sak_id
+   bigint behandling_id
+   text parameters
+   text payload
+   timestamp(3) neste_kjoring
+   timestamp(3) opprettet_tid
+   bigint id
+}
+class jobb_historikk {
+   bigint jobb_id
+   varchar(50) status
+   text feilmelding
+   timestamp(3) opprettet_tid
+   bigint id
+}
+class motta_statistikk {
+   bigint behandling_id
+   bigint sak_id
+   varchar(255) status
+   bigint id
+}
+class person {
+   varchar(19) ident
+   bigint id
+}
+class sak {
+   varchar(19) saksnummer
+   bigint person_id
+   bigint id
+}
+class tilkjent_ytelse {
+   bigint behandling_id
+   bigint id
+}
+class tilkjent_ytelse_periode {
+   timestamp(3) fra_dato
+   timestamp(3) til_dato
+   numeric(21,5) dagsats
+   numeric(21,5) gradering
+   bigint tilkjent_ytelse_id
+   bigint id
+}
+class vilkar {
+   text vilkar_type
+   bigint vilkarresult_id
+   bigint id
+}
+class vilkarsperiode {
+   timestamp(3) fra_dato
+   timestamp(3) til_dato
+   text utfall
+   boolean manuell_vurdering
+   text innvilgelsesaarsak
+   text avslagsaarsak
+   bigint vilkar_id
+   integer id
+}
+class vilkarsresultat {
+   bigint behandling_id
+   bigint id
+}
+
+behandling  -->  sak : "sak_id id"
+
+grunnlag  -->  behandling : behandling_id id
+grunnlag_11_19  -->  grunnlag : grunnlag_id id
+grunnlag_ufore  -->  grunnlag : grunnlag_id id
+grunnlag_ufore  -->  grunnlag_11_19 : grunnlag_11_19_id id
+jobb  -->  behandling : behandling_id id
+jobb  -->  sak : sak_id id
+jobb_historikk  -->  jobb : jobb_id id
+motta_statistikk  -->  behandling : behandling_id id
+motta_statistikk  -->  sak : sak_id id
+sak  -->  person : person_id id
+tilkjent_ytelse  -->  behandling : behandling_id id
+tilkjent_ytelse_periode  -->  tilkjent_ytelse : tilkjent_ytelse_id id
+vilkar  -->  vilkarsresultat : vilkarresult_id id
+vilkarsperiode  -->  vilkar : vilkar_id id
+vilkarsresultat  -->  behandling : behandling_id id
+
+```
 
 ## Tester
 
