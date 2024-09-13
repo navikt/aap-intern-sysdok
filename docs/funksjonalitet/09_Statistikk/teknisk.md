@@ -37,30 +37,52 @@ Eksempel-bruk: (sjekk nyeste versjon [på Github](https://github.com/navikt/aap-
 
 Overordnet skisse av arkitektur:
 
+
 ```mermaid
 graph LR
 BB[Behandlingsflyt]
 OPPG[OppgaveStyring]
+B[(Postgres)]
+C[(BigQuery)]
 
 subgraph StatistikkApp
-api --> service
-service --> db
+
+subgraph Api
+  hendelse
+  avsluttetBehandling
 end
 
-BB -. avgi statistikk .-> api
-OPPG -. (ikke implementert) .-> api
-db --> B[(Postgres)]
-db --> C[(BigQuery)]
+subgraph Motor
+
+lagreHendelseJobb
+lagreRåAvsluttetBehandlingJobb
+lagreAvsluttetBehandlingJobb
+
+end
+hendelse --> lagreHendelseJobb
+avsluttetBehandling --> lagreRåAvsluttetBehandlingJobb
+end
+
+lagreRåAvsluttetBehandlingJobb --> B
+lagreRåAvsluttetBehandlingJobb --> lagreAvsluttetBehandlingJobb
+lagreHendelseJobb --> B
+lagreAvsluttetBehandlingJobb --> B
+lagreAvsluttetBehandlingJobb --> C
+
+BB -. avgi statistikk .-> Api
+OPPG -. (ikke implementert) .-> Api
 ```
 
-Ideen med å ha både en Postgres-database og et BigQuery-datasett, er at vi "eier" Postgres-databasen, og vi tenker på BigQuery-datasettet som "for eksterne", og i den forstand bør det være stabilt og ikke endre skjema veldig ofte. Det gir oss også mulighet til å implementere for eksempel produksjonsstyring uten å involvere BigQuery.
+Data fra hendelser (stopp i behandlingen) og avsluttet behandling brukes for å bygge opp en rikere modell i Postgres, slik at å lagre data i BigQuery ikke krever flere spørringer.
 
-Per nå har man prøvd å være streng med "lag-grenser". Dette innebærer å skille på DTO-er fra forskjellige kilder, og i noen tilfeller vil det føles som mye konvertering mellom objekter.
+Ideen med å ha både en Postgres-database og et BigQuery-datasett, er at vi "eier" Postgres-databasen, og vi tenker på BigQuery-datasettet som "for eksterne", og i den forstand bør det være stabilt og ikke endre skjema veldig ofte. Det gir oss også mulighet til å implementere for eksempel produksjonsstyring uten å involvere BigQuery.
 
 
 ### Databaseskjema
 
-Per (13/9-2024):
+Eksportert fra IntelliJ (koble til database, vis diagram, og eksporter til Mermaid)
+
+Per 13/9-2024:
 
 ```mermaid
 classDiagram
