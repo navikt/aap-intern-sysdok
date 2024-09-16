@@ -27,16 +27,12 @@ Tekniske tjenester er integrasjoner mellom systemer/tjenester.
 
 Systemene tilbyr ingen eksterne tjenester, kun interne i dialog med hverandre.
 
-#### Tjenester som konsumeres av [aap-mottak](https://github.com/navikt/aap-mottak)
+#### Tjenester som konsumeres av [postmottak-backend](https://github.com/navikt/postmottak-backend)
 
 **!! Tjenesten er under utvikling !!**
 
-- **PDL** - Persondatatjeneste for NAV og Skatt: brukes for fordeling til riktig behandlende enhet.
-- **NORG** - NAV Organisasjonsmaster: brukes for å fordele oppgaven til riktig enhet. Diskresjonskoder _fortrolig_ og _strengt fortrolig_ blir for eksempel behandlet av egen enhet.
-- **SAK** - Generell sakssystem fra Arkiv: brukes for å knytte journalpost og oppgave til en journalpost.
-- **Arkivtjeneste** - For oppslag i NAVS dokumentarkiv: brukes for å oppdattere informasjon tilknyttet saksbehandling og fordeling.
-- **Egenansatt** - Tjeneste som avklarer om innsender er ansatt i NAV og skal behandles av egen ansatt.
-- **Arena** - Tjeneste for å opprette AAP-sak og oppgave for behandling av søknad.
+- **Dokarkiv** - For oppslag i NAVS dokumentarkiv: brukes for å oppdatere informasjon tilknyttet saksbehandling og fordeling.
+- **aap-tilgang** - Tjeneste for å sjekke NAV-ansatts tilgang til aap-saker.
 
 ### Databasemodell i aap-innsending
 

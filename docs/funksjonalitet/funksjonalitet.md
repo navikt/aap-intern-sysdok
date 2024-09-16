@@ -40,14 +40,9 @@ Flere søknader på tema AAP vil bli lagt til etterhvert.
 - Felleskomponent for Søknad og Mine AAP
 - Håndterer mellomlagring, pdf-generering, virussjekk og arkivering
 
-### Mottak
+### Postmottak
 
 - Plukker opp alle journalføringshendelser på tema AAP
-- Opprette oppgaver i Gosys for manuell journalføring
-- Opprette oppgaver i Arena for saksbehandling
-- Opprette manuell journalførings- eller fordelings-oppgave i Gosys på riktig saksbehandlende enhet. En fordelingsoppgave opprettes kun dersom en ikke klarer å avklare hvilken enhet som skal behandle innsendingen.
-- Oppdatere arkivet med riktig sakstilknytning og behandlende enhet.
-
 
 ### Behandlingsflyt
 
@@ -90,7 +85,7 @@ graph TD
 KA[Kalkulator]
 SK[Søknad] --> IS[Innsending]
 MA[Mine AAP] --> IS
-IS --> PM[Mottak]
+IS --> PM[Postmottak]
 PM --> VT[Behandlingsflyt]
 VT --> OP[Oppgavestyring]
 VT --> TS[Tilgangsstyring]

@@ -6,7 +6,6 @@
 
 [Oppgavestyring](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app/oppgavestyring)
 [Saksbehandling](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app/saksbehandling)
-[Mottak](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app/mottak)
 
 ## Fraværsoversikt
 
