@@ -36,6 +36,7 @@ jobs:
         run: yarn build
 
       - name: Push Docker image to GAR and sign image
+        if: (github.event.action == 'closed' && github.event.pull_request.merged == true) || (github.ref_name == 'main')
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
