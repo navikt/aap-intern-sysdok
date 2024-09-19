@@ -16,7 +16,7 @@ flowchart LR
     dbconnect -.-> dbtest
     dbmigrering --> infrastructure
     httpklient --> infrastructure
-    server
+    server --> httpklient
 ```
 
 ## Motor
