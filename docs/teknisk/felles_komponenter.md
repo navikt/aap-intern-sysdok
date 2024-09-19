@@ -16,6 +16,7 @@ flowchart LR
     dbconnect -.-> dbtest
     dbmigrering --> infrastructure
     httpklient --> infrastructure
+    server
 ```
 
 ## Motor
@@ -88,6 +89,6 @@ Jobb --|> JobbUtfører
 
 ## dbconnect
 
-Wrapper rundt `javax.sql`, med funksjonalitet for å sikre transaksjonshåndtering.
+Wrapper rundt `javax.sql`, med funksjonalitet for å sikre transaksjonshåndtering, og bedre null-håndtering.
 
 TODO: presenter public API
