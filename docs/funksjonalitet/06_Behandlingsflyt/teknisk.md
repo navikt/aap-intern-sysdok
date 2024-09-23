@@ -76,3 +76,14 @@ Github: https://github.com/navikt/medlemskap-medl
 Swagger-dok: https://medlemskap-medl-api.dev.intern.nav.no/swagger-ui/index.html#/
 
 ## Tidslinjer/segmenter (TODO)
+
+## Flytdiagram StegOrkestrator
+```mermaid
+flowchart
+    Start-->Utfører
+    Utfører-- Fortsett/FunnetAvklaringsbehov -->Avklaringspunkt
+    Utfører-- Tilbakeføring -->*
+    Avklaringspunkt-- Fortsett -->Avslutter
+    Avklaringspunkt-- Stopp -->*
+    Avslutter-- Fortsett -->**
+```
