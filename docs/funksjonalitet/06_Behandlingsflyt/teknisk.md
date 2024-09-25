@@ -77,6 +77,42 @@ Swagger-dok: https://medlemskap-medl-api.dev.intern.nav.no/swagger-ui/index.html
 
 ## Tidslinjer/segmenter (TODO)
 
+## Flytdiagram FlytOrkestrator
+
+```mermaid
+flowchart LR
+    subgraph ForberedBehandling
+        HB[Hent Behandling] --> HAV[HentAvklaringsbehov]
+        HAV --> PV{På vent?}
+        PV -- ja --> LAV
+        PV -- nei --> OppdaterFaktaGrunnlag
+        LAV[LøsAvklaringsbehovPåVent]
+        LAV --> TF[Tilbakefør til korrekt steg]
+        TF --> OppdaterFaktaGrunnlag
+        OppdaterFaktaGrunnlag --> ENDR{Endringer\n i faktagrunnlag?}
+        ENDR -- ja --> Tilbakefør
+    end
+    
+    subgraph ProsesserBehandling
+        HB2[Hent Behandling] --> HAV2[HentAvklaringsbehov]
+        HAV2 --> PV2{På vent?}
+        PV2 -- ja --> PVL[Løs avklaringspunkt med utløpt frist]
+        PVL --> PV3{Fortsatt på vent?}
+        PV3 -- ja --> BailOut
+        PV3 -- nei --> LøsGjeldendeSteg
+        PV2 -- nei --> LøsGjeldendeSteg
+        LøsGjeldendeSteg --> ERTBF{Er tilbakeføring?}
+        ERTBF -- ja --> TF2[Tilbakefør]
+        TF2 --> UtledNesteSteg
+        ERTBF -- nei --> UtledNesteSteg
+        UtledNesteSteg --> ASD{Kan fortsette?}
+        ASD -- ja --> LøsGjeldendeSteg
+        ASD -- nei --> BailOut
+        
+    end
+    ForberedBehandling --> ProsesserBehandling
+```
+
 ## Flytdiagram StegOrkestrator
 ```mermaid
 flowchart
