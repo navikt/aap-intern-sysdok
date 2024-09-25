@@ -87,10 +87,13 @@ flowchart LR
         PV -- ja --> LAV
         PV -- nei --> OppdaterFaktaGrunnlag
         LAV[LøsAvklaringsbehovPåVent]
-        LAV --> TF[Tilbakefør til korrekt steg]
+        LAV --> FPV{Fortsatt\npå vent?}
+        FPV -- ja --> BO((Return))
+        FPV -- nei --> TF[Tilbakefør til korrekt steg]
         TF --> OppdaterFaktaGrunnlag
         OppdaterFaktaGrunnlag --> ENDR{Endringer\n i faktagrunnlag?}
         ENDR -- ja --> Tilbakefør
+        Tilbakefør --> BO
     end
     
     subgraph ProsesserBehandling
@@ -98,7 +101,7 @@ flowchart LR
         HAV2 --> PV2{På vent?}
         PV2 -- ja --> PVL[Løs avklaringspunkt med utløpt frist]
         PVL --> PV3{Fortsatt på vent?}
-        PV3 -- ja --> BailOut
+        PV3 -- ja --> BO2
         PV3 -- nei --> LøsGjeldendeSteg
         PV2 -- nei --> LøsGjeldendeSteg
         LøsGjeldendeSteg --> ERTBF{Er tilbakeføring?}
@@ -107,7 +110,7 @@ flowchart LR
         ERTBF -- nei --> UtledNesteSteg
         UtledNesteSteg --> ASD{Kan fortsette?}
         ASD -- ja --> LøsGjeldendeSteg
-        ASD -- nei --> BailOut
+        ASD -- nei --> BO2((Return))
         
     end
     ForberedBehandling --> ProsesserBehandling
