@@ -116,13 +116,22 @@ flowchart LR
     ForberedBehandling --> ProsesserBehandling
 ```
 
-## Flytdiagram StegOrkestrator
+## State-machine for StegOrkestrator
 ```mermaid
-flowchart
-    Start-->Utfører
-    Utfører-- Fortsett/FunnetAvklaringsbehov -->Avklaringspunkt
-    Utfører-- Tilbakeføring -->*
-    Avklaringspunkt-- Fortsett -->Avslutter
-    Avklaringspunkt-- Stopp -->*
-    Avslutter-- Fortsett -->**
+---
+title: StegOrkestrator pr. 25. september 2024
+---
+stateDiagram-v2
+    [*] --> START: [StegOrkestrator.utfør()]
+    [*] --> TILBAKEFØRT: [StegOrkestrator.utførTilbakefør()]
+    START --> OPPDATER_FAKTAGRUNNLAG: Fortsett
+    OPPDATER_FAKTAGRUNNLAG --> UTFØRER: Fortsett
+    UTFØRER --> [*]: TilbakeførtFraBeslutter
+    UTFØRER --> [*]: TilbakeførtFraKvalitetssikrer
+    UTFØRER --> AVKLARINGSPUNKT: FunnetAvklaringsbehov
+    UTFØRER --> AVKLARINGSPUNKT: Fortsett
+    AVKLARINGSPUNKT --> [*]: Stopp
+    AVKLARINGSPUNKT --> AVSLUTTER: Fortsett
+    AVSLUTTER --> [*]: Fortsett
+    TILBAKEFØRT --> [*]: Fortsett
 ```
