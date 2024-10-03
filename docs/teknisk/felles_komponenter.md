@@ -2,6 +2,8 @@
 
 Vi har dratt ut noe felles funksjonalitet til biblioteker, som vi har i repoet https://github.com/navikt/aap-kelvin-komponenter .
 
+API-dokumentasjon kan leses på https://navikt.github.io/aap-kelvin-komponenter/
+
 ## Avhengigheter mellom pakker
 
 For øyeblikket lastes ikke transitive avhengigheter ned pakker ned (f.eks om man er interessert i `motor`).
