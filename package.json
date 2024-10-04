@@ -33,6 +33,9 @@
       "@docusaurus/core": "^3.5.2"
     }
   },
+  "resolutions": {
+    "mermaid": "^11.3.0"
+  },
   "browserslist": {
     "production": [
       ">0.5%",

@@ -19,3 +19,47 @@ Vi legger Grafana-dashboard i `aap`-mappen: https://grafana.nav.cloud.nais.io/da
 ## Alerts
 
 Alerts defineres i et felles repo: https://github.com/navikt/aap-alerts , og blir farslet på Slack-kanalen `#team-aap-prod-alerts`.
+
+## Infoskjerm på kontoret
+
+Vi har satt opp en Raspberry Pi som viser Grafana-dashboards på en infoskjerm på kontoret.
+
+```mermaid
+architecture-beta
+    group api(internet)[Infoskjermnett]
+    group nais(cloud)[NAIS]
+    
+    service grafana(server)[Grafana] in nais
+    service kelvin(server)[Kelvin] in nais
+    service disk(disk)[Prometheus] in nais
+
+    service pi(server)[Raspberry Pi] in api
+
+    disk:L -- R:grafana
+    pi:R -- L:grafana
+    disk:R -- L:kelvin
+
+```
+
+### Oppsett
+
+Vi fulgte instruksjoner [herfra](https://utvikling.intern.nav.no/teknisk/infoskjerm.html) og [her](https://doc.nais.io/observability/metrics/how-to/grafana-from-infoscreen/?h=).
+
+MAC-adressen til Pi-en måtte sendes på Slack-kanalen `#tech-nettverk`. Da fikk vi tilsendt et WiFi-passord, som måtte legges i `/etc/wpa_supplicant/wpa_supplicant.conf` slik:
+
+```conf
+country=NO
+update_config=1
+ctrl_interface=/var/run/wpa_supplicant
+network={
+ scan_ssid=1
+ ssid="infoskjerm"
+ psk="***"
+}
+```
+
+Her er SSID-verdien navnet på WiFi-nettverket.
+
+Deretter måtte Pi-en restartes. Etterpå kan Grafana nåes på `https://grafana-infoskjerm.nav.cloud.nais.io/*`.
+
+For å vise flere dashboards brukes Firefox-pluginen [Tab Rotator](https://addons.mozilla.org/en-US/firefox/addon/tab-rotator/). Man kan sette hvor mange sekunder hver tab skal vises.
