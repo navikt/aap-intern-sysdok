@@ -34,7 +34,8 @@
     }
   },
   "resolutions": {
-    "mermaid": "^11.3.0"
+    "mermaid": "^11.3.0",
+    "semver": "^7.5.2"
   },
   "browserslist": {
     "production": [
