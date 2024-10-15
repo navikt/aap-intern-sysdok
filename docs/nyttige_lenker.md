@@ -33,9 +33,9 @@ Noe dokumentasjon lever best på Confluence.
 
 ## Ida
 
-For å lage saksbehandler-identer.
+For å lage saksbehandler-identer. Confluence-dok: https://confluence.adeo.no/display/ATOM/IDA
 
-https://ida.intern.nav.no/
+https://ida.intern.nav.no/ 
 
 ## Jira
 
