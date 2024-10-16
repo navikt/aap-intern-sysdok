@@ -63,54 +63,57 @@ C[(BigQuery)]
 subgraph StatistikkApp
 
 subgraph Api
-  hendelse
-  avsluttetBehandling
+  hendelse[behandling-hendelser]
 end
 
 subgraph Motor
 
 lagreHendelseJobb
-lagreRåAvsluttetBehandlingJobb
-lagreAvsluttetBehandlingJobb
 
 end
 hendelse --> lagreHendelseJobb
-avsluttetBehandling --> lagreRåAvsluttetBehandlingJobb
 end
 
-lagreRåAvsluttetBehandlingJobb --> B
-lagreRåAvsluttetBehandlingJobb --> lagreAvsluttetBehandlingJobb
 lagreHendelseJobb --> B
-lagreAvsluttetBehandlingJobb --> B
-lagreAvsluttetBehandlingJobb --> C
+lagreHendelseJobb --> C
 
 BB -. avgi statistikk .-> Api
 OPPG -. (ikke implementert) .-> Api
 ```
 
-Data fra hendelser (stopp i behandlingen) og avsluttet behandling brukes for å bygge opp en rikere modell i Postgres, slik at å lagre data i BigQuery ikke krever flere spørringer.
+Data fra hendelser (stopp i behandlingen) brukes for å bygge opp en rikere modell i Postgres, slik at å lagre data i BigQuery ikke krever flere spørringer.
 
 Ideen med å ha både en Postgres-database og et BigQuery-datasett, er at vi "eier" Postgres-databasen, og vi tenker på BigQuery-datasettet som "for eksterne", og i den forstand bør det være stabilt og ikke endre skjema veldig ofte. Det gir oss også mulighet til å implementere for eksempel produksjonsstyring uten å involvere BigQuery.
 
 
 ### Databaseskjema
 
-Eksportert fra IntelliJ (koble til database, vis diagram, og eksporter til Mermaid)
+Eksportert fra IntelliJ (koble til database, vis diagram, og eksporter til Mermaid, deretter fjerne syntaksfeil (`id:id` -> `id id`))
 
 Per 13/9-2024:
-
 ```mermaid
 classDiagram
 direction BT
-class avsluttet_behandling {
-   text payload
-   bigint id
-}
 class behandling {
    bigint sak_id
    uuid referanse
    varchar(100) type
    timestamp(3) opprettet_tid
+   bigint id
+}
+class behandling_historikk {
+   bigint behandling_id
+   bigint versjon_id
+   boolean gjeldende
+   timestamp(3) oppdatert_tid
+   timestamp(3) mottatt_tid
+   varchar(20) status
+   bigint id
+}
+class bigquery_kvittering {
+   bigint sak_snapshot_id
+   bigint behandling_snapshot_id
+   timestamp(3) tidspunkt
    bigint id
 }
 class flyway_schema_history {
@@ -141,18 +144,15 @@ class grunnlag_11_19 {
 class grunnlag_ufore {
    bigint grunnlag_id
    numeric(21,5) grunnlag
-   boolean er6g_begrenset
    varchar(20) type
    bigint grunnlag_11_19_id
    integer uforegrad
    jsonb ufore_inntekter_fra_foregaende_ar
-   numeric ufore_inntekt_i_kroner
    integer ufore_ytterligere_nedsatt_arbeidsevne_ar
    bigint id
 }
 class grunnlag_yrkesskade {
    numeric(21,5) grunnlag
-   boolean er6g_begrenset
    bigint beregningsgrunnlag_id
    varchar(10) beregningsgrunnlag_type
    integer terskelverdi_for_yrkesskade
@@ -185,12 +185,6 @@ class jobb_historikk {
    timestamp(3) opprettet_tid
    bigint id
 }
-class motta_statistikk {
-   bigint behandling_id
-   bigint sak_id
-   varchar(255) status
-   bigint id
-}
 class person {
    varchar(19) ident
    bigint id
@@ -198,6 +192,13 @@ class person {
 class sak {
    varchar(19) saksnummer
    bigint person_id
+   bigint id
+}
+class sak_historikk {
+   boolean gjeldende
+   timestamp(3) oppdatert_tid
+   bigint sak_id
+   varchar(15) sak_status
    bigint id
 }
 class tilkjent_ytelse {
@@ -210,6 +211,10 @@ class tilkjent_ytelse_periode {
    numeric(21,5) dagsats
    numeric(21,5) gradering
    bigint tilkjent_ytelse_id
+   bigint id
+}
+class versjon {
+   varchar(100) versjon
    bigint id
 }
 class vilkar {
@@ -232,8 +237,11 @@ class vilkarsresultat {
    bigint id
 }
 
-behandling  -->  sak : "sak_id id"
-
+behandling  -->  sak : sak_id id
+behandling_historikk  -->  behandling : behandling_id id
+behandling_historikk  -->  versjon : versjon_id id
+bigquery_kvittering  -->  behandling_historikk : behandling_snapshot_id id
+bigquery_kvittering  -->  sak_historikk : sak_snapshot_id id
 grunnlag  -->  behandling : behandling_id id
 grunnlag_11_19  -->  grunnlag : grunnlag_id id
 grunnlag_ufore  -->  grunnlag : grunnlag_id id
@@ -241,9 +249,8 @@ grunnlag_ufore  -->  grunnlag_11_19 : grunnlag_11_19_id id
 jobb  -->  behandling : behandling_id id
 jobb  -->  sak : sak_id id
 jobb_historikk  -->  jobb : jobb_id id
-motta_statistikk  -->  behandling : behandling_id id
-motta_statistikk  -->  sak : sak_id id
 sak  -->  person : person_id id
+sak_historikk  -->  sak : sak_id id
 tilkjent_ytelse  -->  behandling : behandling_id id
 tilkjent_ytelse_periode  -->  tilkjent_ytelse : tilkjent_ytelse_id id
 vilkar  -->  vilkarsresultat : vilkarresult_id id
@@ -251,6 +258,7 @@ vilkarsperiode  -->  vilkar : vilkar_id id
 vilkarsresultat  -->  behandling : behandling_id id
 
 ```
+
 
 ## Tester
 
