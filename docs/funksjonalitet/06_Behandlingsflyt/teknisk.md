@@ -9,9 +9,10 @@ Grafana-dashboard: https://grafana.nav.cloud.nais.io/d/fdti727n7u6m8c/behandling
 I IntelliJ, finn klassen `TestApp`, og kjør den derfra. Appen vil da kjøre på `localhost:8080`. Alternativt, for å unngå å starte IntelliJ:
 
 ```
-cd app && TEST_APP=RUN ../gradlew test --tests TestApp --info
+./gradlew runTestApp
 ```
 
+i rotmappen.
 
 Swagger-dokumentasjon blir tilgjengelig på http://localhost:8080/swagger-ui/index.html.
 For å gjøre autentiserte kall trengs JWT-token fra "fake Azure AD" (startet i `Fakes`-klassen). "Fake AD" kjører på `localhost:8081`, og du kan få token ved å kjøre
