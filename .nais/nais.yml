@@ -20,6 +20,11 @@ spec:
     requests:
       cpu: 50m
       memory: 64Mi
+  observability:
+    logging:
+      destinations:
+        - id: elastic
+        - id: loki      
   liveness:
     path: /internal/isalive
     initialDelay: 20
