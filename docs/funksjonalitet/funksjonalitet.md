@@ -93,7 +93,10 @@ PM --> OP
 VT --> BR[Brev]
 VT --> ST[Statistikk]
 OP -. (ikke påbegynt) .-> ST
-DA[Datadeling] --> VT
+APII[API Intern] --> VT
+APIA[API Arena]
+API --> APIA
+APII --> APIA
 OP --> TS
 ```
 
