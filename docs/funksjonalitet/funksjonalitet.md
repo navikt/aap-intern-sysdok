@@ -88,12 +88,14 @@ MA[Mine AAP] --> IS
 IS --> PM[Postmottak]
 PM --> VT[Behandlingsflyt]
 VT --> OP[Oppgavestyring]
-VT --> TS[Tilgangsstyring]
+VT <--> TS[Tilgangsstyring]
+PM --> TS
 PM --> OP
 VT --> BR[Brev]
 VT --> ST[Statistikk]
 OP -. (ikke påbegynt) .-> ST
 APII[API Intern] --> VT
+PM --> APII
 APIA[API Arena]
 API --> APIA
 APII --> APIA
