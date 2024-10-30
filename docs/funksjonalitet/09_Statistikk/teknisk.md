@@ -14,7 +14,7 @@ Lenke til Google Cloud BigQuery-konsoll: https://console.cloud.google.com/bigque
 
 ## Kjøre lokalt
 
-Fra IntelliJ, kjør `TestApp`-klassen.
+Fra IntelliJ, kjør `TestApp`-klassen. Evt kjør `./gradlew runTestApp`.
 
 Swagger-UI kan da åpnes på: http://0.0.0.0:8080/swagger-ui/index.html
 
@@ -37,6 +37,28 @@ https://azure-token-generator.intern.dev.nav.no/api/m2m?aud=dev-gcp:aap:statisti
 ```
 
 Logg inn som en saksbehandler. Du vil få JSON som respons. Kopier `access_token`-verdien og lim den inn i [Swagger UI](https://aap-statistikk.intern.dev.nav.no/swagger-ui/index.html). Nå kan API testes i dev.
+
+## Gjøre dump av testdatabasen for lokal utvikling
+
+Sett opp proxy til databasen via NAIS-kommandolinjeverktøyet, se [her](https://doc.nais.io/persistence/postgres/how-to/personal-access/).
+
+Deretter kjør en dump slik:
+
+```
+docker run  --rm -p 5432:5432 postgres:16 pg_dump --clean -h host.docker.internal -p 5432  -U mitt.navn@nav.no -d hendelser > dump.sql
+```
+
+Erstatt `mitt.navn@nav.no` med din NAV-epost.
+
+Kjør opp test-appen (se over), og finn begynnelsen på navnet på den kjørende Postgres-containeren, f.eks `0eb43`.
+
+Deretter kjør:
+
+```
+docker exec -i  0eb43 psql -U test -d test < dump.sql
+```
+
+Nå er den lokale databasen overskrevet med dumpen fra dev.
 
 ## API-kontrakt
 
