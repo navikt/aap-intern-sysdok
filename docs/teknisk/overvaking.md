@@ -45,7 +45,9 @@ architecture-beta
 
 Vi fulgte instruksjoner [herfra](https://utvikling.intern.nav.no/teknisk/infoskjerm.html) og [her](https://doc.nais.io/observability/metrics/how-to/grafana-from-infoscreen/?h=).
 
-MAC-adressen til Pi-en måtte sendes på Slack-kanalen `#tech-nettverk`. Da fikk vi tilsendt et WiFi-passord, som måtte legges i `/etc/wpa_supplicant/wpa_supplicant.conf` slik:
+OS er Ubuntu Desktop. MAC-adressen til Pi-en måtte sendes på Slack-kanalen `#tech-nettverk`. Da fikk vi tilsendt et WiFi-passord slik at vi kunne koble oss til det skjulte nettverket `infoskjerm`. Velg WPA2 som auth-metode.
+
+For Raspberry OS måtte følgende info legges i `wpa_supplicant.conf`-filen, men på Ubuntu kunne dette gjøres i GUI.
 
 ```conf
 country=NO
@@ -60,6 +62,10 @@ network={
 
 Her er SSID-verdien navnet på WiFi-nettverket.
 
-Deretter måtte Pi-en restartes. Etterpå kan Grafana nåes på `https://grafana-infoskjerm.nav.cloud.nais.io/*`.
+Deretter måtte Pi-en restartes. Etterpå kan Grafana nåes på `https://grafana-infoskjerm.nav.cloud.nais.io/`.
 
-For å vise flere dashboards brukes Firefox-pluginen [Tab Rotator](https://addons.mozilla.org/en-US/firefox/addon/tab-rotator/). Man kan sette hvor mange sekunder hver tab skal vises.
+Vi har en egen "playlist" i Grafana som autospiller predefinerte dashboard. Trykk [her](https://grafana.nav.cloud.nais.io/playlists/edit/ce34vgscjtqtca) for å redigere.
+
+Om infoskjermen ikke er skrudd på, kan den skrus på med bryteren på Raspberry Pi-en. Den er satt til å starte Firefox automatisk ved oppstart.
+
+Brukernavn/passord: `aap`/`pengerpenger`.
