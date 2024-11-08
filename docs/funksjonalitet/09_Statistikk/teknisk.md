@@ -60,16 +60,6 @@ docker exec -i  0eb43 psql -U test -d test < dump.sql
 
 Nå er den lokale databasen overskrevet med dumpen fra dev.
 
-## API-kontrakt
-
-Statistikk-appen publiserer et artifakt slik at konsumenter lett kan generere gyldige DTO-er.
-
-Eksempel-bruk: (sjekk nyeste versjon [på Github](https://github.com/navikt/aap-statistikk/packages/2234133))
-
-```gradle
-    implementation("no.nav.aap.statistikk:api-kontrakt:0.0.3")
-```
-
 ## App-arkitektur
 
 Overordnet skisse av arkitektur:
