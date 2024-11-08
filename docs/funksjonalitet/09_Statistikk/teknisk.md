@@ -60,6 +60,42 @@ docker exec -i  0eb43 psql -U test -d test < dump.sql
 
 Nå er den lokale databasen overskrevet med dumpen fra dev.
 
+## Gjøre endringer på skjema i BigQuery
+
+Å legge til nye kolonner i skjemaet støttes av SDK-et, men om datatype skal endres, må DDL brukes.
+
+Siden dette er en engangsoperasjon, er det enkleste å gjøre i konsollet.
+
+Her er eksempel på hvordan endre `tekniskTid` fra `DATETIME` til `TIMESTAMP`-type.
+
+ 1. Kopier sak-tabellen for å kunne teste endringer.
+ 2. I konsollet, legg til en ny kolonne:
+    ```sql
+     alter table `tester.sak_copy` add column tekniskTid2 timestamp;
+    ```
+ 3. Denne er nå tom, så oppdater den med verdier fra den eksisterende kolonnnen:
+    ```sql
+    update `tester.sak_copy` set tekniskTid2 = timestamp(tekniskTid) where true;
+    ```
+ 4. Til slutt drop den gamle, og rename den nye:
+    ```sql
+    alter table `tester.sak_copy` drop column tekniskTid;
+    alter table `tester.sak_copy` rename column tekniskTid2 to tekniskTid;
+    ```
+    
+For å bevare konsistens, gjør endring stegvis:
+ 1. Legg til ny kolonne i kode og deploy (slik at begge feltene blir skrevet til).
+ 2. Oppdater `tekniskTid2` for eldre innslag.
+ 3. Kjør steg 4. Dette vil føre til at innslag feiler, siden `tekniskTid2` ikke eksisterer mer, og jobben vil bli retryet.
+ 4. Deploy kodeendring hvor `tekniskTid2` ikke refereres til lenger.
+ 
+ 
+:::warning
+
+Jeg har ikke 100% tenkt gjennom alle samtidighetsproblemer som kan skje her. Men jeg tror at om rekkefølgen over overholdes, burde dette gi trygg migrering.
+
+:::
+
 ## App-arkitektur
 
 Overordnet skisse av arkitektur:
