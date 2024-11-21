@@ -147,6 +147,7 @@ class behandling {
    uuid referanse
    varchar(100) type
    timestamp(3) opprettet_tid
+   bigint forrige_behandling_id
    bigint id
 }
 class behandling_historikk {
@@ -156,6 +157,11 @@ class behandling_historikk {
    timestamp(3) oppdatert_tid
    timestamp(3) mottatt_tid
    varchar(20) status
+   varchar(100) siste_saksbehandler
+   varchar(50) gjeldende_avklaringsbehov
+   varchar(50) soknadsformat
+   varchar(100) venteaarsak
+   varchar(100) steggruppe
    bigint id
 }
 class bigquery_kvittering {
@@ -237,6 +243,11 @@ class person {
    varchar(19) ident
    bigint id
 }
+class relaterte_personer {
+   bigint behandling_id
+   bigint person_id
+   bigint id
+}
 class sak {
    varchar(19) saksnummer
    bigint person_id
@@ -285,6 +296,7 @@ class vilkarsresultat {
    bigint id
 }
 
+behandling  -->  behandling : forrige_behandling_id  id
 behandling  -->  sak : sak_id id
 behandling_historikk  -->  behandling : behandling_id id
 behandling_historikk  -->  versjon : versjon_id id
@@ -297,6 +309,9 @@ grunnlag_ufore  -->  grunnlag_11_19 : grunnlag_11_19_id id
 jobb  -->  behandling : behandling_id id
 jobb  -->  sak : sak_id id
 jobb_historikk  -->  jobb : jobb_id id
+relaterte_personer  -->  behandling : behandling_id id
+relaterte_personer  -->  behandling_historikk : behandling_id id
+relaterte_personer  -->  person : person_id id
 sak  -->  person : person_id id
 sak_historikk  -->  sak : sak_id id
 tilkjent_ytelse  -->  behandling : behandling_id id
@@ -304,7 +319,6 @@ tilkjent_ytelse_periode  -->  tilkjent_ytelse : tilkjent_ytelse_id id
 vilkar  -->  vilkarsresultat : vilkarresult_id id
 vilkarsperiode  -->  vilkar : vilkar_id id
 vilkarsresultat  -->  behandling : behandling_id id
-
 ```
 
 
