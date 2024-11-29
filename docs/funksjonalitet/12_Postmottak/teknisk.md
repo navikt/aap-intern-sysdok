@@ -29,7 +29,7 @@ flowchart LR
 flowchart 
     A(AAP-journalpost-event)-->B{Er journalpost\n strukturert et dokument?}
     B-->|Ja|C(((Send dokument til\n Behandlingsflyt)))
-    B-->|Nei|D{Er dokument\n klassifiserbart?}
+    B-->|Nei|D{Er dokument klassifiserbart?}
     D-->|Nei|E(((Initsier prosedyre for\n uforståelig/feil dokument)))
     D-->|Ja|F[Klassifiser dokument]
     F-->G[Punsj metadata]

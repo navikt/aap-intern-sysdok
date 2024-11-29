@@ -50,13 +50,13 @@ sok{Er digital søknad?}
 op[Opprett fagsak]
 at[\Avklar tema/]
 atdes{Er tema AAP?}
-gosys((("Oppgave \n i Gosys")))
+gosys((("Oppgave i Gosys")))
 as[\Avklar sak/]
 asdes{Er fagsak?}
 jf[Journalfør på fagsak]
 jfgen[Journalfør på generell sak]
 av(((Avslutt)))
-fly(((Send til\ndokumentflyt)))
+fly(((Send til dokumentflyt)))
 
 s --> sok
 sok -- ja --> op
@@ -82,11 +82,11 @@ Dokumenter som er journalført på Kelvin-fagsak i journalføringsflyten går vi
 ```mermaid
 flowchart LR
 s((Start))
-katdes{Er strukturert\ndokument?}
+katdes{Er strukturert dokument?}
 kat[\Kategoriser/]
-digdes{Er søknad\neller meldekort?}
+digdes{Er søknad eller meldekort?}
 dig[\Digitaliser/]
-ov(((Overlever til\nfagsystem)))
+ov(((Overlever til fagsystem)))
 
 s --> katdes
 katdes -- ja --> ov
