@@ -6,55 +6,122 @@
 
 Postmottak er ingangspotalen for alle dokumenter, digitale eller fysiske, inn til Kelvin.
 
+
+## Overordnet arkitektur
+Nedenfor vises en forenklet skisse over komponentene i Postmottak. 
 ```mermaid
 flowchart LR
-    dm[Postmottak]
-    ja[Joark]
+    kafka@{shape: das, label: Kafka}-->fordeler
+    subgraph Postmottak 
+        fordeler[Fordeler]-->arenaVideresender[Arena videresender]
+        fordeler-->kelvinVideresender[Kelvin videresender]
+    end
+    arenaVideresender-->arena[Arena]
+    kelvinVideresender-->behandlingsflyt[Behandlingsflyt]
+    frontend[Postmottak frontend]-->kelvinVideresender
+```
+
+### Flyt og steg
+
+Postmottak bruker mange av de samme konseptene som i [Behandlingsflyt](../06_Behandlingsflyt/teknisk.md) inkludert flyt- og stegorkestrator, samt motor for jobbhåndtering fra [felleskomponenter](../../teknisk/felles_komponenter.md#motor).
+
+Postmottaks flyt består av to delflyter. Disse er funksjonelt beskrevet i [her](./funksjonell.md).
+
+
+### Integrasjoner
+```mermaid
+flowchart LR
+    post[Postmottak backend]
+    kafka[Kafka]
+    ja[Joark/Saf]
     ar[Arena]
     be[Behandling]
     op[Oppgave]
-    ts[Tilgangsstyring]
-    ja-->|Henter journalpost fra topic| dm
-    dm-->|Skriver metadata til journalpost| ja
-    dm-->|hentSaksnummer|be
-    dm-->|send strukturert dokument|be
-    dm-->|Opprett Oppgave|op
-    dm-->|Lukker oppgave|op
-    dm-->|Kan bruker utføre manuell behandling?|ts
-```
-
-## Overordnet flyt
-
-```mermaid
-flowchart 
-    A(AAP-journalpost-event)-->B{Er journalpost\n strukturert et dokument?}
-    B-->|Ja|C(((Send dokument til\n Behandlingsflyt)))
-    B-->|Nei|D{Er dokument klassifiserbart?}
-    D-->|Nei|E(((Initsier prosedyre for\n uforståelig/feil dokument)))
-    D-->|Ja|F[Klassifiser dokument]
-    F-->G[Punsj metadata]
-    G-->C
+    ts[Tilgang]
+    proxy[AAP fss proxy]
+    api[AAP api intern]
+    pdl[PDL]
+    norg[norg]
+    gosys[Gosys]
+    frontend[Postmottak frontend]
+    
+    post-->|Hent journalpost fra topic| kafka
+    post-->|Hent saksnummer|be
+    post-->|Send strukturert dokument|be
+    post-->|Ferdigstill journalpost| ja
+    post-->|Opprett/lukk oppgave|op
+    post-->|Sjekk saksbehandlers tilgang|ts
+    post-->proxy
+    proxy-->|Send til Arena|ar
+    post-->api
+    api-->|Hent saker i Arena|ar
+    post-->|Hent persondata|pdl
+    post-->|"Finn enhet (ikke Kelvin)"|norg
+    post-->|"Opprett/lukk oppgave"|gosys
+    frontend --> post
+    
     
 ```
 
+
+
+
+### Jobboversikt
+Jobbene legges til i [motoren](../../teknisk/felles_komponenter.md#motor). Flytdiagrammet viser hvilke jobber som trigger hverandre. Eksterne triggere (typisk api-kall) er ikke med i diagrammet.
+```mermaid
+flowchart
+    start((Kafka Streams))--Innkommende journalpost-->temaDes{Har tema blitt endret fra AAP?}
+    temaDes-->|Ja|prosesser[ProsesserBehandlingJobbUtfører]
+    temaDes--Nei-->fordeler[FordelingsRegelJobbUtfører]
+    fordelerDes{Skal til Arena?}--Ja-->legeerklæringDes
+    fordelerDes--Nei-->prosesser
+    subgraph Motor
+        fordelingVidersend[FordelingVideresendJobbUtfører]-->fordelerDes
+        fordeler-->fordelingVidersend
+        subgraph ArenaVidersender
+            legeerklæringDes{Er legeerklæring?}
+            legeerklæringDes--Nei-->søknad{Er søknad?}
+            søknad--Nei-->ettersendelse{Er ettersendelse?}
+            ettersendelse--Ja-->arenaAuto[AutomatiskJournalføringJobbUtfører]
+            ettersendelse--Nei-->arenaManuell[ManuellJournalføringJobbUtfører]
+            søknad--Ja-->søknadJobb[SendSøknadTilArenaJobbUtfører]
+            søknadJobb-->sakDes{Har aktiv sak i Arena?}
+            sakDes--Ja-->arenaAuto
+            sakDes--Nei-->arenaManuell
+            
+        end
+        subgraph KelvinVideresender 
+            prosesser-->stoppet[StoppetHendelseJobbUtfører]
+            gjenoppta[GjenopptaBehandlingJobb]--0 0 7 * * *-->gjenoppta
+        end
+    end
+    
+    
+```
+
+### Andre diagrammer
+Flyten her er lett forenklet i at oppgaver åpnes og lukkes for hvert avklaringsbehov med tilhørende kall til Tilgang, men for saksbehandler vil dette oppleves sømløst.
 ```mermaid
 ---
- title: Ustrukturert dokument
+ title: Ustrukturert dokument som skal digitaliseres, og skal til Behandlingsflyt
 ---
     sequenceDiagram
+        autonumber
         actor Saksbehandler
         participant Joark
-        participant Mottak
+        participant Postmottak
         participant Behandlingsflyt
         participant Oppgave
-        participant Tilgangsstyring
-        Joark->>Mottak: Ny AAP Journalpost
-        Mottak->>Oppgave: Opprett oppgave
+        participant Tilgang
+        Joark->>Postmottak: Ny journalpost på tema AAP
+        Postmottak->>Oppgave: Opprett oppgave
         Saksbehandler->>Oppgave: Plukk oppgave
-        Mottak->>Tilgangsstyring: Kan saksbehandler se oppgave
-        Saksbehandler->>Mottak: Klassifiser dokument
-        Saksbehandler->>Mottak: Set metadata
-        Mottak->>Oppgave: Lukk oppgave
-        Mottak->>Behandling: Strukturert dokument
+        Postmottak->>Tilgang: Kan saksbehandler løse oppgave
+        Saksbehandler->>Postmottak: Avklar tema
+        Saksbehandler->>Postmottak: Avklar sak
+        Saksbehandler->>Postmottak: Avklar kategori
+        Saksbehandler->>Postmottak: Digitaliser dokument
+        Postmottak->>Oppgave: Lukk oppgave
+        Postmottak->>Behandlingsflyt: Strukturert dokument
         
 ```
