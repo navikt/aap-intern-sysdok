@@ -1,4 +1,5 @@
 # Integrasjoner
+
 ## Integrasjoner med interne apper
 
 ### Utgående
@@ -7,20 +8,19 @@
 |-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | [Oppgave](../Oppgavestyring/teknisk)                | Varsler hendelse om stoppet flyt                                                                                           |
 | [Statistikk](../Statistikk/teknisk)                 | Avgir statistikk på behandling underveis (ved behandlingsstopp) og avsluttet behandling for statistikkformål               |
-| [Tilgang](../Tilgangsstyring/teknisk)               | Inneholder logikk for å avgjøre om saksbehandlere har rett til forskjellige operasjoner på forskjellige saker/behandlinger |
+| [Tilgang](../Tilgang/teknisk)                       | Inneholder logikk for å avgjøre om saksbehandlere har rett til forskjellige operasjoner på forskjellige saker/behandlinger |
 | [Brev](../Brev/teknisk)                             |                                                                                                                            |
 | [Dokumentinnhenting](../Dokumentinnhenting/teknisk) |                                                                                                                            |
 
 ### Innkommende
 
-| App | Beskrivelse                                                       |
-|-----|-------------------------------------------------------------------|
-|Saksbehandling| Behandlingsflyt sin frontend                                      |
-|[Brev](../Brev/teknisk)|                                                                   |
-|[Dokumentinnhenting](../Dokumentinnhenting/teknisk)|                                                                   |
-|Paw-patrol|                                                                   |
-|[Postmottak](../Postmottak/teknisk)| Journalposter går via Postmottak inn til Behandlingsflyt |
-
+| App                                                 | Beskrivelse                                              |
+|-----------------------------------------------------|----------------------------------------------------------|
+| Saksbehandling                                      | Behandlingsflyt sin frontend                             |
+| [Brev](../Brev/teknisk)                             |                                                          |
+| [Dokumentinnhenting](../Dokumentinnhenting/teknisk) |                                                          |
+| Paw-patrol                                          |                                                          |
+| [Postmottak](../Postmottak/teknisk)                 | Journalposter går via Postmottak inn til Behandlingsflyt |
 
 ## Integrasjoner med eksterne team
 

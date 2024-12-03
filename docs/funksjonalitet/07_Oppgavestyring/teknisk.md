@@ -11,7 +11,7 @@ title: Plukk oppgave
 sequenceDiagram
   actor s as Saksbehandler
   participant o as Oppgavestyring
-  participant t as Tilgangsstyring
+  participant t as Tilgang
   activate s
   activate o
   s->>o: hendtOppgaver(filter)

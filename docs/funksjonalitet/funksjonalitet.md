@@ -10,94 +10,29 @@ Vårt fokus er å skape brukergevinster, og å gjøre brukerreisen helhetlig god
 
 Noen kontaktpunkter er til for å muliggjøre saksbehandling, andre er til for å gi god veiledning og informasjon til innbyggere.
 
-## Prosesser og funksjoner
-Under følger en beskrivelse av de ulike komponentene som til sammen blir AAP-systemet.
-
-### Kalkulator
-Kalkulatoren er en nettside som hjelper potensielle søkere med å avklare hvor mye de vil få utbetalt i stønad dersom de sender inn en søknad og om de er kvalifisert for å søke.
-
-### Søknad
-
-- Innsending av hovedsøknad for AAP
-- Mulighet for å gjennopta en påbegynt, men ikke innsendt søknad
-- Legge ved dokumentasjon til søknad
-- Kvitteringsside som bekrefter hva som har blitt sendt inn
-
-Søknaden arkiveres per nå både som PDF og JSON i JOARK.
-
-Flere søknader på tema AAP vil bli lagt til etterhvert.
-
-### Mine AAP
-
-- Vise innsendte søknader og manglende vedlegg
-- Vise innsendt dokumentasjon
-- Inngang til Ettersendelse
-- Informasjon om veien videre etter innsendt søknad
-- Inngang til "Skriv til Oss"
-
-### Innsending
-
-- Felleskomponent for Søknad og Mine AAP
-- Håndterer mellomlagring, pdf-generering, virussjekk og arkivering
-
-### Postmottak
-
-- Plukker opp alle journalføringshendelser på tema AAP
-
-### Behandlingsflyt
-
-- Vedtaksløsning
-
-### Oppgavestyring
-
-- Oppgaver for saksbehandler
-
-### Brev
-
-- Skrive brev
-
-### Statistikk
-
-- Ulike dataprodukter
-
-### Datadeling
-
-- Deling av data med eksterne aktører
-  - Offentlig AFP
-  - Privat AFP
-  - Tjenestepensjon
-  - Forsikringsselskaper
-- Deling med interne ytelser
-  - Dagpenger
-  - Tilleggsstønader
-  - Sykepenger
-  - Foreldrepenger
-  - Uføre
-
-### Tilgangsstyring
-
-- Tilgangsstyring for tjenestene til Team AAP
-
 ## Komponent-diagram
-
+Detaljer om de ulike komponentene i Team AAP sin løsning finner du i menyen til venstre.
 ```mermaid
 graph TD
 KA[Kalkulator]
 SK[Søknad] --> IS[Innsending]
 MA[Mine AAP] --> IS
 IS --> PM[Postmottak]
-PM --> VT[Behandlingsflyt]
-VT --> OP[Oppgavestyring]
-VT <--> TS[Tilgangsstyring]
+PM --> Behandlingsflyt[Behandlingsflyt]
+Behandlingsflyt --> OP[Oppgavestyring]
+Behandlingsflyt <--> TS[Tilgang]
 PM --> TS
 PM --> OP
-VT --> BR[Brev]
-VT --> ST[Statistikk]
+Behandlingsflyt --> BR[Brev]
+Behandlingsflyt --> ST[Statistikk]
 OP -. (ikke påbegynt) .-> ST
-APII[API Intern] --> VT
 PM --> APII
+subgraph Datadeling
 APIA[API Arena]
-API --> APIA
+APII[API Intern]
+API[API Ekstern] --> APIA
+end
+APII --> Behandlingsflyt
 APII --> APIA
 OP --> TS
 ```
