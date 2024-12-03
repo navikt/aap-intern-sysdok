@@ -9,10 +9,11 @@ Postmottak er ingangspotalen for alle dokumenter, digitale eller fysiske, inn ti
 
 ## Overordnet arkitektur
 Nedenfor vises en forenklet skisse over komponentene i Postmottak. 
+
 ```mermaid
 flowchart LR
     kafka@{shape: das, label: Kafka}-->fordeler
-    subgraph Postmottak 
+    subgraph Postmottak backend 
         fordeler[Fordeler]-->arenaVideresender[Arena videresender]
         fordeler-->kelvinVideresender[Kelvin videresender]
     end
@@ -21,12 +22,20 @@ flowchart LR
     frontend[Postmottak frontend]-->kelvinVideresender
 ```
 
+| Komponent | Beskrivelse                                                                                                                                                                                             |
+|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|Fordeler| Postmottak har en egen komponent for fordeling av dokumenter. Denne komponenten tar imot dokumenter fra Kafka, og sender de videre til riktig system basert på regler i henhold til lanseringsstrategi. |
+|Arena videresender| Denne komponenten erstatter gamle KRUT, bestående av jfr-arena og jfr-manuell, for tema AAP. Den håndterer journalføring og oppgaveopprettelse for de dokumentene som skal til Arena. |
+|Kelvin videresender| Dette er det nye postmottaket for Kelvin. Her håndteres journalføring, temaavklaring, kategorisering og digitalisering av dokumenter, samt videresending til Behandlingsflyt.
+
+Fordeleren og Arena videresender skal fjernes når AAP er helt ute av Arena.
+
+
 ### Flyt og steg
 
 Postmottak bruker mange av de samme konseptene som i [Behandlingsflyt](../06_Behandlingsflyt/teknisk.md) inkludert flyt- og stegorkestrator, samt motor for jobbhåndtering fra [felleskomponenter](../../teknisk/felles_komponenter.md#motor).
 
-Postmottaks flyt består av to delflyter. Disse er funksjonelt beskrevet i [her](./funksjonell.md).
-
+Postmottaks flyt består av to delflyter. Disse er funksjonelt beskrevet i [her](./funksjonell.md#kelvin-dokumentflyt).
 
 ### Integrasjoner
 ```mermaid

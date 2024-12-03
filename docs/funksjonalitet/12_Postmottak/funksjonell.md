@@ -20,7 +20,7 @@ graph TD
     M --> G[Oppgave-api, GOSYS]
 ```
 Punkt `2` og `3` er en erstatning av dagens ruting av søknader
-(KRUT, som består av jfr-arena og jfr-generell), som nå ligger i postmottak.
+(KRUT), som nå ligger i postmottak.
 
 ## Journalføring
 Dokumenter som kommer inn i postmottak skal endelig journalføres. Journalposter som har ligget urørt i over en uke, fanges opp av et sikkerhetsnett som oppretter en journalføringsoppgave i Gosys. 
