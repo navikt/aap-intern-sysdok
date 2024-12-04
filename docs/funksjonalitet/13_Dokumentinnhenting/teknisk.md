@@ -37,8 +37,36 @@ sequenceDiagram
 ```
 
 
-### Elektronisk legeerklæring
-*her kan du skrive henrik*
+### Bestilling av legeerklæring
+Bestilling av legeerklæring skjer i Kelvin under steget "Sykdom"
+1. Saksbehandling slår opp behandler via dokumentinnhenting, som videre henter informasjon fra isdialogmelding (ISYFO)
+2. Bestilling trigger en bestilling i behandlingslyt, som i tur setter sak på vent.
+3. Bestilling går videre til dokumentinnhenting og lagrer bestillingen.
+4. Dokumentinnhenting journalfører via Brev.
+5. Dokumentinnhenting sending bestilling til isdialogmelding på en kafka-topic, som videre sender til NHN og deretter EPJ.
+6. Dokumentinnhenting eksponerer et endepunkt `/status/{saksnummer}` som returnerer status på bestilte legeerklæringer. Denne
+tar også sak av vent i behandlingsflyt om bestilt legeerklæring skulle bli avvist.
 
+```mermaid
+---
+ title: Bestilling av legeerklæring
+---
+    sequenceDiagram
+        autonumber
+        actor Saksbehandler
+        participant Kelvin
+        participant Behandlingsflyt
+        participant Dokumentinnhenting
+        participant Brev
+        participant SAF
+        participant ISDialogmelding
+        Saksbehandler-->>Behandlingsflyt: Ny bestilling (dokumentinnhentingAPI)
+        Behandlingsflyt->>Dokumentinnhenting: Setter sak på vent og sender videre (bestillLegeerklæring)
+        Dokumentinnhenting->>Dokumentinnhenting: Genererer ny jobb, lagrer bestilling (skrivDialogmeldingTilRepository)
+        Dokumentinnhenting->>Brev: Forespørslel om generering av PDF og journalføring (journaførBestilling)
+        Dokumentinnhenting-->SAF: Henter generert dokument (hentDokumentMedJournalpostId)
+        Dokumentinnhenting->>ISDialogmelding: Skriver bestilling til kafka-topic (sendBestilling)
+        Dokumentinnhenting-->ISDialogmelding: Oppdaterer bestilling videre med status fra SYFO (oppdaterStatus)
+```
 ### DokumentSøk
 Ved behandling av sak, 
