@@ -3,12 +3,17 @@
 Det er postmottaks ansvar å ivareta Kelvins lanseringsstrategi. Oppdaterte regler for hvilke saker som ikke skal til Kelvin finnes på [Confluence](https://confluence.adeo.no/display/PAAP/Unntakstilfeller+ved+lansering).
 
 ## Implementerte regler
+Før lansering har vi en overstyrende regel som sender alle saker til Arena:
+|KunArenaRegel|Returnerer alltid false|
+|---|---|
+
+Når vi skal begynne å rulle ut saker til Kelvin, aktiverer vi lanseringsreglene.
 Følgende regler er implementert i postmottak, og samtlige må være oppfylt for at en sak skal sendes til Kelvin:
 
 |Regel| Beskrivelse                                                                  |
 |---|------------------------------------------------------------------------------|
 |Aldersregel| `18 <= søkers alder < 62`                                                    |
-|ArenaSakRegel| Søker har ingen saker i Arena, uansett aktiv-status                          |
+|ArenaSakRegel| Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status, og ingen journalposter som er journalført på fagsaksystem Arena, tema AAP |
 |GeografiskTilknytningRegel| Søkers geografisk tilknytning finnes i en liste over godkjente tilknytninger |
 
 I tillegg overstyrer følgende regel de ovennevnte:
