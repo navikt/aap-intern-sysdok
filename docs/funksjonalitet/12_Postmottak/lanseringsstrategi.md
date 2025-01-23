@@ -12,7 +12,7 @@ Følgende regler er implementert i postmottak, og samtlige må være oppfylt for
 
 |Regel| Beskrivelse                                                                  |
 |---|------------------------------------------------------------------------------|
-|Aldersregel| `18 <= søkers alder < 62`                                                    |
+|Aldersregel| `18 <= søkers alder < 60`                                                    |
 |ArenaSakRegel| Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status, og ingen journalposter som er journalført på fagsaksystem Arena, tema AAP |
 |GeografiskTilknytningRegel| Søkers geografisk tilknytning finnes i en liste over godkjente tilknytninger |
 
