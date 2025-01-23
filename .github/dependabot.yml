@@ -11,6 +11,9 @@ updates:
       docusaurus:
         patterns:
           - '@docusaurus/*'
+      react:
+        patterns:
+          - 'react*'
     schedule:
       interval: "weekly"
   - package-ecosystem: "github-actions"
