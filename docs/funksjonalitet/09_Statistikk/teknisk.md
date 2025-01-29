@@ -104,7 +104,8 @@ Overordnet skisse av arkitektur:
 ```mermaid
 graph LR
 BB[Behandlingsflyt]
-OPPG[OppgaveStyring]
+OPPG[Oppgave]
+POST[Postmottak]
 B[(Postgres)]
 C[(BigQuery)]
 
@@ -117,6 +118,7 @@ end
 subgraph Motor
 
 lagreHendelseJobb
+lagreOppgaveHendelseJobb --> lagreOppgaveJobb
 
 end
 hendelse --> lagreHendelseJobb
@@ -124,9 +126,14 @@ end
 
 lagreHendelseJobb --> B
 lagreHendelseJobb --> C
+hendelse --> lagreOppgaveHendelseJobb
+lagreOppgaveJobb --> B
+lagreOppgaveHendelseJobb --> B
+B --> lagreOppgaveJobb
 
 BB -. avgi statistikk .-> Api
-OPPG -. (ikke implementert) .-> Api
+OPPG -. oppgave-endringer .-> Api
+POST --> Api
 ```
 
 Data fra hendelser (stopp i behandlingen) brukes for å bygge opp en rikere modell i Postgres, slik at å lagre data i BigQuery ikke krever flere spørringer.
