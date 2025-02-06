@@ -45,7 +45,7 @@ Sett opp proxy til databasen via NAIS-kommandolinjeverktøyet, se [her](https://
 Deretter kjør en dump slik:
 
 ```
-docker run  --rm -p 5432:5432 postgres:16 pg_dump --clean -h host.docker.internal -p 5432  -U mitt.navn@nav.no -d hendelser > dump.sql
+docker run  --rm -p 5432:5432 postgres:16 pg_dump -T public.jobb -T public.jobb_historikk --clean -h host.docker.internal -p 5432  -U ditt.navn@nav.no -d hendelser  > dump.sql
 ```
 
 Erstatt `mitt.navn@nav.no` med din NAV-epost.
