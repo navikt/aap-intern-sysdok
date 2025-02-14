@@ -6,7 +6,6 @@
 
 | App                                                 | Beskrivelse                                                                                                                |
 |-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| [Oppgave](../Oppgavestyring/teknisk)                | Varsler hendelse om stoppet flyt                                                                                           |
 | [Statistikk](../Statistikk/teknisk)                 | Avgir statistikk på behandling underveis (ved behandlingsstopp) og avsluttet behandling for statistikkformål               |
 | [Tilgang](../Tilgang/teknisk)                       | Inneholder logikk for å avgjøre om saksbehandlere har rett til forskjellige operasjoner på forskjellige saker/behandlinger |
 | [Brev](../Brev/teknisk)                             |                                                                                                                            |
