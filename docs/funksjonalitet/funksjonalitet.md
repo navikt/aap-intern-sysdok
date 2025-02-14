@@ -16,20 +16,27 @@ Detaljer om de ulike komponentene i Team AAP sin løsning finner du i menyen til
 graph TD
 KA[Kalkulator]
 SK[Søknad] --> IS[Innsending]
-MA[Mine AAP] --> IS
 IS --> PM[Postmottak]
+MA[Mine AAP] --> IS
+IS --> PDF
+MK[Meldekort]
 PM --> Behandlingsflyt[Behandlingsflyt]
 Behandlingsflyt --> OP[Oppgavestyring]
 Behandlingsflyt <--> TS[Tilgang]
+Behandlingsflyt <--> Dokumentinnhenting
+Dokumentinnhenting --> BR
+Ø[Utbetal]
+Behandlingsflyt -.-> Ø
 PM --> TS
 PM --> OP
 Behandlingsflyt --> BR[Brev]
 Behandlingsflyt --> ST[Statistikk]
-OP -. (ikke påbegynt) .-> ST
+OP --> ST
 PM --> APII
 subgraph Datadeling
 APIA[API Arena]
 APII[API Intern]
+AHP[Arena Hendelses-Proxy]
 API[API Ekstern] --> APIA
 end
 APII --> Behandlingsflyt
