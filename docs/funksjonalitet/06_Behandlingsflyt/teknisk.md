@@ -87,3 +87,7 @@ stateDiagram-v2
     AVSLUTTER --> [*]: Fortsett
     TILBAKEFØRT --> [*]: Fortsett
 ```
+
+## DB-diagram for samordning-tabeller
+
+![](../../bilder/samordning.png)
