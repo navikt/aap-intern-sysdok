@@ -1,6 +1,7 @@
 # Lanseringsstrategi
 
 Det er postmottaks ansvar å ivareta Kelvins lanseringsstrategi. Oppdaterte regler for hvilke saker som ikke skal til Kelvin finnes på [Confluence](https://confluence.adeo.no/display/PAAP/Unntakstilfeller+ved+lansering).
+Journalpostene fordeles automatisk basert på et regelsett.
 
 ## Implementerte regler
 Før lansering har vi en overstyrende regel som sender alle saker til Arena:
@@ -13,12 +14,13 @@ Følgende regler er implementert i postmottak, og samtlige må være oppfylt for
 |Regel| Beskrivelse                                                                  |
 |---|------------------------------------------------------------------------------|
 |Aldersregel| `18 <= søkers alder < 60`                                                    |
-|ArenaSakRegel| Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status, og ingen journalposter som er journalført på fagsaksystem Arena, tema AAP |
-|GeografiskTilknytningRegel| Søkers geografisk tilknytning finnes i en liste over godkjente tilknytninger |
+|ArenaHistorikkRegel| Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status, og ingen journalposter som er journalført på fagsaksystem Arena, tema AAP |
+|Enhetsregel| Enheten, som blir utledet basert på brukers geografiske tilknytning og eventuelt oppfølgingskontor fra sykefraværsoppfølgingen, finnes i en liste over godkjente enheter  |
+|MaksAntallPersonerIKelvinRegel|Kun et gitt antall personer skal ha saker i Kelvin. Dette tallet kan økes fortløpende.|
+|ErIkkeReisestønadRegel|Reisestønad skal alltid til Arena|
 
-I tillegg overstyrer følgende regel de ovennevnte:
-
-|KelvinSakRegel|Søker har en sak i Kelvin|
+I tillegg overstyrer følgende regler de ovennevnte:
+|KelvinSakRegel|Søker som har en sak i Kelvin skal alltid til Kelvin|
 |---|---|
 
 ## Gradvis opptrapping
