@@ -22,7 +22,8 @@ flowchart LR
         fordeler --> kelvinVideresender[Kelvin videresender]
     end
     arenaVideresender --aap-fss-proxy--> arena[Arena]
-    kelvinVideresender --> behandlingsflyt[Behandlingsflyt]
+    arenaVideresender --> Gosys
+    kelvinVideresender --> behandlingsflyt[Kelvin]
     frontend[Postmottak frontend] --> kelvinVideresender
 ```
 
