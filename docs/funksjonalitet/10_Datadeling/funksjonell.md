@@ -47,7 +47,7 @@ flowchart TB
     
     aap-arena-oppslag --> arena
     aap-api -. ikke påbegynt .-> behandlingsflyt
-    aap-intern-api -. ikke påbegynt .-> behandlingsflyt
+    behandlingsflyt --> aap-intern-api
     
     style aap-api fill:#FFFFE0
     style aap-intern-api fill:#FFFFE0
