@@ -11,14 +11,15 @@ Før lansering har vi en overstyrende regel som sender alle saker til Arena:
 Når vi skal begynne å rulle ut saker til Kelvin, aktiverer vi lanseringsreglene.
 Følgende regler er implementert i postmottak, og samtlige må være oppfylt for at en sak skal sendes til Kelvin:
 
-|Regel| Beskrivelse                                                                  |
-|---|------------------------------------------------------------------------------|
-|Aldersregel| `24 <= søkers alder < 60`                                                    |
-|ArenaHistorikkRegel| Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status, og ingen journalposter som er journalført på fagsaksystem Arena, tema AAP |
-|Enhetsregel| Enheten, som blir utledet basert på brukers geografiske tilknytning og eventuelt oppfølgingskontor fra sykefraværsoppfølgingen, finnes i en liste over godkjente enheter  |
-|MaksAntallPersonerIKelvinRegel|Kun et gitt antall personer skal ha saker i Kelvin. Dette tallet kan økes fortløpende.|
-|ErIkkeReisestønadRegel|Reisestønad skal alltid til Arena|
-|ErIkkeAnkeRegel|Anke skal ikke behandles i Kelvin|
+|Regel| Beskrivelse                                                                |Aktivert i testmiljø|
+|---|------------------------------------------------------------------------------|-----------:|
+|Aldersregel| `24 <= søkers alder < 60`                                                    | Ja |
+|ArenaHistorikkRegel| Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status. Denne skal etterhvert utvides til å tillate 52 uker gamle saker (ikke implementert) | Ja |
+|Enhetsregel| Enheten, som blir utledet basert på brukers geografiske tilknytning og eventuelt oppfølgingskontor fra sykefraværsoppfølgingen, finnes i en liste over godkjente enheter  | Nei |
+|MaksAntallPersonerIKelvinRegel|Kun et gitt antall personer skal ha saker i Kelvin. Dette tallet kan økes fortløpende.| Nei |
+|ErIkkeReisestønadRegel|Reisestønad skal alltid til Arena| Ja |
+|ErIkkeAnkeRegel|Anke skal ikke behandles i Kelvin| Ja |
+|SøknadRegel|Kun søknad kan føre til opprettelse av sak i Kelvin | Nei |
 
 I tillegg overstyrer følgende regler de ovennevnte:
 |KelvinSakRegel|Søker som har en sak i Kelvin skal alltid til Kelvin|
