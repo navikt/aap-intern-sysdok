@@ -13,11 +13,12 @@ Følgende regler er implementert i postmottak, og samtlige må være oppfylt for
 
 |Regel| Beskrivelse                                                                  |
 |---|------------------------------------------------------------------------------|
-|Aldersregel| `18 <= søkers alder < 60`                                                    |
+|Aldersregel| `24 <= søkers alder < 60`                                                    |
 |ArenaHistorikkRegel| Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status, og ingen journalposter som er journalført på fagsaksystem Arena, tema AAP |
 |Enhetsregel| Enheten, som blir utledet basert på brukers geografiske tilknytning og eventuelt oppfølgingskontor fra sykefraværsoppfølgingen, finnes i en liste over godkjente enheter  |
 |MaksAntallPersonerIKelvinRegel|Kun et gitt antall personer skal ha saker i Kelvin. Dette tallet kan økes fortløpende.|
 |ErIkkeReisestønadRegel|Reisestønad skal alltid til Arena|
+|ErIkkeAnkeRegel|Anke skal ikke behandles i Kelvin|
 
 I tillegg overstyrer følgende regler de ovennevnte:
 |KelvinSakRegel|Søker som har en sak i Kelvin skal alltid til Kelvin|
