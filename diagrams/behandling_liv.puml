@@ -1,0 +1,29 @@
+@startuml
+!pragma teoz true
+skinparam roundcorner 20
+
+title "Førstegangsbehandling Kelvin"
+
+actor Søker
+
+Søker -> Innsending
+box "Kelvin" #f0f0f0
+actor Saksbehandler
+participant Innsending
+participant Postmottak
+participant Behandlingsflyt
+participant Oppgave
+Innsending -> Joark : Arkivering
+Joark -> Postmottak : lytte på dokumenter på tema AAP
+Postmottak -> Behandlingsflyt ++ : Opprett behandling
+group Gjenta: inntil ingen flere avklaringsbehov
+Behandlingsflyt -> Oppgave : Opprett avklaringsbehov
+Saksbehandler -> Oppgave : Plukk oppgave
+Saksbehandler -> Behandlingsflyt : Saksbehandle (løs avklaringsbehov)
+end
+Behandlingsflyt -> Saksbehandler -- : Ferdig
+end box
+participant Økonomi
+participant Joark
+Behandlingsflyt -> Økonomi : Sende melding til økonomi
+@enduml
