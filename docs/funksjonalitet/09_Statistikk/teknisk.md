@@ -60,6 +60,22 @@ docker exec -i  0eb43 psql -U test -d test < dump.sql
 
 Nå er den lokale databasen overskrevet med dumpen fra dev.
 
+## Servicebruker-roller
+
+Gå til den aktuelle BigQuery-tabellen, og klikk på "Manage permissions". Se bildet:
+
+![Manage permissions i BigQuery](../../bilder/bq_permissions.png)
+
+Gi service-brukeren `BigQuery data viewer`-tilgang.
+
+![Manage permissions i BigQuery](../../bilder/bq_permissions_2.png)
+
+:::info
+
+Etterhvert™ bør vi sette dette opp med Terraform (eller lignende), men per nå er det klikk i GUI.
+
+:::
+
 ## Gjøre endringer på skjema i BigQuery
 
 Å legge til nye kolonner i skjemaet støttes av SDK-et, men om datatype skal endres, må DDL brukes.
