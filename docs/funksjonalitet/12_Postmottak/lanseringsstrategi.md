@@ -13,7 +13,7 @@ Følgende regler er implementert i postmottak, og samtlige må være oppfylt for
 
 |Regel| Beskrivelse                                                                |Aktivert i testmiljø|
 |---|------------------------------------------------------------------------------|-----------:|
-|Aldersregel| `24 <= søkers alder < 60`                                                    | Ja |
+|Aldersregel| `22 <= søkers alder < 60`                                                    | Ja |
 |ArenaHistorikkRegel| Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status. Denne skal etterhvert utvides til å tillate 52 uker gamle saker (ikke implementert) | Ja |
 |Enhetsregel| Enheten, som blir utledet basert på brukers geografiske tilknytning og eventuelt oppfølgingskontor fra sykefraværsoppfølgingen, finnes i en liste over godkjente enheter  | Nei |
 |MaksAntallPersonerIKelvinRegel|Kun et gitt antall personer skal ha saker i Kelvin. Dette tallet kan økes fortløpende.| Nei |
