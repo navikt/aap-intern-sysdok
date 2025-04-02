@@ -1,3 +1,4 @@
+@startuml
 entity RettighetsPeriode {
   fraDato: date
   tilDato: date
@@ -37,3 +38,4 @@ behandlinger  -->  beregningsgrunnlag : "referanse : behandlingsreferanse"
 behandlinger  -->  tilkjentYtelse : "referanse : behandlingsreferanse"
 behandlinger  -->  vilkarsResultat : "referanse : behandlingsreferanse"
 behandlinger o-- RettighetsPeriode
+@enduml
