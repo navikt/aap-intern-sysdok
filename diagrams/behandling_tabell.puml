@@ -1,0 +1,39 @@
+entity RettighetsPeriode {
+  fraDato: date
+  tilDato: date
+  rettighetstype: string
+}
+
+entity "behandlinger" as behandlinger {
+ saksnummer: text
+ behandlingsreferanse: text
+ behandlingsType: text
+ brukerFnr: text
+ datoAvsluttet: date
+ kodeverk: string | null
+ diagnosekode: string | null
+ bidiagnoser: string[] | null
+ rettighetsPerioder: RettighetsPeriode[]
+ radEndret: datetime
+ utbetalingId: text
+}
+
+entity "beregningsgrunnlag" {
+saksnummer: text
+behandlingsreferanse: text
+}
+
+entity "tilkjentYtelse" {
+saksnummer: text
+behandlingsreferanse: text
+}
+
+entity "vilkarsResultat" {
+saksnummer: text
+behandlingsreferanse: text
+}
+
+behandlinger  -->  beregningsgrunnlag : "referanse : behandlingsreferanse"
+behandlinger  -->  tilkjentYtelse : "referanse : behandlingsreferanse"
+behandlinger  -->  vilkarsResultat : "referanse : behandlingsreferanse"
+behandlinger o-- RettighetsPeriode
