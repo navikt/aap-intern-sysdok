@@ -1,0 +1,50 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface Beregningsgrunnlag << interface >> {
+  + grunnlaget(): GUnit
+  + faktagrunnlag(): Faktagrunnlag
+}
+class Grunnlag11_19 {
+  + grunnlaget(): GUnit
+  + faktagrunnlag(): Faktagrunnlag
+  + gjennomsnittligInntektIG(): GUnit
+  + erGjennomsnitt(): Boolean
+  + inntekter(): List<GrunnlagInntekt>
+}
+class GrunnlagUføre {
+  + underliggendeYtterligereNedsatt(): Grunnlag11_19
+  + uføregrad(): Prosent
+  + underliggende(): Grunnlag11_19
+  + uføreInntekterFraForegåendeÅr(): List<UføreInntekt>
+  + uføreYtterligereNedsattArbeidsevneÅr(): Year
+  + type(): Type
+  + grunnlaget(): GUnit
+  + faktagrunnlag(): Faktagrunnlag
+}
+class GrunnlagYrkesskade {
+  + underliggende(): Beregningsgrunnlag
+  + andelYrkesskade(): Prosent
+  + antattÅrligInntektYrkesskadeTidspunktet(): Beløp
+  + terskelverdiForYrkesskade(): Prosent
+  + andelSomSkyldesYrkesskade(): GUnit
+  + benyttetAndelForYrkesskade(): Prosent
+  + grunnlaget(): GUnit
+  + grunnbeløp(): Beløp
+  + grunnlagForBeregningAvYrkesskadeandel(): GUnit
+  + andelSomIkkeSkyldesYrkesskade(): GUnit
+  + yrkesskadeTidspunkt(): Year
+  + grunnlagEtterYrkesskadeFordel(): GUnit
+  + yrkesskadeinntektIG(): GUnit
+  + faktagrunnlag(): Faktagrunnlag
+}
+
+Grunnlag11_19       -[#008200,dashed]-^  Beregningsgrunnlag 
+GrunnlagUføre       -[#008200,dashed]-^  Beregningsgrunnlag 
+GrunnlagUføre      "1" *-[#595959,plain]-> "grunnlag\n1" Grunnlag11_19      
+GrunnlagYrkesskade  -[#008200,dashed]-^  Beregningsgrunnlag 
+GrunnlagYrkesskade "1" *-[#595959,plain]-> "beregningsgrunnlag\n1" Beregningsgrunnlag 
+@enduml
