@@ -1,0 +1,12 @@
+@startuml
+
+entity "tilkjentYtelse" {
+        saksnummer: text
+        behandlingsreferanse: text
+        fraDato: date
+        tilDato: date
+        dagsats: float64
+        gradering: float64
+
+}
+@enduml
