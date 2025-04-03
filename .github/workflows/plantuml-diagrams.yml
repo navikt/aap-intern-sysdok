@@ -23,17 +23,23 @@ jobs:
 
       - name: Download PlantUML JAR
         run: |
+          sudo apt-get -y update
           sudo apt-get -y install graphviz
           mkdir -p tools
           curl -L https://github.com/plantuml/plantuml/releases/download/v1.2025.2/plantuml-1.2025.2.jar -o tools/plantuml.jar
 
       - name: Generate PNG diagrams
         run: |
+          echo "## Oppsummering" >> "$GITHUB_STEP_SUMMARY"
           mkdir -p generated-diagrams
+          mkdir -p "$GITHUB_WORKSPACE/artifacts"
           find diagrams -name "*.puml" -type f | while read file; do
             echo "Processing $file"
             output_file="generated-diagrams/$(basename ${file%.puml}.png)"
             java -jar tools/plantuml.jar -tpng "$file" -o "$(pwd)/generated-diagrams"
+            cp $output_file "$GITHUB_WORKSPACE/artifacts/"
+            echo "::set-output name=image_path_$file::$GITHUB_WORKSPACE/artifacts/$(basename ${file%.puml}.png)"
+            echo "image_path_$file" >> "$GITHUB_STEP_SUMMARY"
           done
 
       - name: Upload diagrams as artifacts
