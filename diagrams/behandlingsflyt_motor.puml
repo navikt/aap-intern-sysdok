@@ -1,0 +1,27 @@
+@startuml
+
+title "Behandlingsflyt"
+
+start
+
+if (Har fakta endret seg siden sist?) is (Ja) then
+        :Oppdater gjeldende steg til første steg med endret fakta;
+endif
+while (Finnes flere steg å gå gjennom?) is (Ja)
+:Start behandling av gjeldende steg;
+partition Steg #E6F0FF {
+        :Hent fakta for gjeldende steg;
+        :Utfør forretningslogikk for gjeldende steg;
+        if (Fant avklaringsbehov?) is (Ja) then
+                :Oppgave opprettes, behandlingen stopper opp;
+                stop
+        else (Nei)
+                :Oppdater gjeldende steg;
+        endif
+}
+endwhile (Nei)
+
+:Ingen flere steg, behandlingen er avsluttet.;
+end
+
+@enduml
