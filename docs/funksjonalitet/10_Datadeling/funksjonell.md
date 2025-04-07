@@ -42,11 +42,10 @@ flowchart TB
     
     maskinporten <-- autentisering --> aap-api
     
-    aap-api --> aap-arena-oppslag
+    aap-api --> aap-intern-api
     aap-intern-api --> aap-arena-oppslag
     
     aap-arena-oppslag --> arena
-    aap-api -. ikke påbegynt .-> behandlingsflyt
     behandlingsflyt --> aap-intern-api
     
     style aap-api fill:#FFFFE0
