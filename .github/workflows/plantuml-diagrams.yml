@@ -32,14 +32,10 @@ jobs:
         run: |
           echo "## Oppsummering" >> "$GITHUB_STEP_SUMMARY"
           mkdir -p generated-diagrams
-          mkdir -p "$GITHUB_WORKSPACE/artifacts"
           find diagrams -name "*.puml" -type f | while read file; do
             echo "Processing $file"
             output_file="generated-diagrams/$(basename ${file%.puml}.png)"
             java -jar tools/plantuml.jar -tpng "$file" -o "$(pwd)/generated-diagrams"
-            cp $output_file "$GITHUB_WORKSPACE/artifacts/"
-            echo "::set-output name=image_path_$file::$GITHUB_WORKSPACE/artifacts/$(basename ${file%.puml}.png)"
-            echo "image_path_$file" >> "$GITHUB_STEP_SUMMARY"
           done
 
       - name: Upload diagrams as artifacts

@@ -1,0 +1,24 @@
+title "Forenklet saksbehandlingsflyt"
+
+box "Lokalkontor"  #CCF1D6
+
+actor "Saksbehandler lokalkontor" as SL
+actor "Kvalitetssikrer" as K
+SL -> Behandling : Behandles på lokalkontor
+K -> Behandling : Kvalitetssikrer underkjenner\nvurdering
+SL -> Behandling : På nytt
+K -> Behandling : Godkjennes av kvalitetssikrer
+end box
+participant Behandling
+box "NAY"  #E6F0FF
+actor "Saksbehandler NAY" as SN
+SN -> Behandling : Behandler steg på\nnasjonal kø
+actor "Beslutter NAY" as B
+B -> Behandling : Beslutter er uenig\ni vurderingene
+SN -> Behandling : Saken behandles videre
+B -> Behandling : Beslutter er enig, fatter vedtak.
+end box
+participant Brev
+participant Økonomi
+B -> Brev : Beslutter skriver\nvedtaksbrev til søker.
+Behandling -> Økonomi : Tilkjent ytelse oversendes\n til økonomi.
