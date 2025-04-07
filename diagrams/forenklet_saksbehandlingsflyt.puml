@@ -1,3 +1,5 @@
+@startuml
+
 title "Forenklet saksbehandlingsflyt"
 
 box "Lokalkontor"  #CCF1D6
@@ -22,3 +24,5 @@ participant Brev
 participant Økonomi
 B -> Brev : Beslutter skriver\nvedtaksbrev til søker.
 Behandling -> Økonomi : Tilkjent ytelse oversendes\n til økonomi.
+
+@enduml
