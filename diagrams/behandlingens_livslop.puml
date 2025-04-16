@@ -1,0 +1,43 @@
+@startuml
+
+actor Bruker as S
+participant Kelvin as K
+== Søknad ==
+actor Saksbehandler as SB
+S -> K: Sender inn søknad
+group Førstegangsbehandling
+K -> K: Oppretter sak og behandling
+note right
+En sak kan ha flere behandlinger.
+Kun én behandling er åpen om gangen.
+end note
+SB -> K: Begynner saksbehandling
+== Meldekort ==
+S -> K: Bruker sender inn meldekort
+note right: Kan sende inn meldekort før innvilgelse.
+K -> K: Lagrer meldekortopplysninger.
+note right
+Opplysningene lagres på
+førstegangsbehandlingen.
+end note
+== Saksbehandling ==
+K <-> SB: Innhenting av opplysninger og\nsaksbehandling
+note right: Samordning, beregning, osv.
+SB -> K: Beslutter gjør vedtak.
+note right: Vedtak er unikt knyttet til behandlingen.
+participant Økonomi as Ø
+K -> S: Sender brev til bruker.
+K -> Ø: Tilkjent ytelse sendes til økonomi.
+K -> K: Førstegangsbehandlingen avsluttes.
+end
+== Meldekort (ny behandling, type revurdering) ==
+S -> K: Bruker sender meldekort.
+K -> K: Revurdering 1 opprettes.
+note right: Meldekortbehandlinger vil som regel være\n helautomatiske.
+K -> Ø: Ny tilkjent ytelse sendes til økonomi.
+== Meldekort ==
+S -> K: Bruker sender meldekort.
+K -> K: Revurdering 2 opprettes.
+K -> Ø: Ny tilkjent ytelse sendes til økonomi.
+
+@enduml
