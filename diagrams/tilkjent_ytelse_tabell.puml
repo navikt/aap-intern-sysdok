@@ -7,6 +7,9 @@ entity "tilkjentYtelse" {
         tilDato: date
         dagsats: float64
         gradering: float64
-
+        antallBarn: int64
+        barnetillegg: float64
+        barnetilleggSats: float64
+        redusertDagsats: float64
 }
 @enduml
