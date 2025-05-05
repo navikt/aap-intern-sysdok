@@ -6,32 +6,33 @@ entity RettighetsPeriode {
 }
 
 entity "behandlinger" as behandlinger {
- saksnummer: text
- behandlingsreferanse: text
- behandlingsType: text
- brukerFnr: text
- datoAvsluttet: date
- kodeverk: string | null
- diagnosekode: string | null
- bidiagnoser: string[] | null
- rettighetsPerioder: RettighetsPeriode[]
- radEndret: datetime
- utbetalingId: text
+        saksnummer: string
+        behandlingsreferanse: string
+        behandlingsType: string
+        brukerFnr: string
+        datoAvsluttet: date
+        kodeverk: string | null
+        diagnosekode: string | null
+        bidiagnoser: string[] | null
+        rettighetsPerioder: RettighetsPeriode[]
+        radEndret: datetime
+        utbetalingId: string
+        resultat: string | null
 }
 
 entity "beregningsgrunnlag" {
-saksnummer: text
-behandlingsreferanse: text
+saksnummer: string
+behandlingsreferanse: string
 }
 
 entity "tilkjentYtelse" {
-saksnummer: text
-behandlingsreferanse: text
+saksnummer: string
+behandlingsreferanse: string
 }
 
 entity "vilkarsResultat" {
-saksnummer: text
-behandlingsreferanse: text
+saksnummer: string
+behandlingsreferanse: string
 }
 
 behandlinger  -->  beregningsgrunnlag : "referanse : behandlingsreferanse"
