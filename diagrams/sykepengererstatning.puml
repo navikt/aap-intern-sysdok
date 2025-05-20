@@ -1,0 +1,22 @@
+@startuml
+
+title "Innganger til vurdering av § 11-13"
+start
+if (Vurdere § 11-5) then (Oppfyller kriteriene)
+(Nei) elseif (Arbeidsevne nedsatt\n av viss varighet) then (Nei, skal føre til vurdering\n for rett til sykepengeerstatning)
+else (Oppfyller ikke § 11-5)
+   #pink:Avslag;
+   stop
+endif
+if (Vurdere § 11-6) then (Oppfylt)
+  #palegreen:Gå videre i behandlingen;
+  stop
+endif
+if (Vurdere § 11-13) then (Ikke oppfylt)
+  #pink:Avslag;
+  stop
+  endif
+   #palegreen:Gå videre i behandlingen;
+end
+
+@enduml
