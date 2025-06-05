@@ -1,0 +1,30 @@
+@startuml
+
+
+
+
+() "NORG" as NORG
+() "PDL" as PDL
+
+[Behandlingsflyt] as B
+[Oppgave] as O
+[Postmottak] as P
+[Statistikk] as S
+[Produksjonsstyring] as PS
+
+package "BigQuery / datamarkedsplasen" #Pink {
+        database Ytelsesstatistikk as BQY
+        database Saksstatistikk as BQS
+}
+
+O -up-> NORG
+S -up-> PDL
+B -> S : Ved stopp i behandlingen
+O -> S : Ved oppdatering på oppgaver
+P -down-> S : Ved stopp i behandlingen
+S -down-> PS : Aggregert informasjon
+
+S -> BQY
+S -> BQS
+
+@enduml
