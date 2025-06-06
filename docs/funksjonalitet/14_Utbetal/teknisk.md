@@ -5,6 +5,19 @@
 * API dokumentasjon for aap-utbetal: https://aap-utbetal.intern.dev.nav.no/swagger-ui/index.html
 * API dokumentasjon for Helved utbetaling: https://helved-docs.intern.dev.nav.no/v3/doc/kom_i_gang
 
+## Kontekstdiagram
+```mermaid
+graph TD
+    Behandlingsflyt--Oppdaterer med tilkjent ytelse<br/> ved vedtak-->Utbetal((AAP-Utbetal))
+    Behandlingsflyt--Simuler utbetaling før vedtak-->Utbetal
+    Utbetal--Lagre tilkjent ytelse og<br/> opprett task for beregning av utbetaling-->DB[(Database)]
+    Utbetal--Beregn utbetalinger og<br/> opprett tasker for sending-->DB
+    Utbetal--Send utbetaling-->Helved-utbetaling
+    Utbetal--Simuler utbetaling-->Helved-utbetaling
+    Utbetal--Sjekker status<br/> for utbetaling-->Helved-utbetaling
+```
+
+
 ## Flyter
 ### #1: Tilkjent ytelse fra Behandlingsflyt til Helved Utbetaling
 
@@ -64,6 +77,8 @@ flowchart LR
 ```mermaid
 sequenceDiagram
 Behandlingsflyt->>Utbetal: Ny tilkjent ytelse (vedtak)
+Utbetal->>HelvedUtbetaling: Hent status for tidligere utbetalinger sin ikke er bekreftet
+Utbetal->>Database: Oppdater status på utbetalinger dersom OK eller FEILET
 Utbetal->>Utbetal: Sjekk om alle tidligere utbetalinger er bekreftet (ellers returner LOCKED)
 Utbetal->>Utbetal: Sjekk at tilkjent ytelse ikke er duplikat (ellers returner CONFLICT)
 Utbetal->>Database: Opprett rad i SAK_UTBETALING dersom den ikke eksisterer
