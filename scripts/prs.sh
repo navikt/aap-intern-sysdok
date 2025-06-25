@@ -25,6 +25,7 @@ DEFAULT_REPOS=(
   "navikt/aap-utbetal"
   "navikt/aap-api-intern"
   "navikt/aap-kelvin-komponenter"
+  "navikt/aap-brev-sanity-proxy"
 )
 
 OUTPUT_FORMAT="table"
