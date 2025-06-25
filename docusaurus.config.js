@@ -27,8 +27,15 @@ export default {
 
   plugins: [
     [
-      require.resolve("@cmfcmf/docusaurus-search-local"),
-      { language: "no", indexBlog: false },
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        language: "no",
+        indexBlog: false,
+        indexDocs: true,
+        docsRouteBasePath: "/",
+        hashed: true,
+      }),
     ],
   ],
 
