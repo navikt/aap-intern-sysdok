@@ -4556,18 +4556,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@mdx-js/react@npm:3.1.0"
-  dependencies:
-    "@types/mdx": "npm:^2.0.0"
-  peerDependencies:
-    "@types/react": ">=16"
-    react: ">=16"
-  checksum: 10c0/381ed1211ba2b8491bf0ad9ef0d8d1badcdd114e1931d55d44019d4b827cc2752586708f9c7d2f9c3244150ed81f1f671a6ca95fae0edd5797fb47a22e06ceca
-  languageName: node
-  linkType: hard
-
 "@mermaid-js/parser@npm:^0.3.0":
   version: 0.3.0
   resolution: "@mermaid-js/parser@npm:0.3.0"
@@ -7990,7 +7978,6 @@ __metadata:
     "@docusaurus/preset-classic": "npm:^3.8.1"
     "@docusaurus/theme-mermaid": "npm:^3.8.1"
     "@easyops-cn/docusaurus-search-local": "npm:^0.51.1"
-    "@mdx-js/react": "npm:^3.1.0"
     prettier: "npm:^3.6.0"
     prism-react-renderer: "npm:^2.4.1"
     react: "npm:^19.1.0"

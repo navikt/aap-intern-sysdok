@@ -18,7 +18,6 @@
     "@docusaurus/preset-classic": "^3.8.1",
     "@docusaurus/theme-mermaid": "^3.8.1",
     "@easyops-cn/docusaurus-search-local": "^0.51.1",
-    "@mdx-js/react": "^3.1.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -26,11 +25,6 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.8.1",
     "prettier": "^3.6.0"
-  },
-  "overrides": {
-    "@cmfcmf/docusaurus-search-local": {
-      "@docusaurus/core": "^3.6.1"
-    }
   },
   "resolutions": {
     "mermaid": "^11.3.0"
