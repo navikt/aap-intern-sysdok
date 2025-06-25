@@ -26,6 +26,7 @@ DEFAULT_REPOS=(
   "navikt/aap-api-intern"
   "navikt/aap-kelvin-komponenter"
   "navikt/aap-brev-sanity-proxy"
+  "navikt/aap-meldekort-backend"
 )
 
 OUTPUT_FORMAT="table"
