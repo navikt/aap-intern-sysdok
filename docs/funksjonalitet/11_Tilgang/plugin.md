@@ -13,24 +13,28 @@ Se utfyllende dokumentasjon [på github](https://github.com/navikt/aap-tilgang/b
 ## Hvordan installere
 
 Tilgang-pluginen kaller tilgang-tjenesten. Før man kan ta i bruk, må man derfor legge til påkrevde config-verdier:
-
+```
     - name: INTEGRASJON_TILGANG_URL
       value: http://tilgang
     - name: INTEGRASJON_TILGANG_SCOPE
       value: api://dev-gcp.aap.tilgang/.default
+```
 
 Husk også å legge til tilgang i outbound rules:
-
+```
     accessPolicy:
         outbound:
             rules:
               - application: tilgang
+```
 
 I moduler der pluginen brukes:
-
+```
     api("no.nav.aap.tilgang:plugin:$tilgangVersjon")
+```
 
 I moduler der pluginen ikke blir brukt direkte, men der man må implementere interfaces som pluginen eksponerer:
-
+```
     api("no.nav.aap.tilgang:api-kontrakt:$tilgangVersjon")
+```
 
