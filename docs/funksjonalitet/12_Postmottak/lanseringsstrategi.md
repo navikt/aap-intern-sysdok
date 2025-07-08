@@ -20,6 +20,7 @@ Følgende regler er implementert i postmottak, og samtlige må være oppfylt for
 |ErIkkeReisestønadRegel|Reisestønad skal alltid til Arena| Ja |
 |ErIkkeAnkeRegel|Anke skal ikke behandles i Kelvin| Ja |
 |SøknadRegel|Kun søknad kan føre til opprettelse av sak i Kelvin | Nei |
+|AlleOppgitteBarnHarIdentRegel|Kelvin skal ikke behandle søknader hvor manuelt oppgitte barn mangler ident| Nei|
 
 I tillegg overstyrer følgende regler de ovennevnte:
 |KelvinSakRegel|Søker som har en sak i Kelvin skal alltid til Kelvin|
