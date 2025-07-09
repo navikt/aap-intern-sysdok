@@ -10,16 +10,18 @@
 | [Tilgang](../Tilgang/teknisk)                       | Inneholder logikk for å avgjøre om saksbehandlere har rett til forskjellige operasjoner på forskjellige saker/behandlinger |
 | [Brev](../Brev/teknisk)                             |                                                                                                                            |
 | [Dokumentinnhenting](../Dokumentinnhenting/teknisk) | Utføres bestiller av dialogmeldinger via ISYFO, samt oppslag av leger.                                                     |
+| [Oppgave](..Oppgave/teknisk)                        | Sender hendelser til Kelvins oppgaveløsning                                                                                |
+| [Meldekort](../Meldekort/teknisk)                   | Sender informasjon om blant annet meldeplikt, meldeperioder og opplysningsbehov                                            |
 
 ### Innkommende
 
-| App                                                 | Beskrivelse                                                                                    |
-|-----------------------------------------------------|------------------------------------------------------------------------------------------------|
-| Saksbehandling                                      | Behandlingsflyt sin frontend                                                                   |
-| [Brev](../Brev/teknisk)                             |                                                                                                |
-| [Dokumentinnhenting](../Dokumentinnhenting/teknisk) | Statusinformasjon fra aktive dialogmeldinger kan trigge flytlogikk, som å ta sak av vent       |
-| Paw-patrol                                          |                                                                                                |
-| [Postmottak](../Postmottak/teknisk)                 | Journalposter går via Postmottak inn til Behandlingsflyt                                       |
+| App                                                 | Beskrivelse                                                                              |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------|
+| Saksbehandling                                      | Behandlingsflyt sin frontend                                                             |
+| [Brev](../Brev/teknisk)                             |                                                                                          |
+| [Dokumentinnhenting](../Dokumentinnhenting/teknisk) | Statusinformasjon fra aktive dialogmeldinger kan trigge flytlogikk, som å ta sak av vent |
+| Paw-patrol                                          |                                                                                          |
+| [Postmottak](../Postmottak/teknisk)                 | Journalposter går via Postmottak inn til Behandlingsflyt                                 |
 
 ## Integrasjoner med eksterne team
 
