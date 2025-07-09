@@ -27,6 +27,10 @@ DEFAULT_REPOS=(
   "navikt/aap-kelvin-komponenter"
   "navikt/aap-brev-sanity-proxy"
   "navikt/aap-meldekort-backend"
+  "navikt/aap-intern-sysdok"
+  "navikt/aap-oppslag"
+  "navikt/aap-sanity-brev"
+  "navikt/aap-sanity-proxy"
 )
 
 OUTPUT_FORMAT="table"

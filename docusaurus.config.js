@@ -96,6 +96,15 @@ export default {
               },
             ],
           },
+          {
+            title: "Nyttige lenker",
+            items: [
+              {
+                label: "Github Security Overview",
+                href: "https://github.com/orgs/navikt/security/overview?query=archived%3Afalse+tool%3Agithub+team%3Aaap",
+              },
+            ],
+          },
         ],
       },
       prism: {
