@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # Teknisk beskrivelse
 
+Vi prøver å tagge repoene våre med `navikt-aap`. Så dette burde være alle: https://github.com/search?q=topic%3Anavikt-aap+org%3Anavikt&type=Repositories
+
 ## Repoer
 
 | Funskjonsområde  | Repo                                                            | Kort beskrivelse                                                                                                                                                                                                                 |

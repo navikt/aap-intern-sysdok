@@ -2,7 +2,7 @@
 
 Grafana Kommer™️
 
-## flyter
+## Flyter
 Dokumentinnhenting står ansvarlig for 3 deler:
 * Bestilling av legeerklæring
 * mottak av legeerklæring

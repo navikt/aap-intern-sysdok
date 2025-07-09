@@ -12,7 +12,7 @@ avklaringsbehov.
 
 ### Endringer i kontrakt-modulen
 
-Kontakt-modulen publiseres som bibliotek. Det betyr at endringer i denne modulen kan brekke andre tjenester. Les
+Kontrakt-modulen publiseres som bibliotek. Det betyr at endringer i denne modulen kan brekke andre tjenester. Les
 mer [her](https://github.com/navikt/aap-behandlingsflyt/blob/main/kontrakt/src/main/kotlin/no/nav/aap/behandlingsflyt/kontrakt/README.md).
 
 Typiske endringer som kan føre til problemer er å legge til nye avklaringsbehovdefinisjoner (dette i seg selv er lov) og
