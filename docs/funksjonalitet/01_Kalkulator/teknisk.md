@@ -50,12 +50,3 @@ Wrappet tilstand blir da sendt inn i 3 funksjoner som regner Beregningsgrunnlag,
 ## Universell utforming
 
 Kalkulatoren er tested for WCAG 2.0 A og AA. Dette ble testet med en rekke verktøy, blant annet [W3C Validator](https://validator.w3.org/) og [Lighthouse](https://developers.google.com/web/tools/lighthouse).
-
----
-# Henvendelser
-
-Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub.n
-
-## For NAV-ansatte
-
-Interne henvendelser kan sendes via Slack i kanalen #po-aap-innbygger.
