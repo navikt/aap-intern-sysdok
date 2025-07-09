@@ -20,8 +20,9 @@
 | Saksbehandling                                            | Behandlingsflyt sin frontend                                                             |
 | [Brev](../08_Brev/teknisk.md)                             |                                                                                          |
 | [Dokumentinnhenting](../13_Dokumentinnhenting/teknisk.md) | Statusinformasjon fra aktive dialogmeldinger kan trigge flytlogikk, som å ta sak av vent |
-| Paw-patrol                                                |                                                                                          |
+| Paw-patrol                                                | Frontend for drift                                                                       |
 | [Postmottak](../12_Postmottak/teknisk.md)                 | Journalposter går via Postmottak inn til Behandlingsflyt                                 |
+| [Tilgang](../11_Tilgang/teknisk.md)                       | Tilgang kaller behandlingsflyt for å finne alle personer på saken                        |
 
 ## Integrasjoner med eksterne team
 
