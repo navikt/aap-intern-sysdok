@@ -4,24 +4,24 @@
 
 ### Utgående
 
-| App                                                    | Beskrivelse                                                                                                                |
-|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| [Statistikk](../09_Statistikk/teknisk)                 | Avgir statistikk på behandling underveis (ved behandlingsstopp) og avsluttet behandling for statistikkformål               |
-| [Tilgang](../11_Tilgang/teknisk)                       | Inneholder logikk for å avgjøre om saksbehandlere har rett til forskjellige operasjoner på forskjellige saker/behandlinger |
-| [Brev](../08_Brev/teknisk)                             |                                                                                                                            |
-| [Dokumentinnhenting](../13_Dokumentinnhenting/teknisk) | Utføres bestiller av dialogmeldinger via ISYFO, samt oppslag av leger.                                                     |
-| [Oppgave](../07_Oppgave/teknisk)                       | Sender hendelser til Kelvins oppgaveløsning                                                                                |
-| [Meldekort](../15_Meldekort/teknisk)                   | Sender informasjon om blant annet meldeplikt, meldeperioder og opplysningsbehov                                            |
+| App                                                       | Beskrivelse                                                                                                                |
+|-----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| [Statistikk](../09_Statistikk/teknisk.md)                 | Avgir statistikk på behandling underveis (ved behandlingsstopp) og avsluttet behandling for statistikkformål               |
+| [Tilgang](../11_Tilgang/teknisk.md)                       | Inneholder logikk for å avgjøre om saksbehandlere har rett til forskjellige operasjoner på forskjellige saker/behandlinger |
+| [Brev](../08_Brev/teknisk.md)                             |                                                                                                                            |
+| [Dokumentinnhenting](../13_Dokumentinnhenting/teknisk.md) | Utføres bestiller av dialogmeldinger via ISYFO, samt oppslag av leger.                                                     |
+| [Oppgave](../07_Oppgave/teknisk.md)                       | Sender hendelser til Kelvins oppgaveløsning                                                                                |
+| [Meldekort](../15_Meldekort/teknisk.md)                   | Sender informasjon om blant annet meldeplikt, meldeperioder og opplysningsbehov                                            |
 
 ### Innkommende
 
-| App                                                    | Beskrivelse                                                                              |
-|--------------------------------------------------------|------------------------------------------------------------------------------------------|
-| Saksbehandling                                         | Behandlingsflyt sin frontend                                                             |
-| [Brev](../08_Brev/teknisk)                             |                                                                                          |
-| [Dokumentinnhenting](../13_Dokumentinnhenting/teknisk) | Statusinformasjon fra aktive dialogmeldinger kan trigge flytlogikk, som å ta sak av vent |
-| Paw-patrol                                             |                                                                                          |
-| [Postmottak](../12_Postmottak/teknisk)                 | Journalposter går via Postmottak inn til Behandlingsflyt                                 |
+| App                                                       | Beskrivelse                                                                              |
+|-----------------------------------------------------------|------------------------------------------------------------------------------------------|
+| Saksbehandling                                            | Behandlingsflyt sin frontend                                                             |
+| [Brev](../08_Brev/teknisk.md)                             |                                                                                          |
+| [Dokumentinnhenting](../13_Dokumentinnhenting/teknisk.md) | Statusinformasjon fra aktive dialogmeldinger kan trigge flytlogikk, som å ta sak av vent |
+| Paw-patrol                                                |                                                                                          |
+| [Postmottak](../12_Postmottak/teknisk.md)                 | Journalposter går via Postmottak inn til Behandlingsflyt                                 |
 
 ## Integrasjoner med eksterne team
 
