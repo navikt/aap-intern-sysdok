@@ -26,6 +26,7 @@ har prosessert og vurdere om man er nødt til å behandle steget på nytt hvis d
 
 Har ansvar for å drive prosessen fremover, stoppe opp ved behov for besluttningsstøtte av et menneske og sørge for at at
 stegene traverseres i den definerte rekkefølgen i flyten. Flytene defineres i typen behandlingen.
+[StegOrkestratoren](#StegOrkestrator) kalles for det gjeldende steget.
 
 ### Diagrammer
 
@@ -69,7 +70,7 @@ flowchart LR
 ## StegOrkestrator
 
 Håndterer den definerte prosessen i et gitt steg, flytter behandlingen gjennom de forskjellige fasene internt i et
-steg. Et steg beveger seg gjennom flere faser som har forskjellig ansvar.
+steg.
 
 | Fase                   | Beskrivelse                                                                                                                                   | Savepoint |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|:---------:|
@@ -99,6 +100,41 @@ stateDiagram-v2
     AVSLUTTER --> [*]: Fortsett
     TILBAKEFØRT --> [*]: Fortsett
 ```
+
+## Informasjonskrav / Oppdater faktagrunnlag
+
+Steg kan ha informasjonskrav. Et informasjonskrav har ansvar for å hente inn relevant informasjon og oppdatere
+faktagrunnlaget. Dette skjer både i flytorkestratoren og i stegorkestratoren. I flytorkestratoren hentes
+informasjonskrav for alle foregående steg, slik at behandlingen kan dras tilbake til riktig steg dersom faktagrunnlaget
+har endret seg. I stegorkestratoren hentes informasjonskrav for det gjeldende steget.
+Et steg kan ha flere informasjonskrav, men disse må være uavhengige av hverandre. Det vil si at faktagrunnlaget som er
+oppdatert i ett informasjonskrav ikke kan brukes i oppdater-metoden til et annet.
+
+Informasjonskravene oppdateres asynkront.
+
+## Avklaringsbehov
+
+Behandlingsflyt prøver å fullføre en behandling på egenhånd. Dersom et steg ikke kan fullføres automatisk, opprettes et
+avklaringsbehov som stopper opp behandlingen. Steget vil ikke fullføres før behovet er blitt løst. Hvordan et
+avklaringsbehov løses, avhenger av behovets <i>definisjon</i>.
+Den finner man i enum-klassen `Definisjon`
+
+Merk: `Avklaringsbehov` i koden er et spesifikt avklaringsbehov som er opprettet når flyten stopper opp. Den peker på en definisjon, men har også flere egenskaper som f.eks. hvilket steg det ble opprettet i, når det ble opprettet og hvem som opprettet det. Avklaringsbehovhistorikken brukes videre i [oppgavehåndtering](./07_Oppgave/teknisk.md).  
+
+### Definisjon
+
+| Egenskap        | Beskrivelse                                                                                                                                   | Eksempel: `AVKLAR_STUDENT`     |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| kode            | fire-sifret ekstern referanse                                                                                                                 | `5001`                         |
+| type            | Hvordan behovet trigges                                                                                                                  | `MANUELT_PÅKREVD`              |
+| løsesISteg      | Hvilket steg behovet løses i. Flere behov kan løses i samme steg, men et behov kan kun løses i ett steg. Flere steg kan opprette det samme behovet. | `StegType.AVKLAR_STUDENT`      |
+| løsesAv         | Liste over roller som kan løse behovet. Brukes bl.a. til oppgavehåndtering og tilgangskontroll                                                | `Rolle.SAKSBEHANDLER_NASJONAL` |
+| kreverToTrinn   | Hvorvidt beslutter skal ta stilling til løsningen av behovet                                                                                  | `true`                         |
+| kvalitetssikres | Hvorvidt kvalitetssikrer skal ta stilling til løsningen av behovet                                                                            | `false`                        |
+| defaultFrist    | Kun relevant for avklaringsbehov av type `VENTEPUNKT`                                                                                         | `null`                         |
+
+NB: Definisjon skal ikke endres - dette kan brekke gamle og åpne behandlinger. Eventuelle endringer gjøres ved å opprette en ny definisjon med unik kode, og deprekere den gamle.
+
 
 ## DB-diagram for samordning-tabeller
 
