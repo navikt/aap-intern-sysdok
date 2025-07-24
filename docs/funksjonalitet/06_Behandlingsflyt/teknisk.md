@@ -27,6 +27,9 @@ FlytOrkestratoren kjører i en transaksjon. Savepoints settes underveis i flyten
 Har ansvar for å sette behandlingen i en oppdatert tilstand i form av å innhente opplysninger for stegene man allerede
 har prosessert og vurdere om man er nødt til å behandle steget på nytt hvis det er oppdaterte opplysninger.
 
+Dersom behandlingen er på vent, blir ventebehovet forsøkt løst ved å kalle relevante evaluatorer. Et eksempel er `FristUtløptVentebehovEvaluerer`, som løser behovet dersom fristen er utløpt. Automatiske løsninger for spesifikke
+ventebehov kan lages ved å implementere `SpesifikkVentebehovEvaluerer`. Hvis behovet blir løst, tas behandlingen av vent, og flyten blir dratt tilbake til det steget som behandlingen var i da den ble satt på vent. 
+
 ### Prosesser behandling
 
 Har ansvar for å drive prosessen fremover, stoppe opp ved behov for besluttningsstøtte av et menneske og sørge for at at
