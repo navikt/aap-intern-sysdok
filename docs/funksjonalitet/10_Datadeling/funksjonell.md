@@ -59,7 +59,9 @@ flowchart TB
 ## Ekstern deling av data
 
 AAP-data tilbys gjennom REST-grensesnitt til ulike konsumenter (den som henter data). Hver konsument har sitt eget dedikerte grensesnitt med autentisering og data.
-Hovedflyten vil som regel gå Vedtak på førstegangsbehandling -> Varsling gjennom sam -> Interesenter plukker opp varsling -> interesent henter data fra aap api gjennom FNR.
+Hovedflyten vil som regel gå Vedtak på:
+
+førstegangsbehandling -> Varsling gjennom sam -> Interesenter plukker opp varsling -> interesent henter data fra aap api gjennom FNR.
 
 ### Autentisering av eksterne konsumenter
 
