@@ -6,7 +6,7 @@ Behandlingsflyt er den delen av Kelvin som eier saken og driver saksbehandlingen
 
 ## Motoren
 
-[Motoren](../../teknisk/felles_komponenter.md/#motor) er en felles-komponent for tasks/jobbhåndtering som står sentralt
+[Motoren](../../teknisk/felles_komponenter.md#motor) er en felles-komponent for tasks/jobbhåndtering som står sentralt
 i løsningen. Når behandlingsflyt starter opp, legges diverse jobber til i motoren. Noen er periodiske, andre legges til
 fortløpende, f.eks. ved at behandlingsflyt enten mottar eller sender ut en hendelse, eller at saksbehandler klikker seg
 inn på en behandling.
