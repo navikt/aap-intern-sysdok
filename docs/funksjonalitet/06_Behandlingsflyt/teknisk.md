@@ -6,8 +6,6 @@ Grafana-dashboard: https://grafana.nav.cloud.nais.io/d/fdti727n7u6m8c/behandling
 
 Les også [readme](https://github.com/navikt/aap-behandlingsflyt)
 
-## Tidslinjer/segmenter (TODO)
-
 ## FlytOrkestrator
 
 Flytorkestratoren har ansvar for å drive flyten til en gitt behandling. Typen behandling styrer hvilke steg som skal
@@ -135,6 +133,59 @@ Merk: `Avklaringsbehov` i koden er et spesifikt avklaringsbehov som er opprettet
 
 NB: Definisjon skal ikke endres - dette kan brekke gamle og åpne behandlinger. Eventuelle endringer gjøres ved å opprette en ny definisjon med unik kode, og deprekere den gamle.
 
+
+## Tidslinjer/segmenter (TODO)
+
+## Modulinndeling
+
+```mermaid
+flowchart LR
+    app --> api
+    api --> behandlingsflyt
+    app --> behandlingsflyt
+    repository --> behandlingsflyt
+    app --> repository
+    behandlingsflyt --> kontrakt
+    
+    
+```
+
+### app
+Ansvarlig for å lese inn konfigurasjon og starte opp applikasjonen ved å opprette
+objekter fra de andre modulene og tildele disse. 
+
+Avhengigheter til tredjeparts kode for å
+håndtere dette blir isolert til denne modulen.
+
+### api 
+Ansvarlig for å tilgjengeliggjøre løsningens funksjonalitet til frontend og andre tjenester i form av
+HTTP-basert API.
+
+Oversetter mellom publisert API og modell i modul `behandlingsflyt`. Gjør
+kall til forretningslogikk i `behandlingsflyt` gjennom objekter som blir opprettet av modul `app`
+og tildelt `api` ved oppstart av applikasjonen. Avhengigheter til tredjeparts-kode for
+implementasjon av HTTP-basert API blir isolert til denne modulen.
+### behandlingsflyt
+Ansvarlig for all forretningslogikk i applikasjonen. 
+
+Har ikke avhengigheter
+til kode i andre moduler, bortsett fra `kontrakt`. Bruker ingen eller få veletablerte tredjepartsbiblioteker. Gjør kall til
+kode i modul `repository` gjennom interfaces definert i modul `behandlingsflyt`
+som implementeres av klasser i `repository`. Oppstartskoden i modul `app`
+oppretter objektene og tildeler disse ved oppstart av applikasjonen.
+
+### repository
+Ansvarlig for kommunikasjon med database og andre løsningers
+APIer. 
+
+Implementerer interfaces definert i modul `behandlingsflyt`. Oversetter mellom
+data-/objektmodell i `behandlingsflyt` og grensesnitt i andre applikasjoner. Avhengigheter til
+tredjeparts kode for kommunikasjon med databaser og APIer blir isolert til denne modulen.
+
+### kontrakt
+Ansvarlig for å definere kontrakter mellom applikasjonen og andre tjenester.
+
+Klasser i denne modulen publiseres som bibliotek.
 
 ## DB-diagram for samordning-tabeller
 
