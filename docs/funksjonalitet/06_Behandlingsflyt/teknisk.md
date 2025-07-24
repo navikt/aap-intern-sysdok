@@ -119,7 +119,7 @@ avklaringsbehov som stopper opp behandlingen. Steget vil ikke fullføres før be
 avklaringsbehov løses, avhenger av behovets <i>definisjon</i>.
 Den finner man i enum-klassen `Definisjon`
 
-Merk: `Avklaringsbehov` i koden er et spesifikt avklaringsbehov som er opprettet når flyten stopper opp. Den peker på en definisjon, men har også flere egenskaper som f.eks. hvilket steg det ble opprettet i, når det ble opprettet og hvem som opprettet det. Avklaringsbehovhistorikken brukes videre i [oppgavehåndtering](./07_Oppgave/teknisk.md).  
+Merk: `Avklaringsbehov` i koden er et spesifikt avklaringsbehov som er opprettet når flyten stopper opp. Den peker på en definisjon, men har også flere egenskaper som f.eks. hvilket steg det ble opprettet i, når det ble opprettet og hvem som opprettet det. Avklaringsbehovhistorikken brukes videre i [oppgavehåndtering](docs/funksjonalitet/07_Oppgave/teknisk.md).  
 
 ### Definisjon
 
