@@ -1,19 +1,26 @@
 # Teknisk beskrivelse
 
-Swagger-dokumentasjon: https://aap-behandlingsflyt.intern.dev.nav.no/swagger-ui/index.html
+[Github](https://github.com/navikt/aap-behandlingsflyt) | [Swagger](https://aap-behandlingsflyt.intern.dev.nav.no/swagger-ui/index.html) | [Grafana-dashboard](https://grafana.nav.cloud.nais.io/d/fdti727n7u6m8c/behandlingsflyt?orgId=1)
 
-Grafana-dashboard: https://grafana.nav.cloud.nais.io/d/fdti727n7u6m8c/behandlingsflyt?orgId=1
+Behandlingsflyt er den delen av Kelvin som eier saken og driver saksbehandlingen.
 
-Les også [readme](https://github.com/navikt/aap-behandlingsflyt)
+## Motoren
+
+[Motoren](../../teknisk/felles_komponenter.md/#motor) er en felles-komponent for tasks/jobbhåndtering som står sentralt
+i løsningen. Når behandlingsflyt starter opp, legges diverse jobber til i motoren. Noen er periodiske, andre legges til
+fortløpende, f.eks. ved at behandlingsflyt enten mottar eller sender ut en hendelse, eller at saksbehandler klikker seg
+inn på en behandling.
+
+Den mest sentrale jobben er `flyt.prosesserBehandling`, som starter opp flytorkestratoren.
 
 ## FlytOrkestrator
 
-Flytorkestratoren har ansvar for å drive flyten til en gitt behandling. Typen behandling styrer hvilke steg som skal
-utføres.
+Flytorkestratoren har ansvar for å drive flyten til en gitt behandling. En behandling består av flere steg som utføres i
+rekkefølge. Typen behandling avgjør hvilke steg som skal kjøres.
 
 Jobben `flyt.prosesserBehandling` sparker i gang henholdsvis forbered- og prosesser behandling.
 FlytOrkestratoren kjører i en transaksjon. Savepoints settes underveis i flyten
-(se [StegOrkestrator](#StegOrkestrator)), men kan også kjøres atomært, f.eks. meldekortbehandlingen.
+(se [StegOrkestrator](#StegOrkestrator)), men en behandling kan også kjøres atomært, f.eks. meldekortbehandlingen.
 
 ### Forbered behandling
 
@@ -117,22 +124,25 @@ avklaringsbehov som stopper opp behandlingen. Steget vil ikke fullføres før be
 avklaringsbehov løses, avhenger av behovets <i>definisjon</i>.
 Den finner man i enum-klassen `Definisjon`
 
-Merk: `Avklaringsbehov` i koden er et spesifikt avklaringsbehov som er opprettet når flyten stopper opp. Den peker på en definisjon, men har også flere egenskaper som f.eks. hvilket steg det ble opprettet i, når det ble opprettet og hvem som opprettet det. Avklaringsbehovhistorikken brukes videre i [oppgavehåndtering](docs/funksjonalitet/07_Oppgave/teknisk.md).  
+Merk: `Avklaringsbehov` i koden er et spesifikt avklaringsbehov som er opprettet når flyten stopper opp. Den peker på en
+definisjon, men har også flere egenskaper som f.eks. hvilket steg det ble opprettet i, når det ble opprettet og hvem som
+opprettet det. Avklaringsbehovhistorikken brukes videre
+i [oppgavehåndtering](docs/funksjonalitet/07_Oppgave/teknisk.md).
 
 ### Definisjon
 
-| Egenskap        | Beskrivelse                                                                                                                                   | Eksempel: `AVKLAR_STUDENT`     |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
-| kode            | fire-sifret ekstern referanse                                                                                                                 | `5001`                         |
-| type            | Hvordan behovet trigges                                                                                                                  | `MANUELT_PÅKREVD`              |
+| Egenskap        | Beskrivelse                                                                                                                                         | Eksempel: `AVKLAR_STUDENT`     |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| kode            | fire-sifret ekstern referanse                                                                                                                       | `5001`                         |
+| type            | Hvordan behovet trigges                                                                                                                             | `MANUELT_PÅKREVD`              |
 | løsesISteg      | Hvilket steg behovet løses i. Flere behov kan løses i samme steg, men et behov kan kun løses i ett steg. Flere steg kan opprette det samme behovet. | `StegType.AVKLAR_STUDENT`      |
-| løsesAv         | Liste over roller som kan løse behovet. Brukes bl.a. til oppgavehåndtering og tilgangskontroll                                                | `Rolle.SAKSBEHANDLER_NASJONAL` |
-| kreverToTrinn   | Hvorvidt beslutter skal ta stilling til løsningen av behovet                                                                                  | `true`                         |
-| kvalitetssikres | Hvorvidt kvalitetssikrer skal ta stilling til løsningen av behovet                                                                            | `false`                        |
-| defaultFrist    | Kun relevant for avklaringsbehov av type `VENTEPUNKT`                                                                                         | `null`                         |
+| løsesAv         | Liste over roller som kan løse behovet. Brukes bl.a. til oppgavehåndtering og tilgangskontroll                                                      | `Rolle.SAKSBEHANDLER_NASJONAL` |
+| kreverToTrinn   | Hvorvidt beslutter skal ta stilling til løsningen av behovet                                                                                        | `true`                         |
+| kvalitetssikres | Hvorvidt kvalitetssikrer skal ta stilling til løsningen av behovet                                                                                  | `false`                        |
+| defaultFrist    | Kun relevant for avklaringsbehov av type `VENTEPUNKT`                                                                                               | `null`                         |
 
-NB: Definisjon skal ikke endres - dette kan brekke gamle og åpne behandlinger. Eventuelle endringer gjøres ved å opprette en ny definisjon med unik kode, og deprekere den gamle.
-
+NB: Definisjon skal ikke endres - dette kan brekke gamle og åpne behandlinger. Eventuelle endringer gjøres ved å
+opprette en ny definisjon med unik kode, og deprekere den gamle.
 
 ## Tidslinjer/segmenter (TODO)
 
@@ -146,18 +156,20 @@ flowchart LR
     repository --> behandlingsflyt
     app --> repository
     behandlingsflyt --> kontrakt
-    
-    
+
+
 ```
 
 ### app
+
 Ansvarlig for å lese inn konfigurasjon og starte opp applikasjonen ved å opprette
-objekter fra de andre modulene og tildele disse. 
+objekter fra de andre modulene og tildele disse.
 
 Avhengigheter til tredjeparts kode for å
 håndtere dette blir isolert til denne modulen.
 
-### api 
+### api
+
 Ansvarlig for å tilgjengeliggjøre løsningens funksjonalitet til frontend og andre tjenester i form av
 HTTP-basert API.
 
@@ -165,27 +177,42 @@ Oversetter mellom publisert API og modell i modul `behandlingsflyt`. Gjør
 kall til forretningslogikk i `behandlingsflyt` gjennom objekter som blir opprettet av modul `app`
 og tildelt `api` ved oppstart av applikasjonen. Avhengigheter til tredjeparts-kode for
 implementasjon av HTTP-basert API blir isolert til denne modulen.
-### behandlingsflyt
-Ansvarlig for all forretningslogikk i applikasjonen. 
 
-Har ikke avhengigheter
-til kode i andre moduler, bortsett fra `kontrakt`. Bruker ingen eller få veletablerte tredjepartsbiblioteker. Gjør kall til
-kode i modul `repository` gjennom interfaces definert i modul `behandlingsflyt`
+### behandlingsflyt
+
+Ansvarlig for all forretningslogikk i applikasjonen.
+
+Har ikke avhengigheter til kode i andre moduler, bortsett fra `kontrakt`. Bruker ingen eller få veletablerte
+tredjepartsbiblioteker. Gjør kall til kode i modul `repository` gjennom interfaces definert i modul `behandlingsflyt`
 som implementeres av klasser i `repository`. Oppstartskoden i modul `app`
 oppretter objektene og tildeler disse ved oppstart av applikasjonen.
 
 ### repository
+
 Ansvarlig for kommunikasjon med database og andre løsningers
-APIer. 
+APIer.
 
 Implementerer interfaces definert i modul `behandlingsflyt`. Oversetter mellom
 data-/objektmodell i `behandlingsflyt` og grensesnitt i andre applikasjoner. Avhengigheter til
 tredjeparts kode for kommunikasjon med databaser og APIer blir isolert til denne modulen.
 
 ### kontrakt
+
 Ansvarlig for å definere kontrakter mellom applikasjonen og andre tjenester.
 
 Klasser i denne modulen publiseres som bibliotek.
+
+## Samspill med frontend
+
+Det er behandlingsflyt som styrer tilstanden til behandlingen. Når saksbehandler åpner en behandling, hentes informasjon
+om behandlingen. Dersom behandlingen ikke har vært prosessert nylig, kaller frontenden `/forbered`-endepunktet for å
+trigge jobben `flyt.prosesserBehandling`. Denne jobben kjøres så asynkront, og frontenden poller `/flyt`-endepunktet som
+gir status på jobben. Når jobben er ferdig, oppdateres frontend med behandlingstilstanden, og navigerer til
+riktig steg.
+
+Stegene i den aktive steggruppa henter så inn `grunnlag`, som er informasjon som er relevant å vise i hvert steg. Når
+saksbehandler sender inn en løsning i `/løs-behov` trigges ny prosessering av behandlingen, og det polles igjen på
+`/flyt`-endepunktet for å synkronisere frontend med backend.
 
 ## DB-diagram for samordning-tabeller
 
