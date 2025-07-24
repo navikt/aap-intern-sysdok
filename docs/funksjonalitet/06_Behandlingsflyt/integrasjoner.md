@@ -36,4 +36,4 @@
 | PESYS (pensjon-pen)            |      |                                                                                                                                                       | Per i dag (19-07-24) ser det ikke ut til at integrasjonen er fullført.                                                      |                                                  
 | MEDL                           |      | [Github](https://github.com/navikt/medlemskap-medl)  [Swagger](https://medlemskap-medl-api.dev.intern.nav.no/swagger-ui/index.html#/)                 |                                                                                                                             |
 | SAM                            |      |[Github](https://github.com/navikt/sam)                                                                                                                | Varsler kun ved vedtak på førstegangsbehandling.
-                                        |
+                                        
