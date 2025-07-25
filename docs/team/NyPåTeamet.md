@@ -87,7 +87,8 @@ Tror de fleste av oss bruker Colima.
 Om du ikke har det allerede, sett opp [ssh-nøkler](https://github.com/settings/keys) for Github-bnrukeren din. Må også sette opp SSO, slik at man bruke nøkkelparet om navikt-organisasjonen.
 
 ### Repos
-Vi har mange repos som er relevante for teamet. Siden ikke alle er like relevante for alle, skriver jeg ikke ut alle her.
+Vi har mange repos som er relevante for teamet. Disse finnes [her](https://github.com/search?q=topic%3Anavikt-aap+org%3Anavikt+archived%3Afalse&type=repositories).
+
 Hovedapplikasjonene våre er beskrevet på denne siden.
 
 ### Nyttige lenker
