@@ -4,31 +4,18 @@ sidebar_position: 1
 
 # Teknisk beskrivelse
 
-Vi prøver å tagge repoene våre med `navikt-aap`. Så dette burde være alle: https://github.com/search?q=topic%3Anavikt-aap+org%3Anavikt&type=Repositories
+Vi prøver å tagge repoene våre med `navikt-aap`. Så dette burde være
+alle: https://github.com/search?q=topic%3Anavikt-aap+org%3Anavikt+archived%3Afalse&type=repositories
 
-## Repoer
+Utfyllende informasjon om de ulike applikasjonene finnes i menyen til venstre.
 
-| Funskjonsområde  | Repo                                                            | Kort beskrivelse                                                                                                                                                                                                                 |
-|------------------|-----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Innbygger nav.no | [Søknad](https://github.com/navikt/aap-soknad)                  | Søknad om arbeidsavklaringspenger for innlogget bruker.                                                                                                                                                                          |
-| Innbygger nav.no | [Mine AAP](https://github.com/navikt/aap-innsyn)        | Innsysnløsning og landingsside for innlogget bruker.                                                                                                                                                                             |
-| Innbygger nav.no | [Innsending](https://github.com/navikt/aap-innsending)          | Backend for innsending av digitale søknader og ettersendelser.                                                                                                                                                                   |
-| Innbygger nav.no | [Oppslag](https://github.com/navikt/aap-oppslag)                | Backend for Mine AAP og innsending som slår opp mot registertjenester.                                                                                                                                                           |
-| Innbygger nav.no | [Kalkulator](https://github.com/navikt/aap-kalkulator-frontend) | Uinlogget løsning for innbyggere som skal beregne hva de får i støtte.                                                                                                                                                           |
-| Innbygger nav.no | [Pdfgen](https://github.com/navikt/aap-pdfgen)                  | Backend applikasjon som konverteer søknad og bilde-vedlegg til PDFA.                                                                                                                                                             |
-| Deling av data   | [AAP-api](https://github.com/navikt/aap-api)                    | AAP-API tilbyr AAP-data til eksterne konsumenter som enten har hjemmel til å hente AAP-data eller et samtykke fra bruker.                                                                                                        |
-| Deling av data   | [AAP-api-intern](https://github.com/navikt/aap-api-intern)      | AAP-API Intern tilbyr AAP-data til interne konsumenter i NAV.                                                                                                                                                                    |
-| Deling av data   | [AAP-arenaoppslag](https://github.com/navikt/aap-arenaoppslag)  | AAP-arenaoppslag tilbyr historiske data fra Arena til AAP-API.                                                                                                                                                                   |
-| Postmottak       | [Postmottak](https://github.com/navikt/aap-postmottak-backend)  | AAP-Postmottak skal erstatte jfr-manuell og jfr-arena for alle inngående dokumenter (journalposter) på tema AAP og håndtere oppgaveopprettelse på riktig NAV-enhet koblet til riktig mottakersystem. (gosys, arena eller Kelvin) |
-| Statistikk       | [AAP Statistikk](https://github.com/navikt/aap-statistikk)      | Statistikk for etterlevelseskrav.                                                                                                                                                                                                |
-| Tilgangskontroll | [Tilgang](https://github.com/navikt/aap-tilgang)                | Tilgangskontroll for aap-tjenester                                                                                                                                                                                               |
+## Stack
 
-
-| Del av løsning | Teknologi beskrivelse                                                 |
-|----------------|-----------------------------------------------------------------------|
-| Klient         | NEXT.js, React, Typescript                                            |
-| Baksystem      | Ktor og Kotlin                                                        |
-| Infrastruktur  | Postgres-database for forretningslogikk                               |
-| Kafka          | Hendelsesbasert kommunikasjon mellom systemer i NAV og feilhåndtering |
-| Redis          | Mellomlagring av søknad og vedlegg                                    |
+| Del av løsning | Teknologi beskrivelse                               |
+|----------------|-----------------------------------------------------|
+| Klient         | NEXT.js, React, Typescript                          |
+| Baksystem      | Ktor og Kotlin                                      |
+| Infrastruktur  | Postgres-database for forretningslogikk             |
+| Kafka          | Hendelsesbasert kommunikasjon mellom systemer i Nav |
+| Valkey         | Mellomlagring                                       |
 
