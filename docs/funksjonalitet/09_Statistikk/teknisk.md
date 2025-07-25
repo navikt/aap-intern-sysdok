@@ -1,16 +1,5 @@
 # Teknisk beskrivelse
-
-Swagger-dokumentasjon: https://aap-statistikk.intern.dev.nav.no/swagger-ui/index.html
-
-
-[Lenke til Nais Console](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app/statistikk)
-
-
-Logger: [Adeo](https://logs.adeo.no/app/r?l=DISCOVER_APP_LOCATOR&v=8.13.4&lz=N4IgjgrgpgTgniAXKANgQwHYHMJq1JEAa2nhABpxSFEQ0AHelASwGM0AXZgewwAJEfADogAzh07NxzIkREgAvpVHcYHJAG0NIAAJcAtlHFp99CiAAmR1iAC6tyq24oI%2BjKM0gUUAG5QU5oaiongElFAYPqzoweYMTGySvOb03BZ2lMwYVgAehACcAGxQhQAsABysAAwAtPnlVWg1AIzNUPk15QDMjTVQzQDsAEZDFmVDpRZD5lkcsD5oAbRoEBzc5gBmzChzMB6IGg6WnGgAasxQAO4Akum0RSUV1XUNTa3tnT1N%2FcOj45PTSgGKAAJUw%2BCQoA2MG4%2BkIGG4lxqACZSgALAD0aPMa3hiMUlBgUGhRjR1wwuwWS1AVOgSEKVUZVUo9BWogIiA4MGgCgUQA%3D%3D%3D)
-
-Grafana-dashboard: https://grafana.nav.cloud.nais.io/d/edqu3y0nhmxhcb/statistikk?orgId=1
-
-Lenke til Google Cloud BigQuery-konsoll: https://console.cloud.google.com/bigquery?ws=!1m4!1m3!3m2!1saap-dev-e48b!2stester
+[Github](https://github.com/navikt/aap-statistikk) | [Swagger](https://aap-statistikk.intern.dev.nav.no/swagger-ui/index.html) | [Grafana](https://grafana.nav.cloud.nais.io/d/edqu3y0nhmxhcb/statistikk?orgId=1) | [Nais Console](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app/statistikk) | [Adeo](https://logs.adeo.no/app/r?l=DISCOVER_APP_LOCATOR&v=8.13.4&lz=N4IgjgrgpgTgniAXKANgQwHYHMJq1JEAa2nhABpxSFEQ0AHelASwGM0AXZgewwAJEfADogAzh07NxzIkREgAvpVHcYHJAG0NIAAJcAtlHFp99CiAAmR1iAC6tyq24oI%2BjKM0gUUAG5QU5oaiongElFAYPqzoweYMTGySvOb03BZ2lMwYVgAehACcAGxQhQAsABysAAwAtPnlVWg1AIzNUPk15QDMjTVQzQDsAEZDFmVDpRZD5lkcsD5oAbRoEBzc5gBmzChzMB6IGg6WnGgAasxQAO4Akum0RSUV1XUNTa3tnT1N%2FcOj45PTSgGKAAJUw%2BCQoA2MG4%2BkIGG4lxqACZSgALAD0aPMa3hiMUlBgUGhRjR1wwuwWS1AVOgSEKVUZVUo9BWogIiA4MGgCgUQA%3D%3D%3D) | [Google Cloud BigQuery-konsoll](https://console.cloud.google.com/bigquery?ws=!1m4!1m3!3m2!1saap-dev-e48b!2stester)
 
 ## Kjøre lokalt
 

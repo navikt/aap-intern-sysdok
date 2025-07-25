@@ -1,11 +1,10 @@
 # Teknisk beskrivelse
+[Grafana](https://grafana.nav.cloud.nais.io/d/bcb27950-0648-4940-9cfb-3137d9b0405c/aap-api?orgId=1)
 
-Grafana-dashboard: https://grafana.nav.cloud.nais.io/d/bcb27950-0648-4940-9cfb-3137d9b0405c/aap-api?orgId=1
+Api Ekstern:
+[Github](https://github.com/navikt/aap-api) | [Swagger](https://aap-api.ekstern.dev.nav.no/swagger)
 
-## Repositories
-
-- [Ekstern deling av data](https://github.com/navikt/aap-api)
-- [Intern deling av data](https://github.com/navikt/aap-api-intern)
+Api Intern: [Github](https://github.com/navikt/aap-api-intern) | [Swagger](https://aap-api.intern.dev.nav.no/swagger-ui/index.html)
 
 ## Autentisering
 

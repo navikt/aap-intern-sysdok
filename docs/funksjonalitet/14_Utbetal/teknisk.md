@@ -1,8 +1,8 @@
 # Teknisk beskrivelse
+[Github](https://github.com/navikt/aap-utbetal) | [Swagger]( https://aap-utbetal.intern.dev.nav.no/swagger-ui/index.html)
 
 ## Nyttige lenker
 
-* API dokumentasjon for aap-utbetal: https://aap-utbetal.intern.dev.nav.no/swagger-ui/index.html
 * API dokumentasjon for Helved utbetaling: https://helved-docs.intern.dev.nav.no/v3/doc/kom_i_gang
 
 ## Kontekstdiagram

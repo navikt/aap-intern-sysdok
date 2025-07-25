@@ -1,6 +1,5 @@
 # Teknisk beskrivelse
-
-Grafana Kommer™️
+[Github](https://github.com/navikt/aap-dokumentinnhenting) | [Swagger](https://aap-dokumentinnhenting.intern.dev.nav.no/swagger-ui/index.html) | [Grafana](https://grafana.nav.cloud.nais.io/goto/jcvl7ZwNg?orgId=1)
 
 ## Flyter
 Dokumentinnhenting står ansvarlig for 3 deler:

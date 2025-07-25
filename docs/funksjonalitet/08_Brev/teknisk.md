@@ -1,4 +1,5 @@
 # Teknisk beskrivelse
+[Github](https://github.com/navikt/aap-brev) | [Swagger](https://aap-brev.intern.dev.nav.no/swagger-ui/index.html) | [Grafana](https://grafana.nav.cloud.nais.io/goto/cI7RZWwNR?orgId=1)
 
 ## Flyt mellom applikasjoner
 

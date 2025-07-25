@@ -1,4 +1,5 @@
 # Teknisk beskrivelse
+[Github](https://github.com/navikt/aap-soknad)
 
 Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google Cloud.
 

@@ -1,4 +1,7 @@
-# Ettersendelse og Mine AAP
+# Teknisk beskrivelse
+[Github](https://github.com/navikt/mine-aap)
+
+## Ettersendelse og Mine AAP
 
 Peke tilbake på overordnet oversikt
 

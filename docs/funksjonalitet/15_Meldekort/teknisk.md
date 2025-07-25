@@ -1,4 +1,5 @@
 # Teknisk beskrivelse
+[Github - backend](https://github.com/navikt/aap-meldekort-backend) | [Github - frontend](https://github.com/navikt/aap-meldekort) | [Swagger](https://aap-meldekort-backend.intern.dev.nav.no/swagger-ui/index.html)
 
 AAP-saker i Arena benytter seg av den generelle meldekortløsningen. Det er en egen meldekortløsning for Kelvin-saker.
 ## Den generelle meldekortløsningen

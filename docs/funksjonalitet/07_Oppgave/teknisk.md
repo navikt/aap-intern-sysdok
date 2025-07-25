@@ -1,5 +1,5 @@
 # Teknisk beskrivelse
-
+[Github](https://github.com/navikt/aap-oppgave) | [Swagger](https://aap-oppgave.intern.dev.nav.no/swagger-ui/index.html)
 ### Kontekstdiagram
 
 ```mermaid

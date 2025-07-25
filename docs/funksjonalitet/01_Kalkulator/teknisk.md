@@ -1,22 +1,5 @@
 # Teknisk beskrivelse
-# Komme i gang
-
-Hvordan bygge, teste og kjøre koden hvis aktuelt.
-
-Installer:
-
-```bash
-yarn
-```
-
-Kjør:
-```bash
-yarn dev
-```
-
-Åpne [http://localhost:3000](http://localhost:3000) i nettleser for å gå gjennom kalkulatoren.
-
----
+[Github](https://github.com/navikt/aap-kalkulator-frontend)
 
 Kalkulatoren er strukturert rundt 5 sider.
 ```mermaid
