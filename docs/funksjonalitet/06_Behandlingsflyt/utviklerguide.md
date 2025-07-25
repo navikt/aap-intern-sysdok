@@ -1,6 +1,6 @@
 # Utviklerguide
 
-For å komme i gang: Les readme-en og gjør deg kjent med denne dokumentasjonen.
+For å komme i gang: Les [readme-en](https://github.com/navikt/aap-behandlingsflyt)  og gjør deg kjent med denne dokumentasjonen, spesielt [Teknisk beskrivelse](./teknisk.md).
 
 ## Vanlige utviklerfeil
 
