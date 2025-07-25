@@ -18,7 +18,7 @@ _Merk 1_: Hvis ikke du er koplet på Nav sin Wifi, kan det gjøres med e-post og
 guiden ovenfor.
 
 _Merk 2_: I steget for installasjon av gcloud, angi følgende:
-- `tilleggsstonader-dev` når du blir spurt om default-prosjekt
+- `aap-dev` når du blir spurt om default-prosjekt
 - `europe-north-1` når du blir spurt om geografisk område
 
 ### Installer en passord-manager
@@ -37,23 +37,8 @@ Husk at du har to ulike passord:
 ### Bli lagt til i AD-gruppa til teamet
 
 Dette gjøres fra [NAIS Console](https://console.nav.cloud.nais.io/team/aap/members) av noen som har
-eier-status til team Tilleggsstønader. Når du gjør dette vil du automatisk få tilgang til masse saker, f.eks. GitHub og
+eier-status til team aap. Når du gjør dette vil du automatisk få tilgang til masse saker, f.eks. GitHub og
 Google Cloud Platform.
-
-### Skaff flere roller
-
-For å bli et produktivt medlem av samfunnet trenger du noen ekstra roller. Send e-post til nav.it.identhandtering@nav.no, og be om tilgang til følgende småobskure greier:
-
-```
-  - Secure Log Tilleggsstønader 
-  - IDA Standard
-  - Ident i Test (NAV Desktop for Test)
-  - Ident i Preprod (NAV Desktop for Preprod)
-  - Sentral Logganalyse Produksjon (Kibana/Elastic)
-Sentral Logganalyse UTQ (Kibana/Elastic)
-  - TryggNok
-  - 0000-GA-Confluence
-```
 
 ### Installer Intellij IDEA Ultimate
 De fleste av oss bruker Intellij IDEA Ultimate som IDE. Dette får du lisens for. Med dersom du ønsker å bruke et annet IDE, er det ikke noe i veien for det.
@@ -99,8 +84,7 @@ Tror de fleste av oss bruker Colima.
 
 ### Sett opp ssh-nøkler på Github
 
-Om du ikke har det allerede, sett opp [ssh-nøkler](https://github.com/settings/keys) for Github-bnrukeren din
-(trengs for å klone repo'er med `meta` i senere steg). Må også sette opp SSO, slik at man bruke nøkkelparet om navikt-organisasjonen.
+Om du ikke har det allerede, sett opp [ssh-nøkler](https://github.com/settings/keys) for Github-bnrukeren din. Må også sette opp SSO, slik at man bruke nøkkelparet om navikt-organisasjonen.
 
 ### Repos
 Vi har mange repos som er relevante for teamet. Siden ikke alle er like relevante for alle, skriver jeg ikke ut alle her.
