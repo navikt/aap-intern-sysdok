@@ -16,7 +16,6 @@ Følg stegene i guiden [Oppsett for ny Mac eller Linux](https://navikt.github.io
 
 _Merk 1_: Hvis ikke du er koplet på Nav sin Wifi, kan det gjøres med e-post og det nye passordet du setter opp i
 guiden ovenfor.
-
 _Merk 2_: I steget for installasjon av gcloud, angi følgende:
 - `aap-dev` når du blir spurt om default-prosjekt
 - `europe-north-1` når du blir spurt om geografisk område
@@ -31,7 +30,7 @@ Husk at du har to ulike passord:
 - Ett passord for å låse opp Macen din. Dette må du typisk _skrive inn manuelt_ en del ganger, så det kan være
   fornuftig at det er lettskrevet (men helst 16 tegn eller mer). Hvis du legger inn Touch ID i Macen din, vil du gjøre
   livet ditt litt enklere.
-- Nav-passordet ditt. Dette bruker du _bare_ når du ser en _NAV-logo_ i innloggingsboksen. Dette passordet trenger du
+- Nav-passordet ditt. Dette bruker du _bare_ når du ser en _Nav-logo_ i innloggingsboksen. Dette passordet trenger du
   aldri å skrive manuelt hvis du bruker en password manager, så jeg anbefaler å bruke et autogenerert passord her.
 
 ### Bli lagt til i AD-gruppa til teamet
@@ -84,7 +83,7 @@ Tror de fleste av oss bruker Colima.
 
 ### Sett opp ssh-nøkler på Github
 
-Om du ikke har det allerede, sett opp [ssh-nøkler](https://github.com/settings/keys) for Github-bnrukeren din. Må også sette opp SSO, slik at man bruke nøkkelparet om navikt-organisasjonen.
+Om du ikke har det allerede, sett opp [ssh-nøkler](https://github.com/settings/keys) for Github-brukeren din. Må også sette opp SSO, slik at man bruke nøkkelparet om navikt-organisasjonen.
 
 ### Repos
 Vi har mange repos som er relevante for teamet. Disse finnes [her](https://github.com/search?q=topic%3Anavikt-aap+org%3Anavikt+archived%3Afalse&type=repositories).
@@ -92,7 +91,6 @@ Vi har mange repos som er relevante for teamet. Disse finnes [her](https://githu
 Hovedapplikasjonene våre er beskrevet på denne siden.
 
 ### Nyttige lenker
-- [Team-oversikt](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app)
 - [Hvordan teste en behandling i Kelvin](https://confluence.adeo.no/spaces/PAAP/pages/608408726/Hvordan+teste+en+behandling+i+Kelvin)
 - [Nais console](https://console.nav.cloud.nais.io/team/aap/)
 - [Dolly](https://dolly.ekstern.dev.nav.no/gruppe/7567) - for opprettelse av testpersoner
