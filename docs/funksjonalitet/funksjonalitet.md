@@ -19,7 +19,7 @@ graph TD
 KA[Kalkulator]
 SK[Søknad] --> IS[Innsending]
 IS --> PM[Postmottak]
-PM --> AHP[fss-proxy]
+PM --> FSP[fss-proxy]
 MA[Mine AAP] --> IS
 IS --> PDF
 PM --> Behandlingsflyt[Behandlingsflyt]
@@ -39,6 +39,7 @@ subgraph Datadeling
 APIA[Arena oppslag]
 APII[API Intern]
 API[API Ekstern] --> APIA
+AHP[Arena Hendelses-Proxy]
 end
 APII --> Behandlingsflyt
 APII --> APIA
