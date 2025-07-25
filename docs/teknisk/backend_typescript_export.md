@@ -1,4 +1,5 @@
 # Automatisk genererte Typescript-typer fra Kotlin-apper
+Noen av appene våre, i skrivende stund postmottak og oppgave, genererer typer for frontend.
 
 - Backendapp må bruke gradle-build workflowen https://github.com/navikt/aap-workflows/blob/main/.github/workflows/gradle-build.yml
 - Aktiver typescript export med flagget publish-typescript i gradle-build.
