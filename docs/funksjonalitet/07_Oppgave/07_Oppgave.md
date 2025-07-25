@@ -1,4 +1,4 @@
-# Funksjonell beskrivelse
+# Oppgave
 Det er her saksbehandlere får oversikt over sine reserverte oppgaver og ledige oppgaver. Kelvin bruker ikke Gosys for oppgavehåndtering, og har i stedet sin egen løsning. Denne har ansvar for å opprette oppgaver, logikk for reservering og fordeling til riktig saksbehandler og enhet. 
 
 ## Hvordan utledes oppgavens enhet?

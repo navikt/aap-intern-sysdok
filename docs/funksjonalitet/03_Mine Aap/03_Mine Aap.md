@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Funksjonell beskrivelse
+# Mine AAP
 - Søknad
 - Meldeflate
 - Ettersending

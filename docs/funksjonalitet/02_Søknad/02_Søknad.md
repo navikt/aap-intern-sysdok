@@ -1,4 +1,4 @@
-# Funskjonell beskrivelse
+# Søknad
 
 ## Informasjonsmodell
 

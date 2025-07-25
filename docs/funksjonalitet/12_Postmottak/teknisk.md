@@ -40,7 +40,7 @@ Fordeleren og Arena videresender skal fjernes når AAP er helt ute av Arena.
 Postmottak bruker mange av de samme konseptene som i [Behandlingsflyt](../06_Behandlingsflyt/teknisk.md) inkludert flyt-
 og stegorkestrator.
 
-Postmottaks flyt består av to delflyter. Disse er funksjonelt beskrevet [her](./funksjonell.md#kelvin-dokumentflyt).
+Postmottaks flyt består av to delflyter. Disse er funksjonelt beskrevet [her](./12_Postmottak.md#kelvin-dokumentflyt).
 Teknisk ser de slik ut:
 
 ```mermaid

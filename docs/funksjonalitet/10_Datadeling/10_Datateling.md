@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Funksjonell beskrivelse
+# Datadeling
 
 Datadeling inneholder to moduler for deling av data: Ekstern og Intern.
 

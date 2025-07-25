@@ -1,4 +1,4 @@
-# Funksjonell beskrivelse
+# Postmottak
 
 Når en bruker sender inn "noe" på MittNAV, må dette ende opp i
 riktig system. Det er her postmottak kommer inn.

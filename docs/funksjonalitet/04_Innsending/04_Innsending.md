@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Funksjonell beskrivelse
+# Innsending
 Brukeren skal kunne sende inn søknad om AAP digitalt. <br/> 
 Dette innebærer at brukeren skal kunne fylle ut søknadsskjema, legge ved dokumentasjon og sende inn søknaden.
 
