@@ -1,1 +1,0 @@
-# Funksjonell beskrivelse
