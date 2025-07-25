@@ -106,10 +106,11 @@ Om du ikke har det allerede, sett opp [ssh-nøkler](https://github.com/settings/
 Vi har mange repos som er relevante for teamet. Siden ikke alle er like relevante for alle, skriver jeg ikke ut alle her.
 Hovedapplikasjonene våre er beskrevet på denne siden.
 
-
-## Kjekke lenker
-
-- [Dolly](https://dolly.ekstern.dev.nav.no/) - for generering av syntetiske testpersoner
+### Nyttige lenker
+- [Team-oversikt](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app)
+- [Hvordan teste en behandling i Kelvin](https://confluence.adeo.no/spaces/PAAP/pages/608408726/Hvordan+teste+en+behandling+i+Kelvin)
+- [Nais console](https://console.nav.cloud.nais.io/team/aap/)
+- [Dolly](https://dolly.ekstern.dev.nav.no/gruppe/7567) - for opprettelse av testpersoner
 - [Ida](https://ida.intern.nav.no/) - for generering av test-identer (innlogging i dev)
-- [Security Playbook](https://sikkerhet.nav.no/) - best practices for sikkerhet i NAV
 - [Felgen](https://felgen.intern.nav.no/) - et vanvittig utvalg NAV-lenker
+- [Security Playbook](https://sikkerhet.nav.no/) - best practices for sikkerhet i NAV
