@@ -3,6 +3,9 @@ sidebar_position: 5
 ---
 
 # Juridisk
+Regelspesifikasjon finnes på [confluence](https://confluence.adeo.no/spaces/PAAP/pages/514473131/Regelspesifisering+ftrl.+kap.+11)
+
+## ROS
 
 Her samles ROS-vurderinger for de forskjellige appene.
 
