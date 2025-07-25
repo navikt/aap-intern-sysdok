@@ -6,6 +6,8 @@ Api Ekstern:
 
 Api Intern: [Github](https://github.com/navikt/aap-api-intern) | [Swagger](https://aap-api.intern.dev.nav.no/swagger-ui/index.html)
 
+Arena Oppslag: [Github](https://github.com/navikt/aap-arenaoppslag) 
+
 ## Autentisering
 
 ### Maskinporten
