@@ -29,7 +29,7 @@ hvorvidt en oppgave skal opprettes eller oppdateres gitt behandlingshistorikken.
 Køer i Kelvins oppgaveløsning er implementert som et sett forhåndsdefinerte filtre på oppgaver. Disse filtrene er
 lagret i databasen. På sikt skal det lages et grensesnitt for å opprette og vedlikeholde proprietære filtre.
 
-Et filter kan filtrere oppgaver basert på avklaringsbehovkoder, behandlingstyper og enehter. Enhetsfilteret kan
+Et filter kan filtrere oppgaver basert på avklaringsbehovkoder, behandlingstyper og enheter. Enhetsfilteret kan
 inkludere eller ekskludere enheter. Eksempler på filtre er:
 
 | Navn                         | Behandlingstyper                    | Avklaringsbehovkoder | Enheter                                                       |
