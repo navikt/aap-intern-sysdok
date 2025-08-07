@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Datadeling
 
-Datadeling inneholder to moduler for deling av data: Ekstern og Intern.
+Datadeling inneholder to moduler for deling av data: Ekstern (https://github.com/navikt/aap-api) og Intern (https://github.com/navikt/aap-api-intern).
 
 ## Komponentdiagram
 

@@ -1,4 +1,9 @@
+---
+sidebar_position: 1
+---
+
 # Teknisk beskrivelse
+
 [Github](https://github.com/navikt/aap-statistikk) | [Swagger](https://aap-statistikk.intern.dev.nav.no/swagger-ui/index.html) | [Grafana](https://grafana.nav.cloud.nais.io/d/edqu3y0nhmxhcb/statistikk?orgId=1) | [Nais Console](https://console.nav.cloud.nais.io/team/aap/dev-gcp/app/statistikk) | [Adeo](https://logs.adeo.no/app/r?l=DISCOVER_APP_LOCATOR&v=8.13.4&lz=N4IgjgrgpgTgniAXKANgQwHYHMJq1JEAa2nhABpxSFEQ0AHelASwGM0AXZgewwAJEfADogAzh07NxzIkREgAvpVHcYHJAG0NIAAJcAtlHFp99CiAAmR1iAC6tyq24oI%2BjKM0gUUAG5QU5oaiongElFAYPqzoweYMTGySvOb03BZ2lMwYVgAehACcAGxQhQAsABysAAwAtPnlVWg1AIzNUPk15QDMjTVQzQDsAEZDFmVDpRZD5lkcsD5oAbRoEBzc5gBmzChzMB6IGg6WnGgAasxQAO4Akum0RSUV1XUNTa3tnT1N%2FcOj45PTSgGKAAJUw%2BCQoA2MG4%2BkIGG4lxqACZSgALAD0aPMa3hiMUlBgUGhRjR1wwuwWS1AVOgSEKVUZVUo9BWogIiA4MGgCgUQA%3D%3D%3D) | [Google Cloud BigQuery-konsoll](https://console.cloud.google.com/bigquery?ws=!1m4!1m3!3m2!1saap-dev-e48b!2stester)
 
 ## Kjøre lokalt
@@ -49,7 +54,7 @@ docker exec -i  0eb43 psql -U test -d test < dump.sql
 
 Nå er den lokale databasen overskrevet med dumpen fra dev.
 
-## Servicebruker-roller
+## Roller til servicebruker
 
 Gå til den aktuelle BigQuery-tabellen, og klikk på "Manage permissions". Se bildet:
 
@@ -122,26 +127,39 @@ end
 
 subgraph Motor
 
-lagreHendelseJobb
-lagreOppgaveHendelseJobb --> lagreOppgaveJobb
+LagreAvsluttetBehandlingTilBigQueryJobb
+LagreOppgaveHendelseJobb
+LagreOppgaveJobb
+LagrePostmottakHendelseJobb
+LagreSakinfoTilBigQueryJobb
+LagreStoppetHendelseJobb
+
+LagreOppgaveHendelseJobb --> LagreOppgaveJobb
 
 end
-hendelse --> lagreHendelseJobb
+hendelse --> LagreStoppetHendelseJobb
 end
 
-lagreHendelseJobb --> B
-lagreHendelseJobb --> C
-hendelse --> lagreOppgaveHendelseJobb
-lagreOppgaveJobb --> B
-lagreOppgaveHendelseJobb --> B
-B --> lagreOppgaveJobb
+LagreStoppetHendelseJobb --> B
+LagreOppgaveHendelseJobb --> B
+LagreOppgaveJobb <--> B
+LagreSakinfoTilBigQueryJobb --> C
+LagreAvsluttetBehandlingTilBigQueryJobb --> C
+hendelse --> LagreOppgaveHendelseJobb
+LagreOppgaveJobb --> B
+LagreOppgaveHendelseJobb --> B
+B --> LagreOppgaveJobb
 
 BB -. avgi statistikk .-> Api
 OPPG -. oppgave-endringer .-> Api
 POST --> Api
+
+B -- Replikere tabeller --> C
 ```
 
-Data fra hendelser (stopp i behandlingen) brukes for å bygge opp en rikere modell i Postgres, slik at å lagre data i BigQuery ikke krever flere spørringer.
+Data fra hendelser (stopp i behandlinger i postmottak og behandlingsflyt, og oppgave-hendelser) brukes for å bygge opp en rikere modell i Postgres, slik at å lagre data i BigQuery ikke krever flere spørringer.
+
+Enkelte tabeller blir replikert til BigQuery via Datastream.
 
 Ideen med å ha både en Postgres-database og et BigQuery-datasett, er at vi "eier" Postgres-databasen, og vi tenker på BigQuery-datasettet som "for eksterne", og i den forstand bør det være stabilt og ikke endre skjema veldig ofte. Det gir oss også mulighet til å implementere for eksempel produksjonsstyring uten å involvere BigQuery.
 

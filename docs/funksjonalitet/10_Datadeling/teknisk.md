@@ -1,18 +1,19 @@
 # Teknisk beskrivelse
+
 [Grafana](https://grafana.nav.cloud.nais.io/d/bcb27950-0648-4940-9cfb-3137d9b0405c/aap-api?orgId=1)
 
 Api Ekstern:
-[Github](https://github.com/navikt/aap-api) | [Swagger](https://aap-api.ekstern.dev.nav.no/swagger)
+[Github](https://github.com/navikt/aap-api). [Swagger](https://aap-api.ekstern.dev.nav.no/swagger)
 
-Api Intern: [Github](https://github.com/navikt/aap-api-intern) | [Swagger](https://aap-api.intern.dev.nav.no/swagger-ui/index.html)
+Api Intern: [Github](https://github.com/navikt/aap-api-intern). [Swagger](https://aap-api.intern.dev.nav.no/swagger-ui/index.html)
 
-Arena Oppslag: [Github](https://github.com/navikt/aap-arenaoppslag) 
+Arena-oppslag: [Github](https://github.com/navikt/aap-arenaoppslag) 
 
 ## Autentisering
 
 ### Maskinporten
 
-I nais-yaml-fila så definerer man Maskinporten-scopes og knytter disse til konsumentens org.nummer. Dvs at alle nye konsumenter må oppgi orgnr.
+I nais-yaml-fila definerer man Maskinporten-scopes og knytter disse til konsumentens organisasjonsnummer.
 
 ```yaml
 spec:
