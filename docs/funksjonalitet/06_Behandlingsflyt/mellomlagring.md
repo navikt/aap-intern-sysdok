@@ -5,7 +5,7 @@ Behandlingsflyt støtter mellomlagring av vurderinger på behandlingsnivå.
 Felles api for alle vurderinger som lagrer ned en rad per avklaringsbehovkode og behandling.
 Innholdet for mellomlagringen er en generisk JSON-blob som sendes inn fra frontend og parses av frontend ved bruk.
 Det tas vare på hvem som har mellomlagret innholdet og når dette ble utført.
-Dersom det kommer en ny mellomlagret verdi for samme avklaringsbehov så oversikrives den gamle verdien - den tas ikke
+Dersom det kommer en ny mellomlagret verdi for samme avklaringsbehov så overskrives den gamle verdien - den tas ikke
 vare på.
 
 ### Opprydding
