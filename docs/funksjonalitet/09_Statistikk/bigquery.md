@@ -26,3 +26,9 @@ Se [her](https://github.com/navikt/aap-statistikk/blob/main/.nais/bigquery/view_
 For at deploy skal fungere må Kubernetes-rollen til Nais (søk etter "CNRM service account" i Google Cloud Console) oppdateres til å ha rollen `BigQuery Data Editor`. Se bildet (screenshot fra dev):
 
 ![CNRM-rolle](../../bilder/iam_cnrm.png)
+
+:::info 
+
+Hadde vi hatt tid, hadde alt dette vært automatisert med Terraform f.eks...
+
+:::
