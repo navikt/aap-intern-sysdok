@@ -1,0 +1,51 @@
+@startuml
+start
+:hent alle journalposter eldre enn 5 dager;
+partition ForHverJournalPost {
+        :Hent oppgaver i Gosys for journalpost;
+        :Hent regelresultat;
+        if (Finnes eksisterende oppgave og ikke noe regelresultat) then (ja)
+                :Logg info og stopp;
+                stop
+        endif
+        if (Fant ikke regelresultat <i>og</i> journalposten er eldre enn Kelvin) then (ja)
+                :Logg info og stopp;
+                note
+                Journalposten er eldre enn Kelvin,
+                og burde ha blitt journalført i gammelt system.
+        end note
+        stop
+endif
+if (regelResultat = null) then (ja)
+        :Logg error med journalpost-ID;
+        note
+        Dette betyr at journalposten er nyere
+        enn Kelvin, men ble aldri evaluert.
+end note
+stop
+end if
+if (Skulle gått til Kelvin) then (ja)
+        :Logg error med journalpost-ID;
+        note
+        Den ble evaluert til å gå til Kelvin,
+        men er ikke fullført. Det burde finnes en sak.
+end note
+stop
+else
+if (Finnes eksisterende oppgave i Gosys?) then (ja)
+        :Logg info og stop;
+        stop
+else
+:Hent journalpost fra SAF;
+:Opprett Gosys-oppgave;
+note
+Hvis den skulle ha gått til Arena,
+opprett journalføringsoppgave
+i Gosys.
+end note
+endif
+        endif
+
+}
+stop
+@enduml
