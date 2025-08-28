@@ -32,3 +32,100 @@ For at deploy skal fungere må Kubernetes-rollen til Nais (søk etter "CNRM serv
 Hadde vi hatt tid, hadde alt dette vært automatisert med Terraform f.eks...
 
 :::
+
+### Debugging
+
+Man kan gjøre 
+
+```
+kubectl get bigquerytables/view-tilkjent-ytelse
+```
+
+for å se status på ressursen. Om noe feiler ved deploy, kan man se detaljer slik (eksempel-output):
+
+```
+kubectl describe bigquerytables/view-tilkjent-ytelse
+```
+
+Eksempel-output:
+
+```
+> kubectl describe bigquerytables/view-tilkjent-ytelse
+
+
+Name:         view-tilkjent-ytelse
+Namespace:    aap
+Labels:       team=aap
+Annotations:  cnrm.cloud.google.com/management-conflict-prevention-policy: none
+              cnrm.cloud.google.com/project-id: aap-prod-9adc
+              cnrm.cloud.google.com/state-into-spec: absent
+              deploy.nais.io/client-version: 2025-08-07-961addd
+              deploy.nais.io/github-actor: FredrikMeyer
+              deploy.nais.io/github-sha: 9800e424f0b540174846ae71263a026eba854ae6
+              deploy.nais.io/github-workflow-run-url: https://github.com/navikt/aap-statistikk/actions/runs/17296276452
+              kubernetes.io/change-cause:
+                nais deploy: commit 9800e424f0b540174846ae71263a026eba854ae6: https://github.com/navikt/aap-statistikk/actions/runs/17296276452
+              nais.io/deploymentCorrelationID: 733b4465-f017-4882-804e-3af9e3f14958
+API Version:  bigquery.cnrm.cloud.google.com/v1beta1
+Kind:         BigQueryTable
+Metadata:
+  Creation Timestamp:  2025-08-20T11:06:08Z
+  Finalizers:
+    cnrm.cloud.google.com/finalizer
+    cnrm.cloud.google.com/deletion-defender
+  Generation:        2
+  Resource Version:  1756385877674495020
+  UID:               6dfe9d4a-efd7-4eaa-a4b6-5c56b4fa5397
+Spec:
+  Dataset Ref:
+    External:   ytelsestatistikk
+  Description:  View som viser tilkjent ytelse.
+  Resource ID:  view_tilkjent_ytelse
+  View:
+    Query:  SELECT
+  s.saksnummer,
+  br.referanse,
+  tp.fra_dato as fraDato,
+  tp.til_dato,
+  tp.dagsats,
+  tp.gradering,
+  tp.antall_barn as antallBarn,
+  tp.barnetillegg,
+  tp.barnetillegg_sats as barnetilleggSats,
+  tp.redusert_dagsats as redusertDagsats,
+  DATETIME(ty.opprettet_tidspunkt) AS regDato,
+  DATETIME(TIMESTAMP_MILLIS(GREATEST(b.datastream_metadata.source_timestamp, tp.datastream_metadata.source_timestamp, ty.datastream_metadata.source_timestamp, br.datastream_metadata.source_timestamp, s.datastream_metadata.source_timestamp)), 'Europe/Oslo') AS endretTid,
+  concat(b.id, '-', tp.id, '-', ty.id, '-', br.id, '-', s.id) as unik_id
+FROM
+  `aap-dev-e48b.datastream_hendelser.public_tilkjent_ytelse_periode` tp
+JOIN
+  `aap-dev-e48b.datastream_hendelser.public_tilkjent_ytelse` ty
+ON
+  tp.tilkjent_ytelse_id = ty.id
+JOIN
+  `aap-dev-e48b.datastream_hendelser.public_behandling` b
+ON
+  ty.behandling_id = b.id
+JOIN
+  `aap-dev-e48b.datastream_hendelser.public_behandling_referanse` br
+ON
+  b.referanse_id = br.id
+JOIN
+  `aap-dev-e48b.datastream_hendelser.public_sak` s
+ON
+  b.sak_id = s.id
+    Use Legacy Sql:  false
+Status:
+  Conditions:
+    Last Transition Time:  2025-08-20T11:06:08Z
+    Message:               Update call failed: error applying desired state: summary: googleapi: Error 403: Access Denied: Table aap-dev-e48b:datastream_hendelser.public_behandling: User does not have permission to query table aap-dev-e48b:datastream_hendelser.public_behandling, or perhaps it does not exist., accessDenied
+    Reason:                UpdateFailed
+    Status:                False
+    Type:                  Ready
+  Observed Generation:     2
+Events:
+  Type    Reason    Age                    From                      Message
+  ----    ------    ----                   ----                      -------
+  Normal  Updating  3m53s (x720 over 23h)  bigquerytable-controller  Update in progress
+
+```
