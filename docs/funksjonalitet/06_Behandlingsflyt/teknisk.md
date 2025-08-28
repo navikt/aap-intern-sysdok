@@ -20,7 +20,7 @@ rekkefølge. Typen behandling avgjør hvilke steg som skal kjøres.
 
 Jobben `flyt.prosesserBehandling` sparker i gang henholdsvis forbered- og prosesser behandling.
 FlytOrkestratoren kjører i en transaksjon. Savepoints settes underveis i flyten
-(se [StegOrkestrator](#StegOrkestrator)), men en behandling kan også kjøres atomært, f.eks. meldekortbehandlingen.
+(se [StegOrkestrator](#stegorkestrator)), men en behandling kan også kjøres atomært, f.eks. meldekortbehandlingen.
 
 ### Forbered behandling
 
@@ -34,7 +34,7 @@ ventebehov kan lages ved å implementere `SpesifikkVentebehovEvaluerer`. Hvis be
 
 Har ansvar for å drive prosessen fremover, stoppe opp ved behov for besluttningsstøtte av et menneske og sørge for at at
 stegene traverseres i den definerte rekkefølgen i flyten. Flytene defineres i typen behandlingen.
-[StegOrkestratoren](#StegOrkestrator) kalles for det gjeldende steget.
+[StegOrkestratoren](#stegorkestrator) kalles for det gjeldende steget.
 
 ### Diagrammer
 
