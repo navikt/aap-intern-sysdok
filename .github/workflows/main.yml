@@ -59,7 +59,9 @@ jobs:
         run: yarn install --immutable
 
       - name: Build
-        run: yarn build
+        run: |
+          git log --pretty=format:"## %s (%ad)%n" --date=short --name-only -- '*.md' > docs/Endringslogg.md
+          yarn build
 
       - name: Push Docker image to GAR and sign image
         if: (github.event.action == 'closed' && github.event.pull_request.merged == true) || (github.ref_name == 'main')
