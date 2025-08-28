@@ -12,6 +12,7 @@ Gjerne se over og oppdater guiden når du har gjort deg noen erfaringer som kan 
 
 
 ### Standardoppsett for alle utviklere i Nav
+
 Følg stegene i guiden [Oppsett for ny Mac eller Linux](https://navikt.github.io/ny-i-nav/ny-unix).
 
 _Merk 1_: Hvis ikke du er koplet på Nav sin Wifi, kan det gjøres med e-post og det nye passordet du setter opp i
@@ -40,6 +41,7 @@ eier-status til team aap. Når du gjør dette vil du automatisk få tilgang til 
 Google Cloud Platform.
 
 ### Installer Intellij IDEA Ultimate
+
 De fleste av oss bruker Intellij IDEA Ultimate som IDE. Dette får du lisens for. Med dersom du ønsker å bruke et annet IDE, er det ikke noe i veien for det.
 1. Last ned Intellij IDEA Ultimate
 2. Lag JetBrains-bruker med NAV-eposten din, og logg inn på den i Intellij. Har du ikke Ultimate-lisens, kan du sende en
@@ -47,7 +49,7 @@ De fleste av oss bruker Intellij IDEA Ultimate som IDE. Dette får du lisens for
 
 ### Sett opp signering av git-commits
 
-For å flette kode til main i GitHub har vi satt krav om _signerte commits_. Det er forskjellige måter å sette det opp
+For å flette kode til main i GitHub er det kjekt med  _signerte commits_ (ikke alle har skrudd dette på). Det er forskjellige måter å sette det opp
 det på, avhengig av om du vil lagre nøkkelen din i 1Password eller ikke.
 
 - Hvis du ikke bruker 1Password:
@@ -70,27 +72,25 @@ følgende:
    `Packages:read`
 2. Etter tokenet er generert og du har kopiert det, må du enable SSO for det. Trykk på "Configure SSO" og "Authorize"
    for _navikt_ for det nylagde tokenet.
-3. Logg inn med
+3. Legg `export GITHUB_TOKEN=<TOKEN>` i shellet ditt et sted (f.eks `.zshrc`).
 
-```npm login --scope=@navikt --registry=https://npm.pkg.github.com```
 
-med brukernavn til GitHub og github-tokenet du nettopp genererte som passord.
+### Installer et Docker-miljø
 
-### Installer et docker-miljø
+Her finnes det mange alternativer, _Colima_, _OrbStack_ og sikkert flere.  De fleste av oss bruker Colima. Docker Desktop anbefales ikke pga lisenser.
 
-Her finnes det mange alternativer, _Colima_, _OrbStack_, _Docker Desktop_, og sikkert flere. 
-Tror de fleste av oss bruker Colima.
+### Sett opp SSH-nøkler på Github
 
-### Sett opp ssh-nøkler på Github
-
-Om du ikke har det allerede, sett opp [ssh-nøkler](https://github.com/settings/keys) for Github-brukeren din. Må også sette opp SSO, slik at man bruke nøkkelparet om navikt-organisasjonen.
+Om du ikke har det allerede, sett opp [SSH-nøkler](https://github.com/settings/keys) for Github-brukeren din. Du må også sette opp SSO, slik at man bruke nøkkelparet om navikt-organisasjonen.
 
 ### Repos
+
 Vi har mange repos som er relevante for teamet. Disse finnes [her](https://github.com/search?q=topic%3Anavikt-aap+org%3Anavikt+archived%3Afalse&type=repositories).
 
 Hovedapplikasjonene våre er beskrevet på denne siden.
 
 ### Nyttige lenker
+
 - [Hvordan teste en behandling i Kelvin](https://confluence.adeo.no/spaces/PAAP/pages/608408726/Hvordan+teste+en+behandling+i+Kelvin)
 - [Nais console](https://console.nav.cloud.nais.io/team/aap/)
 - [Dolly](https://dolly.ekstern.dev.nav.no/gruppe/7567) - for opprettelse av testpersoner
