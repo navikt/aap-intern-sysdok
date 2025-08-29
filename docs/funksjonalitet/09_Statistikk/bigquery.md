@@ -21,6 +21,28 @@ Se [her](https://github.com/navikt/aap-statistikk/blob/main/.nais/bigquery/view_
       project: aap-dev-e48b
 ```
 
+### Tilgang til data-team for nye views
+
+Gjenta for dev og prod.
+
+#### 1. Opprett dataprodukter / legg til datasett
+
+Naviger til enten https://data.ansatt.nav.no/ (prod) eller https://data.ansatt.dev.nav.no/, og legg til nytt datasett for team AAP i det korrekte dataproduktet (det eksisterer allerede dataprodukter for Team Sak og Team Spenn). 
+
+I tillegg må tilganger gis til dataproduktet. Enten gi til en servicebruker, eller til en person.
+
+
+#### 2. Authorize views
+
+Siden viewet joiner mange tabeller i et annet dataset, må det gis spesielle tilganger. Dette gjøres ved å gå inn i Google Cloud Console, finne datasettet `datastream_hendelser` (som replikerer statistikk-databasen). Trykk på "Sharing" og deretter "Authorize views". Søk opp det nye viewet, og legg til.
+
+::: info
+
+Igjen, det hadde vært kjekt å automatisere dette med f.eks Terraform. TODO!
+
+:::
+
+
 ### IAM-rolle for oppdatering av views
 
 For at deploy skal fungere må Kubernetes-rollen til Nais (søk etter "CNRM service account" i Google Cloud Console) oppdateres til å ha rollen `BigQuery Data Editor`. Se bildet (screenshot fra dev):
