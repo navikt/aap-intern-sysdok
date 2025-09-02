@@ -23,7 +23,7 @@ Følgende regler er implementert i postmottak, og samtlige må være oppfylt for
 | ErIkkeAnkeRegel                | Anke skal ikke behandles i Kelvin                                                                                                                                        |                   Ja |
 | SøknadRegel                    | Kun søknad kan føre til opprettelse av sak i Kelvin                                                                                                                      |                  Nei |
 | AlleOppgitteBarnHarIdentRegel  | Kelvin skal ikke behandle søknader hvor manuelt oppgitte barn mangler ident                                                                                              |                  Nei |
-ErIkkeGradertUføreRegel          | Kelvin skal ikke behandle søknader hvor bruker er gradert ufør, da dette behandlers ulikt i Arena. Fjernes når Arena behandler saker likt på sin side.                   |                  Nei |
+ErIkkeGradertUføreRegel          | Kelvin skal ikke behandle søknader hvor bruker er gradert ufør, da dette behandlers ulikt i Arena. Fjernes når Arena behandler saker likt på sin side.                   |                  Ja |
 
 I tillegg overstyrer følgende regler de ovennevnte:
 |KelvinSakRegel|Søker som har en sak i Kelvin skal alltid til Kelvin|
