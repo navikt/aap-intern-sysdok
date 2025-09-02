@@ -35,7 +35,7 @@ sequenceDiagram
 
 | Tjeneste                                                                    | Beskrivelse                                                                     | Slack                |
 |-----------------------------------------------------------------------------|---------------------------------------------------------------------------------|----------------------|
-| [Behandlingsflyt](../06_Behandlingsflyt/teknisk.md)                         | Henter identer for en gitt sak                                                  | #po-aap-team-aap     |
+| [Behandlingsflyt](../06_Behandlingsflyt/teknisk.md)                         | Henter identer for en gitt sak                                                  | #ytelse-aap-værsågod |
 | [PDL](https://pdl-docs.ansatt.nav.no/ekstern/index.html)                    | Henter adressebeskyttelse og geografisk tilknytning                             | #pdl                 |
 | [MS Graph DB](https://docs.microsoft.com/en-us/graph/overview)              | Hente AD-grupper som ikke er inkludert i token, deriblant ENHET- og GEO-roller. |                      |
 | [Skjermingsløsningen](https://navikt.github.io/skjerming/index-intern.html) | Sjekker skjermede personer (egen ansatt)                                        | #skjermingsløsningen |

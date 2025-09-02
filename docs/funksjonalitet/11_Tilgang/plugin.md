@@ -13,7 +13,7 @@ Se utfyllende dokumentasjon [på github](https://github.com/navikt/aap-tilgang/b
 ## Hvordan installere
 
 Tilgang-pluginen kaller tilgang-tjenesten. Før man kan ta i bruk, må man derfor legge til påkrevde config-verdier:
-```
+```yaml
     - name: INTEGRASJON_TILGANG_URL
       value: http://tilgang
     - name: INTEGRASJON_TILGANG_SCOPE
@@ -21,7 +21,7 @@ Tilgang-pluginen kaller tilgang-tjenesten. Før man kan ta i bruk, må man derfo
 ```
 
 Husk også å legge til tilgang i outbound rules:
-```
+```yaml
     accessPolicy:
         outbound:
             rules:
