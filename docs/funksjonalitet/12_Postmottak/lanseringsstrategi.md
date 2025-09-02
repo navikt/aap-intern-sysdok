@@ -30,11 +30,10 @@ I tillegg overstyrer følgende regler de ovennevnte:
 
 ## Gradvis opptrapping
 
-Kelvin lanseres først på et fåtalls kontorer i Vest-Viken og Innlandet. Vi bruker ikke enhet for å bestemme om en sak
-skal til Kelvin, men geografisk tilknytning. Det vil si at vi kan støtte fordeling basert på kommune, bydel og evt.
-utland.
-Etter hvert som vi får erfaring med å sende saker til Kelvin, vil vi gradvis øke antall geografiske tilknytninger som
-støttes. Disse legges til i listen over godkjente tilknytninger i koden.
+Kelvin lanseres først på et fåtalls kontorer i Vest-Viken og Innlandet. Vi utleder hvilken enhet søknaden skal behandles av basert på adresse i PDL, enhet i Norg2 oppfølgingsenhet i Arena, 
+og ruter søknaden til Kelvin hvis saken skal behandles av en godkjent enhet.
+Etter hvert som vi får erfaring med å sende saker til Kelvin, vil vi gradvis øke antall enheter som
+støttes. Disse legges til i listen over godkjente enheter i koden.
 
 Lenger ut i løpet vil vi deaktivere aldersregelen. Når siste sak er ute av Arena, vil vi kunne sanere `Fordeler`
 -komponenten i postmottak i sin helhet, inkludert fordelingsregelene.
