@@ -6,7 +6,7 @@ sidebar_position: 01
 
 [Github](https://github.com/navikt/aap-behandlingsflyt) | [Swagger](https://aap-behandlingsflyt.intern.dev.nav.no/swagger-ui/index.html) | [Grafana](https://grafana.nav.cloud.nais.io/d/fdti727n7u6m8c/behandlingsflyt?orgId=1)
 
-Behandlingsflyt er den delen av Kelvin som eier saken og driver saksbehandlingen.
+Behandlingsflyt er den delen av Kelvin som eier saken og driver saksbehandlingen. Den er en generisk motor for sammenstilling av fakta og løsing av behov.
 
 ## Motoren
 
@@ -128,13 +128,14 @@ Informasjonskravene oppdateres asynkront.
 
 Behandlingsflyt prøver å fullføre en behandling på egenhånd. Dersom et steg ikke kan fullføres automatisk, opprettes et
 avklaringsbehov som stopper opp behandlingen. Steget vil ikke fullføres før behovet er blitt løst. Hvordan et
-avklaringsbehov løses, avhenger av behovets <i>definisjon</i>.
-Den finner man i enum-klassen `Definisjon`
+avklaringsbehov løses, avhenger av behovets <i>definisjon</i>. Den finner man i enum-klassen `Definisjon`.
 
 Merk: `Avklaringsbehov` i koden er et spesifikt avklaringsbehov som er opprettet når flyten stopper opp. Den peker på en
 definisjon, men har også flere egenskaper som f.eks. hvilket steg det ble opprettet i, når det ble opprettet og hvem som
 opprettet det. Avklaringsbehovhistorikken brukes videre
 i [oppgavehåndtering](docs/funksjonalitet/07_Oppgave/teknisk.md).
+
+![Illustrasjon av bruk av avklaringsbehov](pathname://https://aap-sysdoc.ansatt.nav.no/generated-diagrams/behandlingsflyt_motor.png)
 
 ### Definisjon
 
@@ -148,8 +149,12 @@ i [oppgavehåndtering](docs/funksjonalitet/07_Oppgave/teknisk.md).
 | kvalitetssikres | Hvorvidt kvalitetssikrer skal ta stilling til løsningen av behovet                                                                                  | `false`                        |
 | defaultFrist    | Kun relevant for avklaringsbehov av type `VENTEPUNKT`                                                                                               | `null`                         |
 
-NB: Definisjon skal ikke endres - dette kan brekke gamle og åpne behandlinger. Eventuelle endringer gjøres ved å
+:::info
+
+Definisjon skal ikke endres - dette kan brekke gamle og åpne behandlinger. Eventuelle endringer gjøres ved å
 opprette en ny definisjon med unik kode, og deprekere den gamle.
+
+:::
 
 ## Tidslinjer/segmenter (TODO)
 
