@@ -1,3 +1,7 @@
+---
+sidebar_position: 01
+---
+
 # Teknisk beskrivelse
 
 [Github](https://github.com/navikt/aap-behandlingsflyt) | [Swagger](https://aap-behandlingsflyt.intern.dev.nav.no/swagger-ui/index.html) | [Grafana](https://grafana.nav.cloud.nais.io/d/fdti727n7u6m8c/behandlingsflyt?orgId=1)
@@ -206,7 +210,7 @@ Ansvarlig for å definere kontrakter mellom applikasjonen og andre tjenester.
 Klasser i denne modulen publiseres som bibliotek.
 
 ## Samspill med frontend
-[Github - frontend](https://github.com/navikt/aap-saksbehandling)
+https://github.com/navikt/aap-saksbehandling
 
 Det er behandlingsflyt som styrer tilstanden til behandlingen. Når saksbehandler åpner en behandling, hentes informasjon
 om behandlingen. Dersom behandlingen ikke har vært prosessert nylig, kaller frontenden `/forbered`-endepunktet for å
