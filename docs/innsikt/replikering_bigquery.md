@@ -8,7 +8,7 @@ Per dags dato (25/6-25) er det satt opp replikering fra `postmottak-backend` til
 
 ### 1 Oppdatere nais-manifestet
 
-Dette er eksakt som oppskriften over sier. Man må sette flagget `cloudsql.logical_decoding` til `on` i manifestet, og opprette en bruker for Datastream. I tillegg ble `autoResize` satt til `true`.
+Dette er eksakt som oppskriften over sier. Man må sette flagget `cloudsql.logical_decoding` til `on` i manifestet, og opprette en bruker for Datastream. I tillegg ble `autoResize` satt til `true`. Husk også å legge til ny bruker med navn `datastream` (som under).
 
 ```yaml title="Fra app.yaml i postmottak-backend"
 ...
