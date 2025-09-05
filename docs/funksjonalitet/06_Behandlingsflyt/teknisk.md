@@ -227,6 +227,3 @@ Stegene i den aktive steggruppa henter så inn `grunnlag`, som er informasjon so
 saksbehandler sender inn en løsning i `/løs-behov` trigges ny prosessering av behandlingen, og det polles igjen på
 `/flyt`-endepunktet for å synkronisere frontend med backend.
 
-## DB-diagram for samordning-tabeller
-
-![](../../bilder/samordning.png)
