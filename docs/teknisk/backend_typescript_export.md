@@ -12,5 +12,5 @@ Noen av appene våre, i skrivende stund postmottak og oppgave, genererer typer f
     - `TEAM_AAP_GITHUB_APP_PRIVATE_KEY`
 - Workflowen i navikt/aap-backend-typescript-types henter ned artifact og navigerer til `./packages/aap-{app-name}-typescript-types` hvor den legger `openapi.json` som hentes fra artifacts og generer typescript typer med openapi-typescript biblioteket
 - Hvis man setter opp en eksport av en ny app må man opprette denne mappen med en package.json, index.ts og schema.d.ts
-- name i package.json må tilsvare mappenavn. Se de andre mappene for eksempler 
+- name i package.json må tilsvare mappenavn. Se de andre mappene for eksempler.
 - Hvis with-enums flagget er på må det legges til bygg i pakken. Se eksempel i packages/aap-oppgave-typescript-types
