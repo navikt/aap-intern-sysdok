@@ -36,7 +36,7 @@ I tillegg må tilganger gis til dataproduktet. Enten gi til en servicebruker, el
 
 Siden viewet joiner mange tabeller i et annet dataset, må det gis spesielle tilganger. Dette gjøres ved å gå inn i Google Cloud Console, finne datasettet `datastream_hendelser` (som replikerer statistikk-databasen). Trykk på "Sharing" og deretter "Authorize views". Søk opp det nye viewet, og legg til.
 
-::: info
+:::info
 
 Igjen, det hadde vært kjekt å automatisere dette med f.eks Terraform. TODO!
 
