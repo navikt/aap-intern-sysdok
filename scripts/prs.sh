@@ -52,7 +52,6 @@ DEFAULT_REPOS=(
   "navikt/aap-test-token-provider"
   "navikt/aap-tilgang"
   "navikt/aap-utbetal"
-  "navikt/aap-visualisering-aktivitetsplikt"
 )
 
 OUTPUT_FORMAT="table"
