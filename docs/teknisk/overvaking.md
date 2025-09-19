@@ -24,7 +24,7 @@ For å søke i grafana må man velge hvilken datakilde man ønsker å søke i. H
 * Tempo: Traces. Brukes for å kunne se på call-stack for ulike kall. Man kan her følge et kall og se hvilke funksjoner som ble kallt (og tiden de bruker) på tvers av hele verdikjeden.
 * Prometheus: Metrikker. Ofte ting som hvor lang tid ulike kall tar, hvor mange kall, status på disse. Man kan og legge til egne prometheus-metrikker om man ønsker.
 
-I tillegg kan amn sette opp alerts i grafana på alle disse datakildene-
+I tillegg kan man sette opp alerts i grafana på alle disse datakildene-
 
 Noen eksempelspørringer:
 * [Logger i prod for behandlingsflyt siste 24 timer (kun WARN og ERROR)](https://grafana.nav.cloud.nais.io/goto/4_TXoajHR?orgId=1)
