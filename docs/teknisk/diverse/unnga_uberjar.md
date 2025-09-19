@@ -31,7 +31,7 @@ Ulempen med å lage én stor jar, er at det er udefinert operasjon: det innebær
 
 Så en løsning er å bygge en jar for hvert bibliotek, og legge dem manuelt på classpath i Dockerfilen.
 
-Dette kan gjøres ved å droppe å bygge alle moduler, og følgende Gradle-instruksjon:
+Dette kan gjøres ved å bygge alle moduler, og følgende Gradle-instruksjon:
 
 ```gradle
 tasks.register<Copy>("copyRuntimeLibs") {
@@ -39,6 +39,8 @@ tasks.register<Copy>("copyRuntimeLibs") {
     into("build/libs/runtime-libs")
 }
 ```
+
+Og kjøre `./gradlew build :app:copyRuntimeLibs`.
 
 Da ender vi opp med én jar for hver modul, pluss for hver avhengighet. Disse kan så kopieres inn i Docker-imaget. Når man starter Java-prosessen må man eksplisitt legge dem til på classpath og spesifisere main-klassen:
 
