@@ -3,20 +3,27 @@
 Se Slack-tråd: https://nav-it.slack.com/archives/C08LMG3S63H/p1758196348061099 for kontekst. AI-oppsummert:
 
 >Summary of thread in #team-aap-utvikling
->Sep 18
->49 messages49
 >
 >@tor.idland reported that the dev deployment for the treatment workflow was struggling, and @fredrik.meyer and @nicolas.nordhagen investigated the issue, which appeared to be related to the project.version not being set correctly.
 >
 >@nicolas.nordhagen identified an issue with the duplicatesStrategy = DuplicatesStrategy.INCLUDE change, which was causing a NullPointerException [1]
+>
 >@fredrik.meyer explained that the DuplicatesStrategy change was needed to upgrade to Ktor 3.3.0, but it caused issues locally [2], [3]
+>
 >@hein.haraldsen suggested that the issue might be related to the access plugin version, not the Ktor version [4], [5]
+>
 >@nicolas.nordhagen suspected that the project.version was being overwritten by something else and suggested using a unique name like behandlingsflyt.api.version [6]
+>
 >@steffen.hageland suggested that the issue could have been caught earlier by building on a PR branch before merging to main, and that the CI pipeline could be improved to catch such runtime errors [7]
+>
 >@fredrik.meyer and @peter.brottveit.bock discussed moving away from using fat jars/shadow jars, and @peter.brottveit.bock suggested copying all jars into the Docker context instead [8], [9], [10], [11], [12]
+>
 >@fredrik.meyer created a PR to drop the use of fat jars, which seemed to resolve the issue [13], [14], [15], [16]
+>
 >@per.christian.henden suggested using Jib instead of fat jars, as it is faster and doesn't require merging all the jars [17], [18], [19], [20], [21], [22], [23], [24], [25], [26]
+>
 >@fredrik.meyer and @peter.brottveit.bock confirmed that the app started up correctly after the changes [27], [28]
+>
 >@fredrik.meyer offered to explain the setup at the next developer standup, and @steffen.hageland suggested an extra standup before the weekend to ensure the details are not forgotten [29], [30]
 
 
