@@ -110,6 +110,7 @@ export default {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ["diff", "gradle"],
       },
       mermaid: {
         theme: { light: "light", dark: "dark" },
