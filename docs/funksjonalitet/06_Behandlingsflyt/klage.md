@@ -39,7 +39,15 @@ til Kabal for videre behandling. Brev om hjemlene som er opprettholdelse vil bli
 ## Svar fra Kabal
 
 Behandlingsflyt lytter på hendelser fra kabal på `klage.behandling-events.v1`.
-Dersom det finnes en klagebehandling som matcher ekstern referanse på hendelsen, opprettes det en behandling av type `SvarFraAndreinstans`.
+Dersom det finnes en klagebehandling som matcher kildereferanse på hendelsen, opprettes det en behandling av type `SvarFraAndreinstans`.
+
+:::info
+
+Dersom en hendelse kommer inn med kilde `KELVIN`, men med en kildereferanse som vi enten ikke gjenkjenner, eller som ikke kan parses, opprettes det en jobb av type `hendelse.kafka.feilhåndterer`. Da vil konsumeringen fortsette. Denne jobben håndteres videre i `paw-patrol`. Som oftest innebærer dette at det har skjedd en feil på Kabal sin side. De må da gjøres oppmerksom på feilen i `#aap-kabal-integrasjon`. Jobben kan avbrytes dersom det er avklart at ny melding med korrigert kilde eller kildereferanse resendes.
+
+Øvrige deserialiseringsfeil vil stoppe konsumeringen, og må håndteres ved å opppdatere skjema.
+
+:::
 
 Her må saksbehandler ta stilling til konsekvensen av svaret fra Kabal. Dette kan typisk være å trigge en revurdering dersom Kabal mener at vedtak skal omgjøres, gjøre ingenting dersom Kabal er enig, eventuelt opprette ny klagebehandling.
 Det er én behandling av type `SvarFraAndreinstans` per hendelse. Det kan komme flere hendelser for samme klagebehandling.
