@@ -24,6 +24,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Enable corepack
+        run: corepack enable
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -51,9 +54,6 @@ jobs:
             output_file="static/generated-diagrams/$(basename ${file%.puml}.png)"
             java -jar tools/plantuml.jar -tpng "$file" -o "$(pwd)/static/generated-diagrams"
           done          
-
-      - name: Enable corepack
-        run: corepack enable
 
       - name: Install dependencies
         run: yarn install --immutable
