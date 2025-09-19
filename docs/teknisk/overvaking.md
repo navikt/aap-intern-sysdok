@@ -28,7 +28,7 @@ I tillegg kan man sette opp alerts i grafana på alle disse datakildene-
 
 Noen eksempelspørringer:
 * [Logger i prod for behandlingsflyt siste 24 timer (kun WARN og ERROR)](https://grafana.nav.cloud.nais.io/goto/4_TXoajHR?orgId=1)
-* [Metrikk på tilstand på Circuit-breakers for API-intern](https://grafana.nav.cloud.nais.io/goto/pQ4M1-CHg?orgId=1)
+* [Metrikk på tilstand på Circuit-breakers for API-intern](https://grafana.nav.cloud.nais.io/goto/JcnHx-jHR?orgId=1)
 
 
 ### Kibana / Adeo
