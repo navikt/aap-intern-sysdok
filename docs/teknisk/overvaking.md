@@ -163,3 +163,8 @@ Om infoskjermen ikke er skrudd på, kan den skrus på med bryteren på Raspberry
 
 Brukernavn/passord: `aap`/`pengerpenger`.
 
+:::info
+
+Her https://crispy-adventure-qr86j5k.pages.github.io/handbook/infoskjermSetup/ er lenke til detaljer om hvordan et annet team har gjort sitt oppsett.
+
+:::
