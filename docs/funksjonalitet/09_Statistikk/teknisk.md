@@ -355,3 +355,28 @@ vilkarsresultat  -->  behandling : behandling_id id
 ## Tester
 
 Testdekningen er (per nå) høy, og det er brukt en blanding av mocking og TestContainers for å teste.
+
+
+## Tabeller
+### `opgpave_hendelser`
+Hver rad er en hendelse knyttet til en oppgave.
+
+| Kolonne    | Beskrivelse |
+| -------- | ------- |
+| id | *INT64*: Primærnøkkel. Unike radteller. |
+| oppgave_id | *INT64*: Fremmednøkkel. Radteller i `oppgave`-tabell. |
+| identifikator | *INT64*: Identifikator for oppgavehendelse. |
+| type | *STRING*: Unike verdier:  |
+| mottatt_tidspunkt | *TIMESTAMP*: [Beskrivelse] |
+| saksnummer | *STRING*: [Beskrivelse] |
+| behandling_referanse | *STRING*: [Beskrivelse] |
+| journalpost_id | *INT64*: [Beskrivelse] |
+| enhet | *STRING*: [Beskrivelse] |
+| avklaringsbehov_kode | *STRING*: [Beskrivelse] |
+| status | *STRING*: [Beskrivelse] |
+| reservert_av | *STRING*: [Beskrivelse] |
+| reservert_tidspunkt | *TIMESTAMP*: [Beskrivelse] |
+| opprettet_tidspunkt | *TIMESTAMP*: [Beskrivelse] |
+| endret_av | *STRING*: [Beskrivelse] |
+| endret_tidspunkt | *TIMESTAMP*: [Beskrivelse] |
+| datastream_metadata | *STRUCT<uuid STRING, source_timestamp INT64>*: [Beskrivelse] |
