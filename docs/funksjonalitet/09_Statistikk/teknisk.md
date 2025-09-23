@@ -357,8 +357,10 @@ vilkarsresultat  -->  behandling : behandling_id id
 Testdekningen er (per nå) høy, og det er brukt en blanding av mocking og TestContainers for å teste.
 
 
-## Tabeller
-### `opgpave_hendelser`
+## Tabeller i BigQuery
+
+### `oppgave_hendelser`
+
 Hver rad er en hendelse knyttet til en oppgave.
 
 | Kolonne    | Beskrivelse |
@@ -379,4 +381,4 @@ Hver rad er en hendelse knyttet til en oppgave.
 | opprettet_tidspunkt | *TIMESTAMP*: [Beskrivelse] |
 | endret_av | *STRING*: [Beskrivelse] |
 | endret_tidspunkt | *TIMESTAMP*: [Beskrivelse] |
-| datastream_metadata | *STRUCT<uuid STRING, source_timestamp INT64>*: [Beskrivelse] |
+| datastream_metadata | *STRUCT uuid STRING source_timestamp INT64>*: [Beskrivelse] |
