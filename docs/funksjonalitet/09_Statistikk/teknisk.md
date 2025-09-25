@@ -364,11 +364,13 @@ Testdekningen er (per nå) høy, og det er brukt en blanding av mocking og TestC
 Hver rad er en hendelse knyttet til en oppgave.
 
 | Kolonne    | Beskrivelse |
-| -------- | ------- |
+
+| --------: | :------- |
+
 | id | *INT64*: Primærnøkkel. Unike radteller. |
 | oppgave_id | *INT64*: Fremmednøkkel. Radteller i `oppgave`-tabell. |
 | identifikator | *INT64*: Identifikator for rader som tilhører samme oppgave. |
-| type | *STRING*: Unike verdier: ['OPPRETTET', 'OPPDATERT', 'LUKKET', 'RESERVERT', 'AVRESERVERT'].<br> Hendelsestype for oppgaver. |
+| type | *STRING*: Unike verdier: ['OPPRETTET', 'OPPDATERT', 'LUKKET', 'RESERVERT', 'AVRESERVERT']. Hendelsestype for oppgaver. |
 | mottatt_tidspunkt | *TIMESTAMP*: Tidspunkt for når Kelvin har mottatt oppgavehendelse |
 | person_ident | *STRING*: Personnummer til bruker i saken |
 | saksnummer | *STRING*: Saksnummer. |
@@ -382,6 +384,8 @@ Hver rad er en hendelse knyttet til en oppgave.
 | opprettet_tidspunkt | *TIMESTAMP*:  Tidspunkt for når oppgaven ble opprettet i 'Europe/Oslo'-tid. |
 | endret_av | *STRING*: Nav-ident til saksbehandler som har gjort endringer på oppgaven. |
 | endret_tidspunkt | *TIMESTAMP*:  Tidspunkt for når oppgaven ble endret i 'Europe/Oslo'-tid. |
+
+
 
 Definisjoner: 
 - Endring:
