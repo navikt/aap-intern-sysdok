@@ -93,3 +93,10 @@ Konsumenter (per 30/8-2024, se `app-prod.yml` for oppdatert data):
 | Konsument       | Miljøer     |
 |-----------------|-------------|
 | Tilleggstønader | Prod og dev |
+
+## ArenaOppslag
+
+ArenaOppslag er en egen app som håndterer oppslag mot Arena sin Oracle database. Denne appen brukes av aap-intern-api for å hente data fra Arena.
+
+Vedtakfakta tabellen i arenaoppslag inneholder mye data. Vi henter ut det meste fra barnetillegg til dagsats før samordning til etter samordning.
+![Komponent diagram](../../bilder/vedtakFaktaTabellArena.png)
