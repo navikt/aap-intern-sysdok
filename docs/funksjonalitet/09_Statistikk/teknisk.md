@@ -357,33 +357,31 @@ vilkarsresultat  -->  behandling : behandling_id id
 Testdekningen er (per nå) høy, og det er brukt en blanding av mocking og TestContainers for å teste.
 
 
-## Tabeller
+## Tabeller i BigQuery
 
 ### `oppgave_hendelser`
 
 Hver rad er en hendelse knyttet til en oppgave.
 
-| Kolonne    | Beskrivelse |
-
-| --------: | :------- |
-
-| id | *INT64*: Primærnøkkel. Unike radteller. |
-| oppgave_id | *INT64*: Fremmednøkkel. Radteller i `oppgave`-tabell. |
-| identifikator | *INT64*: Identifikator for rader som tilhører samme oppgave. |
-| type | *STRING*: Unike verdier: ['OPPRETTET', 'OPPDATERT', 'LUKKET', 'RESERVERT', 'AVRESERVERT']. Hendelsestype for oppgaver. |
-| mottatt_tidspunkt | *TIMESTAMP*: Tidspunkt for når Kelvin har mottatt oppgavehendelse |
-| person_ident | *STRING*: Personnummer til bruker i saken |
-| saksnummer | *STRING*: Saksnummer. |
-| behandling_referanse | *STRING*: Referanse på behandling. Brukes til å koble til data om behandling. |
-| journalpost_id | *INT64*: Fremmednøkkel. Koble til journalpost. |
-| enhet | *STRING*: Nav-enhet. **Kriterier for 'UDEFINERT'** |
-| avklaringsbehov_kode | *STRING*: Fire siffer. Kode for avklaringsbehov som opgaven skal løse. Kodeverk. |
-| status | *STRING*: Unike verdier: ['OPPRETTET', 'AVSLUTTET']. Oppgavestatus. |
-| reservert_av | *STRING*: Nav-ident til saksbehandler som har reservert oppgaven. Null hvis ikke reservert. |
-| reservert_tidspunkt | *TIMESTAMP*: Tidspunkt for reservasjon av oppgave i 'Europe/Oslo'-tid. |
-| opprettet_tidspunkt | *TIMESTAMP*:  Tidspunkt for når oppgaven ble opprettet i 'Europe/Oslo'-tid. |
-| endret_av | *STRING*: Nav-ident til saksbehandler som har gjort endringer på oppgaven. |
-| endret_tidspunkt | *TIMESTAMP*:  Tidspunkt for når oppgaven ble endret i 'Europe/Oslo'-tid. |
+|              Kolonne | Beskrivelse                                                                                                            |
+|---------------------:|:-----------------------------------------------------------------------------------------------------------------------|
+|                   id | *INT64*: Primærnøkkel. Unike radteller.                                                                                |
+|           oppgave_id | *INT64*: Fremmednøkkel. Radteller i `oppgave`-tabell.                                                                  |
+|        identifikator | *INT64*: Identifikator for rader som tilhører samme oppgave.                                                           |
+|                 type | *STRING*: Unike verdier: ['OPPRETTET', 'OPPDATERT', 'LUKKET', 'RESERVERT', 'AVRESERVERT']. Hendelsestype for oppgaver. |
+|    mottatt_tidspunkt | *TIMESTAMP*: Tidspunkt for når Kelvin har mottatt oppgavehendelse                                                      |
+|         person_ident | *STRING*: Personnummer til bruker i saken                                                                              |
+|           saksnummer | *STRING*: Saksnummer.                                                                                                  |
+| behandling_referanse | *STRING*: Referanse på behandling. Brukes til å koble til data om behandling.                                          |
+|       journalpost_id | *INT64*: Fremmednøkkel. Koble til journalpost.                                                                         |
+|                enhet | *STRING*: Nav-enhet. **Kriterier for 'UDEFINERT'**                                                                     |
+| avklaringsbehov_kode | *STRING*: Fire siffer. Kode for avklaringsbehov som opgaven skal løse. Kodeverk.                                       |
+|               status | *STRING*: Unike verdier: ['OPPRETTET', 'AVSLUTTET']. Oppgavestatus.                                                    |
+|         reservert_av | *STRING*: Nav-ident til saksbehandler som har reservert oppgaven. Null hvis ikke reservert.                            |
+|  reservert_tidspunkt | *TIMESTAMP*: Tidspunkt for reservasjon av oppgave i 'Europe/Oslo'-tid.                                                 |
+|  opprettet_tidspunkt | *TIMESTAMP*:  Tidspunkt for når oppgaven ble opprettet i 'Europe/Oslo'-tid.                                            |
+|            endret_av | *STRING*: Nav-ident til saksbehandler som har gjort endringer på oppgaven.                                             |
+|     endret_tidspunkt | *TIMESTAMP*:  Tidspunkt for når oppgaven ble endret i 'Europe/Oslo'-tid.                                               |
 
 
 
