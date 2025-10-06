@@ -6,7 +6,7 @@ journalpost, eller basert på godkjente applikasjoner (azp).
 
 Den håndterer både obo-token og client-credentials-token.
 
-Pluginen gir 403 ved mangelende tilgang.
+Pluginen gir 403 ved manglende tilgang.
 
 Se utfyllende dokumentasjon [på github](https://github.com/navikt/aap-tilgang/blob/main/plugin/README.md)
 
