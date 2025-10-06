@@ -30,10 +30,8 @@ Systemene tilbyr ingen eksterne tjenester, kun interne i dialog med hverandre.
 
 #### Tjenester som konsumeres av [postmottak-backend](https://github.com/navikt/postmottak-backend)
 
-**!! Tjenesten er under utvikling !!**
-
 - **Dokarkiv** - For oppslag i NAVS dokumentarkiv: brukes for å oppdatere informasjon tilknyttet saksbehandling og fordeling.
-- **aap-tilgang** - Tjeneste for å sjekke NAV-ansatts tilgang til aap-saker.
+- **aap-tilgang** - Tjeneste for å sjekke NAV-ansatts tilgang til AAP-saker.
 
 ### Databasemodell i aap-innsending
 
