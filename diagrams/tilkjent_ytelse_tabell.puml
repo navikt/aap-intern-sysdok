@@ -3,13 +3,16 @@
 entity "tilkjentYtelse" {
         saksnummer: text
         behandlingsreferanse: text
-        fraDato: date
-        tilDato: date
+        fra_dato: date
+        til_dato: date
         dagsats: float64
         gradering: float64
-        antallBarn: int64
+        antall_barn: int64
         barnetillegg: float64
-        barnetilleggSats: float64
-        redusertDagsats: float64
+        barnetillegg_sats: float64
+        redusert_dagsats: float64
+        reg_dato: date
+        endret_tid: date
+        unik_id: long
 }
 @enduml
