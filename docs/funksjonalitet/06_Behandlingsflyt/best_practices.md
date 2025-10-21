@@ -1,4 +1,8 @@
 # Best practices og prinsipper for å implementere steg
+En oversikt over eksisterende steg/løsninger, og i hvilken grad de følger (noen av ) best
+practices [ligger i confluence](https://confluence.adeo.no/spaces/PAAP/pages/739042169/St%C3%B8tte+for+periodisering+av+lagring+og+l%C3%B8sninger+api).
+
+Det er ikke mange steg som oppfyller alle punktene. Muligens `OvergangArbeidSteg` kan være et utgangspunkt.
 
 ## Anta periodisering som utgangspunkt
 Du burde ta utgangspunkt i at vilkår må kunne periodiseres. Å støtte periodisering
@@ -13,6 +17,18 @@ vil noen ganger være behov for flere vurderinger på en gang. På grunn av saks
 eller klagebehandling, så kan det være en lenger periode som må vurderes i én behandling.
 
 Bruk `PeriodisertAvklaringsbehovLøsning` for å implementere løsninger av  avklaringsbehov.
+
+## Løsere burde gjøre minst mulig
+I en løser burde du ideelt sett kun validere input og lagre ned vurderinger.  Løserne burde
+ikke endre avklaringsbehov eller kjøre vilkårsvurderinger.
+
+```kotlin
+validate(nyeVurderinger)
+val eksisterendeVurderinger = repo.hentVurderinger(forrigeBehandlingId)?.vurderinger.orEmpty()
+repo.lagreVurderinger(behandlingId, nyeVurderinger + eksisterendeVurdering)
+```
+Løsere burde ikke regne ut gjeldene vurderinger (bruke tidslinje), fordi da mister
+vi vurderinger i grunnlaget.
 
 ## Bruk samme format for å returnere periodiserte vurderinger til frontend
 Implementer interfaces `PeriodiserteVurderingerDto` for grunnlag du sender til frontend.
