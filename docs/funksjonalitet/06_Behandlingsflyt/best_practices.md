@@ -62,3 +62,18 @@ etter selg selv. Oppryddingen gjelder både vurderinger fra saksbehandlinger og
 utfall for vilkår og utregninger.
 
 Hjelpemetodene i `AvklaringsbehovService` hjelper deg med å identifisere disse tilfellene.
+
+## Ikke sjekk type behandling
+Selv om vi ofte snakker om forskjellig adferd for førstegangsbehandling og revurdering,
+så er det som oftest feil å sjekke type behandling for å styre adferd.
+
+Et enkelt eksempel:
+1. Bruker sender søknad til Nav
+2. Vi gir avslag i førstegangsbehandlingen
+3. Bruker klager, og vinner fram med klagen
+4. Vi oppretter revurdering, og må i praksis behandle det som en førstegangsbehandling
+
+I punkt fire, er behandlingen (fra Kelvins perspektiv) en revurdering. Men forventet adferd er den til førstegangsbehandling.
+
+I stede for at steget sjekker om man er i en førstegangsbehandling, så må steget finne ut hvilke vurderinger som trengs og hvilke som mangler, og basert på det løfte avklaringsbehov.
+Dette får man ved å bruke hjelpemetoden `AvklaringsbehovService::oppdaterAvklaringsbehovForPeriodisertYtelsesvilkår`.
