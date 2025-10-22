@@ -20,3 +20,8 @@ Oppgave bruker Norg til å utlede enheten gitt brukers geografiske tilknytning, 
     * Hvis personen har oppfølgingsenhet fra arbeidsrettet oppfølging i Arena, bruk denne
     * Bruk enhet fra Norg (lokalkontor)
     * Unntak: hvis oppgaven er klagehåndtering på Nav-kontor og bruker hører til et fylke som ønsker å håndtere klage på fylkesnivå, utledes enhet på samme måte som for kvalitetssikringsoppgaver. Hittil gjelder dette bare for Vest-Viken.
+
+### Hva om avklaringsbehovet for oppgaven kan løses av både saksbehandler og veileder?
+* Hvis avklaringsbehovet er et ventebehov, lages det ikke oppgave på det. Oppgaven på avklaringsbehovet som var åpent før behandlingen ble satt på vent forblir åpen, men med "på vent"-status.
+* Hvis avklaringsbehovet skal kunne løses av begge roller, sendes oppgaven til Nav-kontor dersom det sist endrede avklaringsbehovet på behandlingen kunne løses av Nav-kontor. Ellers går oppgaven til NAY.
+   * Eksempel: hvis oppgaven lå på 11-5 i det noen trykket "trekk søknad" (som kan løses av begge roller), går oppgaven til Nav-kontor.
