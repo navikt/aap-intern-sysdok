@@ -20,7 +20,7 @@ Typiske endringer som kan føre til problemer er å legge til nye avklaringsbeho
 ta disse i bruk før man har bumpet kontraktversjonen i tilgang, statistikk og oppgave, og eventuelt andre apper som
 bruker biblioteket og er avhengige av å gjenkjenne de nye behovene.
 
-Det må derertter genereres typer for `aap-saksbehandling`, og oppdatere oversettelser med navn på avklaringsbehov. Man brekker ikke frontenden dersom man glemmer å gjøre dette, men man kan ikke commite i `aap-saksbehandling` før det er gjort.
+Det må deretter genereres typer for `aap-saksbehandling`, og oppdatere oversettelser med navn på avklaringsbehov. Man brekker ikke frontenden dersom man glemmer å gjøre dette, men man kan ikke commite i `aap-saksbehandling` før det er gjort.
 
 ### Endringer i flyt
 
