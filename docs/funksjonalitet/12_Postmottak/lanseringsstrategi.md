@@ -13,20 +13,19 @@ Før lansering har vi en overstyrende regel som sender alle saker til Arena:
 Når vi skal begynne å rulle ut saker til Kelvin, aktiverer vi lanseringsreglene.
 Følgende regler er implementert i postmottak, og samtlige må være oppfylt for at en sak skal sendes til Kelvin:
 
-| Regel                          | Beskrivelse                                                                                                                                                              | Aktivert i testmiljø |
-|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------:|
-| Aldersregel                    | `22 <= søkers alder < 60`                                                                                                                                                |                   Ja |
-| ArenaHistorikkRegel            | Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status. Denne skal etterhvert utvides til å tillate 52 uker gamle saker (ikke implementert)                    |                   Ja |
-| Enhetsregel                    | Enheten, som blir utledet basert på brukers geografiske tilknytning og eventuelt oppfølgingskontor fra sykefraværsoppfølgingen, finnes i en liste over godkjente enheter |                  Nei |
-| ErIkkeReisestønadRegel         | Reisestønad skal alltid til Arena                                                                                                                                        |                   Ja |
-| ErIkkeAnkeRegel                | Anke skal ikke behandles i Kelvin                                                                                                                                        |                   Ja |
-| SøknadRegel                    | Kun søknad kan føre til opprettelse av sak i Kelvin                                                                                                                      |                  Nei |
-| AlleOppgitteBarnHarIdentRegel  | Kelvin skal ikke behandle søknader hvor manuelt oppgitte barn mangler ident                                                                                              |                  Nei |
-ErIkkeGradertUføreRegel          | Kelvin skal ikke behandle søknader hvor bruker er gradert ufør, da dette behandlers ulikt i Arena. Fjernes når Arena behandler saker likt på sin side.                   |                  Ja |
+| Regel                   | Beskrivelse                                                                                                                                                              | Aktivert i testmiljø |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------:|
+| Aldersregel             | `22 <= søkers alder < 60`                                                                                                                                                |                   Ja |
+| ArenaHistorikkRegel     | Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status. Denne skal etterhvert utvides til å tillate 52 uker gamle saker (ikke implementert)                    |                   Ja |
+| Enhetsregel             | Enheten, som blir utledet basert på brukers geografiske tilknytning og eventuelt oppfølgingskontor fra sykefraværsoppfølgingen, finnes i en liste over godkjente enheter |                  Nei |
+| ErIkkeReisestønadRegel  | Reisestønad skal alltid til Arena                                                                                                                                        |                   Ja |
+| ErIkkeAnkeRegel         | Anke skal ikke behandles i Kelvin                                                                                                                                        |                   Ja |
+| SøknadRegel             | Kun søknad kan føre til opprettelse av sak i Kelvin                                                                                                                      |                  Nei |
+| ErIkkeGradertUføreRegel | Kelvin skal ikke behandle søknader hvor bruker er gradert ufør, da dette behandlers ulikt i Arena. Fjernes når Arena behandler saker likt på sin side.                   |                   Ja |
 
 I tillegg overstyrer følgende regler de ovennevnte:
-|KelvinSakRegel|Søker som har en sak i Kelvin skal alltid til Kelvin|
-|---|---|
+| KelvinSakRegel | Søker som har en sak i Kelvin skal alltid til Kelvin |
+|----------------|------------------------------------------------------|
 
 ## Gradvis opptrapping
 
