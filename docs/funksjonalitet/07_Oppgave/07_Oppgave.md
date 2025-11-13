@@ -14,9 +14,9 @@ Oppgave bruker Norg til å utlede enheten gitt brukers geografiske tilknytning, 
     * Hvis enhet returnert fra Norg slutter på 83, og derfor er egen ansatt-enhet, bruk denne
     * Hvis oppfølgingsenhet er satt til NAV Utland (0393), skal NAV Utland også kvalitetssikre
     * Fylkesenhet hentes fra Norg basert på enhet originalt returnert fra Norg. Dersom flere fylkesenheter returneres, prioriteres de med samme første to sifre som den originale enhten.
-* Hvis oppgaven skal løses av lokal saksbehandler kalles Norg: 
-    * Hvis personen ikke har geografisk tilknytning til Norge, settes enheten til NAV Utland (0393) (Denne bør vel nedprioriteres)
-    * Hvis personen har skjerming eller personen eller barn av personen har adressebeskyttelse, brukes enhet fra Norg (henholdsvis egen ansatt-enhet og Nav Vikafossen)
+* Hvis oppgaven skal løses av lokal saksbehandler kalles Norg:
+    * Hvis personen har skjerming eller personen eller barn av personen har strengt fortrolig adresse, brukes enhet fra Norg (henholdsvis egen ansatt-enhet og Nav Vikafossen) 
+    * Hvis (1) personen ikke har geografisk tilknytning til Norge, eller (2) personen ikke har geografisk tilknytning i PDL i det hele tatt, eller (3) personen har geografisk tilhørighet til 9999 (ukjent kommune), settes enheten til NAV Utland (0393) 
     * Hvis personen har oppfølgingsenhet fra arbeidsrettet oppfølging i Arena, bruk denne
     * Bruk enhet fra Norg (lokalkontor)
     * Unntak: hvis oppgaven er klagehåndtering på Nav-kontor og bruker hører til et fylke som ønsker å håndtere klage på fylkesnivå, utledes enhet på samme måte som for kvalitetssikringsoppgaver. Hittil gjelder dette bare for Vest-Viken.
