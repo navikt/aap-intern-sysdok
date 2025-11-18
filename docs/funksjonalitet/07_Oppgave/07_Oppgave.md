@@ -19,6 +19,7 @@ Oppgave bruker Norg til å utlede enheten gitt brukers geografiske tilknytning, 
     * Hvis (1) personen ikke har geografisk tilknytning til Norge, eller (2) personen ikke har geografisk tilknytning i PDL i det hele tatt, eller (3) personen har geografisk tilhørighet til 9999 (ukjent kommune), settes enheten til NAV Utland (0393) 
     * Hvis personen har oppfølgingsenhet fra arbeidsrettet oppfølging i Arena, bruk denne
     * Bruk enhet fra Norg (lokalkontor)
+    * Unntak: hvis oppgaven tilhører en førstegangsbehandling og skulle lagt seg på enten 1401, 1428 eller 1432, ruter vi isteden oppgaven til 1476 (regionskontor Nav Sunnfjord). Vi har laget eget unntak for dem så de skal få jobbe på samme måte som de gjorde i Arena.
     * Unntak: hvis oppgaven er klagehåndtering på Nav-kontor og bruker hører til et fylke som ønsker å håndtere klage på fylkesnivå, utledes enhet på samme måte som for kvalitetssikringsoppgaver. Hittil gjelder dette bare for Vest-Viken.
 
 ### Hva om avklaringsbehovet for oppgaven kan løses av både saksbehandler og veileder?
