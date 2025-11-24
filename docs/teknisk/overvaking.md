@@ -138,7 +138,7 @@ architecture-beta
 
 Vi fulgte instruksjoner [herfra](https://utvikling.intern.nav.no/teknisk/infoskjerm.html) og [her](https://doc.nais.io/observability/metrics/how-to/grafana-from-infoscreen/?h=).
 
-OS er Ubuntu Desktop. MAC-adressen til Pi-en måtte sendes på Slack-kanalen `#tech-nettverk`. Da fikk vi tilsendt et WiFi-passord slik at vi kunne koble oss til det skjulte nettverket `infoskjerm`. Velg WPA2 som auth-metode.
+OS er Ubuntu Desktop. MAC-adressen til Pi-en måtte sendes på Slack-kanalen `#tech-nettverk` (den er `d8:3a:dd:dd:d0:da`). Da fikk vi tilsendt et WiFi-passord slik at vi kunne koble oss til det skjulte nettverket `infoskjerm`. Velg WPA2 som auth-metode.
 
 For Raspberry OS måtte følgende info legges i `wpa_supplicant.conf`-filen, men på Ubuntu kunne dette gjøres i GUI.
 
