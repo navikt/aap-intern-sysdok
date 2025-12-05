@@ -10,6 +10,7 @@ Se [beslutningsloggen](#beslutningslogg) nederst for en oversikt over tidligere 
 
 - Bruk **Squash and merge** når du merger PR-er for å holde historikken ryddig.
 - Ikke force-push på en åpen PR, dvs "Ready for review". Hvis den er "draft" er det greit.
+- Lag alltid PR ved kodeendringer (ps: betyr ikke "vent på review", men "vent på grønne tester").
 
 ### Ktor
 
@@ -26,11 +27,12 @@ Se [beslutningsloggen](#beslutningslogg) nederst for en oversikt over tidligere 
 
 ## Beslutningslogg
 
-| Dato       | Tema                      | Beslutning                                                                                                                                                                          |
-|------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 2025-11-12 | Force push på PR          | Hvis en PR er satt til "ready for review" skal du _ikke_ bruke force push, da dette gjør det vanskelig å se hva som er endret etter en eventuell kommentar på noe som må forbedres. |
-|            | Caffeine vs Redis         | Kun bruk Redis hvis noe må caches på tvers av podder/instanser. Caffeine til alt annet.                                                                                             |
-|            | Ktor respond              | Vær varsom med tidlig respond siden det ikke er en avsluttende handling. Husk return eller bruk return if.                                                                          |
-| 2025-11-10 | Logikk i routes           | Logikk skal flyttes ut av route-filer og inn i egne service-klasser for bedre organisering og testbarhet.                                                                           |
-| 2025-10-16 | Klient/Client vs. Gateway | Klasser som kaller på eksterne tjenester skal ha suffiks `Gateway` for å tydeliggjøre deres rolle i koden.                                                                          |
-| 2025-11-24 | shouldUnregister: true    | Vi vil helst separere formstate og annen info knyttet til samme entitet. Kostnaden ved å legge til mappere ol. for å støtte dette vurderes som grei, og mappere kan testes          |
+| Dato       | Tema                           | Beslutning                                                                                                                                                                          |
+|------------|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2025-12-03 | Pull request før push til main | Opprett allitd PR ved kodeendringer for å unngå å brekke main.                                                                                                                      |
+| 2025-11-12 | Force push på PR               | Hvis en PR er satt til "ready for review" skal du _ikke_ bruke force push, da dette gjør det vanskelig å se hva som er endret etter en eventuell kommentar på noe som må forbedres. |
+|            | Caffeine vs Redis              | Kun bruk Redis hvis noe må caches på tvers av podder/instanser. Caffeine til alt annet.                                                                                             |
+|            | Ktor respond                   | Vær varsom med tidlig respond siden det ikke er en avsluttende handling. Husk return eller bruk return if.                                                                          |
+| 2025-11-10 | Logikk i routes                | Logikk skal flyttes ut av route-filer og inn i egne service-klasser for bedre organisering og testbarhet.                                                                           |
+| 2025-10-16 | Klient/Client vs. Gateway      | Klasser som kaller på eksterne tjenester skal ha suffiks `Gateway` for å tydeliggjøre deres rolle i koden.                                                                          |
+| 2025-11-24 | shouldUnregister: true         | Vi vil helst separere formstate og annen info knyttet til samme entitet. Kostnaden ved å legge til mappere ol. for å støtte dette vurderes som grei, og mappere kan testes          |
