@@ -15,13 +15,14 @@ Følgende regler er implementert i postmottak, og samtlige må være oppfylt for
 
 | Regel                   | Beskrivelse                                                                                                                                                              | Aktivert i testmiljø |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------:|
-| Aldersregel             | `22 <= søkers alder < 60`                                                                                                                                                |                   Ja |
+| Aldersregel             | `22 <= søkers alder < 60`                                                                                                                                                |                   Nei |
 | ArenaHistorikkRegel     | Søker har ingen vedtak i Arena på tema AAP, uansett aktiv-status. Denne skal etterhvert utvides til å tillate 52 uker gamle saker (ikke implementert)                    |                   Ja |
 | Enhetsregel             | Enheten, som blir utledet basert på brukers geografiske tilknytning og eventuelt oppfølgingskontor fra sykefraværsoppfølgingen, finnes i en liste over godkjente enheter |                  Nei |
 | ErIkkeReisestønadRegel  | Reisestønad skal alltid til Arena                                                                                                                                        |                   Ja |
 | ErIkkeAnkeRegel         | Anke skal ikke behandles i Kelvin                                                                                                                                        |                   Ja |
 | SøknadRegel             | Kun søknad kan føre til opprettelse av sak i Kelvin                                                                                                                      |                  Nei |
 | ErIkkeGradertUføreRegel | Kelvin skal ikke behandle søknader hvor bruker er gradert ufør, da dette behandlers ulikt i Arena. Fjernes når Arena behandler saker likt på sin side.                   |                   Ja |
+| ManueltOverstyrtTilArenaRegel | Manuelt fordele sak til Arena basert på ident                   |                   Ja |
 
 I tillegg overstyrer følgende regler de ovennevnte:
 | KelvinSakRegel | Søker som har en sak i Kelvin skal alltid til Kelvin |
