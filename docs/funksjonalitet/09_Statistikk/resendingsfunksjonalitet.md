@@ -77,4 +77,105 @@ values ('flyt.statistikk.resend', null, null, '2023-01-01 00:00:00', null, '1000
 
 Tilsvarende SQL vil virke i statistikk (med jobbtype `statistikk.resendSakstatistikk`).
 
+## Eksempler på når resending har skjedd
 
+### Etterfylle prod-data ved hjelp av resending
+
+(i midten av desember 2025)
+
+Da det ble bestemt at dev-dataen var god nok for saksstatistikken, ble prod-tabellen `saksstatistikk` tømt, og hendelser ble sendt til statistikkappen på nytt ved å trigge dem i `behandlingsflyt`.
+
+For alle avsluttede behandlinger ble denne spørringen kjørt:
+
+```sql
+insert into jobb (type, sak_id, behandling_id, neste_kjoring, parameters, payload)
+select 'flyt.statistikk.resend', sak_id, null, '2023-01-01 00:00:00', null, id::text
+from (select *
+      from behandling
+      where status = 'AVSLUTTET'
+      order by id asc
+      offset 3330 rows limit 500) as "b*";
+```
+
+(med varierende offset-verdi).
+
+Dette resulterte i ca 5000 nye rader i `saksstatistikk`-tabellen.
+
+Denne måten å resende på er altså samme som under overskriften [Hvordan trigge resending](#hvordan-trigge-resending).
+
+
+### Riktig status på OVERSENDT_KA for klager
+
+(ca 12 januar 2026)
+
+Et annet tilfelle oppstod da vi fikk beskjed om at de trengte et status-felt for *før* klager blir sendt til andreinstans (Kabal). Se [denne Slack-tråden](https://nav-it.slack.com/archives/C07NKPFFELT/p1767878273931259).
+
+Da måtte tidligere hendelser oppdateres (hvor "oppdateres" betyr å sette inn en ny rad med samme funksjonelle tid men høyere teknisk tid). Jeg måtte grave litt i databasen til `behandlingsflyt` for å finne de riktige tidspunktene. Til slutt fant jeg denne spørringen, som sier når `OPPRETTHOLDELSE`-steget ble kjørt.
+
+```sql
+select referanse, sh.opprettet_tid
+from behandling b
+         join steg_historikk sh on b.id = sh.behandling_id
+where sh.steg = 'OPPRETTHOLDELSE'
+  and sh.status = 'OPPDATER_FAKTAGRUNNLAG'
+  and b.referanse in (
+                      '206d8983-fd32-40a2-aac8-e89194d4c2f1',
+                      '<mange andre uuid-er>',
+                      '5f5d8a13-fe38-4244-afc2-902ef7577db9')
+```
+
+Dette er altså UUID-ene til klagebehandlingene.
+
+Nå kan jeg copy-paste resultatet fra IntelliJ, lime inn, og bruke multicursor til raskt å lage en ny spørring:
+
+```sql
+insert into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                            relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                            registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                            ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                            ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                            behandling_status, behandling_aarsak, behandling_resultat,
+                            resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       relatert_behandling_uuid,
+       relatert_fagsystem,
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       ts,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       saksbehandler,
+       behandlingmetode,
+       'OVERSENDT_KA',
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       ansvarlig_enhet_kode,
+       sak_ytelse
+from (values ('bff56e25-2899-43db-8678-02203fe90b2b'::uuid, '2025-07-03 10:42:39.566'::timestamp),
+              -- mange flere verdier
+             ('8f445ebe-693b-406a-b303-c4da62e0e4bc'::uuid,
+              '2026-01-08 11:51:02.312'::timestamp)) as data(uuid, ts)
+         cross join lateral (
+    select *
+    from saksstatistikk
+    where behandling_uuid = data.uuid
+      and endret_tid < data.ts
+    order by endret_tid desc
+    limit 1)
+returning id
+```
+
+Dette setter inn en ny rad i saksstatistikk-tabellen _etter_ siste hendelse som er før tidspunktene som er limt inn fra den forrige spørringen.
+
+Etter ca 10-15 minutter er disse synlige i BigQuery.
