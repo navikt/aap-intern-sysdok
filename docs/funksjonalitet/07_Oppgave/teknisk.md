@@ -72,3 +72,11 @@ erDiagram
     filter 1 to many(1) filter_enhet: ""
 
 ```
+
+### Oppdatering av køer ved nye avklaringsbehov
+Når man lager et nytt avklaringsbehov (som det skal finnes oppgave på) bør man samtidig legge inn avklaringsbehovet i tabellen `filter_avklaringsbehovtype` for å sikre at oppgavene dukker opp i ønsket kø. Hvilke oppgaver som skal inn i hvilke køer finner man på [confluence]([https://github.com/navikt/aap-oppgave](https://confluence.adeo.no/spaces/PAAP/pages/597367251/Oppgavestyring)). 
+
+Eksempel: lager man et nytt avklaringsbehov til NAY som skal løses i førstegangsbehandling eller revurdering, bør oppgavene på avklaringsbehovet legges inn i "NAY saksbehandler"-køen. Det gjøres ved å lage ny migreringsfil med følgende insert:
+
+`insert into filter_avklaringsbehovtype (filter_id, avklaringsbehovtype) values ( (select id from filter where navn = 'NAY saksbehandler'), '<avklaringsbehovkode>');`
+
