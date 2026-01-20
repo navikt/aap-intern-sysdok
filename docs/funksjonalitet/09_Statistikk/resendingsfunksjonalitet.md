@@ -179,3 +179,70 @@ returning id
 Dette setter inn en ny rad i saksstatistikk-tabellen _etter_ siste hendelse som er før tidspunktene som er limt inn fra den forrige spørringen.
 
 Etter ca 10-15 minutter er disse synlige i BigQuery.
+
+### Resende relatert behandling UUID for klager
+
+(20 januar 2026)
+
+Steg en var å identifisere disse i behandlingsflyt. Dette ble gjort med spørringen
+
+```sql
+select kb.referanse, b.referanse
+from paaklaget_behandling_grunnlag pg
+         join paaklaget_behandling_vurdering pv on pg.vurdering_id = pv.id
+         join behandling kb on pg.behandling_id = kb.id
+         join behandling b on pv.paaklaget_behandling_id = b.id
+where aktiv = true and kb.status = 'AVSLUTTET';
+```
+
+Resultatet ble kopiert inn i neste insert-spørring:
+
+```sql
+insert
+into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                     relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                     registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                     ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                     ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                     behandling_status, behandling_aarsak, behandling_resultat,
+                     resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       relatert,
+       'KELVIN',
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       endret_tid,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       saksbehandler,
+       behandlingmetode,
+       behandling_status,
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       ansvarlig_enhet_kode,
+       sak_ytelse
+from (values ('bff56e25-2899-43db-8678-02203fe90b2b'::uuid,
+              '5bd61cee-9677-44da-af1d-86177b7045d2'::uuid),
+              --- FLERE UUID-PAR
+             ('543526ff-c42b-42a7-bd50-d23aa08a67f0'::uuid,
+              '805b1e33-84ee-4473-821e-16dcf02a0865'::uuid)) as data(uuid, relatert)
+         cross join lateral (
+    select *
+    from saksstatistikk
+    where behandling_uuid = data.uuid
+      and behandling_status in ('AVSLUTTET', 'OVERSENDT_KA')
+    order by endret_tid desc
+    limit 1)
+returning id;
+```
