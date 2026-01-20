@@ -246,3 +246,91 @@ from (values ('bff56e25-2899-43db-8678-02203fe90b2b'::uuid,
     limit 1)
 returning id;
 ```
+
+### Resende også for klager hvor OVERSENDT_KA ikke var avsluttet-hendelse
+
+(også 20 januar)
+
+Pga den forrige inserten, hadde vi fasit allerede, så da ble denne spørringen kjørt:
+
+```sql
+insert
+into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                     relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                     registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                     ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                     ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                     behandling_status, behandling_aarsak, behandling_resultat,
+                     resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       rel,
+       'Kelvin',
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       endret_tid,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       saksbehandler,
+       behandlingmetode,
+       behandling_status,
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       ansvarlig_enhet_kode,
+       sak_ytelse
+from (with alle_meldinger as (select s.*,
+                                     row_number()
+                                     over (partition by behandling_uuid, endret_tid order by teknisk_tid desc) as siste_melding_for_hendelse
+                              from saksstatistikk s)
+      select am_hoved.behandling_uuid           buid,
+             am_rel.relatert_behandling_uuid as rel,
+             am_hoved.endret_tid               as am_endret_tid
+      from alle_meldinger am_hoved
+               cross join lateral (select *
+                                   from alle_meldinger am_sub
+                                   where am_sub.relatert_behandling_uuid is not null
+                                     and am_hoved.behandling_uuid = am_sub.behandling_uuid
+                                   order by endret_tid desc
+                                   limit 1) am_rel
+      where am_hoved.siste_melding_for_hendelse = 1
+        and am_hoved.relatert_behandling_uuid is null
+        and am_hoved.behandling_status = 'OVERSENDT_KA') as data
+         cross join lateral (
+    select *
+    from saksstatistikk ss
+    where ss.behandling_uuid = data.buid
+      and ss.endret_tid = data.am_endret_tid
+      and ss.behandling_status = 'OVERSENDT_KA'
+    order by endret_tid desc, teknisk_tid desc
+    limit 1)
+returning id;
+```
+
+Et nyttig triks her er å skru av automatisk commit i IntelliJ, slik at man kan inserte, og spørre etterpå.
+
+Det var også nyttig å bruke denne spørringen for å utlede gjeldende melding for hver behandling:
+```sql
+with alle_meldinger as (select s.*,
+                               row_number()
+                               over (partition by behandling_uuid, endret_tid order by teknisk_tid desc) as siste_melding_for_hendelse
+                        from saksstatistikk s)
+select *
+from alle_meldinger
+where siste_melding_for_hendelse = 1
+  and alle_meldinger.relatert_behandling_uuid is null
+  and alle_meldinger.behandling_status = 'OVERSENDT_KA'
+order by behandling_uuid, endret_tid
+limit 100;
+```
+
+Her vil meldinger med samme endret tid og høyere teknisk tid vises.
