@@ -39,6 +39,7 @@ export default {
         hashed: true,
       }),
     ],
+    "./src/plugins/tailwind-config.js",
   ],
 
   presets: [
