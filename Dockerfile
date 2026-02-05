@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:1.29-alpine
+FROM nginxinc/nginx-unprivileged:alpine-slim
 
 USER nginx
 WORKDIR /app
