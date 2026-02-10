@@ -334,3 +334,176 @@ limit 100;
 ```
 
 Her vil meldinger med samme endret tid og høyere teknisk tid vises.
+
+### Resende feil enhet på avsluttede hendelser
+
+(10 februar 2026)
+
+Pga feil i joining ved oversending, ble feil enhet satt på endel hendelser. Denne spørringen retter opp avsluttet-hendelser. 
+
+
+```sql
+insert
+into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                     relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                     registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                     ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                     ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                     behandling_status, behandling_aarsak, behandling_resultat,
+                     resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       relatert_behandling_uuid,
+       relatert_fagsystem,
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       endret_tid,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       saksbehandler,
+       behandlingmetode,
+       behandling_status,
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       oppg_enhet,
+       sak_ytelse
+from (with alle_meldinger as (select s.*,
+                                     row_number()
+                                     over (partition by behandling_uuid, endret_tid order by teknisk_tid desc) as siste_melding_for_hendelse
+                              from saksstatistikk s),
+           oppg as (select o.person_id                                                          as o_person_id,
+                           o.behandling_referanse_id                                            as o_behandling_referanse_id,
+                           o.enhet_id                                                           as o_enhet_id,
+                           o.status                                                             as o_status,
+                           br.referanse                                                         as o_behandling_referanse,
+                           e.kode                                                               as e_kode,
+                           s.nav_ident                                                          as s_nav_ident,
+                           row_number()
+                           over (partition by br.referanse order by o.opprettet_tidspunkt desc) as rn
+                    from oppgave o
+                             join enhet e on o.enhet_id = e.id
+                             join person p on o.person_id = p.id
+                             join behandling b on b.referanse_id = o.behandling_referanse_id
+                             join behandling_referanse br on o.behandling_referanse_id = br.id
+                             left join reservasjon r on r.id = o.reservasjon_id
+                             left join saksbehandler s on s.id = r.reservert_av and o.avklaringsbehov = '5099')
+      select oppg.e_kode as oppg_enhet, behandling_uuid as buid,
+             endret_tid as am_endret_tid
+      from alle_meldinger
+               join oppg
+                    on alle_meldinger.behandling_uuid = oppg.o_behandling_referanse and oppg.rn = 1
+      where siste_melding_for_hendelse = 1
+        and behandling_status = 'AVSLUTTET'
+        and behandlingmetode != 'AUTOMATISK'
+        and ansvarlig_enhet_kode != oppg.e_kode
+      order by endret_tid desc) as data
+         cross join lateral (
+    select *
+    from saksstatistikk ss
+    where ss.behandling_uuid = data.buid
+      and ss.endret_tid = data.am_endret_tid
+      and ss.behandling_status = 'AVSLUTTET'
+    order by endret_tid desc, teknisk_tid desc
+    limit 1)
+returning id;
+```
+
+I tillegg ble noen tilfeller av feil kvalitetssikringskontor rettet:
+
+```sql
+insert
+into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                     relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                     registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                     ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                     ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                     behandling_status, behandling_aarsak, behandling_resultat,
+                     resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       relatert_behandling_uuid,
+       relatert_fagsystem,
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       endret_tid,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       saksbehandler,
+       behandlingmetode,
+       behandling_status,
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       oppg_enhet,
+       sak_ytelse
+from (with alle_meldinger as (select s.*,
+                                     row_number()
+                                     over (partition by behandling_uuid, endret_tid order by teknisk_tid desc) as siste_melding_for_hendelse
+                              from saksstatistikk s),
+           oppg as (select o.person_id                                                          as o_person_id,
+                           o.behandling_referanse_id                                            as o_behandling_referanse_id,
+                           o.enhet_id                                                           as o_enhet_id,
+                           o.avklaringsbehov                                                    as o_avklaringsbehov,
+                           o.status                                                             as o_status,
+                           o.opprettet_tidspunkt                                                as o_opprettet_tidspunkt,
+                           o.reservasjon_id                                                     as o_reservasjon_id,
+                           o.har_hastemarkering                                                 as o_har_hastemarkering,
+                           br.referanse                                                         as o_behandling_referanse,
+                           e.id                                                                 as e_id,
+                           e.kode                                                               as e_kode,
+                           p.id                                                                 as p_id,
+                           p.ident                                                              as p_ident,
+                           r.reservert_av                                                       as r_reservert_av,
+                           r.opprettet_tid                                                      as r_opprettet_tid,
+                           s.id                                                                 as s_id,
+                           s.nav_ident                                                          as s_nav_ident,
+                           row_number()
+                           over (partition by br.referanse order by o.opprettet_tidspunkt desc) as rn
+                    from oppgave o
+                             join enhet e on o.enhet_id = e.id
+                             join person p on o.person_id = p.id
+                             join behandling b on b.referanse_id = o.behandling_referanse_id
+                             join behandling_referanse br on o.behandling_referanse_id = br.id
+                             left join reservasjon r on r.id = o.reservasjon_id
+                             left join saksbehandler s on s.id = r.reservert_av
+                    where o.avklaringsbehov = '5097')
+      select oppg.e_kode as oppg_enhet,
+             behandling_uuid as buid,
+             endret_tid as am_endret_tid
+      from alle_meldinger
+               join oppg
+                    on alle_meldinger.behandling_uuid = oppg.o_behandling_referanse and oppg.rn = 1
+      where siste_melding_for_hendelse = 1
+        and behandlingmetode = 'KVALITETSSIKRING'
+        and behandling_status = 'UNDER_BEHANDLING'
+        and (ansvarlig_enhet_kode is  null or  ansvarlig_enhet_kode != oppg.e_kode)
+      order by endret_tid desc) as data
+         cross join lateral (
+    select *
+    from saksstatistikk ss
+    where ss.behandling_uuid = data.buid
+      and ss.endret_tid = data.am_endret_tid
+      and ss.behandling_status = 'UNDER_BEHANDLING'
+    order by endret_tid desc, teknisk_tid desc
+    limit 1)
+returning id;
+```
