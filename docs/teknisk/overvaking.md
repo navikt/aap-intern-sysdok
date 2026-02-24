@@ -31,10 +31,12 @@ Noen eksempelspørringer:
 * [Metrikk på tilstand på Circuit-breakers for API-intern](https://grafana.nav.cloud.nais.io/goto/JcnHx-jHR?orgId=1)
 
 
-### Kibana / Adeo
+### OpenSearch
 
-Logger, men mye raskere + secureLog.
+Logger, men mye raskere
+https://logs.az.nav.no/goto/d78dbc6dd892cc0505002050b421b59e?security_tenant=navlogs
 
+[Team logs (tidligere secure logs)](https://cloudlogging.app.goo.gl/eZy5YonyVovfvBBS8) 
 **TODO**: skriv om secure logs, og hvordan bruke
 
 ### Paw Patrol
