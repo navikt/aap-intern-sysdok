@@ -45,5 +45,9 @@
   "engines": {
     "node": ">=18.0"
   },
+  "resolutions": {
+    "node-gyp": "^12.2.0",
+    "tar": "^7.5.8"
+  },
   "packageManager": "yarn@4.9.2"
 }
