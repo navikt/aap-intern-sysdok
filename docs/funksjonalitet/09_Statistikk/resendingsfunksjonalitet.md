@@ -507,3 +507,96 @@ from (with alle_meldinger as (select s.*,
     limit 1)
 returning id;
 ```
+
+### Resende manglende avsluttet-hendelser
+
+(4 mars 2026)
+
+Pga en feil ble ikke siste hendelse oversendt til Bigquery. Se Slack: https://nav-it.slack.com/archives/C07NKPFFELT/p1772549310393139
+
+Denne inserten satta inn 35 nye rader i `saksstatistikk`-tabellen.
+
+```sql
+insert
+into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                     relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                     registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                     ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                     ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                     behandling_status, behandling_aarsak, behandling_resultat,
+                     resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       relatert_behandling_uuid,
+       relatert_fagsystem,
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       endret_tid,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       saksbehandler,
+       behandlingmetode,
+       ny_status,
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       ansvarlig_enhet_kode,
+       sak_ytelse
+from (with alle_meldinger as (select s.*,
+                                     row_number()
+                                     over (partition by behandling_uuid order by endret_tid desc, teknisk_tid desc) as siste_melding_for_hendelse
+                              from saksstatistikk s),
+           med_statuser as (with kandidater as (with siste_hendelse as (select s.*,
+                                                                               row_number()
+                                                                               over (partition by behandling_uuid order by endret_tid desc,teknisk_tid desc) as rnk
+                                                                        from saksstatistikk s)
+                                                select behandling_uuid
+                                                from siste_hendelse
+                                                where rnk = 1
+                                                  and behandling_type = 'FØRSTEGANGSBEHANDLING'
+                                                  and behandling_status not in ('AVSLUTTET')
+                                                  and behandling_status not like '%UNDER_BEHANDLING%')
+                            select *
+                            from (select *,
+                                         row_number()
+                                         over (partition by referanse order by oppdatert_tid desc) rn
+                                  from behandling b
+                                           join behandling_historikk bh on b.id = bh.behandling_id
+                                           join behandling_referanse br on b.referanse_id = br.id
+                                  where br.referanse in (select behandling_uuid from kandidater)
+                                  order by oppdatert_tid desc) xx
+                            where rn = 1
+                              and status = 'AVSLUTTET'
+                            order by oppdatert_tid desc)
+      select referanse  as buid,
+             endret_tid as am_endret_tid,
+             status     as ny_status
+      from alle_meldinger
+               join med_statuser
+                    on alle_meldinger.behandling_uuid = med_statuser.referanse
+      where siste_melding_for_hendelse = 1
+        and behandling_type = 'FØRSTEGANGSBEHANDLING'
+        and behandling_status not in ('AVSLUTTET')
+        and behandling_status not like '%UNDER_BEHANDLING%'
+      order by endret_tid desc) as data
+         cross join lateral (
+    select *
+    from saksstatistikk ss
+    where ss.behandling_uuid = data.buid
+      and ss.endret_tid = data.am_endret_tid
+      and behandling_type = 'FØRSTEGANGSBEHANDLING'
+      and behandling_status not in ('AVSLUTTET')
+      and behandling_status not like '%UNDER_BEHANDLING%'
+    order by endret_tid desc, teknisk_tid desc
+    limit 1)
+returning id;
+```
