@@ -1,0 +1,67 @@
+@startuml Informasjonsflyt
+
+!theme plain
+
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+skinparam actor {
+    BackgroundColor #DDEEFF
+    BorderColor #336699
+    FontStyle bold
+}
+
+skinparam rectangle {
+    BackgroundColor #E8F4E8
+    BorderColor #4A7C59
+    BorderThickness 2
+    RoundCorner 12
+    FontStyle bold
+}
+
+skinparam database {
+    BackgroundColor #FFF3CD
+    BorderColor #B8860B
+    BorderThickness 2
+}
+
+skinparam arrow {
+    Color #444444
+    FontSize 10
+    FontColor #555555
+}
+
+title AAP – Arkitektur og informasjonsflyt
+
+actor "Bruker" as bruker
+rectangle "Nav.no" as portal
+database "Joark" as joark
+
+rectangle "Kelvin" {
+    rectangle "Postmottak" as postmottak
+    rectangle "Behandlingsflyt" as behandlingsflyt
+    rectangle "Oppgave" as oppgave
+    rectangle "aap-statistikk" as statistikk
+    database "Statistikk-DB" as statistikkdb
+}
+
+rectangle "GCP" {
+    rectangle "Datastream" as datastream
+    database "BigQuery" as bigquery
+}
+
+bruker          --> portal           : Søknad
+portal          --> joark            : Lagrer
+joark           --> postmottak       : Ny journalpost
+postmottak      --> behandlingsflyt  : Ny Søknad
+postmottak      --> statistikk       : Søknad mottatt
+behandlingsflyt --> oppgave          : Opprett/oppdater
+behandlingsflyt --> statistikk       : Behandlingshendelse
+oppgave         --> statistikk       : Oppgavehendelse
+statistikk      --> statistikkdb     : Lagrer
+statistikkdb    ..> datastream       : CDC (async)
+datastream      --> bigquery         : Sync
+
+@enduml
