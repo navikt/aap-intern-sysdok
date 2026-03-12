@@ -6,12 +6,14 @@ Eksempelguide for å dele meldekortdata.
 
 Hvis det trengs å deles en ny tabell til datavarehuset, trengs følgende ting å gjøres:
 
- 1. Pass på at tabellen er opprettet i statistikk-appen og blir populert av hendelser fra `behandlingsflyt`.
- 2. Sett opp replikering av denne tabellen i Datastream (i dev og prod).
- 3. Lag et view (eller endre på et eksisterende view) for å eksponere dataen.
- 4. Eksponer tabellen eller viewet på Datamarkedsplassen.
- 5. Oppdater dokumentasjon på Confluence.
+
+1. Pass på at tabellen er opprettet i statistikk-appen og blir populert av hendelser fra `behandlingsflyt`.
+2. Sett opp replikering av denne tabellen i Datastream (i dev og prod).
+3. Lag et view (eller endre på et eksisterende view) for å eksponere dataen.
+4. Eksponer tabellen eller viewet på Datamarkedsplassen.
+5. Oppdater dokumentasjon på Confluence.
  
+
 Det kan være greit å gjøre endringene for ett miljø om gangen.
  
  ## Opprett tabellen i statistikk-appen

@@ -5,7 +5,7 @@ Løsningen bygger på [NAIS](https://nais.io) som er kjøreplattform for Google 
 
 | Del av løsning | Teknologi beskrivelse                                                 |
 |----------------|-----------------------------------------------------------------------|
-| Klient         | NEXT.js, Typescript                                                   |
+| Klient         | Next.js, Typescript                                                   |
 | Baksystem      | Ktor og Kotlin                                                        |
 | Infrastruktur  | Postgres-database for forretningslogikk og Redis for mellomlagring    |
 | Kafka          | Hendelsesbasert kommunikasjon mellom systemer i NAV og feilhåndtering |

@@ -56,7 +56,7 @@ Nå er den lokale databasen overskrevet med dumpen fra dev.
 
 ## Roller til servicebruker
 
-Gå til den aktuelle BigQuery-tabellen, og klikk på "Manage permissions". Se bildet:
+Noen ganger trenger eksterne team at deres servicebruker manuelt får tilganger (som ikke er automatisk via Datamarkedsplassen). Gå til den aktuelle BigQuery-tabellen, og klikk på "Manage permissions". Se bildet:
 
 ![Manage permissions i BigQuery](../../bilder/bq_permissions.png)
 
@@ -316,10 +316,6 @@ vilkarsperiode  -->  vilkar : vilkar_id id
 vilkarsresultat  -->  behandling : behandling_id id
 ```
 
-
-## Tester
-
-Testdekningen er (per nå) høy, og det er brukt en blanding av mocking og TestContainers for å teste.
 
 
 ## Tabeller i BigQuery

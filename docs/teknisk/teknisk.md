@@ -13,7 +13,7 @@ Utfyllende informasjon om de ulike applikasjonene finnes i menyen til venstre.
 
 | Del av løsning | Teknologi beskrivelse                               |
 |----------------|-----------------------------------------------------|
-| Klient         | NEXT.js, React, Typescript                          |
+| Klient         | Next.js, React, Typescript                          |
 | Baksystem      | Ktor og Kotlin                                      |
 | Infrastruktur  | Postgres-database for forretningslogikk             |
 | Kafka          | Hendelsesbasert kommunikasjon mellom systemer i Nav |

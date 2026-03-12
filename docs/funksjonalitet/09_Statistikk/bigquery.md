@@ -1,6 +1,6 @@
 # Data i BigQuery
 
-Oppskrift på replikering hvordan her: [her](../../innsikt/replikering_bigquery).
+Oppskrift på hvordan sette opp replikering: [her](../../innsikt/replikering_bigquery).
 
 ## Lage views i BigQuery
 

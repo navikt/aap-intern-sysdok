@@ -1,6 +1,6 @@
 # Best practices og prinsipper for å implementere steg
-En oversikt over eksisterende steg/løsninger, og i hvilken grad de følger (noen av ) best
-practices [ligger i confluence](https://confluence.adeo.no/spaces/PAAP/pages/739042169/St%C3%B8tte+for+periodisering+av+lagring+og+l%C3%B8sninger+api).
+En oversikt over eksisterende steg/løsninger, og i hvilken grad de følger (noen av) best
+practices [ligger i Confluence](https://confluence.adeo.no/spaces/PAAP/pages/739042169/St%C3%B8tte+for+periodisering+av+lagring+og+l%C3%B8sninger+api).
 
 Det er ikke mange steg som oppfyller alle punktene. Muligens `OvergangArbeidSteg` kan være et utgangspunkt.
 

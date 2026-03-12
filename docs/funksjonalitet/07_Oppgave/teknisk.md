@@ -18,8 +18,8 @@ graph TD
 
 ## Hvordan opprettes en oppgave?
 
-Kelvin har to applikasjoner som tar i bruk oppgaveløsningen: [Postmottak](../12_Postmottak/teknisk.md)
-og  [Behandlingsflyt](../06_Behandlingsflyt/teknisk.md).
+Kelvin har to applikasjoner som sender oppdateringer til oppgaveløsningen slik at oppgaver lages: blant annet [Postmottak](../12_Postmottak/teknisk.md)
+og [Behandlingsflyt](../06_Behandlingsflyt/teknisk.md).
 Begge sender hendelser til oppgave når behandlingen stopper opp. Denne hendelsen inneholder informasjon om
 avklaringsbehov med historikk. Oppgave verken oppretter eller løser avklaringsbehov, men har logikk for å avgjøre
 hvorvidt en oppgave skal opprettes eller oppdateres gitt behandlingshistorikken.

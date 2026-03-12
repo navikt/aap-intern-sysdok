@@ -37,7 +37,7 @@ Husk at du har to ulike passord:
 ### Bli lagt til i AD-gruppa til teamet
 
 Dette gjøres fra [NAIS Console](https://console.nav.cloud.nais.io/team/aap/members) av noen som har
-eier-status til team aap. Når du gjør dette vil du automatisk få tilgang til masse saker, f.eks. GitHub og
+eier-status til Team AAP. Når du gjør dette vil du automatisk få tilgang til masse saker, f.eks. GitHub og
 Google Cloud Platform.
 
 ### Installer Intellij IDEA Ultimate
@@ -55,9 +55,9 @@ det på, avhengig av om du vil lagre nøkkelen din i 1Password eller ikke.
 - Hvis du ikke bruker 1Password:
     1. Følg [guiden til IntelliJ](https://www.jetbrains.com/help/idea/set-up-GPG-commit-signing.html). Her vil du
        generere en GPG-nøkkel som bruker hver gang du committer noe via Intellij-GUIet.
-    2. Nøkkenel må
+    2. Nøkkelen må
        også [limes inn i GitHub](https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account).
-    3. Merknad: Hvis du bruker git fra terminalen utenfor Intellij må du også fortelle git-configen om GPG-nøkkelen
+    3. Merknad: Hvis du bruker git fra terminalen utenfor IntelliJ må du også fortelle git-configen om GPG-nøkkelen
        din. [Denne guiden](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key)
        forklarer hvordan.
 - Hvis du bruker 1Password kan du scanne fingeratrykket ditt for å signere
@@ -83,9 +83,9 @@ Her finnes det mange alternativer, _Colima_, _OrbStack_ og sikkert flere.  De fl
 
 Om du ikke har det allerede, sett opp [SSH-nøkler](https://github.com/settings/keys) for Github-brukeren din. Du må også sette opp SSO, slik at man bruke nøkkelparet om navikt-organisasjonen.
 
-### Repos
+### Repositories
 
-Vi har mange repos som er relevante for teamet. Disse finnes [her](https://github.com/search?q=topic%3Anavikt-aap+org%3Anavikt+archived%3Afalse&type=repositories).
+Vi har mange repositories. Disse finnes [her](https://github.com/search?q=topic%3Anavikt-aap+org%3Anavikt+archived%3Afalse&type=repositories) (forutsetter at vi husker å tagge repoet med `navikt-aap`)
 
 Hovedapplikasjonene våre er beskrevet på denne siden.
 

@@ -8,7 +8,7 @@ Den håndterer både obo-token og client-credentials-token.
 
 Pluginen gir 403 ved manglende tilgang.
 
-Se utfyllende dokumentasjon [på github](https://github.com/navikt/aap-tilgang/blob/main/plugin/README.md)
+Se utfyllende dokumentasjon [på Github](https://github.com/navikt/aap-tilgang/blob/main/plugin/README.md)
 
 ## Hvordan installere
 
@@ -29,12 +29,12 @@ Husk også å legge til tilgang i outbound rules:
 ```
 
 I moduler der pluginen brukes:
-```
+```kotlin
     api("no.nav.aap.tilgang:plugin:$tilgangVersjon")
 ```
 
 I moduler der pluginen ikke blir brukt direkte, men der man må implementere interfaces som pluginen eksponerer:
-```
+```kotlin
     api("no.nav.aap.tilgang:api-kontrakt:$tilgangVersjon")
 ```
 
