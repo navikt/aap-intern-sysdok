@@ -56,9 +56,9 @@ bruker          --> portal           : Søknad
 portal          --> joark            : Lagrer
 joark           --> postmottak       : Ny journalpost
 postmottak      --> behandlingsflyt  : Ny Søknad
-postmottak      --> statistikk       : Søknad mottatt
-behandlingsflyt --> oppgave          : Opprett/oppdater
-behandlingsflyt --> statistikk       : Behandlingshendelse
+postmottak      --> statistikk       : Avklaringsbehov
+behandlingsflyt --> oppgave          : Avklaringsbehov
+behandlingsflyt --> statistikk       : Avklaringsbehov
 oppgave         --> statistikk       : Oppgavehendelse
 statistikk      --> statistikkdb     : Lagrer
 statistikkdb    ..> datastream       : CDC (async)
