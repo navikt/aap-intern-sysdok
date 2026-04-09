@@ -600,3 +600,79 @@ from (with alle_meldinger as (select s.*,
     limit 1)
 returning id;
 ```
+
+### Manglende enhet på 5 saker
+
+Gjaldt kun 5 saker, så manuell innsetting. Først finne de som manglet, så sette inn en og en.
+
+```sql
+with siste_hendelse as (select s.*,
+                               row_number()
+                               over (partition by behandling_uuid, endret_tid order by teknisk_tid desc) as rnk
+                        from saksstatistikk s)
+select ansvarlig_enhet_kode, *
+from siste_hendelse
+where saksnummer = '4RE3MM8'
+  and rnk = 1;
+-- 4WCH3GG -- 4491
+-- 4YP609C -- 1824
+-- 51YMTWW -- 1532 på MANUELL og 1500 på KVALITETSSIKRING
+-- 4RWSN0G -- 4491
+-- 4RE3MM8 -- 4491
+
+insert
+into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                     relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                     registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                     ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                     ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                     behandling_status, behandling_aarsak, behandling_resultat,
+                     resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       relatert_behandling_uuid,
+       relatert_fagsystem,
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       endret_tid,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       saksbehandler,
+       behandlingmetode,
+       behandling_status,
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       ny_enhet,
+       sak_ytelse
+from (with alle_meldinger as (select s.*,
+                                     row_number()
+                                     over (partition by behandling_uuid, endret_tid order by teknisk_tid desc) as siste_melding_for_hendelse
+                              from saksstatistikk s)
+      select '4491'          as ny_enhet,
+             behandling_uuid as buid,
+             endret_tid      as am_endret_tid
+      from alle_meldinger
+      where siste_melding_for_hendelse = 1
+        and saksnummer = '4RE3MM8'
+        and ansvarlig_enhet_kode is null
+      --and behandlingmetode = 'MANUELL'
+      order by endret_tid desc) as data
+         cross join lateral (
+    select *
+    from saksstatistikk ss
+    where ss.behandling_uuid = data.buid
+      and ss.endret_tid = data.am_endret_tid
+    order by endret_tid desc, teknisk_tid desc
+    limit 1)
+returning id;
+```
