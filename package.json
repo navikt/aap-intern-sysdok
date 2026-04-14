@@ -27,7 +27,7 @@
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@tailwindcss/postcss": "^4.2.2",
     "postcss": "^8.5.8",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "tailwindcss": "^4.2.2"
   },
   "browserslist": {
