@@ -1,6 +1,6 @@
 # Tilbakekreving
 
-Løsningen for tilbakekreving i AAP muliggjør visning og behandling i Kelvin mot eksternt tilbakesystem i NAV.
+Løsningen for tilbakekreving i AAP muliggjør visning og behandling i Kelvin mot NAV-intern tilbakeløsning.
 
 ## Komponentdiagram
 
