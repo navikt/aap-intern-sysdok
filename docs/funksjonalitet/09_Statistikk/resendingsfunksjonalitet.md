@@ -676,3 +676,66 @@ from (with alle_meldinger as (select s.*,
     limit 1)
 returning id;
 ```
+
+
+### Enhet satt feil på meldekortbehandlinger
+
+Enkelte helautomatiske behandlinger fikk satt enhet til ikke `KELVIN_AUTOMATISK`. Skyldtes en feil join som ble fikset samme dag.
+
+```sql
+insert
+into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                     relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                     registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                     ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                     ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                     behandling_status, behandling_aarsak, behandling_resultat,
+                     resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       relatert_behandling_uuid,
+       relatert_fagsystem,
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       endret_tid,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       null,
+       behandlingmetode,
+       behandling_status,
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       ny_enhet,
+       sak_ytelse
+from (with alle_meldinger as (select s.*,
+                                     row_number()
+                                     over (partition by behandling_uuid, endret_tid order by teknisk_tid desc) as siste_melding_for_hendelse
+                              from saksstatistikk s)
+      select 'KELVIN_AUTOMATISK' as ny_enhet,
+             behandling_uuid     as buid,
+             endret_tid          as am_endret_tid
+      from alle_meldinger
+      where siste_melding_for_hendelse = 1
+        and ansvarlig_enhet_kode != 'KELVIN_AUTOMATISK'
+        and behandling_resultat = 'UDEFINERT'
+        and behandlingmetode = 'AUTOMATISK'
+      order by endret_tid desc) as data
+         cross join lateral (
+    select *
+    from saksstatistikk ss
+    where ss.behandling_uuid = data.buid
+      and ss.endret_tid = data.am_endret_tid
+    order by endret_tid desc, teknisk_tid desc
+    limit 1)
+returning id;
+```
