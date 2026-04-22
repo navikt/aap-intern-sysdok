@@ -14,3 +14,4 @@ For en liste over genererte PlantUML-diagrammer, se her: https://aap-sysdoc.ansa
 ## Nyttige sider
 
  - [Informasjon om overvåking](teknisk/overvaking.md)
+ - [Resending statistikk](funksjonalitet/09_Statistikk/resendingsfunksjonalitet.md)

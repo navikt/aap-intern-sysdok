@@ -601,7 +601,7 @@ from (with alle_meldinger as (select s.*,
 returning id;
 ```
 
-### Manglende enhet på 5 saker
+### Manglende enhet på 5 saker (9 april 2026)
 
 Gjaldt kun 5 saker, så manuell innsetting. Først finne de som manglet, så sette inn en og en.
 
@@ -678,7 +678,7 @@ returning id;
 ```
 
 
-### Enhet satt feil på meldekortbehandlinger
+### Enhet satt feil på meldekortbehandlinger (20 april 2026)
 
 Enkelte helautomatiske behandlinger fikk satt enhet til ikke `KELVIN_AUTOMATISK`. Skyldtes en feil join som ble fikset samme dag.
 
@@ -730,6 +730,62 @@ from (with alle_meldinger as (select s.*,
         and behandling_resultat = 'UDEFINERT'
         and behandlingmetode = 'AUTOMATISK'
       order by endret_tid desc) as data
+         cross join lateral (
+    select *
+    from saksstatistikk ss
+    where ss.behandling_uuid = data.buid
+      and ss.endret_tid = data.am_endret_tid
+    order by endret_tid desc, teknisk_tid desc
+    limit 1)
+returning id;
+```
+
+### Fikse enkel-innslag (22 april 2026)
+
+Endel innslag manglet enhet, satt inn riktig en og en. Kan gjøres slik.
+
+```sql
+insert
+into saksstatistikk (fagsystem_navn, behandling_uuid, saksnummer, relatert_behandling_uuid,
+                     relatert_fagsystem, behandling_type, aktor_id, teknisk_tid,
+                     registrert_tid, endret_tid, mottatt_tid, vedtak_tid,
+                     ferdigbehandlet_tid, versjon, avsender, opprettet_av,
+                     ansvarlig_beslutter, soknadsformat, saksbehandler, behandlingmetode,
+                     behandling_status, behandling_aarsak, behandling_resultat,
+                     resultat_begrunnelse, ansvarlig_enhet_kode, sak_ytelse)
+select fagsystem_navn,
+       behandling_uuid,
+       saksnummer,
+       relatert_behandling_uuid,
+       relatert_fagsystem,
+       behandling_type,
+       aktor_id,
+       now(),
+       registrert_tid,
+       endret_tid,
+       mottatt_tid,
+       vedtak_tid,
+       ferdigbehandlet_tid,
+       versjon,
+       avsender,
+       opprettet_av,
+       ansvarlig_beslutter,
+       soknadsformat,
+       saksbehandler,
+       behandlingmetode,
+       behandling_status,
+       behandling_aarsak,
+       behandling_resultat,
+       resultat_begrunnelse,
+       ny_enhet,
+       sak_ytelse
+from (select s.behandling_uuid as buid,
+             s.endret_tid      as am_endret_tid,
+             '0221'        as ny_enhet
+      from saksstatistikk_gjeldende_hendelser s
+      where s.ansvarlig_enhet_kode is null
+        and s.behandling_uuid in ('5bb871fc-c6ec-414f-9d7f-af4a321ff448')
+      order by s.endret_tid desc) as data
          cross join lateral (
     select *
     from saksstatistikk ss
