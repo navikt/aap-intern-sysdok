@@ -8,6 +8,9 @@ on:
       - 'diagrams/**/*.puml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   generate-diagrams:
     runs-on: ubuntu-latest
