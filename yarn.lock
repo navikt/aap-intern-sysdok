@@ -9122,6 +9122,7 @@ __metadata:
     "@easyops-cn/docusaurus-search-local": "npm:^0.55.1"
     "@tailwindcss/postcss": "npm:^4.2.2"
     lucide-react: "npm:^1.8.0"
+    postcss: "npm:^8.5.10"
     prettier: "npm:^3.8.3"
     prism-react-renderer: "npm:^2.4.1"
     react: "npm:^19.2.5"
