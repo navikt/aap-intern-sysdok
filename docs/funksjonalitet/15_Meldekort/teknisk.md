@@ -25,4 +25,9 @@ Kelvin sin meldekort-backend mottar hendelser fra behandlingsflyt med meldeperio
 
 Det opprettes journalposter for innsendte meldekort, som plukkes opp og journalføres av postmottak, og rutes videre til behandlingsflyt der de behandles. Les mer om hvordan meldekortbehandlingene fungerer [her](../06_Behandlingsflyt/vedtak.md#meldekort-behandling).
 
+### Helligdager & unntaktstilfeller
+I noen tilfeller har vi [unntaktstilfeller](
+https://confluence.adeo.no/spaces/PAAP/pages/752102586/Tidlig+utbetaling+av+meldekort+i+forbindelse+med+jul+nytt%C3%A5r+og+p%C3%A5ske) for meldekort og er nødt til å gjøre justeringer. Avhengig av hvilket type unntak må det gjøres justeringer i [meldekort-backend](https://github.com/navikt/aap-meldekort-backend) og/eller [behandlingsflyt](https://github.com/navikt/aap-behandlingsflyt). I behandlingsflyt finnes det lister hvor man kan mappe fra og til-dato for disse justerte dagene i HelligdagsunntakMeldekort.kt, mens i meldekort finner man det tilsvarende i Helligdagsunntak.kt. Man må gjøre justeringer i begge appene om det gjelder justering av meldedag og meldefrist, mens justeringer på beregning av fritaksmeldekort trengs bare utføres i Behandlingsflyt.
+
+
 ### UtfyllingFlyt (TODO)
