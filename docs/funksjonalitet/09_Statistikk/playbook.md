@@ -70,3 +70,38 @@ from (with per_sak as (select sak_id,
                            order by sak_id, b.id)
         and diagnoser ->> 'kodeverk' is not null) s
 ```
+
+## Krasj pga manglende enhet
+
+Jobber til saksstatistikk krasjer om den ikke klarer å utlede enhet. Noen ganger skjer dette pga treghet i oppgave, og rekjøring burde fikse problemet.
+
+Andre ganger klarer den ikke utlede faktisk enhet, og da burde det debugges.
+
+Eksempel-stacktrace:
+
+```
+java.lang.IllegalStateException: Enhet mangler fortsatt etter 3 forsøk for behandling BehandlingId(id=79911), avklaringsbehov=AVKLAR_LOVVALG_MEDLEMSKAP(kode='5017').
+	at no.nav.aap.statistikk.saksstatistikk.LagreSakinfoTilBigQueryJobbUtfører.utførJobb(LagreSakinfoTilBigQueryJobb.kt:122)
+```
+
+
+Nå vil jeg undersøke `oppgave_hendelser`-tabellen i statistikk-appen for å se om vi har noen oppgaver med dette avklaringsbehovet.
+
+Først finne behandlingsreferanse og saksnummer:
+
+```sql
+select *
+from behandling b
+         join behandling_referanse br on b.referanse_id = br.id
+join sak s on b.sak_id = s.id
+where b.id = 79911;
+```
+
+Finn oppgaver:
+```sql
+select *
+from oppgave_hendelser
+where behandling_referanse = 'd3c342c9-8952-4490-bbb7-c637dd4d773b'
+```
+
+Her var det ingen! Så da åpnet jeg Paw Patrol og fant ut at det var endel jobber på denne som krasjet i behandlingsflyt. Jeg rekjørte dem, og rekjørte deretter i statistikk. Da løste dette seg. 
