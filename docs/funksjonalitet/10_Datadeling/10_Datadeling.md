@@ -36,6 +36,8 @@ flowchart TB
     outside{{ Eksterne konsumenter }}
     interne{{ Interne konsumenter}}
     arena[( Arena Oracle DB )]
+    hendelsesTopic[( aap.api-intern-hendelse-v1 )]
+    hendelseKonsumenter{{ Hendelse-konsumenter }}
 
     outside --> aap-api
     interne --> aap-intern-api
@@ -48,6 +50,9 @@ flowchart TB
     aap-arena-oppslag --> arena
     behandlingsflyt --> aap-intern-api
     
+    aap-intern-api --> hendelsesTopic
+    hendelsesTopic --> hendelseKonsumenter
+
     style aap-api fill:#FFFFE0
     style aap-intern-api fill:#FFFFE0
     style aap-arena-oppslag fill:#FFFFE0
@@ -93,6 +98,32 @@ Konsumenter (per 30/8-2024, se `app-prod.yml` for oppdatert data):
 | Konsument       | Miljøer     |
 |-----------------|-------------|
 | Tilleggstønader | Prod og dev |
+
+## AAP-hendelser på Kafka
+
+`aap-api-intern` produserer hendelser på Kafka-topicet `aap.api-intern-hendelse-v1`. Hendelsene er ment som en generell hendelseskø for AAP, og brukes til å varsle konsumenter om endringer i AAP-data.
+
+Hendelser produseres via en motor-jobb (`SendAapHendelseUtfører`) som garanterer at opplysningene er committet til databasen før hendelsen sendes på Kafka.
+
+### Meldingsformat
+
+```json
+{
+  "fnr": "12345678901",
+  "hendelse": "VEDTAK"
+}
+```
+
+### Hendelsestyper
+
+| Hendelse | Beskrivelse                                                |
+|----------|------------------------------------------------------------|
+| `VEDTAK` | Det er fattet et vedtak på personen                        |
+| `SOKNAD` | Det er mottatt en søknad fra personen (Ikke utviklet enda) |
+
+### Tilganger
+
+Tilgang til topicet styres via ACL i topic-konfigurasjonen (`.nais/topic-prod.yaml`). Ta kontakt med AAP-teamet for å få tilgang som konsument.
 
 ## ArenaOppslag
 
