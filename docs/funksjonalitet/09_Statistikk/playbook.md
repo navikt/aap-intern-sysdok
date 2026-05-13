@@ -105,3 +105,23 @@ where behandling_referanse = 'd3c342c9-8952-4490-bbb7-c637dd4d773b'
 ```
 
 Her var det ingen! Så da åpnet jeg Paw Patrol og fant ut at det var endel jobber på denne som krasjet i behandlingsflyt. Jeg rekjørte dem, og rekjørte deretter i statistikk. Da løste dette seg. 
+
+## Finne eldste åpne behandlinger
+
+BigQuery-spørring for å finne de `n` elste behandlingene.
+
+```sql
+WITH
+  siste_melding AS (
+    SELECT
+      *,
+      row_number()
+        OVER (PARTITION BY behandling_uuid ORDER BY endretTid DESC) AS siste
+    FROM `aap-prod-9adc.saksstatistikk.view_gjeldende_hendelser_saksstatistikk`
+  )
+SELECT *
+FROM siste_melding
+WHERE siste = 1 AND behandling_status != 'AVSLUTTET' and behandling_status != 'IVERKSETTES'
+ORDER BY endretTid ASC
+limit 50
+```
