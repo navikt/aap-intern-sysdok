@@ -2,9 +2,10 @@
 
 Løsningen for G-regulering etablert i 2026 har i hovedsak 2 startpunkter for å identifisere og igangsette G-regulering.
  - Uttrekksjobb for iverksatte saker
- - Tilbakeløsning for pågående saker
+ - Tilbakeflyt for pågående saker
 
-I tillegg vil dagens meldekort løsning trigge G-regulering når nye meldekort kommer inn til behandlingsflyt da dette medfører informasjonskrav og omberegning av ytelse som da blir basert på aktiv G-justering i Grunnbeløp.kt.
+I tillegg vil dagens meldekort løsning trigge G-regulering når nye meldekort kommer inn til behandlingsflyt da dette medfører tilbakeflyt grunnet meldekort-informasjonskrav. 
+Da vil en omberegning av ytelse utføres og dagsats blir automatisk basert på en evtuelt ny G-justering i Grunnbeløp.kt for relevant del av AAP-perioden.
 
 ## Komponentdiagram for Uttrekksjobb
 
@@ -47,4 +48,56 @@ flowchart TD
      end
  
      SEND --> DONE["✅ Bruker mottar\nG-regulert ytelse"]
+```
+
+## Komponentdiagram for Tilbakeflyt
+
+```mermaid
+ flowchart TD
+     subgraph Behandling_i_gang["Behandling i gang (FGB eller revurdering)"]
+         direction TB
+         EARLIER["... tidligere steg ...\n(Innhenting, vilkårsvurdering, underveis)"]
+         BEREGN["BeregnTilkjentYtelseSteg\n✅ Kjørt med GAMMELT grunnbeløp"]
+         SIMUL["SimulerUtbetalingSteg\n✅ Kjørt"]
+         FORESLA["ForeslåVedtakSteg\n⏳ Venter på saksbehandler"]
+ 
+         EARLIER --> BEREGN --> SIMUL --> FORESLA
+     end
+ 
+     G_ENDRING["🗓️ 1. mai: G endres\nGrunnbeløp.kt oppdateres\n(f.eks. 124 028 → 130 160)"]
+ 
+     TRIGGER["Motor eller brukerhandling trigger\nProsesserBehandlingJobbUtfører"]
+ 
+     G_ENDRING --> TRIGGER
+ 
+     subgraph Forbered["forberedBehandling() i FlytOrkestrator"]
+         CHECK["oppdaterFaktagrunnlagForKravliste()\nSjekker informasjonskrav for\npåpasserte steg"]
+         GRUNNBELOEP_CHECK["GrunnbeløpInformasjonskrav.oppdater()\nSammenligner Grunnbeløp.kt-tidslinje\nmed grunnbeløp i tilkjent_periode"]
+         GRUNNBELOEP_CHECK -->|ENDRET| TILBAKEFLYT["BehandlingFlyt.tilbakeflytEtterEndringer()\nFinner tidligste steg med\nGrunnbeløpInformasjonskrav\n→ BEREGN_TILKJENT_YTELSE"]
+         GRUNNBELOEP_CHECK -->|IKKE_ENDRET| INGEN["Ingen tilbakeføring\nBehandling fortsetter normalt"]
+         CHECK --> GRUNNBELOEP_CHECK
+         TILBAKEFLYT --> BACKSTEPPING["FlytOrkestrator.tilbakefør()\nRuller tilbake ett og ett steg:\nForeslåVedtak → SimulerUtbetaling\n→ BeregnTilkjentYtelse"]
+     end
+ 
+     TRIGGER --> Forbered
+ 
+     BACKSTEPPING --> NY_BEREGN["🔄 BeregnTilkjentYtelseSteg kjøres på nytt\nBeregner med NYTT grunnbeløp\nLagrer ny tilkjent_ytelse"]
+ 
+     NY_BEREGN --> NY_SIMUL["SimulerUtbetalingSteg"]
+     NY_SIMUL --> SAKSBEHANDLER["ForeslåVedtakSteg\n👤 Saksbehandler ser oppdatert ytelse\nog bekrefter"]
+ 
+     SAKSBEHANDLER -->|Saksbehandler godkjent| BESLUTTER["FatteVedtakSteg\n👤 Beslutter godkjenner\n(to-trinns kontroll)"]
+ 
+     BESLUTTER -->|Beslutter iverksetter| IVERKSETT["IverksettVedtakSteg\nFatter vedtak\nKøer IverksettUtbetaling-jobb"]
+ 
+     IVERKSETT --> UTBETAL_JOBB["IverksettUtbetalingJobbUtfører\nHenter tilkjent ytelse\nfra siste fattede vedtak"]
+ 
+     UTBETAL_JOBB --> AAP_UTBETALING["utbetalingGateway.utbetal()\n→ aap-utbetaling"]
+ 
+     AAP_UTBETALING --> DONE["✅ Bruker mottar\nG-regulert ytelse"]
+ 
+     subgraph Begrensning["⚠️ Viktig begrensning"]
+         NOTE["Etter sluttÅOppdatereFaktagrunnlag()\n(mellom ForeslåVedtak og FatteVedtak)\nsjekkes IKKE informasjonskrav lenger.\n\nBehandlinger som allerede venter på beslutter\nblir 
+IKKE auto-tilbakeført –\nde håndteres av batch-jobben\netter at behandlingen er vedtatt."]
+     end
 ```
