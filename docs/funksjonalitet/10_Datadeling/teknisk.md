@@ -71,3 +71,24 @@ API'ene henter i dag data fra Arena. Arena er ikke uten videre
 tilgjengelig i GCP, så vi har satt opp en [proxy](https://github.com/navikt/aap-arenaoppslag) 
 som har ansvar for å gjøre oppslag i Arena. Denne appen kjører i
 FSS og har en kobling til dedikerte views i Arena-databasen.
+
+## DB-skjema
+
+![Skjema](./api_intern_db.png)
+
+
+### Hvordan lage:
+
+Installer `jbang` og kjør
+
+```
+jbang run --java 21 --deps org.postgresql:postgresql:RELEASE -m org.schemaspy.Main org.schemaspy:schemaspy:7.0.2 -t pgsql -host localhost -port 5432 -db api -u 'epost@nav.no' -o schemaspy
+```
+
+Erstatt `epost` med ditt brukernavn. Kjør så
+
+```
+open schemaspy/index.html
+```
+
+for å åpne i browser.
