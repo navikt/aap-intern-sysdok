@@ -47,7 +47,9 @@
   },
   "resolutions": {
     "node-gyp": "^12.2.0",
-    "tar": "^7.5.8"
+    "tar": "^7.5.8",
+    "express/path-to-regexp": "0.1.13",
+    "serialize-javascript": "^7.0.5"
   },
   "packageManager": "yarn@4.9.2"
 }
