@@ -37,13 +37,19 @@ Dette er felter som havner i søknaden, deretter blir behandlingen fullført aut
 
 Deretter poller Dolly på endepunktet `/api/test/behandlingStatus` inntil de får status om at behandlingen er fullført.
 
-## Gjenstående
+Implementert i filen `FullførBehandlingApi.kt` i `aap-behandlingsflyt`.
 
-Ingen muligheter for utbetaling, siden vi ikke sender meldekort automatisk.
+## Krav til endepunktet
+
+Dolly foretrekker at vi ikke bruker norske tegn (æøå) i endepunkt eller i payload.
+
+Post-endepunktet bør være idempotent, det skal ikke krasje om det kalles to ganger. Aller helst skal man kunne endre svar ved å kalle det to ganger med forskjellig payload.
+
+## Gjenstående
 
 Ingen mulighet i dag til å gi forskjellige typer AAP, samordning, osv.
 
-Ikke mulig å si søknadssdato og sluttdato.
+Ikke mulig å sette sluttdato.
 
 :::info
 Ideen var å skrive integrasjonen ganske lik flyt-testene. Da kan f.eks sluttdato legges til ved å gjøre en ekstra sykdom-vurdering.
