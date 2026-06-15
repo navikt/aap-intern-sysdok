@@ -1,7 +1,7 @@
 # Postmottak
 
-Når en bruker sender inn "noe" på MittNAV, må dette ende opp i
-riktig system. Det er her postmottak kommer inn.
+Når det kommer inn dokumenter på en bruker, f.eks. ved at bruker sender inn søknad eller ettersender dokumenter på
+nav.no, så må dette ende opp i riktig system. Det er her postmottak kommer inn.
 
 ## Fordeling
 Postmottak lytter på JOARK
