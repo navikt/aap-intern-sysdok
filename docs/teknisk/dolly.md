@@ -1,6 +1,6 @@
 # Dolly-integrasjon
 
-Kelvin har en (enkel) integrasjon med Dolly.
+Kelvin har en integrasjon med Dolly.
 
 De integrerer mot to endepunkter i `behandlingsflyt`, dokumentert på Swagger: https://aap-behandlingsflyt.intern.dev.nav.no/swagger-ui/index.html#/Dolly
 
@@ -38,6 +38,10 @@ Dette er felter som havner i søknaden, deretter blir behandlingen fullført aut
 Deretter poller Dolly på endepunktet `/api/test/behandlingStatus` inntil de får status om at behandlingen er fullført.
 
 Implementert i filen `FullførBehandlingApi.kt` i `aap-behandlingsflyt`.
+
+## Kontaktpunkter
+
+Kanalen `#dolly` på Slack og den (dessverre) private kanalen `#dolly-kelvin-integrasjon`. Be noen andre på teamet invitere deg inn.
 
 ## Krav til endepunktet
 
