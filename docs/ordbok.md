@@ -26,3 +26,22 @@ Grunnbeløpet er et tall som blir brukt til å beregne mange av NAVs utbetalinge
 ## Styringsinformasjon
 
 Data, analyser og vurderinger som benyttes som grunnlag for styring og strategiske beslutninger på alle nivåer i organisasjonen. ([Begrepskatalogen](https://jira.adeo.no/browse/BEGREP-2281?src=confmacro)x)
+
+## Forkortelser
+
+### MD-brev
+
+Mål og Disponering. Brev som sendes fra linja og til kontorene. (?)
+
+### SYFO
+
+Sykefraværsoppfølging.
+
+### NKS
+
+Nav Kontaktsenter.
+
+
+### ATL
+
+Arbeid og tjeneste-linja.
