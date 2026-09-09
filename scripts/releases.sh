@@ -6,6 +6,7 @@ REPOSITORIES=(
     "navikt/aap-tilgang"
     "navikt/aap-postmottak-backend"
     "navikt/aap-kelvin-komponenter"
+    "navikt/aap-arenaoppslag"
     "navikt/aap-oppgave"
     "navikt/aap-utbetal"
 )
