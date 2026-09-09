@@ -106,6 +106,10 @@ export default {
                 label: "Github Security Overview",
                 href: "https://github.com/orgs/navikt/security/overview?query=archived%3Afalse+tool%3Agithub+team%3Aaap",
               },
+              {
+                label: "NAIS APM",
+                href: "https://grafana.nav.cloud.nais.io/a/nais-apm-app/services?namespace=aap&environment=prod",
+              },
             ],
           },
         ],
