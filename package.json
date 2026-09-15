@@ -20,8 +20,8 @@
     "@easyops-cn/docusaurus-search-local": "^0.55.3",
     "lucide-react": "^1.45.0",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.10.2",
