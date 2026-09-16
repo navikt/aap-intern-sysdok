@@ -46,9 +46,9 @@ Mot slutten av saksbehandlingsprosessen av AAP, så samler Kelvin
 inn alle dokumentene som handler om forskjellige vilkår for retten
 til AAP. Kelvin sammenstiller disse for å finne ut av hvilke perioder
 medlemmet i utgangspunktet har rett til AAP, og for hver periode,
-hvilken paragraf de får AAP etter. Dette lagres som en tabell – et
-dokument.  Det er dette dokumentet som inneholder avgjørelsen om
-når medlemmet rett på AAP.
+hvilken paragraf de får AAP etter. Dette samles i et dokument med
+en tabell for de forskjellige periodene. Det er dette dokumentet
+som inneholder avgjørelsen om når medlemmet har rett på AAP.
 
 Enda senere i saksbehandlingsprosessen av AAP, så tar Kelvin og
 samler inn alle relevante dokumenter som sier noe om størrelsen på
