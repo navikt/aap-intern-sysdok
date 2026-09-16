@@ -164,7 +164,7 @@ avslag på lå først i flyten.
 Konseptene rundt personmappe, behandling, dokumenter og flyt er i
 utgangspunktet agnostiske til hva et «vedtak» er. De ivaretar
 etterlevelse for saksbehandling generelt. Generelt sett, så
-vil en behandling kunne regnes som saksbehandling, uavhengig
+representerer en behandling en saksbehandlingsprosess, uavhengig
 av om det fattes vedtak eller ikke.
 
 Men spørsmålet om vedtaksstrukturen i Kelvin er ikke mindre viktig
