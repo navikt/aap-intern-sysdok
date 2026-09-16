@@ -19,7 +19,7 @@ dokumentene mottatt og produsert i saksbehandlingen av AAP.
 ### Dokumenter
 Når en veileder sitter i Kelvin og gjør en vurdering av vilkåret §
 11-5 nedsatt arbeidsevne, så sender veilederen inn et strukturert
-dokument med en begrunnelse, fra- og til-datoer, diagonser og
+dokument med en begrunnelse, fra- og til-datoer, diagnoser og
 ja/nei-svar på forskjellige spørsmål. Dette dokumentet lagres da i
 personmappen, sammen med metadata om hva slags dokument det er,
 hvem som skrev det og når de skrev det.
@@ -36,10 +36,10 @@ er opplysninger fra registeroppslag. Så når Kelvin gjør et oppslag
 i yrkesskade-registeret, så lagrer Kelvin ned relevante opplysninger
 fra oppslaget som et dokument i personmappen. Dette dokumentet
 inneholder da også metadata om når opplysningene ble hentet fra
-registeret og hvis det finnes flere register det kan være hentet
+registeret og hvis det finnes flere registre det kan være hentet
 fra, hvilket register det er hentet fra.
 
-Et tredje kategori på et dokument som puttes i personmappen, er
+En tredje kategori på et dokument som puttes i personmappen, er
 dokumenter som produseres av Kelvin selv.
 
 Mot slutten av saksbehandlingsprosessen av AAP, så samler Kelvin
@@ -75,7 +75,7 @@ vi ikke kan slette eller endre disse.
 
 Hvis saksbehandler f.eks. har gjort en vurdering av at brukeren
 oppfyller § 11-5 om nedsatt arbeidsevne, og vedtak fattes på bakgrunn
-av denne vurderinger, så er dette dokumentet arkivverdig.
+av denne vurderingen, så er dette dokumentet arkivverdig.
 
 Hvis det viser seg at vurderingen er feil, så er det ikke lov å endre
 selve dokumentet. Det ville vært som å ta med seg viskelær inn på
@@ -114,7 +114,7 @@ på skrivebordet helt til saksbehandlingen er over. Først når vi er ferdig
 med å saksbehandle, vil vi putte personmappa tilbake i arkivet.
 Så lenge personmappa ligger på skrivebordet, så sier vi at (saks)behandlingen
 er «åpen». Når saksbehandlingen er ferdig, og personmappen puttes tilbake
-i arkviet, så er (saks)behandlingen «avsluttet».
+i arkivet, så er (saks)behandlingen «avsluttet».
 
 Begrensningene på å endre og slette dokumenter, styres av om behandlingen
 er åpen eller avsluttet. Så lenge (saks)behandlingen er åpen, så anser
@@ -195,8 +195,8 @@ anses som ferdige saksdokumenter, og i den grad noen av dokumentene
 «er» vedtak, at de går fra å være utkast til fattede vedtak.
 
 ### Er behandling = vedtak?
-Identiten som ofte trekkes mellom behandling og vedtak tenker jeg
-til en viss grad er uheldig. Generelt sett, så er det mulig å
+Identiteten som ofte trekkes mellom behandling og vedtak er
+til en viss grad uheldig. Generelt sett, så er det mulig å
 (saks)behandle uten å fatte vedtak. Hovedideen som ble lagt til
 grunn for Kelvin, er at det er naturlig å trekke en parallell mellom
 ytelsesbehandlinger og vedtak, fordi ytelsesbehandlinger kun handler
