@@ -10,15 +10,29 @@ For øyeblikket lastes ikke transitive avhengigheter ned pakker ned (f.eks om ma
 
 
 ```mermaid
-flowchart LR
-    motor --> dbconnect
-    motor -.-> dbtest
-    motor-api --> motor
-    motor -- (pga DefaultJsonMapper) --> httpklient
-    dbconnect -.-> dbtest
+graph TD
     dbmigrering --> infrastructure
+    dbconnect --> verdityper
+    motor --> dbconnect
+    motor --> json
+    motor --> gateway
+    motor --> infrastructure
+    motor_test_utils["motor-test-utils"] --> dbconnect
+    motor_test_utils --> motor
+    motor_api["motor-api"] --> dbconnect
+    motor_api --> infrastructure
+    motor_api --> motor
+    motor_api --> ktor_openapi_generator["ktor-openapi-generator"]
+    httpklient --> json
     httpklient --> infrastructure
+    httpklient --> verdityper
+    httpklient --> ktor_openapi_generator
+    server --> verdityper
+    server --> ktor_openapi_generator
     server --> httpklient
+    server --> infrastructure
+    tidslinje --> verdityper
+    
 ```
 
 ## Motor
