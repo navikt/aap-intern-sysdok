@@ -1,4 +1,4 @@
-# Playbook
+# Runbook
 
 ## Manglende diagnose
 
