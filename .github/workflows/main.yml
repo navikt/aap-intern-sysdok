@@ -55,6 +55,13 @@ jobs:
             java -jar tools/plantuml.jar -tpng "$file" -o "$(pwd)/static/generated-diagrams"
           done          
 
+      - name: Build presentasjon-kelvin PDF (save it in static dir)
+        working-directory: presentasjon-kelvin
+        run: |
+          ./build.sh --docker presentasjon.org
+          mkdir -p ../static/presentasjoner
+          cp presentasjon.pdf ../static/presentasjoner/presentasjon-kelvin.pdf
+
       - name: Install dependencies
         run: yarn install --immutable
 
