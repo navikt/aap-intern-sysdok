@@ -1,0 +1,205 @@
+% navtheme.sty --- Moderne Beamer-tema med Nav-inspirerte farger
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{navtheme}[2026/09/29 Moderne Beamer-tema med Nav-farger]
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
+
+% Nav bruker Source Sans som merkevareskrift. Source Code Pro til kode/mono.
+% microtype gir jevnere ordmellomrom og en mer «trykt» typografi.
+\RequirePackage[default]{sourcesanspro}
+\RequirePackage{sourcecodepro}
+\RequirePackage{microtype}
+
+% Org eksporterer SVG-lenker som \includesvg, men svg.sty krever Inkscape og
+% -shell-escape. build.sh konverterer i stedet SVG til PDF med rsvg-convert,
+% og denne shimen inkluderer den ferdige PDF-en.
+\providecommand{\includesvg}[2][]{\includegraphics[#1]{#2.pdf}}
+
+% --- Fargepalett -----------------------------------------------------------
+% Nav-rød er hovedfargen. Gråtonene er kjølige og nøytrale (Aksel-inspirert)
+% for et rent, moderne uttrykk framfor det varme, «beamer-aktige» grå.
+\definecolor{navRed}{HTML}{C30000}
+\definecolor{navDeepRed}{HTML}{A10000}
+\definecolor{navDarkRed}{HTML}{7A0000}
+\definecolor{navInk}{HTML}{23262A}
+\definecolor{navMuted}{HTML}{5B6169}
+\definecolor{navFaint}{HTML}{8A9099}
+\definecolor{navSubtle}{HTML}{F3F4F6}
+\definecolor{navCard}{HTML}{F6F7F9}
+\definecolor{navLine}{HTML}{E3E6EA}
+\definecolor{navRedTint}{HTML}{FBEDED}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=navInk,
+  citecolor=navInk,
+  urlcolor=navRed
+}
+
+\mode<presentation>
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{}
+
+% --- Typografi -------------------------------------------------------------
+\setbeamerfont{title}{size=\fontsize{30}{34}\selectfont,series=\bfseries}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{frametitle}{size=\LARGE,series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\small}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+
+% --- Farger på tekstelementer ---------------------------------------------
+\setbeamercolor{normal text}{fg=navInk,bg=white}
+\setbeamercolor{structure}{fg=navRed}
+\setbeamercolor{alerted text}{fg=navRed}
+\setbeamercolor{example text}{fg=navDeepRed}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=white}
+\setbeamercolor{date}{fg=white}
+\setbeamercolor{frametitle}{fg=navInk,bg=white}
+\setbeamercolor{framesubtitle}{fg=navMuted}
+\setbeamercolor{block title}{fg=navInk}
+\setbeamercolor{block body}{fg=navInk}
+\setbeamercolor{itemize item}{fg=navRed}
+\setbeamercolor{itemize subitem}{fg=navFaint}
+\setbeamercolor{enumerate item}{fg=navRed}
+
+% Diskré, moderne kulepunkter i stedet for standard beamer-symboler.
+\setbeamertemplate{itemize item}{\small\raisebox{1pt}{\color{navRed}\rule{4.2pt}{4.2pt}}}
+\setbeamertemplate{itemize subitem}{\small\raisebox{1.5pt}{\color{navFaint}\rule{3.2pt}{3.2pt}}}
+\setbeamertemplate{enumerate items}[default]
+
+% --- Tittellinje -----------------------------------------------------------
+% Ren, flat tittel med en kort rød «fane»-strek under - ikke den flytende
+% røde boksen som skriker beamer.
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth,sep=0pt,leftskip=.9cm,rightskip=.9cm]{frametitle}%
+    \vskip11pt%
+    {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle}%
+    \ifx\insertframesubtitle\@empty\else%
+      \\[3pt]{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}%
+    \fi\\[5pt]%
+    {\color{navRed}\rule{1.7em}{2.6pt}}%
+    \vskip1pt%
+  \end{beamercolorbox}%
+  \vskip-2mm%
+}
+
+% --- Kort / blokker --------------------------------------------------------
+% Flate kort med kjølig grå bakgrunn og en rød aksentkant til venstre.
+% Erstatter beamers avrundede, skyggelagte blokker.
+\newtcolorbox{navcard}{%
+  enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=navCard,
+  borderline west={2.6pt}{0pt}{navRed},
+  left=14pt, right=13pt, top=6pt, bottom=6pt,
+  before skip=4.5pt, after skip=4.5pt,
+}
+
+\setbeamertemplate{block begin}{%
+  \begin{navcard}%
+  {\usebeamerfont{block title}\usebeamercolor[fg]{block title}\insertblocktitle}%
+  \par\vskip3pt\small%
+}
+\setbeamertemplate{block end}{\end{navcard}}
+
+\newtcolorbox{navcardalert}{%
+  enhanced, sharp corners, boxrule=0pt, frame hidden,
+  colback=navRedTint,
+  borderline west={2.6pt}{0pt}{navRed},
+  left=14pt, right=13pt, top=6pt, bottom=6pt,
+  before skip=4.5pt, after skip=4.5pt,
+}
+\setbeamertemplate{block alerted begin}{%
+  \begin{navcardalert}%
+  {\usebeamerfont{block title}\color{navDeepRed}\insertblocktitle}%
+  \par\vskip3pt\small%
+}
+\setbeamertemplate{block alerted end}{\end{navcardalert}}
+
+\setbeamertemplate{block example begin}{%
+  \begin{navcard}%
+  {\usebeamerfont{block title}\usebeamercolor[fg]{block title}\insertblocktitle}%
+  \par\vskip3pt\small%
+}
+\setbeamertemplate{block example end}{\end{navcard}}
+
+% --- Tittelside ------------------------------------------------------------
+% Full rød flate med et mykt, moderne geometrisk lag for dybde, tydelig
+% typografisk hierarki og en kort aksentstrek.
+\setbeamertemplate{title page}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[navRed] (current page.north west) rectangle (current page.south east);
+    % Stor, myk sirkel nede til høyre gir dybde uten å bli støyende.
+    \fill[navDeepRed]
+      ([xshift=.4cm,yshift=-.4cm]current page.south east)
+      circle (5.2cm);
+    \fill[white,opacity=.05]
+      ([xshift=-2.2cm,yshift=-.2cm]current page.north east)
+      circle (3.4cm);
+    % NAV-ordmerke øverst til venstre.
+    \node[anchor=north west,text=white,font=\bfseries\fontsize{22}{24}\selectfont]
+      at ([xshift=.9cm,yshift=-.8cm]current page.north west) {NAV};
+    % Tittelblokk, vertikalt sentrert.
+    \node[
+      anchor=west,
+      align=left,
+      text=white,
+      text width=.72\paperwidth
+    ] at ([xshift=.9cm,yshift=.4cm]current page.west) {%
+      {\usebeamerfont{title}\inserttitle\par}%
+      \vspace{.30cm}%
+      {\color{white!85}\rule{1.9em}{2.8pt}}\par
+      \vspace{.30cm}%
+      {\usebeamerfont{subtitle}\color{white!92}\insertsubtitle\par}%
+    };
+    % Forfatter og dato nederst til venstre.
+    \node[
+      anchor=south west,
+      align=left,
+      text=white
+    ] at ([xshift=.9cm,yshift=.85cm]current page.south west) {%
+      {\usebeamerfont{author}\bfseries\insertauthor}\\[.10cm]%
+      {\usebeamerfont{date}\color{white!85}\insertdate}%
+    };
+  \end{tikzpicture}%
+}
+
+\renewcommand{\maketitle}{%
+  \begingroup
+  \setbeamertemplate{footline}{}
+  \begin{frame}[plain]
+    \titlepage
+  \end{frame}
+  \endgroup
+}
+
+% --- Bunnlinje -------------------------------------------------------------
+% Minimal: liten rød markør, korttittel, sidetall. Rolig og ryddig.
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.06\paperwidth,ht=3.2ex,dp=1.4ex,rightskip=0pt]{footline}%
+      \hspace*{.9cm}\color{navRed}\rule{.09cm}{1.15ex}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.82\paperwidth,ht=3.2ex,dp=1.4ex,leftskip=.18cm]{footline}%
+      \usebeamerfont{footline}\color{navMuted}\insertshorttitle%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.12\paperwidth,ht=3.2ex,dp=1.4ex,rightskip=.9cm plus1fil]{footline}%
+      \usebeamerfont{footline}\color{navMuted}\insertframenumber\,/\,\inserttotalframenumber%
+    \end{beamercolorbox}%
+  }%
+  \vskip2pt%
+}
+
+\setbeamertemplate{navigation symbols}{}
+
+\endinput

@@ -1,0 +1,33 @@
+name: Bygg presentasjon-kelvin
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'presentasjon-kelvin/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'presentasjon-kelvin/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-presentasjon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Bygg PDF i Docker
+        working-directory: presentasjon-kelvin
+        run: ./build.sh --docker presentasjon.org
+
+      - name: Last opp PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: presentasjon-kelvin
+          path: presentasjon-kelvin/presentasjon.pdf

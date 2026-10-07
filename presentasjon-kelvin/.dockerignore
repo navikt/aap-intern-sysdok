@@ -1,0 +1,11 @@
+presentasjon.pdf
+vei.pdf
+.git
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.fls
+*.fdb_latexmk
