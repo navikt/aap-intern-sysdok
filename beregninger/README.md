@@ -23,16 +23,16 @@ typst compile beregninger/beregning.typ
 ```
 Prosjekt typst binær-versjon (samme som Github-Actions benytter)
 ```
-bash scripts/typst.sh compile beregninger/beregning.typ
+bash beregninger/typst.sh compile beregninger/beregning.typ
 ```
 
 ### Bytt til nyere Typst binær for prosjektet
 
-Bytt versjon og 2 SHA-summer øverst i scripts/typst.sh scriptet
+Bytt versjon og 2 SHA-summer øverst i beregninger/typst.sh scriptet
  
 Hent ned ny Typst versjon
 ```
-bash scripts/typst.sh install --all
+bash beregninger/typst.sh install --all
 ```
 Sjekk inn ny versjon av både typst-binærer og script til git repo
 og se at github action kjører uten feil.

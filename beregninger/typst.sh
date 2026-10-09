@@ -155,10 +155,10 @@ if [[ "${1:-}" == install ]]; then
             install_typst "$target"
             ;;
         2)
-            [[ "$2" == --all ]] || fail "Usage: bash scripts/typst.sh install [--all]"
+            [[ "$2" == --all ]] || fail "Usage: bash beregninger/typst.sh install [--all]"
             install_typst "${TARGETS[@]}"
             ;;
-        *) fail "Usage: bash scripts/typst.sh install [--all]" ;;
+        *) fail "Usage: bash beregninger/typst.sh install [--all]" ;;
     esac
     exit 0
 fi
@@ -169,5 +169,5 @@ check_directory "$VERSION_ROOT/$target"
 binary="$VERSION_ROOT/$target/typst"
 [[ ! -L "$binary" ]] || fail "Refusing symlink executable: $binary"
 [[ -f "$binary" && -x "$binary" ]] ||
-    fail "Binary missing: $binary. Run: bash \"$REPO_ROOT/scripts/typst.sh\" install"
+    fail "Binary missing: $binary. Run: bash \"$REPO_ROOT/beregninger/typst.sh\" install"
 exec "$binary" "$@"

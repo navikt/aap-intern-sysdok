@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'beregninger/*.typ'
   pull_request:
     branches:
       - main
+    paths:
+      - 'beregninger/*.typ'
 
 jobs:
   build:
@@ -22,7 +26,7 @@ jobs:
           persist-credentials: false
 
       - name: Compile Typst Document
-        run: bash scripts/typst.sh compile beregninger/beregning.typ beregning.pdf
+        run: bash beregninger/typst.sh compile beregninger/beregning.typ beregning.pdf
 
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v7
@@ -30,3 +34,4 @@ jobs:
           name: compiled-pdf
           path: beregning.pdf
           if-no-files-found: error
+          retention-days: 90
