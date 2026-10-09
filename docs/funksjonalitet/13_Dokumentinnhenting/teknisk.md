@@ -50,22 +50,41 @@ Bestilling av legeerklæring skjer i Kelvin, fra høyremeny i en behandling.
 ---
  title: Bestilling av legeerklæring
 ---
-    sequenceDiagram
-        autonumber
-        actor Saksbehandler
-        participant Kelvin
-        participant Behandlingsflyt
-        participant Dokumentinnhenting
-        participant Brev
-        participant SAF
-        participant ISDialogmelding
-        Saksbehandler-->>Behandlingsflyt: Ny bestilling (dokumentinnhentingAPI)
-        Behandlingsflyt->>Dokumentinnhenting: Setter sak på vent og sender videre (bestillLegeerklæring)
-        Dokumentinnhenting->>Dokumentinnhenting: Genererer ny jobb, lagrer bestilling (skrivDialogmeldingTilRepository)
-        Dokumentinnhenting->>Brev: Forespørslel om generering av PDF og journalføring (journaførBestilling)
-        Dokumentinnhenting-->SAF: Henter generert dokument (hentDokumentMedJournalpostId)
-        Dokumentinnhenting->>ISDialogmelding: Skriver bestilling til kafka-topic (sendBestilling)
-        Dokumentinnhenting-->ISDialogmelding: Oppdaterer bestilling videre med status fra SYFO (oppdaterStatus)
+sequenceDiagram
+    autonumber
+    actor S as Saksbehandler
+    participant UI as aap-saksbehandling
+    participant BF as aap-behandlingsflyt
+    participant DI as aap-dokumentinnhenting
+    participant Brev as aap-brev
+    participant SAF
+    participant Syfo as ISYFO / isdialogmelding
+    S->>UI: Velg behandler, L40/L8 og fritekst
+    UI->>BF: HTTP POST /api/dokumentinnhenting/syfo/bestill
+    BF->>BF: Lås behandling, opprett/oppdater ventebehov 9003
+    Note over BF: Frist: dagens dato + 5 uker
+    BF->>DI: HTTP POST /syfo/dialogmeldingbestilling
+    DI->>DI: Lagre bestilling med UUID og opprett prosesseringsjobb
+    DI-->>BF: Bestillings-UUID
+    BF-->>UI: Bestillings-UUID
+    UI-->>S: Lukk skjema og oppdater visning
+    Note over DI,Syfo: Asynkront utsendingsløp
+    DI->>Brev: HTTP: generer PDF og journalfør bestilling
+    Brev-->>DI: Journalpost-ID og dokument-ID
+    DI->>SAF: Hent PDF
+    SAF-->>DI: PDF
+    DI->>Syfo: Kafka: isdialogmelding-behandler-dialogmelding-bestilling
+    Note over Syfo: Videre transport til behandler
+    Syfo-->>DI: Kafka: behandler-dialogmelding-status
+    alt Status OK
+        DI->>Brev: HTTP: ekspeder bestillingens journalpost
+        DI->>BF: HTTP POST /api/brev/bestillingvarsel
+        Note over BF,Brev: Bestill brukerbrev med kopi av forespørselen
+    else Status AVVIST
+        DI->>BF: HTTP POST /api/hendelse/send, LEGEERKLÆRING_AVVIST
+        Note over BF: Nyere avvisning kan løse ventebehovet
+    end
 ```
+
 ### DokumentSøk
 Ved behandling av sak, 
