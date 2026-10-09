@@ -62,6 +62,13 @@ jobs:
           mkdir -p ../static/presentasjoner
           cp presentasjon.pdf ../static/presentasjoner/presentasjon-kelvin.pdf
 
+      - name: Build kelvin-beregning PDF (save it in static dir)
+        working-directory: beregninger
+        run: |
+          mkdir -p ../static/beregninger
+          bash typst.sh compile beregning.typ beregning.pdf
+          cp beregning.pdf ../static/beregninger/beregning.pdf
+
       - name: Install dependencies
         run: yarn install --immutable
 
