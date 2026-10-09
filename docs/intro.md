@@ -11,7 +11,7 @@ For en liste over genererte PlantUML-diagrammer, se her: https://aap-sysdoc.ansa
 
 (for intro til PlantUML, se her https://plantuml.com/sequence-diagram)
 
-Kelvin beregninger er noe dokumentert her: https://aap-sysdoc.ansatt.nav.no/beregninger/
+Kelvin-beregninger er noe dokumentert her: https://aap-sysdoc.ansatt.nav.no/beregninger/
 
 ## Nyttige sider
 
