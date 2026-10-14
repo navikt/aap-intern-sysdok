@@ -9426,7 +9426,7 @@ __metadata:
     "@docusaurus/theme-mermaid": "npm:^3.10.2"
     "@easyops-cn/docusaurus-search-local": "npm:^0.55.3"
     "@tailwindcss/postcss": "npm:^4.3.3"
-    lucide-react: "npm:^1.50.0"
+    lucide-react: "npm:^1.55.0"
     postcss: "npm:^8.5.28"
     prettier: "npm:^3.9.9"
     prism-react-renderer: "npm:^2.4.1"
@@ -12113,16 +12113,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^1.50.0":
-  version: 1.50.0
-  resolution: "lucide-react@npm:1.50.0"
+"lucide-react@npm:^1.55.0":
+  version: 1.55.0
+  resolution: "lucide-react@npm:1.55.0"
   peerDependencies:
     "@types/react": "*"
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/c00d4a8e4726c560db2d2e0c3bf1150ce29580c16445d68ffd283469b77d85ef795c602ad30ed6b64043e92008ff9899d9271d7ee1d804af6a1d16e972fcc818
+  checksum: 10c0/0618af0eb06e0ea71a7c66b39b89158ff357093714fff5f4bfc1b4851af890ffc49092956b08daf89f38c7ff48f783bb14e7b52756aae4f6bed06da4cf297821
   languageName: node
   linkType: hard
 
