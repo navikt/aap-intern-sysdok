@@ -13,7 +13,23 @@ on:
       - 'README.md'
 
 jobs:
+  diagrams:
+    uses: ./.github/workflows/plantuml-diagrams.yml
+    permissions:
+      contents: read
+
+  beregning-pdf:
+    uses: ./.github/workflows/build-pdf.yml
+    permissions:
+      contents: read
+
+  presentasjon-pdf:
+    uses: ./.github/workflows/presentasjon-kelvin.yml
+    permissions:
+      contents: read
+
   build:
+    needs: [diagrams, beregning-pdf, presentasjon-pdf]
     permissions:
       contents: read        # checkout code
       id-token: write       # nais/docker-build-push
@@ -32,42 +48,26 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Set up Java
-        uses: actions/setup-java@v6
+      - name: Download diagrams
+        uses: actions/download-artifact@v8
         with:
-          distribution: 'temurin'
-          java-version: 21
+          name: plantuml-diagrams
+          path: static/generated-diagrams
 
-      - name: Download PlantUML JAR
-        run: |
-          sudo apt-get -y update
-          sudo apt-get -y install graphviz
-          mkdir -p tools
-          curl -L https://github.com/plantuml/plantuml/releases/download/v1.2025.2/plantuml-1.2025.2.jar -o tools/plantuml.jar
+      - name: Download presentasjon-kelvin PDF
+        uses: actions/download-artifact@v8
+        with:
+          name: presentasjon-kelvin
+          path: static/presentasjoner
 
-      - name: Generate PNG diagrams (save them in static dir)
-        run: |
-          echo "## Oppsummering" >> "$GITHUB_STEP_SUMMARY"
-          mkdir -p static/generated-diagrams
-          find diagrams -name "*.puml" -type f | while read file; do
-            echo "Processing $file"
-            output_file="static/generated-diagrams/$(basename ${file%.puml}.png)"
-            java -jar tools/plantuml.jar -tpng "$file" -o "$(pwd)/static/generated-diagrams"
-          done          
+      - name: Keep presentation URL
+        run: mv static/presentasjoner/presentasjon.pdf static/presentasjoner/presentasjon-kelvin.pdf
 
-      - name: Build presentasjon-kelvin PDF (save it in static dir)
-        working-directory: presentasjon-kelvin
-        run: |
-          ./build.sh --docker presentasjon.org
-          mkdir -p ../static/presentasjoner
-          cp presentasjon.pdf ../static/presentasjoner/presentasjon-kelvin.pdf
-
-      - name: Build kelvin-beregning PDF (save it in static dir)
-        working-directory: beregninger
-        run: |
-          mkdir -p ../static/beregninger
-          bash typst.sh compile beregning.typ beregning.pdf
-          cp beregning.pdf ../static/beregninger/beregning.pdf
+      - name: Download kelvin-beregning PDF
+        uses: actions/download-artifact@v8
+        with:
+          name: compiled-pdf
+          path: static/beregninger
 
       - name: Install dependencies
         run: yarn install --immutable

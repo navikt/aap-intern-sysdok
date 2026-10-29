@@ -1,16 +1,8 @@
 name: Compile Typst to PDF
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'beregninger/*.typ'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'beregninger/*.typ'
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -25,8 +17,17 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Restore PDF
+        id: pdf-cache
+        uses: actions/cache@v5
+        with:
+          path: beregning.pdf
+          key: beregning-pdf-${{ runner.os }}-${{ hashFiles('beregninger/**', 'tools/typst/**', '.github/workflows/build-pdf.yml') }}
+
       - name: Compile Typst Document
-        run: bash beregninger/typst.sh compile beregninger/beregning.typ beregning.pdf
+        if: steps.pdf-cache.outputs.cache-hit != 'true'
+        working-directory: beregninger
+        run: bash typst.sh compile beregning.typ ../beregning.pdf
 
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v7
