@@ -2,16 +2,17 @@
 [Github](https://github.com/navikt/aap-dokumentinnhenting) | [Swagger](https://aap-dokumentinnhenting.intern.dev.nav.no/swagger-ui/index.html) | [Grafana](https://grafana.nav.cloud.nais.io/goto/jcvl7ZwNg?orgId=1)
 
 ## Flyter
-Dokumentinnhenting står ansvarlig for 3 deler:
+Dokumentinnhenting er ansvarlig for 3 deler:
 * Bestilling av dialogmelding til behandler
 * Mottak av dialogmeldinger
 * Dokumentsøk
 
 ### Dialogmelding
-Innkommende legeerklæringer blir journalført på tema AAP i pale-2-sak, og blir dermed automatisk videresendt til 
-behandlingsflyt via postmottak. Men på grunn av at leger teknisk sett kan svare på en bestilling ved å sende inn
-legeerklæring som vedlegg til en ny dialogmelding må vi lytte på Kafka-topic `teamsykefravr.dialogmelding` som padm2
+Innkommende legeerklæringer blir journalført på tema AAP i [pale-2-sak](https://github.com/navikt/pale-2-sak), og blir dermed automatisk videresendt til 
+`behandlingsflyt` via `postmottak`. Men på grunn av at leger teknisk sett kan svare på en bestilling ved å sende inn
+legeerklæring som vedlegg til en ny dialogmelding må vi lytte på Kafka-topic `teamsykefravr.dialogmelding` som [padm2](https://github.com/navikt/padm2)
 produserer meldinger på.
+
 Det er ingen garanti for at dialogmeldingen vil være relevant og vi blir nødt til å ta noen forhåndsregler.
 Følgende kriterier må oppfylles for at vi vil journaleføre dialogmeldingen på AAP Kelvin-sak:
 - Det må finnes en åpen sak for bruker
