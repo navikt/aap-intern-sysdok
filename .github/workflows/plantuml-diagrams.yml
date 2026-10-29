@@ -1,11 +1,7 @@
 name: Generate PlantUML Diagrams
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'diagrams/**/*.puml'
+  workflow_call:
   workflow_dispatch:
 
 permissions:
@@ -18,27 +14,36 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
+      - name: Restore diagrams
+        id: diagrams-cache
+        uses: actions/cache@v5
+        with:
+          path: generated-diagrams
+          key: plantuml-${{ runner.os }}-${{ hashFiles('diagrams/**', '.github/workflows/plantuml-diagrams.yml') }}
+
       - name: Set up Java
+        if: steps.diagrams-cache.outputs.cache-hit != 'true'
         uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
           java-version: 21
 
       - name: Download PlantUML JAR
+        if: steps.diagrams-cache.outputs.cache-hit != 'true'
         run: |
           sudo apt-get -y update
           sudo apt-get -y install graphviz
           mkdir -p tools
-          curl -L https://github.com/plantuml/plantuml/releases/download/v1.2025.2/plantuml-1.2025.2.jar -o tools/plantuml.jar
+          curl --fail --show-error --location https://github.com/plantuml/plantuml/releases/download/v1.2025.2/plantuml-1.2025.2.jar -o tools/plantuml.jar
 
       - name: Generate PNG diagrams
+        if: steps.diagrams-cache.outputs.cache-hit != 'true'
         run: |
           echo "## Oppsummering" >> "$GITHUB_STEP_SUMMARY"
           mkdir -p generated-diagrams
-          find diagrams -name "*.puml" -type f | while read file; do
+          find diagrams -name "*.puml" -type f -print0 | while IFS= read -r -d '' file; do
             echo "Processing $file"
-            output_file="generated-diagrams/$(basename ${file%.puml}.png)"
-            java -jar tools/plantuml.jar -tpng "$file" -o "$(pwd)/generated-diagrams"
+            java -jar tools/plantuml.jar -failfast2 -tpng "$file" -o "$(pwd)/generated-diagrams"
           done
 
       - name: Upload diagrams as artifacts
@@ -46,4 +51,5 @@ jobs:
         with:
           name: plantuml-diagrams
           path: generated-diagrams
+          if-no-files-found: error
           retention-days: 90
