@@ -3,7 +3,9 @@ slug: /
 sidebar_position: 0
 ---
 
-# Team AAP  SysDok
+import SiteTree from "@site/src/components/SiteTree";
+
+# Team AAP SysDok
 
 Dette er stedet for teknisk dokumentasjon for Team AAP. For funksjonell dokumentasjon, bruk [Confluence](https://confluence.adeo.no/spaces/PAAP/overview).
 
@@ -15,5 +17,9 @@ Kelvin-beregninger er noe dokumentert her: https://aap-sysdoc.ansatt.nav.no/bere
 
 ## Nyttige sider
 
- - [Informasjon om overvåking](teknisk/overvaking.md)
- - [Resending statistikk](funksjonalitet/09_Statistikk/resendingsfunksjonalitet.md)
+- [Informasjon om overvåking](teknisk/overvaking.md)
+- [Resending statistikk](funksjonalitet/09_Statistikk/resendingsfunksjonalitet.md)
+
+## Nettstedskart
+
+<SiteTree />
