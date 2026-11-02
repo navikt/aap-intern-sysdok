@@ -19,7 +19,7 @@ jobs:
 
       - name: Restore PDF
         id: pdf-cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: beregning.pdf
           key: beregning-pdf-${{ runner.os }}-${{ hashFiles('beregninger/**', 'tools/typst/**', '.github/workflows/build-pdf.yml') }}

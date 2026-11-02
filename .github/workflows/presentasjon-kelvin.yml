@@ -15,7 +15,7 @@ jobs:
 
       - name: Hent lagret PDF
         id: pdf-cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: presentasjon-kelvin/presentasjon.pdf
           key: presentasjon-pdf-${{ runner.os }}-${{ hashFiles('presentasjon-kelvin/**', '.github/workflows/presentasjon-kelvin.yml') }}
