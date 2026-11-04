@@ -6,6 +6,12 @@ Per dags dato (25/6-25) er det satt opp replikering fra `postmottak-backend` til
 
 ## Opprette replikering
 
+:::info
+Om Postgres-databasen oppdateres (ved major versjon f.eks), vil Datastream måtte opprettes på nytt. Se [Slack-post](https://nav-it.slack.com/archives/C60FFACN5/p1783058405216209?thread_ts=1782714612.554189&cid=C60FFACN5).
+
+> Vær klar over at oppgradering sletter replication slots. De må gjenopprettes for at streamen skal kunne startes igjen, f.eks. slik: https://github.com/navikt/veilarbaktivitet/blob/main/src/main/resources/db/migration/V11__gjenopprett_replication_slots.sql. Når dette er gjort er det bare å trykke på "Recover stream" i gcp-konsollet og starte backfill. Da fungerte det helt fint for meg etterpå.
+:::
+
 ### 1 Oppdatere nais-manifestet
 
 Dette er eksakt som oppskriften over sier. Man må sette flagget `cloudsql.logical_decoding` til `on` i manifestet, og opprette en bruker for Datastream. I tillegg ble `autoResize` satt til `true`. Husk også å legge til ny bruker med navn `datastream` (som under).
