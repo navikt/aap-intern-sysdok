@@ -21,3 +21,5 @@ yarn-error.log*
 .idea/
 .yarn/
 docs/Endringslogg.md
+
+.cplt.toml

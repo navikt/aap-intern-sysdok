@@ -1,0 +1,13 @@
+---
+sidebar_position: 10
+---
+
+# Flytdiagrammer
+
+Klikkbare flytdiagrammer som viser hvordan postmottak virker. Klikk på en boks i diagrammet for å se forklaring, SQL og kode for steget.
+
+Diagrammene er hardkodet i `src/flytdiagrammer/flows/`. Vi oppdaterer dem ved å endre filene, ofte med KI-agenter. Fremgangsmåten står i `.agents/skills/update-flow-diagram/SKILL.md`.
+
+## Flyter
+
+- [Eksisterende fordelingslogikk MVP kant-til-kant](./fordeling-mvp-kant-til-kant): hvordan `AvklarFordelingSteg` i aap-postmottak-backend avgjør om en søknad om AAP går til Kelvin eller Arena.
