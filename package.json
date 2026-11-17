@@ -11,13 +11,16 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "validate-flows": "node scripts/validate-flows.mts"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.2",
     "@docusaurus/preset-classic": "^3.10.2",
     "@docusaurus/theme-mermaid": "^3.10.2",
     "@easyops-cn/docusaurus-search-local": "^0.55.3",
+    "@xyflow/react": "^13.0.1",
+    "html-to-image": "1.11.11",
     "lucide-react": "^1.70.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.3.1",

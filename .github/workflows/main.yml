@@ -72,6 +72,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Validate flytdiagrammer
+        run: yarn validate-flows
+
       - name: Build
         run: |
           git log --pretty=format:"## %s (%ad)%n" --date=short --name-only -- '*.md' > docs/Endringslogg.md
