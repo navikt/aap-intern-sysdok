@@ -7,7 +7,8 @@ import {
   ReactFlow,
   ReactFlowProvider,
 } from "@xyflow/react";
-import { useMemo, useRef, useState } from "react";
+import { useHistory, useLocation } from "@docusaurus/router";
+import { useCallback, useMemo, useRef } from "react";
 import type { Flow } from "@site/src/flytdiagrammer/flows/types.ts";
 import { DownloadFlowButton } from "./DownloadFlowButton";
 import { FlowBox, type FlowBoxNode } from "./FlowBox";
@@ -15,6 +16,7 @@ import { NodeDetails } from "./NodeDetails";
 import styles from "./styles.module.css";
 
 const nodeTypes = { flowBox: FlowBox };
+const BOKS_PARAM = "boks";
 
 // Provideren gjør flyten tilgjengelig for nedlastingsknappen, som ligger utenfor lerretet.
 export function FlowView({ flow }: { flow: Flow }) {
@@ -26,7 +28,20 @@ export function FlowView({ flow }: { flow: Flow }) {
 }
 
 function FlowCanvas({ flow }: { flow: Flow }) {
-  const [selectedId, setSelectedId] = useState<string>();
+  // Valgt boks ligger i URL-en (?boks=<id>), slik at man kan lenke direkte til et åpent kort.
+  const location = useLocation();
+  const history = useHistory();
+  const selectedId = new URLSearchParams(location.search).get(BOKS_PARAM) ?? undefined;
+  const setSelectedId = useCallback(
+    (id: string | undefined) => {
+      const params = new URLSearchParams(history.location.search);
+      if (id) params.set(BOKS_PARAM, id);
+      else params.delete(BOKS_PARAM);
+      const search = params.toString();
+      history.replace({ ...history.location, search: search ? `?${search}` : "" });
+    },
+    [history],
+  );
   const canvasRef = useRef<HTMLDivElement>(null);
   const selected = flow.nodes.find((node) => node.id === selectedId);
 
@@ -43,7 +58,7 @@ function FlowCanvas({ flow }: { flow: Flow }) {
           onOpen: () => setSelectedId(node.id),
         },
       })),
-    [flow, selectedId],
+    [flow, selectedId, setSelectedId],
   );
 
   const edges = useMemo<Edge[]>(() => {

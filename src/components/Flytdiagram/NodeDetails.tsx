@@ -1,5 +1,5 @@
 import CodeBlock from "@theme/CodeBlock";
-import { Fragment, type ReactNode, useEffect, useRef } from "react";
+import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
 import type { FlowNode } from "@site/src/flytdiagrammer/flows/types.ts";
 import { kindLabel } from "./FlowBox";
 import styles from "./styles.module.css";
@@ -15,6 +15,26 @@ function renderInline(text: string): ReactNode[] {
         <Fragment key={i}>{part}</Fragment>
       ),
     );
+}
+
+function CopyLinkButton() {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const timer = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(timer);
+  }, [copied]);
+
+  return (
+    <button
+      type="button"
+      className="button button--sm button--secondary"
+      onClick={() => navigator.clipboard.writeText(window.location.href).then(() => setCopied(true))}
+    >
+      <span aria-live="polite">{copied ? "Kopiert" : "Kopier lenke"}</span>
+    </button>
+  );
 }
 
 export function NodeDetails({
@@ -51,9 +71,12 @@ export function NodeDetails({
               </h2>
               {node.summary && <p className={styles.summary}>{renderInline(node.summary)}</p>}
             </div>
-            <button type="button" className="clean-btn close" aria-label="Lukk" onClick={onClose}>
-              <span aria-hidden>×</span>
-            </button>
+            <div className={styles.panelActions}>
+              <CopyLinkButton />
+              <button type="button" className="clean-btn close" aria-label="Lukk" onClick={onClose}>
+                <span aria-hidden>×</span>
+              </button>
+            </div>
           </header>
           {node.details.map((block, index) =>
             block.type === "text" ? (
