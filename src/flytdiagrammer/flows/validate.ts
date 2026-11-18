@@ -23,6 +23,14 @@ export function validateFlows(flows: Flow[]): string[] {
       posisjoner.add(pos);
     }
 
+    for (const node of flow.nodes) {
+      for (const block of node.details) {
+        if (block.type === "link" && !flows.some((f) => f.id === block.flowId)) {
+          feil.push(`${flow.id}/${node.id}: lenke til ukjent flyt "${block.flowId}"`);
+        }
+      }
+    }
+
     flow.edges.forEach((edge, i) => {
       for (const ende of [edge.from, edge.to]) {
         if (!nodeIder.has(ende)) {

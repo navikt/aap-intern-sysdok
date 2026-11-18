@@ -1,8 +1,12 @@
+import Link from "@docusaurus/Link";
 import CodeBlock from "@theme/CodeBlock";
 import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
 import type { FlowNode } from "@site/src/flytdiagrammer/flows/types.ts";
 import { kindLabel } from "./FlowBox";
 import styles from "./styles.module.css";
+
+// MDX-sidene for flytene ligger i docs/funksjonalitet/12_Postmottak/flytdiagrammer/.
+const FLYT_URL = "/funksjonalitet/Postmottak/flytdiagrammer";
 
 /** Gjør `inline-kode` om til <code> i et avsnitt. */
 function renderInline(text: string): ReactNode[] {
@@ -78,19 +82,30 @@ export function NodeDetails({
               </button>
             </div>
           </header>
-          {node.details.map((block, index) =>
-            block.type === "text" ? (
-              <div key={index}>
-                {block.content.split(/\n\s*\n/).map((paragraph, i) => (
-                  <p key={i}>{renderInline(paragraph)}</p>
-                ))}
-              </div>
-            ) : (
-              <CodeBlock key={index} language={block.language} title={block.title}>
-                {block.code}
-              </CodeBlock>
-            ),
-          )}
+          {node.details.map((block, index) => {
+            switch (block.type) {
+              case "text":
+                return (
+                  <div key={index}>
+                    {block.content.split(/\n\s*\n/).map((paragraph, i) => (
+                      <p key={i}>{renderInline(paragraph)}</p>
+                    ))}
+                  </div>
+                );
+              case "link":
+                return (
+                  <p key={index}>
+                    <Link to={`${FLYT_URL}/${block.flowId}`}>{block.text}</Link>
+                  </p>
+                );
+              case "code":
+                return (
+                  <CodeBlock key={index} language={block.language} title={block.title}>
+                    {block.code}
+                  </CodeBlock>
+                );
+            }
+          })}
         </div>
       )}
     </dialog>

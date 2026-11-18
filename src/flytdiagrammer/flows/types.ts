@@ -23,7 +23,9 @@ export type CodeLanguage =
 export type DetailBlock =
   /** Avsnitt skilles med en tom linje. Backticks gir inline-kode. */
   | { type: "text"; content: string }
-  | { type: "code"; language: CodeLanguage; code: string; title?: string };
+  | { type: "code"; language: CodeLanguage; code: string; title?: string }
+  /** Lenke til siden for en annen flyt. `flowId` må finnes i index.ts. */
+  | { type: "link"; flowId: string; text: string };
 
 export interface FlowNode {
   /** Unik i flyten, kebab-case. Brukes av piler. */

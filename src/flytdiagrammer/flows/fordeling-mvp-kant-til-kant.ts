@@ -251,6 +251,11 @@ VALUES (:regelResultatId, :regelNavn, :resultat);`,
             "Regelen ser etter personer som har noe pågående eller nylig avsluttet i Arena. Søknaden fra en slik person skal ikke til Kelvin etter reglene. Den kan likevel havne i Kelvin gjennom kant-til-kant-sjekken.\n\nRegelen er `true` når personen ikke har signifikant historikk. Diagrammet spør motsatt: «ja» betyr at personen har signifikant historikk, og da sier reglene Arena.",
         },
         {
+          type: "link",
+          flowId: "signifikant-arena-historikk",
+          text: "Se flyten «Signifikant Arena-historikk», som deler spørringen opp i små steg med eksempler",
+        },
+        {
           type: "text",
           content:
             "Slik går kallet på tvers av appene\n\nI postmottak: `ArenaHistorikkRegelInputGenerator` kaller `ArenaoppslagGateway.harSignifikantHistorikk`. Den sender `POST /api/v1/person/historikk/signifikant` med aktiv ident og mottatt dato som `virkningstidspunkt`. Regelen kaller også `POST /api/v1/person/historikk`, men bare for metrikker.\n\nI arenaoppslag: ruten `historikk` i `ApiRoute.kt` slår opp `person_id` med `PersonService.hentPersonId`. Finnes ikke personen i Arena, svarer den «ingen historikk» med en gang. Ellers kaller den `HistorikkService.signifikantHistorikk`, som kjører spørringen i `HistorikkRepository`.\n\nSvaret er `SignifikantHistorikkResponse`. Den inneholder `harSignifikantHistorikk` og lista `signifikanteVedtak` med radene spørringen fant. `harSignifikantHistorikk` er `true` hvis lista ikke er tom. Regelen bruker bare dette feltet. Lista blir logget.",

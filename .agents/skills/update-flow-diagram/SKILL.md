@@ -72,6 +72,7 @@ Posisjonen er øvre venstre hjørne av boksen, i piksler. En boks er 220 px bred
 
 - `text`: avsnitt skilles med en tom linje (`\n\n`). Backticks gir inline-kode. Ingen annen markdown.
 - `code`: `language` er én av `sql`, `kotlin`, `typescript`, `json`, `yaml`, `bash`, `text`. Koden vises med Docusaurus sin `CodeBlock` (Prism). Legger du til et nytt språk i `CodeLanguage` i `types.ts`, må Prism støtte det, og det må ofte legges til i `prism.additionalLanguages` i `docusaurus.config.js`. Bruk en template literal og behold innrykket. Gi en `title` som sier hva kodesnutten gjør.
+- `link`: lenke til siden for en annen flyt, f.eks. `{ type: "link", flowId: "signifikant-arena-historikk", text: "Se flyten …" }`. `yarn validate-flows` sjekker at `flowId` finnes. `yarn build` sjekker ikke disse lenkene, fordi panelet bare rendres i nettleseren.
 
 Kopierer du SQL eller kode fra en ekte kodebase, behold tabell- og kolonnenavn nøyaktig som de er. Lim aldri inn hemmeligheter, tokens, ekte personopplysninger eller fødselsnumre. Bytt verdier ut med navngitte parametere (`:kundeId`).
 
