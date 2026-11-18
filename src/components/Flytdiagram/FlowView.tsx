@@ -12,10 +12,12 @@ import { useCallback, useMemo, useRef } from "react";
 import type { Flow } from "@site/src/flytdiagrammer/flows/types.ts";
 import { DownloadFlowButton } from "./DownloadFlowButton";
 import { FlowBox, type FlowBoxNode } from "./FlowBox";
+import { FlowEdge } from "./FlowEdge";
 import { NodeDetails } from "./NodeDetails";
 import styles from "./styles.module.css";
 
 const nodeTypes = { flowBox: FlowBox };
+const edgeTypes = { flowEdge: FlowEdge };
 const BOKS_PARAM = "boks";
 
 // Provideren gjør flyten tilgjengelig for nedlastingsknappen, som ligger utenfor lerretet.
@@ -79,7 +81,7 @@ function FlowCanvas({ flow }: { flow: Flow }) {
         style: edge.async ? { strokeDasharray: "6 4" } : undefined,
         // Markøren skaleres med strekbredden (2), så 10 gir en pil på 20 px.
         markerEnd: { type: MarkerType.ArrowClosed, width: 10, height: 10, strokeWidth: 2 },
-        type: "smoothstep",
+        type: "flowEdge",
       };
     });
   }, [flow]);
@@ -99,6 +101,7 @@ function FlowCanvas({ flow }: { flow: Flow }) {
           nodes={nodes}
           edges={edges}
           nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
           nodesDraggable={false}
           nodesConnectable={false}
           nodesFocusable={false}
