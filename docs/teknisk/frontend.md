@@ -36,7 +36,10 @@ leserettigheter.
 
 7. Deretter kan du kjøre `source ~/.bashrc` eller `source ~/.zshrc` for å laste inn endringene (ev. restart
    terminalen/shellet).
-8. Denne linjen må også legges til i `~/.npmrc` for å sikre at npm bruker tokenet for autentisering mot GitHub Packages.
-    ```ini
-    //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
-    ```
+
+#### Hvis prosjektet bruker pnpm 12
+
+Denne linjen må også legges til i `~/.npmrc` for å sikre at npm bruker tokenet for autentisering mot GitHub Packages.
+```ini
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
