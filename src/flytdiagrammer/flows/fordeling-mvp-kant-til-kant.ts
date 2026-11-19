@@ -463,7 +463,7 @@ ORDER BY aar DESC, lopenrsak DESC, lopenrvedtak DESC`,
         {
           type: "text",
           content:
-            "Hit kommer søknader der `skalTilKelvin()` gir `false`. Søknaden kan likevel gå til Kelvin hvis personen har brukt opp retten til AAP i Arena. Det kalles kant-til-kant: den nye saken i Kelvin starter der Arena-vedtaket slutter.\n\nSjekken ligger i `ArenaService.harOppbruktRettighet`. Steget kaller den for alle søknader, også når togglen er av og når reglene allerede har sagt Kelvin, for å telle resultatet i en metrikk. Svarer ikke arenaoppslag, feiler steget, og motoren prøver jobben på nytt i stedet for å fordele feil.\n\nEr togglen av, teller ikke resultatet, og søknaden går til Arena.",
+            "Hit kommer søknader der `skalTilKelvin()` gir `false`. Søknaden kan likevel gå til Kelvin hvis personen har brukt opp retten til AAP i Arena. Det kalles kant-til-kant: den nye saken i Kelvin starter der Arena-vedtaket slutter.\n\nSjekken ligger i `ArenaService.harOppbruktRettighet`. Steget kaller den for alle søknader, også når togglen er av og når reglene allerede har sagt Kelvin, for å telle resultatet i metrikken `postmottak_kant_i_kant_oppbrukt_rettighet`. Svarer ikke arenaoppslag, feiler steget, og motoren prøver jobben på nytt i stedet for å fordele feil.\n\nEr togglen av, blir resultatet bare logget og telt, og søknaden går til Arena.",
         },
       ],
     },
@@ -670,7 +670,7 @@ SELECT nv.sak_id, nv.aar, nv.vedtak_id, nv.lopenrvedtak, nv.lopenrsak,
         {
           type: "text",
           content:
-            "Hva som returneres\n\n`telleverk` er gjenværende ordinær og utvidet kvote. `sisteUtbetalingDato` er datoen for siste AAP-utbetaling. Begge kan være tomme, og fordelingen bruker dem ikke.\n\n`sisteSakOgVedtak` (`SisteSakDetaljer`) er tom hvis personen ikke finnes i Arena eller ikke har noe innvilget AAP-vedtak. Ellers inneholder den saken, 11-12-statusen, `sisteVedtak` fra spørring 2 og `vedtakene`, som er alle gyldige vedtak i saken fra spørring 5.\n\nFordelingen bruker disse feltene: `sisteVedtak.aktfaseKode`, `sisteVedtak.fra`, `sisteVedtak.til`, `sisteVedtak.maxdatoOrdinaer`, `sisteVedtak.maxdatoUnntak`, `sisteVedtak.maxdatoAap` og `unntaksvilkaarInnvilget`.\n\nEksempelet under er oppdiktet. Er søknaden mottatt 3. juli 2026 eller senere, gir dette svaret `VedtattAtIkkeForlenges`, og søknaden går til Kelvin.",
+            "Hva som returneres\n\n`telleverk` er gjenværende ordinær og utvidet kvote. `sisteUtbetalingDato` er datoen for siste AAP-utbetaling. Begge kan være tomme, og fordelingen bruker dem ikke.\n\n`sisteSakOgVedtak` (`SisteSakDetaljer`) er tom hvis personen ikke finnes i Arena eller ikke har noe innvilget AAP-vedtak. Ellers inneholder den saken, 11-12-statusen, `sisteVedtak` fra spørring 2 og `vedtakene`, som er alle gyldige vedtak i saken fra spørring 5.\n\nFordelingen bruker disse feltene: `sisteVedtak.aktfaseKode`, `sisteVedtak.fra`, `sisteVedtak.til`, `sisteVedtak.maxdatoOrdinaer`, `sisteVedtak.maxdatoUnntak`, `sisteVedtak.maxdatoAap` og `unntaksvilkaarInnvilget`.\n\nEksempelet under er oppdiktet. Er søknaden mottatt 9. oktober 2026 eller senere, gir dette svaret `VedtattAtIkkeForlenges`, og søknaden går til Kelvin.",
         },
         {
           type: "code",
@@ -795,23 +795,23 @@ fun erUnderArbeidsUtprøving() = sisteVedtak.aktfaseKode == "AU"`,
       details: sendTilArena,
     },
     {
-      id: "maksdato-innen-26-uker",
-      label: "Maksdato innen 26 uker?",
+      id: "maksdato-innen-12-uker",
+      label: "Maksdato innen 12 uker?",
       kind: "decision",
       position: { x: 0, y: 1650 },
-      summary: "Er maksdatoen for AAP i Arena tidligere enn 26 uker etter mottatt dato?",
+      summary: "Er maksdatoen for AAP i Arena tidligere enn 12 uker etter mottatt dato?",
       details: [
         {
           type: "text",
           content:
-            "Sjekken bruker `maxdatoAap`: slutten av forlengelsen hvis personen har fått det, ellers slutten av de tre ordinære årene. Ligger denne datoen 26 uker eller mer etter mottatt dato, har personen søkt for tidlig. Resultatet er da `IkkeRelevantSøknad`.\n\nEn maksdato som allerede er passert, gir også «ja».\n\nMangler `maxdatoAap`, er svaret nei, og søknaden går til Arena som om personen hadde søkt for tidlig.",
+            "Sjekken bruker `maxdatoAap`: slutten av forlengelsen hvis personen har fått det, ellers slutten av de tre ordinære årene. Ligger denne datoen 12 uker eller mer etter mottatt dato, har personen søkt for tidlig. Resultatet er da `IkkeRelevantSøknad`.\n\nGrensen på 12 uker er midlertidig og gjelder MVP kant-til-kant del 1. Den skal tilbake til 26 uker i del 2. Søknader med mellom 12 og 26 uker igjen til maksdato går derfor til Arena inntil videre.\n\nEn maksdato som allerede er passert, gir også «ja».\n\nMangler `maxdatoAap`, er svaret nei, og søknaden går til Arena som om personen hadde søkt for tidlig.",
         },
         maksdatoForklaring,
         {
           type: "code",
           language: "kotlin",
           title: "maksDatoNærmerSeg",
-          code: `private val periodeFørMaksdato = Period.ofWeeks(26)
+          code: `private val periodeFørMaksdato = Period.ofWeeks(12)
 
 sisteSak?.sisteVedtak?.maxdatoAap?.isBefore(mottattDato + periodeFørMaksdato) == true`,
         },
@@ -822,7 +822,7 @@ sisteSak?.sisteVedtak?.maxdatoAap?.isBefore(mottattDato + periodeFørMaksdato) =
       label: "Send til Arena",
       kind: "end",
       position: { x: 320, y: 1650 },
-      summary: "`IkkeRelevantSøknad`: det er 26 uker eller mer til maksdato. Personen har søkt for tidlig.",
+      summary: "`IkkeRelevantSøknad`: det er 12 uker eller mer til maksdato. Personen har søkt for tidlig.",
       details: sendTilArena,
     },
     {
@@ -1028,9 +1028,9 @@ fun skalTilKelvin() = this is HarOppbruktRettighet // HarBruktOppForlengelsen el
     { from: "siste-vedtak-ua-au", to: "arena-ingen-aktuell-sak", label: "nei / udefinert" },
     { from: "siste-vedtak-ua-au", to: "vedtak-frem-i-tid", label: "ja" },
     { from: "vedtak-frem-i-tid", to: "arena-vedtak-frem-i-tid", label: "ja" },
-    { from: "vedtak-frem-i-tid", to: "maksdato-innen-26-uker", label: "nei / udefinert" },
-    { from: "maksdato-innen-26-uker", to: "arena-sokt-for-tidlig", label: "nei / udefinert" },
-    { from: "maksdato-innen-26-uker", to: "forlenget-11-12", label: "ja" },
+    { from: "vedtak-frem-i-tid", to: "maksdato-innen-12-uker", label: "nei / udefinert" },
+    { from: "maksdato-innen-12-uker", to: "arena-sokt-for-tidlig", label: "nei / udefinert" },
+    { from: "maksdato-innen-12-uker", to: "forlenget-11-12", label: "ja" },
     { from: "forlenget-11-12", to: "forlengelse-brukt-opp", label: "ja" },
     { from: "forlenget-11-12", to: "ved-ordinaer-maksdato", label: "nei / udefinert" },
     { from: "forlengelse-brukt-opp", to: "kelvin-brukt-opp-forlengelse", label: "ja" },
