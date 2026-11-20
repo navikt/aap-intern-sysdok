@@ -8,6 +8,10 @@ metadata:
     systemkatalog.nav.no/system: SK-268
 spec:
   port: 8080
+  filesFrom:
+    - emptyDir:
+        medium: Disk
+      mountPath: /var/lib/nginx/tmp
   ingresses:
     - https://aap-sysdoc.ansatt.nav.no
   image: {{ image }}
