@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:alpine-slim
+FROM cgr.dev/chainguard/nginx:latest
 
 USER nginx
 WORKDIR /app
