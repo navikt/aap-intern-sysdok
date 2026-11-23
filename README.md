@@ -33,7 +33,7 @@ Prosjektet støtter automatisk generering av PNG-bilder fra PlantUML-filer.
 
 ### Hvordan det fungerer
 
-1. Legg PlantUML-filer (.puml) i `diagrams`-mappen
+1. Legg PlantUML-filer (.puml) i `diagrams`-mappenasdasdasdasdsad
 2. Ved push til main-branch eller ved pull request mot main vil Release automatisk kalle diagram-workflowen:
    - Generere PNG-bilder fra alle PlantUML-filer når kildene er endret eller cache mangler
    - Publisere bildene som artifacts i GitHub Actions
