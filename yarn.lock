@@ -4977,9 +4977,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xyflow/react@npm:^13.0.1":
-  version: 13.0.1
-  resolution: "@xyflow/react@npm:13.0.1"
+"@xyflow/react@npm:^13.0.2":
+  version: 13.0.2
+  resolution: "@xyflow/react@npm:13.0.2"
   dependencies:
     "@xyflow/system": "npm:1.0.0"
     classcat: "npm:^5.0.5"
@@ -4995,7 +4995,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 10c0/bf8d0feb6b10c13dd653104f5e155239ac56e8ef0fe8dcf9cca6040a530195e1eb9f01b22286cbc0aa2ceb2e754ecdac750b1fc4660fb4c798cb5e61cd60aa61
+  checksum: 10c0/1fcbe7c6905c811d271ed8a2bc5a4424d894b7f70e021c1b6f0d61c545db8ff3ea703fee5c81ff29daec5e37a9ad6103eaed244b9d710d07cc37402fac6fa9b1
   languageName: node
   linkType: hard
 
@@ -7076,7 +7076,7 @@ __metadata:
     "@docusaurus/theme-mermaid": "npm:^3.10.2"
     "@easyops-cn/docusaurus-search-local": "npm:^0.55.3"
     "@tailwindcss/postcss": "npm:^4.3.5"
-    "@xyflow/react": "npm:^13.0.1"
+    "@xyflow/react": "npm:^13.0.2"
     html-to-image: "npm:1.11.11"
     lucide-react: "npm:^1.70.0"
     postcss: "npm:^8.5.32"
