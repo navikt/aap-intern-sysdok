@@ -2,10 +2,11 @@
 [Github](https://github.com/navikt/aap-dokumentinnhenting) | [Swagger](https://aap-dokumentinnhenting.intern.dev.nav.no/swagger-ui/index.html) | [Grafana](https://grafana.nav.cloud.nais.io/goto/jcvl7ZwNg?orgId=1)
 
 ## Flyter
-Dokumentinnhenting er ansvarlig for 3 deler:
+Dokumentinnhenting er ansvarlig for 4 deler:
 * Bestilling av dialogmelding til behandler
 * Mottak av dialogmeldinger
 * Dokumentsøk
+* Automatisk påminnelse
 
 ### Dialogmelding
 Innkommende legeerklæringer blir journalført på tema AAP i [pale-2-sak](https://github.com/navikt/pale-2-sak), og blir dermed automatisk videresendt til 
@@ -89,3 +90,14 @@ sequenceDiagram
 
 ### DokumentSøk
 Ved behandling av sak, 
+
+
+
+### Automatisk påminnelse
+Det sendes automatisk påminnelse til behandler for alle bestillinger som ikke er besvart innen 22 dager etter bestillingsdatoen. Det kjøres en jobb kl. 08.00 hver morgen som sender ut påminnelsene. Obs: Vi begynte å sende ut automatiske påminnelser for bestillinger opprettet den 29. september 2026. Bestillinger fra tidligere enn det vil ikke få sendt automatisk påminnelse. Jobben gjør følgende:
+1. Utleder hvilke(n) dato(er) vi skal sende påminnelse for i dag. Dokumentinnhenting har en tabell som lagrer ned hvilke datoer vi allerede har kjørt for. Datoer vi skal kjøre for i dag er intervallet [sist kjørt dato + 1, dagens dato - 22], som nesten alltid vil være 1 dag.
+2. Spør behandlingsflyt om hvilke behandlinger som er kandidater for påminnelse for hver bestillingsdato fra steg 1. En kandidat er en behandling med status UTREDES eller OPPRETTET, der avklaringsbehovet BESTILL_LEGEERKLÆRING har en endring med status OPPRETTET på den aktuelle bestillingsdatoen, og der vurderingsbehov MOTTATT_LEGEERKLÆRING eller MOTTATT_DIALOGMELDING _ikke_ er lagt på behandlingen på eller etter denne datoen.
+3. For listen med behandlingsreferanser, hent ut L40-bestillinger med matchende behandlingsreferanse og som ble opprettet på datoen vi sender påminnelse for. Filtrer bort bestillinger der det allerede er sendt en påminnelse.
+4. Send påminnelse for alle bestillinger funnet i forrige steg.
+5. Lagre ned at vi har kjørt for gitt dato.
+Fordi vi lagrer datoer kjørt, skal jobben være trygg å rekjøre, og dersom man avbryter en jobb blir det fortsatt sendt påminnelser dagen etter for dagen man "gikk glipp av".
