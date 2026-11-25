@@ -35,6 +35,11 @@ export interface FlowNode {
   kind: NodeKind;
   /** Midlertidig regel, for eksempel for en MVP. Vises med egen farge og merket «Midlertidig». */
   temporary?: boolean;
+  /**
+   * Brukes når en stor spørring er brutt opp i flere bokser.
+   * "whole": boksen som viser hele spørringen. "part": en boks som forklarer én bit av den.
+   */
+  query?: "whole" | "part";
   /** Øvre venstre hjørne i piksler. Bruk rutenettet beskrevet i skillen. */
   position: { x: number; y: number };
   /** Én setning øverst i detaljpanelet. Vises ikke i boksen. */

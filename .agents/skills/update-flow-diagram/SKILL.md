@@ -59,6 +59,10 @@ Posisjonen er øvre venstre hjørne av boksen, i piksler. En boks er 220 px bred
 
 Sett `temporary: true` på en boks som beskriver en midlertidig regel, for eksempel en avgrensning for en MVP. Boksen får oransje, stiplet kant og merket «Midlertidig», og sidepanelet viser «Midlertidig regel». Forklar i detaljene hvorfor regelen er midlertidig og når den skal fjernes, hvis koden sier det. Merket tar én linje i diamanten, så hold navnet på en midlertidig `decision` kort.
 
+### Store spørringer delt opp i bokser
+
+Når en stor spørring er brutt opp i flere bokser, sett `query: "whole"` på boksen som viser hele spørringen, og `query: "part"` på boksene som forklarer én bit av den. Hele spørringen får tykk dobbel kant i primærfargen og merket «Hele spørringen». Delene får en farget stripe til venstre og merket «Del av spørringen». Sidepanelet viser det samme merket. Bruk det bare når spørringen faktisk er delt opp. En liten spørring i én boks trenger ikke `query`. En `decision` får verken stripe eller merke, bare kant i primærfargen. Sidepanelet viser merket som vanlig.
+
 ### Velg `kind`
 
 | kind | Form | Brukes til |

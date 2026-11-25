@@ -2,7 +2,7 @@ import Link from "@docusaurus/Link";
 import CodeBlock from "@theme/CodeBlock";
 import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
 import type { FlowNode } from "@site/src/flytdiagrammer/flows/types.ts";
-import { kindLabel } from "./FlowBox";
+import { kindLabel, queryLabel } from "./FlowBox";
 import styles from "./styles.module.css";
 
 // MDX-sidene for flytene ligger i docs/funksjonalitet/12_Postmottak/flytdiagrammer/.
@@ -70,6 +70,9 @@ export function NodeDetails({
           <header className={styles.panelHeader}>
             <div>
               <span className="badge badge--secondary">{kindLabel[node.kind]}</span>
+              {node.query && (
+                <span className={`badge ${styles.queryBadge}`}>{queryLabel[node.query]}</span>
+              )}
               {node.temporary && (
                 <span className={`badge ${styles.temporaryBadge}`}>Midlertidig regel</span>
               )}

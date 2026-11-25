@@ -6,6 +6,7 @@ export type FlowBoxData = {
   label: string;
   kind: NodeKind;
   temporary: boolean;
+  query?: "whole" | "part";
   selected: boolean;
   onOpen: () => void;
 };
@@ -21,6 +22,11 @@ export const kindLabel: Record<NodeKind, string> = {
   external: "Ekstern",
 };
 
+export const queryLabel: Record<"whole" | "part", string> = {
+  whole: "Hele spørringen",
+  part: "Del av spørringen",
+};
+
 export function FlowBox({ data }: NodeProps<FlowBoxNode>) {
   return (
     <>
@@ -31,12 +37,14 @@ export function FlowBox({ data }: NodeProps<FlowBoxNode>) {
         className={styles.node}
         data-kind={data.kind}
         data-temporary={data.temporary || undefined}
+        data-query={data.query}
         data-selected={data.selected}
         aria-haspopup="dialog"
         onClick={data.onOpen}
       >
         <span>
           {data.temporary && <span className={styles.temporaryTag}>Midlertidig</span>}
+          {data.query && <span className={styles.queryTag}>{queryLabel[data.query]}</span>}
           {data.label}
         </span>
       </button>

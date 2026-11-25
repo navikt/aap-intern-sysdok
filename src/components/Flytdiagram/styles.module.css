@@ -193,3 +193,50 @@
   color: var(--ifm-color-warning-contrast-foreground);
   border-color: var(--ifm-color-warning-dark);
 }
+
+/* Store spørringer brutt opp i bokser.
+   Hele spørringen: tykk dobbel kant i primærfarge. Del av spørringen: tynn kant og farget stripe til venstre. */
+.node[data-query="whole"] {
+  border: 5px double var(--ifm-color-primary);
+  background: var(--ifm-color-primary-contrast-background);
+}
+
+.node[data-query="part"] {
+  border-color: var(--ifm-color-primary-light);
+  border-left: 8px solid var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+/* Diamantene har ikke plass til stripe og merke. Der viser bare primærfargen på kanten at de er en del av spørringen. */
+.node[data-kind="decision"][data-query] {
+  border: none;
+  font-weight: 600;
+}
+
+.node[data-kind="decision"][data-query] .queryTag {
+  display: none;
+}
+
+.node[data-kind="decision"][data-query]::before {
+  background: var(--ifm-color-primary);
+}
+
+.queryTag {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ifm-color-primary-darkest);
+}
+
+[data-theme="dark"] .queryTag {
+  color: var(--ifm-color-primary-lightest);
+}
+
+.queryBadge {
+  margin-left: 0.5rem;
+  background: var(--ifm-color-primary-contrast-background);
+  color: var(--ifm-color-primary-contrast-foreground);
+  border-color: var(--ifm-color-primary);
+}

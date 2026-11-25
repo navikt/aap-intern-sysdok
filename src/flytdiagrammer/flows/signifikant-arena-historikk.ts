@@ -246,6 +246,7 @@ val maksimalTidUendretKlageAnke = Date.valueOf(søknadMottattPå.minusWeeks(nedr
     },
     {
       id: "sporring-i-fire-deler",
+      query: "whole",
       label: "Spørring i fire deler",
       kind: "database",
       position: { x: 640, y: 750 },
@@ -329,6 +330,7 @@ connection.createParameterizedQuery(query).use { preparedStatement ->
 
     {
       id: "del1-aap-vedtak",
+      query: "part",
       label: "Del 1: AAP-vedtak",
       kind: "database",
       position: { x: 0, y: 900 },
@@ -376,6 +378,7 @@ WHERE v.person_id = :personId
     },
     {
       id: "del1-avbrutte",
+      query: "part",
       label: "Fjern avbrutte",
       kind: "process",
       position: { x: 0, y: 1050 },
@@ -396,6 +399,7 @@ WHERE v.person_id = :personId
     },
     {
       id: "del1-ugyldiggjorte",
+      query: "part",
       label: "Fjern ugyldiggjorte",
       kind: "process",
       position: { x: 0, y: 1200 },
@@ -416,6 +420,7 @@ WHERE v.person_id = :personId
     },
     {
       id: "del1-etterregistrerte",
+      query: "part",
       label: "Fjern etterregistrerte",
       kind: "process",
       position: { x: 0, y: 1350 },
@@ -436,6 +441,7 @@ WHERE v.person_id = :personId
     },
     {
       id: "del1-andre-vedtakstyper",
+      query: "part",
       label: "Fjern andre vedtakstyper",
       kind: "process",
       position: { x: 0, y: 1500 },
@@ -460,6 +466,7 @@ vedtaktypekode = 'S' AND til_dato IS NULL`,
     },
     {
       id: "del1-stans-uten-til-dato",
+      query: "part",
       label: "Stans uten til-dato?",
       kind: "decision",
       position: { x: 0, y: 1650 },
@@ -484,6 +491,7 @@ vedtaktypekode = 'S' AND til_dato IS NULL`,
     },
     {
       id: "del1-gammel-stans",
+      query: "part",
       label: "Fjern gammel stans (119 uker)",
       kind: "process",
       position: { x: 320, y: 1650 },
@@ -504,6 +512,7 @@ vedtaktypekode = 'S' AND til_dato IS NULL`,
     },
     {
       id: "del1-gamle-vedtak",
+      query: "part",
       label: "Fjern gamle vedtak (78 uker)",
       kind: "process",
       position: { x: 0, y: 1800 },
@@ -525,6 +534,7 @@ vedtaktypekode = 'S' AND til_dato IS NULL`,
     },
     {
       id: "del1-gamle-avslag",
+      query: "part",
       label: "Fjern gamle avslag (78 uker)",
       kind: "process",
       position: { x: 0, y: 2100 },
@@ -545,6 +555,7 @@ vedtaktypekode = 'S' AND til_dato IS NULL`,
     },
     {
       id: "del1-gamle-ubehandlede",
+      query: "part",
       label: "Fjern gamle ubehandlede (52 uker)",
       kind: "process",
       position: { x: 0, y: 2250 },
@@ -565,6 +576,7 @@ vedtaktypekode = 'S' AND til_dato IS NULL`,
     },
     {
       id: "del1-uendrede",
+      query: "part",
       label: "Fjern uendrede (208 uker)",
       kind: "process",
       position: { x: 0, y: 2400 },
@@ -586,6 +598,7 @@ vedtaktypekode = 'S' AND til_dato IS NULL`,
 
     {
       id: "del2-11-5-vedtak",
+      query: "part",
       label: "Del 2: § 11-5-vedtak",
       kind: "database",
       position: { x: 640, y: 900 },
@@ -616,6 +629,7 @@ WHERE v.person_id = :personId
     },
     {
       id: "del2-behandlede",
+      query: "part",
       label: "Fjern behandlede",
       kind: "process",
       position: { x: 640, y: 1050 },
@@ -636,6 +650,7 @@ WHERE v.person_id = :personId
     },
     {
       id: "del2-uendrede",
+      query: "part",
       label: "Fjern uendrede (26 uker)",
       kind: "process",
       position: { x: 640, y: 1200 },
@@ -657,6 +672,7 @@ WHERE v.person_id = :personId
 
     {
       id: "del3-klager",
+      query: "part",
       label: "Del 3: klager",
       kind: "database",
       position: { x: 960, y: 900 },
@@ -698,6 +714,7 @@ WHERE
     },
     {
       id: "del3-utfallsdato",
+      query: "part",
       label: "Hent utfallsdato",
       kind: "database",
       position: { x: 960, y: 1050 },
@@ -725,6 +742,7 @@ WHERE
     },
     {
       id: "del3-avbrutte-og-trukne",
+      query: "part",
       label: "Fjern avbrutte og trukne",
       kind: "process",
       position: { x: 960, y: 1200 },
@@ -745,6 +763,7 @@ WHERE
     },
     {
       id: "del3-gamle-avgjorelser",
+      query: "part",
       label: "Fjern gamle avgjørelser (12 uker)",
       kind: "process",
       position: { x: 960, y: 1350 },
@@ -765,6 +784,7 @@ WHERE
     },
     {
       id: "del3-gamle-ubehandlede",
+      query: "part",
       label: "Fjern gamle ubehandlede (52 uker)",
       kind: "process",
       position: { x: 960, y: 1500 },
@@ -785,6 +805,7 @@ WHERE
     },
     {
       id: "del3-uendrede",
+      query: "part",
       label: "Fjern uendrede (156 uker)",
       kind: "process",
       position: { x: 960, y: 1650 },
@@ -806,6 +827,7 @@ WHERE
 
     {
       id: "del4-anker",
+      query: "part",
       label: "Del 4: anker",
       kind: "database",
       position: { x: 1280, y: 900 },
@@ -845,6 +867,7 @@ WHERE
     },
     {
       id: "del4-utfallsdato",
+      query: "part",
       label: "Hent utfallsdato",
       kind: "database",
       position: { x: 1280, y: 1050 },
@@ -872,6 +895,7 @@ WHERE
     },
     {
       id: "del4-avbrutte-og-trukne",
+      query: "part",
       label: "Fjern avbrutte og trukne",
       kind: "process",
       position: { x: 1280, y: 1200 },
@@ -892,6 +916,7 @@ WHERE
     },
     {
       id: "del4-gamle-avgjorelser",
+      query: "part",
       label: "Fjern gamle avgjørelser (52 uker)",
       kind: "process",
       position: { x: 1280, y: 1350 },
@@ -912,6 +937,7 @@ WHERE
     },
     {
       id: "del4-gamle-ubehandlede",
+      query: "part",
       label: "Fjern gamle ubehandlede (52 uker)",
       kind: "process",
       position: { x: 1280, y: 1500 },
@@ -932,6 +958,7 @@ WHERE
     },
     {
       id: "del4-uendrede",
+      query: "part",
       label: "Fjern uendrede (156 uker)",
       kind: "process",
       position: { x: 1280, y: 1650 },
@@ -953,6 +980,7 @@ WHERE
 
     {
       id: "sla-sammen-og-sorter",
+      query: "part",
       label: "Slå sammen og sorter",
       kind: "process",
       position: { x: 640, y: 2550 },
