@@ -154,3 +154,42 @@
   margin: 0.5rem 0 0;
   color: var(--ifm-color-emphasis-700);
 }
+
+/* Midlertidige regler (for eksempel MVP): oransje og stiplet, slik at de skiller seg ut. */
+.node[data-temporary] {
+  border-style: dashed;
+  border-color: var(--ifm-color-warning-dark);
+  background: var(--ifm-color-warning-contrast-background);
+}
+
+.node[data-kind="decision"][data-temporary]::before {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--ifm-color-warning-dark) 0 8px,
+    var(--ifm-color-warning-lighter) 8px 12px
+  );
+}
+
+.node[data-kind="decision"][data-temporary]::after {
+  background: var(--ifm-color-warning-contrast-background);
+}
+
+.temporaryTag {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ifm-color-warning-darkest);
+}
+
+[data-theme="dark"] .temporaryTag {
+  color: var(--ifm-color-warning-lightest);
+}
+
+.temporaryBadge {
+  margin-left: 0.5rem;
+  background: var(--ifm-color-warning);
+  color: var(--ifm-color-warning-contrast-foreground);
+  border-color: var(--ifm-color-warning-dark);
+}

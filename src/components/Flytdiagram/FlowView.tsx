@@ -56,6 +56,7 @@ function FlowCanvas({ flow }: { flow: Flow }) {
         data: {
           label: node.label,
           kind: node.kind,
+          temporary: node.temporary ?? false,
           selected: node.id === selectedId,
           onOpen: () => setSelectedId(node.id),
         },

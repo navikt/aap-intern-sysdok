@@ -55,6 +55,10 @@ Posisjonen er øvre venstre hjørne av boksen, i piksler. En boks er 220 px bred
 },
 ```
 
+### Midlertidige regler
+
+Sett `temporary: true` på en boks som beskriver en midlertidig regel, for eksempel en avgrensning for en MVP. Boksen får oransje, stiplet kant og merket «Midlertidig», og sidepanelet viser «Midlertidig regel». Forklar i detaljene hvorfor regelen er midlertidig og når den skal fjernes, hvis koden sier det. Merket tar én linje i diamanten, så hold navnet på en midlertidig `decision` kort.
+
 ### Velg `kind`
 
 | kind | Form | Brukes til |

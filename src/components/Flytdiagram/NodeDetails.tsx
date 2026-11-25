@@ -70,6 +70,9 @@ export function NodeDetails({
           <header className={styles.panelHeader}>
             <div>
               <span className="badge badge--secondary">{kindLabel[node.kind]}</span>
+              {node.temporary && (
+                <span className={`badge ${styles.temporaryBadge}`}>Midlertidig regel</span>
+              )}
               <h2 id="flytdiagram-detaljer-tittel" className={styles.panelTitle}>
                 {node.label}
               </h2>

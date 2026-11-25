@@ -258,7 +258,7 @@ VALUES (:regelResultatId, :regelNavn, :resultat);`,
         {
           type: "text",
           content:
-            "Slik går kallet på tvers av appene\n\nI postmottak: `ArenaHistorikkRegelInputGenerator` kaller `ArenaoppslagGateway.harSignifikantHistorikk`. Den sender `POST /api/v1/person/historikk/signifikant` med aktiv ident og mottatt dato som `virkningstidspunkt`. Regelen kaller også `POST /api/v1/person/historikk`, men bare for metrikker.\n\nI arenaoppslag: ruten `historikk` i `ApiRoute.kt` slår opp `person_id` med `PersonService.hentPersonId`. Finnes ikke personen i Arena, svarer den «ingen historikk» med en gang. Ellers kaller den `HistorikkService.signifikantHistorikk`, som kjører spørringen i `HistorikkRepository`.\n\nSvaret er `SignifikantHistorikkResponse`. Den inneholder `harSignifikantHistorikk` og lista `signifikanteVedtak` med radene spørringen fant. `harSignifikantHistorikk` er `true` hvis lista ikke er tom. Regelen bruker bare dette feltet. Lista blir logget.",
+            "Slik går kallet på tvers av appene\n\nI postmottak: `ArenaHistorikkRegelInputGenerator` kaller `ArenaoppslagGateway.harSignifikantHistorikk`. Den sender `POST /api/v1/person/historikk/signifikant` med aktiv ident og mottatt dato som `virkningstidspunkt`. Regelen kaller også `POST /api/v1/person/historikk`, men bare for metrikker.\n\nI arenaoppslag: ruten `historikk` i `ApiRoute.kt` slår opp `person_id` med `PersonService.hentPersonIdentifikator`. Finnes ikke personen i Arena, svarer den «ingen historikk» med en gang. Ellers kaller den `HistorikkService.signifikantHistorikk`, som kjører spørringen i `HistorikkRepository`.\n\nSvaret er `SignifikantHistorikkResponse`. Den inneholder `harSignifikantHistorikk` og lista `signifikanteVedtak` med radene spørringen fant. `harSignifikantHistorikk` er `true` hvis lista ikke er tom. Regelen bruker bare dette feltet. Lista blir logget.",
         },
         {
           type: "text",
@@ -490,7 +490,7 @@ ORDER BY aar DESC, lopenrsak DESC, lopenrvedtak DESC`,
         {
           type: "text",
           content:
-            "Slik går kallet på tvers av appene\n\nI postmottak: `ArenaService.harOppbruktRettighet` kaller `ArenaoppslagGateway.historikkStatusDetalj`. Implementasjonen, `ArenaoppslagGatewayImpl`, sender `POST /api/v1/person/historikk/status/detalj` med identen og mottatt dato i body.\n\nI arenaoppslag: ruten `historikk` i `ApiRoute.kt` tar imot kallet. Den slår opp `person_id` med `PersonService.hentPersonId` og sender den videre til `HistorikkService.hentHistorikkStatusDetalj`. Tjenesten bruker `VedtakService`, `SakOgVedtakService`, `TelleverkService` og `PosteringService`, som igjen kaller repositoryene med SQL-en under.\n\nRequest- og response-typene ligger i `kontrakt`-modulen til arenaoppslag (`no.nav.aap.arenaoppslag.kontrakt.apiv1`). Postmottak bruker den samme modulen som avhengighet, så begge sider har de samme typene.\n\nFår postmottak ikke svar, feiler steget og prøves på nytt senere. Søknaden blir ikke fordelt før arenaoppslag har svart.",
+            "Slik går kallet på tvers av appene\n\nI postmottak: `ArenaService.harOppbruktRettighet` kaller `ArenaoppslagGateway.historikkStatusDetalj`. Implementasjonen, `ArenaoppslagGatewayImpl`, sender `POST /api/v1/person/historikk/status/detalj` med identen og mottatt dato i body.\n\nI arenaoppslag: ruten `historikk` i `ApiRoute.kt` tar imot kallet. Den slår opp `person_id` med `PersonService.hentPersonIdentifikator` og sender den videre til `HistorikkService.hentHistorikkStatusDetalj`. Tjenesten bruker `VedtakService`, `SakOgVedtakService`, `TelleverkService` og `PosteringService`, som igjen kaller repositoryene med SQL-en under.\n\nRequest- og response-typene ligger i `kontrakt`-modulen til arenaoppslag (`no.nav.aap.arenaoppslag.kontrakt.apiv1`). Postmottak bruker den samme modulen som avhengighet, så begge sider har de samme typene.\n\nFår postmottak ikke svar, feiler steget og prøves på nytt senere. Søknaden blir ikke fordelt før arenaoppslag har svart.",
         },
         {
           type: "code",
@@ -509,7 +509,9 @@ ORDER BY aar DESC, lopenrsak DESC, lopenrvedtak DESC`,
           title: "Arenaoppslag: ruten i ApiRoute.kt",
           code: `post("/person/historikk/status/detalj") {
     val request: SignifikantHistorikkRequest = call.receive()
-    val personId = personService.hentPersonId(request.personidentifikator)
+    val personidentifikator = PersonIdentifikator.fromString(request.personidentifikator)
+        ?: return@post call.respond(HttpStatusCode.BadRequest) // ugyldig format på identen
+    val personId = personService.hentPersonIdentifikator(personidentifikator)
         ?: return@post call.respond(HistorikkStatusDetaljResponse.ingen)
 
     val detaljer = historikkService.hentHistorikkStatusDetalj(personId)
@@ -529,13 +531,13 @@ ORDER BY aar DESC, lopenrsak DESC, lopenrvedtak DESC`,
         {
           type: "text",
           content:
-            "Slik henger spørringene sammen\n\nArenaoppslag kjører spørringene etter hverandre. Hver spørring bruker en verdi fra en tidligere spørring. Numrene viser til SQL-en lenger ned.\n\n1. Arenaoppslag slår opp alle folkeregisteridentene til personen i PDL. Spørring 1 finner `person_id` i tabellen `PERSON` ut fra identene. Finnes ikke personen, svarer arenaoppslag med alle felt tomme uten å kjøre flere spørringer. Gir identene flere `person_id`-er, feiler kallet.\n\n2. Spørring 2 bruker `person_id` og finner det siste innvilgede AAP-vedtaket som teller på kvoten. Den gir blant annet `vedtak_id`, `lopenrsak`, `aar`, aktivitetsfase, fra- og til-dato og maksdatoene fra viewet `v_vedtak_maxdato`. Gir den ingen rad, blir `sisteSakOgVedtak` tom.\n\n3. Spørring 3 bruker `vedtak_id` fra spørring 2 og leser `UNNTAKAAP` og `AAPVILKUNN` på dette vedtaket. Slik registrerte Arena 11-12-vurderingen etter gammel prosedyre.\n\n4. Spørring 4 bruker `lopenrsak` og `aar` fra spørring 2. De to verdiene er saksnummeret. Spørringen henter saken med `sak_id`, status og datoer.\n\n5. Spørring 5 bruker `sak_id` fra spørring 4 og henter alle vedtakene i saken.\n\n6. Arenaoppslag kjører spørring 3 og spørring 6 med alle `vedtak_id`-ene fra spørring 5. Da får hvert vedtak sine vedtakfakta og vilkårsvurderinger. Ugyldiggjorte vedtak (til-dato før fra-dato) fjernes etterpå.\n\n7. Kotlin-koden finner vedtak i saken som kan inneholde 11-12-vurderingen etter ny prosedyre: et eget 11-12-vedtak eller et stansvedtak. Spørring 3 kjøres på nytt for disse vedtakene. Resultatet blir `unntaksvilkaarInnvilget` og `unntaksvilkaarGjelderFra` (se «Forlenget etter 11-12?»).\n\n8. Telleverket (gjenværende kvote) og datoen for siste AAP-utbetaling hentes med egne spørringer på `person_id`. Fordelingen bruker ikke disse.\n\nSpørring 3 kjører altså opptil fire ganger per kall.",
+            "Slik henger spørringene sammen\n\nArenaoppslag kjører spørringene etter hverandre. Hver spørring bruker en verdi fra en tidligere spørring. Numrene viser til SQL-en lenger ned.\n\n1. Arenaoppslag sjekker at identen har gyldig format, ellers svarer den `400 Bad Request`. Deretter slår den opp alle folkeregisteridentene til personen i PDL. Spørring 1 finner `person_id` i tabellen `PERSON` ut fra identene. Finnes ikke personen, svarer arenaoppslag med alle felt tomme uten å kjøre flere spørringer. Gir identene flere `person_id`-er, feiler kallet.\n\n2. Spørring 2 bruker `person_id` og finner det siste innvilgede AAP-vedtaket som teller på kvoten. Den gir blant annet `vedtak_id`, `lopenrsak`, `aar`, aktivitetsfase, fra- og til-dato og maksdatoene fra viewet `v_vedtak_maxdato`. Gir den ingen rad, blir `sisteSakOgVedtak` tom.\n\n3. Spørring 3 bruker `vedtak_id` fra spørring 2 og leser `UNNTAKAAP` og `AAPVILKUNN` på dette vedtaket. Slik registrerte Arena 11-12-vurderingen etter gammel prosedyre.\n\n4. Spørring 4 bruker `lopenrsak` og `aar` fra spørring 2. De to verdiene er saksnummeret. Spørringen henter saken med `sak_id`, status og datoer.\n\n5. Spørring 5 bruker `sak_id` fra spørring 4 og henter alle vedtakene i saken.\n\n6. Arenaoppslag kjører spørring 3 og spørring 6 med alle `vedtak_id`-ene fra spørring 5. Da får hvert vedtak sine vedtakfakta og vilkårsvurderinger. Ugyldiggjorte vedtak (til-dato før fra-dato) fjernes etterpå.\n\n7. Kotlin-koden finner vedtak i saken som kan inneholde 11-12-vurderingen etter ny prosedyre: et eget 11-12-vedtak eller et stansvedtak. Spørring 3 kjøres på nytt for disse vedtakene. Resultatet blir `unntaksvilkaarInnvilget` og `unntaksvilkaarGjelderFra` (se «Forlenget etter 11-12?»).\n\n8. Telleverket (gjenværende kvote) og datoen for siste AAP-utbetaling hentes med egne spørringer på `person_id`. Fordelingen bruker ikke disse.\n\nSpørring 3 kjører altså opptil fire ganger per kall.",
         },
         {
           type: "code",
           language: "kotlin",
           title: "HistorikkService.hentHistorikkStatusDetalj (arenaoppslag, med stegnumre)",
-          code: `// Steg 1 skjer i ruten: personService.hentPersonId(personidentifikator) ?: return ingen
+          code: `// Steg 1 skjer i ruten: personService.hentPersonIdentifikator(personidentifikator) ?: return ingen
 
 fun hentHistorikkStatusDetalj(personId: PersonId): HistorikkStatusDetaljResponse {
     // Steg 2 og 3: siste vedtak med maksdato og vedtakfakta for det
@@ -826,10 +828,49 @@ sisteSak?.sisteVedtak?.maxdatoAap?.isBefore(mottattDato + periodeFørMaksdato) =
       details: sendTilArena,
     },
     {
+      id: "aktuell-for-mvp",
+      label: "Aktuell for MVP kant-til-kant?",
+      kind: "decision",
+      temporary: true,
+      position: { x: 0, y: 1800 },
+      summary: "Midlertidig regel for MVP kant-til-kant: slutter siste vedtak etter mottatt dato, og er det under 4 uker til maksdato?",
+      details: [
+        {
+          type: "text",
+          content:
+            "Midlertidig regel\n\nRegelen gjelder bare MVP kant-til-kant og skal fjernes senere. Den er strengere enn resten av kant-til-kant-sjekken og filtrerer bort en del søknader som ellers kunne gått til Kelvin. Målet er at søknadene som går til Kelvin, snart skal levere meldekort.\n\nSvaret er «ja» når begge disse gjelder:\n\n1. Til-datoen på siste vedtak ligger etter mottatt dato. Vedtaket i Arena løper altså fortsatt.\n\n2. `maxdatoAap` ligger mindre enn 4 uker etter mottatt dato.\n\nEllers er svaret «nei», og resultatet er `IkkeRelevantSøknad`. Mangler til-dato eller `maxdatoAap`, er svaret også «nei».\n\nRegelen kjøres før sjekkene av 11-12 og forlengelse, så den gjelder både personer med og uten forlengelse.",
+        },
+        {
+          type: "code",
+          language: "kotlin",
+          title: "ArenaService.erAktuellKantTilKantForMVP",
+          code: `// Midlertidig MVP-kriterium: Vedtakets til-dato må være etter mottaksdatoen,
+// og maksdato må være før mottaksdatoen pluss fire uker.
+private fun erAktuellKantTilKantForMVP(sisteSak: SisteSakDetaljer?, mottattDato: LocalDate): Boolean {
+    val tildato = sisteSak?.sisteVedtak?.til ?: return false
+
+    val tildatoErFremITid = tildato.isAfter(mottattDato)
+    val erMindreEnn4UkerTilMaksdato =
+        sisteSak.sisteVedtak.maxdatoAap?.isBefore(mottattDato + Period.ofWeeks(4)) == true
+
+    return tildatoErFremITid && erMindreEnn4UkerTilMaksdato
+}`,
+        },
+      ],
+    },
+    {
+      id: "arena-ikke-aktuell-mvp",
+      label: "Send til Arena",
+      kind: "end",
+      position: { x: 320, y: 1800 },
+      summary: "`IkkeRelevantSøknad`: søknaden faller utenfor den midlertidige avgrensningen for MVP kant-til-kant.",
+      details: sendTilArena,
+    },
+    {
       id: "forlenget-11-12",
       label: "Forlenget etter 11-12?",
       kind: "decision",
-      position: { x: 0, y: 1800 },
+      position: { x: 0, y: 1950 },
       summary: "Er unntaket etter § 11-12 innvilget på saken (`unntaksvilkaarInnvilget == true`)?",
       details: [
         {
@@ -875,7 +916,7 @@ val resultat = when {
       id: "forlengelse-brukt-opp",
       label: "Forlengelse brukt opp?",
       kind: "decision",
-      position: { x: 640, y: 1800 },
+      position: { x: 640, y: 1950 },
       summary: "Har personen brukt opp hele forlengelsen, altså fem år med AAP til sammen?",
       details: [
         {
@@ -906,7 +947,7 @@ private fun erDatoerInnenforToleranse(tilDato: LocalDate?, maksdato: LocalDate?)
       id: "kelvin-brukt-opp-forlengelse",
       label: "Send til Kelvin",
       kind: "end",
-      position: { x: 960, y: 1800 },
+      position: { x: 960, y: 1950 },
       summary: "`HarBruktOppForlengelsen`: personen har brukt opp forlengelsen etter § 11-12 i Arena.",
       details: sendTilKelvin,
     },
@@ -914,7 +955,7 @@ private fun erDatoerInnenforToleranse(tilDato: LocalDate?, maksdato: LocalDate?)
       id: "arena-vedtatt-forlenget",
       label: "Send til Arena",
       kind: "end",
-      position: { x: 640, y: 1950 },
+      position: { x: 640, y: 2100 },
       summary: "`VedtattForlenget`: personen har forlengelse i Arena som ikke er brukt opp.",
       details: sendTilArena,
     },
@@ -922,7 +963,7 @@ private fun erDatoerInnenforToleranse(tilDato: LocalDate?, maksdato: LocalDate?)
       id: "ved-ordinaer-maksdato",
       label: "Ordinær kvote brukt opp?",
       kind: "decision",
-      position: { x: 0, y: 1950 },
+      position: { x: 0, y: 2100 },
       summary: "Går til-datoen på siste vedtak til ordinær maksdato, med 5 dagers slingringsmonn?",
       details: [
         {
@@ -942,7 +983,7 @@ private fun erDatoerInnenforToleranse(tilDato: LocalDate?, maksdato: LocalDate?)
       id: "arena-ikke-ved-maksdato",
       label: "Send til Arena",
       kind: "end",
-      position: { x: 320, y: 1950 },
+      position: { x: 320, y: 2100 },
       summary: "`IkkeRelevantSøknad`: siste vedtak slutter før de tre ordinære årene er brukt opp.",
       details: sendTilArena,
     },
@@ -950,7 +991,7 @@ private fun erDatoerInnenforToleranse(tilDato: LocalDate?, maksdato: LocalDate?)
       id: "unntak-avslatt",
       label: "11-12 avslått?",
       kind: "decision",
-      position: { x: 0, y: 2100 },
+      position: { x: 0, y: 2250 },
       summary: "Har Arena vurdert § 11-12 og sagt nei til forlengelse (`unntaksvilkaarInnvilget == false`)?",
       details: [
         {
@@ -965,6 +1006,8 @@ private fun erDatoerInnenforToleranse(tilDato: LocalDate?, maksdato: LocalDate?)
           code: `val harKunOppbrukt = when {
     // Bruker har valgt å sende en ny søknad om AAP og ..
     maksdatoErIkkeInnenRimeligTid -> IkkeRelevantSøknad // har søkt for tidlig
+    // Kun for MVP kant-til-kant: midlertidig, filtrerer bort en del saker
+    erIkkeAktuellKantTilKantForMVP -> IkkeRelevantSøknad
     erAlleredeForlenget -> if (tilDatoErLikMaksdatoForUnntak) {
         HarBruktOppForlengelsen // forlengelsen er brukt opp
     } else {
@@ -986,7 +1029,7 @@ fun skalTilKelvin() = this is HarOppbruktRettighet // HarBruktOppForlengelsen el
       id: "kelvin-vedtatt-ikke-forlenges",
       label: "Send til Kelvin",
       kind: "end",
-      position: { x: 320, y: 2100 },
+      position: { x: 320, y: 2250 },
       summary: "`VedtattAtIkkeForlenges`: de tre ordinære årene er brukt opp, og Arena har avslått forlengelse etter § 11-12.",
       details: sendTilKelvin,
     },
@@ -994,7 +1037,7 @@ fun skalTilKelvin() = this is HarOppbruktRettighet // HarBruktOppForlengelsen el
       id: "arena-11-12-ikke-vurdert",
       label: "Send til Arena",
       kind: "end",
-      position: { x: 0, y: 2250 },
+      position: { x: 0, y: 2400 },
       summary: "`IkkeRelevantSøknad`: de tre ordinære årene er brukt opp, men § 11-12 er ikke vurdert i Arena.",
       details: sendTilArena,
     },
@@ -1002,7 +1045,7 @@ fun skalTilKelvin() = this is HarOppbruktRettighet // HarBruktOppForlengelsen el
       id: "arena-11-12-innvilget",
       label: "Send til Arena",
       kind: "end",
-      position: { x: 320, y: 2250 },
+      position: { x: 320, y: 2400 },
       summary: "`IkkeRelevantSøknad`: § 11-12 er innvilget. Skjer ikke i praksis, fordi «Forlenget etter 11-12?» fanger dette tidligere.",
       details: sendTilArena,
     },
@@ -1030,7 +1073,9 @@ fun skalTilKelvin() = this is HarOppbruktRettighet // HarBruktOppForlengelsen el
     { from: "vedtak-frem-i-tid", to: "arena-vedtak-frem-i-tid", label: "ja" },
     { from: "vedtak-frem-i-tid", to: "maksdato-innen-12-uker", label: "nei / udefinert" },
     { from: "maksdato-innen-12-uker", to: "arena-sokt-for-tidlig", label: "nei / udefinert" },
-    { from: "maksdato-innen-12-uker", to: "forlenget-11-12", label: "ja" },
+    { from: "maksdato-innen-12-uker", to: "aktuell-for-mvp", label: "ja" },
+    { from: "aktuell-for-mvp", to: "arena-ikke-aktuell-mvp", label: "nei / udefinert" },
+    { from: "aktuell-for-mvp", to: "forlenget-11-12", label: "ja" },
     { from: "forlenget-11-12", to: "forlengelse-brukt-opp", label: "ja" },
     { from: "forlenget-11-12", to: "ved-ordinaer-maksdato", label: "nei / udefinert" },
     { from: "forlengelse-brukt-opp", to: "kelvin-brukt-opp-forlengelse", label: "ja" },

@@ -33,6 +33,8 @@ export interface FlowNode {
   /** Enkelt navn, 1–4 ord. Det eneste som vises i boksen. */
   label: string;
   kind: NodeKind;
+  /** Midlertidig regel, for eksempel for en MVP. Vises med egen farge og merket «Midlertidig». */
+  temporary?: boolean;
   /** Øvre venstre hjørne i piksler. Bruk rutenettet beskrevet i skillen. */
   position: { x: number; y: number };
   /** Én setning øverst i detaljpanelet. Vises ikke i boksen. */

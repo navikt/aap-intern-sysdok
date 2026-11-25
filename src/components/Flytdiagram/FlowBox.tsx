@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 export type FlowBoxData = {
   label: string;
   kind: NodeKind;
+  temporary: boolean;
   selected: boolean;
   onOpen: () => void;
 };
@@ -29,11 +30,15 @@ export function FlowBox({ data }: NodeProps<FlowBoxNode>) {
         type="button"
         className={styles.node}
         data-kind={data.kind}
+        data-temporary={data.temporary || undefined}
         data-selected={data.selected}
         aria-haspopup="dialog"
         onClick={data.onOpen}
       >
-        <span>{data.label}</span>
+        <span>
+          {data.temporary && <span className={styles.temporaryTag}>Midlertidig</span>}
+          {data.label}
+        </span>
       </button>
       <Handle type="source" position={Position.Bottom} id="bottom" />
       <Handle type="source" position={Position.Right} id="right" />
